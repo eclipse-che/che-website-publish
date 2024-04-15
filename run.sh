@@ -1,1 +1,0 @@
-docker run  -p 900:80 --rm --name my-apache-php-app-4 -v /Users/stevanlemeur/Desktop/CHE-WEBSITE/che:/var/www/html php:5.6-apache
