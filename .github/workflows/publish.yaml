@@ -35,11 +35,11 @@ jobs:
           repository: eclipse-che/che-docs
           ref: publication
           path: che-docs  
-      - name: Copy che-docs to website/buil/che
+      - name: Copy che-docs and chectl redirections to website/build/che
         run: |
           rm -rf che-docs/Jenkinsfile che-docs/push-to-eclipse-repository.sh che-docs/.git
           cp -R che-docs/* che-website/build/che
-          
+          cp -R static/* che-website/build/che
           
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v4
