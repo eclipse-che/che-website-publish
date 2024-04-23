@@ -47,4 +47,4 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./che-website/build/che
           publish_branch: publish
-          force_orphan: true
+          force_orphan: false
