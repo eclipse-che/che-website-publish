@@ -3,15 +3,15 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Installing Che on OpenShift using the chectl management tool :: Eclipse Che Documentation</title>
-    <link rel="canonical" href="https://www.eclipse.org/che/docs/stable/administration-guide/installing-che-on-openshift-using-cli/">
-    <meta name="description" content="Installing Che on OpenShift using CLI">
-    <meta name="keywords" content="overview, installing-che-on-openshift-4-using-cli">
+    <title>Installing Image Puller on OpenShift by using the CLI :: Eclipse Che Documentation</title>
+    <meta name="description" content="Installing Image Puller on OpenShift using CLI">
+    <meta name="keywords" content="administration-guide, image-puller, openshift, openshift-templates, CLI">
     <meta name="generator" content="Antora 3.1.7">
     <link rel="stylesheet" href="../../../../docs/_/css/site.css">
 <link rel="stylesheet" href="../../../../docs/_/css/extra.css">
 <link rel="stylesheet" href="../../../../docs/_/font-awesome-4.7.0/css/font-awesome.min.css">
 <link rel="icon" href="../../../../docs/_/img/favicon.ico" type="image/x-icon">
+<meta name="robots" content="noindex">
 <script>var uiRootPath = '../../../../docs/_'</script>
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-37306001-2"></script>
     <script>function gtag(){dataLayer.push(arguments)};window.dataLayer=window.dataLayer||[];gtag('js',new Date());gtag('config','UA-37306001-2')</script>
@@ -45,7 +45,7 @@
   </nav>
 </header>
 <div class="body">
-<div class="nav-container" data-component="docs" data-version="7.85.x">
+<div class="nav-container" data-component="docs" data-version="next">
   <aside class="nav">
     <div class="panels">
 <div class="nav-panel-menu is-active" data-panel="menu">
@@ -337,8 +337,8 @@
     <button class="nav-item-toggle"></button>
     <a class="nav-link" href="../installing-che-in-the-cloud/">Installing Che in the cloud</a>
 <ul class="nav-list">
-  <li class="nav-item is-current-page" data-depth="3">
-    <a class="nav-link" href="./">Installing Che on OpenShift using CLI</a>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../installing-che-on-openshift-using-cli/">Installing Che on OpenShift using CLI</a>
   </li>
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="../installing-che-on-openshift-using-the-web-console/">Installing Che on OpenShift using the web console</a>
@@ -447,6 +447,9 @@
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="../installing-image-puller-on-kubernetes-by-using-cli/">Installing the Kubernetes Image Puller operator on Kubernetes cluster by using CLI</a>
+  </li>
+  <li class="nav-item is-current-page" data-depth="3">
+    <a class="nav-link" href="./">Installing Image Puller on OpenShift using CLI</a>
   </li>
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="../installing-image-puller-on-openshift-by-using-the-web-console/">Installing Image Puller on OpenShift by using the web console</a>
@@ -678,17 +681,17 @@
 <div class="nav-panel-explore" data-panel="explore">
   <div class="context">
     <span class="title">Documentation</span>
-    <span class="version">7.85.x</span>
+    <span class="version">next</span>
   </div>
   <ul class="components">
     <li class="component is-current">
-      <div class="title"><a href="../../overview/introduction-to-eclipse-che/">Documentation</a></div>
+      <div class="title"><a href="../../../stable/overview/introduction-to-eclipse-che/">Documentation</a></div>
       <ul class="versions">
-        <li class="version">
-          <a href="../../../next/overview/introduction-to-eclipse-che/">next</a>
+        <li class="version is-current">
+          <a href="../../overview/introduction-to-eclipse-che/">next</a>
         </li>
-        <li class="version is-current is-latest">
-          <a href="../../overview/introduction-to-eclipse-che/">7.85.x</a>
+        <li class="version is-latest">
+          <a href="../../../stable/overview/introduction-to-eclipse-che/">7.85.x</a>
         </li>
       </ul>
     </li>
@@ -700,33 +703,33 @@
 <main class="article">
 <div class="toolbar" role="navigation">
 <button class="nav-toggle"></button>
-  <a href="../../overview/introduction-to-eclipse-che/" class="home-link"></a>
+  <a href="../../../stable/overview/introduction-to-eclipse-che/" class="home-link"></a>
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="../../overview/introduction-to-eclipse-che/">Documentation</a></li>
     <li>Administration Guide</li>
-    <li><a href="../installing-che/">Installing Che</a></li>
-    <li><a href="../installing-che-in-the-cloud/">Installing Che in the cloud</a></li>
-    <li><a href="./">Installing Che on OpenShift using CLI</a></li>
+    <li><a href="../configuring-che/">Configuring Che</a></li>
+    <li><a href="../caching-images-for-faster-workspace-start/">Caching images for faster workspace start</a></li>
+    <li><a href="./">Installing Image Puller on OpenShift using CLI</a></li>
   </ul>
 </nav>
 <div class="page-versions">
-  <button class="version-menu-toggle" title="Show other versions of page">7.85.x</button>
+  <button class="version-menu-toggle" title="Show other versions of page">next</button>
   <div class="version-menu">
-    <a class="version" href="../../../next/administration-guide/installing-che-on-openshift-using-cli/">next</a>
-    <a class="version is-current" href="./">7.85.x</a>
+    <a class="version is-current" href="./">next</a>
+    <a class="version is-missing" href="../../../stable/overview/introduction-to-eclipse-che/">7.85.x</a>
   </div>
 </div>
-<div class="edit-this-page"><a href="https://github.com/eclipse-che/che-docs/edit/7.85.x/modules/administration-guide/pages/installing-che-on-openshift-using-cli.adoc">Edit this Page</a></div>
+<div class="edit-this-page"><a href="https://github.com/eclipse-che/che-docs/edit/main/modules/administration-guide/pages/installing-image-puller-on-openshift-using-cli.adoc">Edit this Page</a></div>
 </div>
   <div class="content">
 <aside class="toc sidebar" data-title="Contents" data-levels="2">
   <div class="toc-menu"></div>
 </aside>
 <article class="doc">
-<h1 class="page">Installing Che on OpenShift using the <code>chectl</code> management tool</h1>
+<h1 class="page">Installing Image Puller on OpenShift by using the CLI</h1>
 <div class="paragraph">
-<p>You can install Che on OpenShift.</p>
+<p>You can install the Kubernetes Image Puller on OpenShift by using OpenShift <code>oc</code> management tool.</p>
 </div>
 <div class="ulist">
 <div class="title">Prerequisites</div>
@@ -734,27 +737,198 @@
 <li>
 <p>An active <code>oc</code> session with administrative permissions to the OpenShift cluster. See <a href="https://docs.openshift.com/container-platform/4.12/cli_reference/openshift_cli/getting-started-cli.html">Getting started with the OpenShift CLI</a>.</p>
 </li>
-<li>
-<p><code>chectl</code>. See: <a href="../installing-the-chectl-management-tool/" class="xref page">Installing the chectl management tool</a>.</p>
-</li>
 </ul>
 </div>
 <div class="olist arabic">
 <div class="title">Procedure</div>
 <ol class="arabic">
 <li>
-<p>Optional: If you previously deployed Che on this OpenShift cluster, ensure that the previous Che instance is removed:</p>
+<p>Gather a list of relevant container images to pull by navigating to the links:</p>
+<div class="ulist">
+<ul>
+<li>
+<p><code>https://<em>&lt;che_fqdn&gt;</em>/plugin-registry/v3/external_images.txt</code></p>
+</li>
+<li>
+<p><code>https://<em>&lt;che_fqdn&gt;</em>/devfile-registry/devfiles/external_images.txt</code></p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Define the memory requests and limits parameters to ensure pulled containers and the platform have enough memory to run.</p>
+<div class="paragraph">
+<p>When defining the minimal value for <code>CACHING_MEMORY_REQUEST</code> or <code>CACHING_MEMORY_LIMIT</code>, consider the necessary amount of memory required to run each of the container images to pull.</p>
+</div>
+<div class="paragraph">
+<p>When defining the maximal value for <code>CACHING_MEMORY_REQUEST</code> or <code>CACHING_MEMORY_LIMIT</code>, consider the total memory allocated to the DaemonSet Pods in the cluster:</p>
+</div>
 <div class="listingblock">
 <div class="content">
-<pre>$ chectl server:delete</pre>
+<pre>(memory limit) * (number of images) * (number of nodes in the cluster)</pre>
+</div>
+</div>
+<div class="exampleblock">
+<div class="content">
+<div class="paragraph">
+<p>Pulling 5 images on 20 nodes, with a container memory limit of <code>20Mi</code> requires <code>2000Mi</code> of memory.</p>
+</div>
 </div>
 </div>
 </li>
 <li>
-<p>Create the Che instance:</p>
+<p>Clone the Image Puller repository and get in the directory containing the OpenShift templates:</p>
 <div class="listingblock">
 <div class="content">
-<pre>$ chectl server:deploy --platform openshift</pre>
+<pre>$ git clone https://github.com/che-incubator/kubernetes-image-puller
+$ cd kubernetes-image-puller/deploy/openshift</pre>
+</div>
+</div>
+</li>
+<li>
+<p>Configure the <code>app.yaml</code>, <code>configmap.yaml</code> and <code>serviceaccount.yaml</code> OpenShift templates using following parameters:</p>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 1. Image Puller OpenShift templates parameters in <code>app.yaml</code></caption>
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Value</th>
+<th class="tableblock halign-left valign-top">Usage</th>
+<th class="tableblock halign-left valign-top">Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>DEPLOYMENT_NAME</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The value of <code>DEPLOYMENT_NAME</code> in the ConfigMap</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>kubernetes-image-puller</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>IMAGE</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Image used for the <code>kubernetes-image-puller</code> deployment</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>quay.io/eclipse/kubernetes-image-puller</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>IMAGE_TAG</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The image tag to pull</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>latest</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>SERVICEACCOUNT_NAME</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The name of the ServiceAccount created and used by the deployment</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>kubernetes-image-puller</code></p></td>
+</tr>
+</tbody>
+</table>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 2. Image Puller OpenShift templates parameters in <code>configmap.yaml</code></caption>
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Value</th>
+<th class="tableblock halign-left valign-top">Usage</th>
+<th class="tableblock halign-left valign-top">Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>CACHING_CPU_LIMIT</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The value of <code>CACHING_CPU_LIMIT</code> in the ConfigMap</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>.2</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>CACHING_CPU_REQUEST</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The value of <code>CACHING_CPU_REQUEST</code> in the ConfigMap</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>.05</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>CACHING_INTERVAL_HOURS</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The value of <code>CACHING_INTERVAL_HOURS</code> in the ConfigMap</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>"1"</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>CACHING_MEMORY_LIMIT</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The value of <code>CACHING_MEMORY_LIMIT</code> in the ConfigMap</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>"20Mi"</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>CACHING_MEMORY_REQUEST</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The value of <code>CACHING_MEMORY_REQUEST</code> in the ConfigMap</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>"10Mi"</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>DAEMONSET_NAME</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The value of <code>DAEMONSET_NAME</code> in the ConfigMap</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>kubernetes-image-puller</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>DEPLOYMENT_NAME</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The value of <code>DEPLOYMENT_NAME</code> in the ConfigMap</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>kubernetes-image-puller</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>IMAGES</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The value of <code>IMAGES</code> in the ConfigMap</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>{}</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>NAMESPACE</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The value of <code>NAMESPACE</code> in the ConfigMap</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>k8s-image-puller</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>NODE_SELECTOR</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The value of <code>NODE_SELECTOR</code> in the ConfigMap</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>"{}"</code></p></td>
+</tr>
+</tbody>
+</table>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 3. Image Puller OpenShift templates parameters in <code>serviceaccount.yaml</code></caption>
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Value</th>
+<th class="tableblock halign-left valign-top">Usage</th>
+<th class="tableblock halign-left valign-top">Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>SERVICEACCOUNT_NAME</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The name of the ServiceAccount created and used by the deployment</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>kubernetes-image-puller</code></p></td>
+</tr>
+</tbody>
+</table>
+</li>
+<li>
+<p>Create an OpenShift project to host the Image Puller:</p>
+<div class="listingblock">
+<div class="content">
+<pre>$ oc new-project <em>&lt;k8s-image-puller&gt;</em></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Process and apply the templates to install the puller:</p>
+<div class="listingblock">
+<div class="content">
+<pre>$ oc process -f serviceaccount.yaml | oc apply -f -
+$ oc process -f configmap.yaml | oc apply -f -
+$ oc process -f app.yaml | oc apply -f -</pre>
 </div>
 </div>
 </li>
@@ -764,18 +938,18 @@
 <div class="title">Verification steps</div>
 <ol class="arabic">
 <li>
-<p>Verify the Che instance status:</p>
+<p>Verify the existence of a <em>&lt;kubernetes-image-puller&gt;</em> deployment and a <em>&lt;kubernetes-image-puller&gt;</em> DaemonSet. The DaemonSet needs to have a Pod for each node in the cluster:</p>
 <div class="listingblock">
 <div class="content">
-<pre>$ chectl server:status</pre>
+<pre class="highlightjs highlight nowrap"><code class="language-dummy hljs" data-lang="dummy">$ oc get deployment,daemonset,pod --namespace <em>&lt;k8s-image-puller&gt;</em></code></pre>
 </div>
 </div>
 </li>
 <li>
-<p>Navigate to the Che cluster instance:</p>
+<p>Verify the values of the <em>&lt;kubernetes-image-puller&gt;</em> <code>ConfigMap</code>.</p>
 <div class="listingblock">
 <div class="content">
-<pre>$ chectl dashboard:open</pre>
+<pre class="highlightjs highlight nowrap"><code class="language-dummy hljs" data-lang="dummy">$ oc get configmap <em>&lt;kubernetes-image-puller&gt;</em> --output yaml</code></pre>
 </div>
 </div>
 </li>
