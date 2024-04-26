@@ -3,10 +3,10 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Importing untrusted TLS certificates to Che :: Eclipse Che Documentation</title>
-    <link rel="canonical" href="https://www.eclipse.org/che/docs/stable/administration-guide/importing-untrusted-tls-certificates/">
-    <meta name="description" content="Importing untrusted TLS certificates to Che">
-    <meta name="keywords" content="administration guide, tls, certificate">
+    <title>Installing Image Puller on OpenShift by using the CLI :: Eclipse Che Documentation</title>
+    <link rel="canonical" href="https://www.eclipse.org/che/docs/stable/administration-guide/installing-image-puller-on-openshift-using-cli/">
+    <meta name="description" content="Installing Image Puller on OpenShift using CLI">
+    <meta name="keywords" content="administration-guide, image-puller, openshift, openshift-templates, CLI">
     <meta name="generator" content="Antora 3.1.7">
     <link rel="stylesheet" href="../../../../docs/_/css/site.css">
 <link rel="stylesheet" href="../../../../docs/_/css/extra.css">
@@ -448,8 +448,8 @@
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="../installing-image-puller-on-kubernetes-by-using-cli/">Installing the Kubernetes Image Puller operator on Kubernetes cluster by using CLI</a>
   </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../installing-image-puller-on-openshift-using-cli/">Installing Image Puller on OpenShift using CLI</a>
+  <li class="nav-item is-current-page" data-depth="3">
+    <a class="nav-link" href="./">Installing Image Puller on OpenShift using CLI</a>
   </li>
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="../installing-image-puller-on-openshift-by-using-the-web-console/">Installing Image Puller on OpenShift by using the web console</a>
@@ -505,8 +505,8 @@
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="../configuring-che-with-self-signed-certificate/">Configuring Che with self-signed certificates</a>
   </li>
-  <li class="nav-item is-current-page" data-depth="3">
-    <a class="nav-link" href="./">Importing untrusted TLS certificates to Che</a>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../importing-untrusted-tls-certificates/">Importing untrusted TLS certificates to Che</a>
   </li>
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="../adding-labels-and-annotations/">Adding labels and annotations</a>
@@ -709,75 +709,33 @@
     <li><a href="../../overview/introduction-to-eclipse-che/">Documentation</a></li>
     <li>Administration Guide</li>
     <li><a href="../configuring-che/">Configuring Che</a></li>
-    <li><a href="../configuring-networking/">Configuring networking</a></li>
-    <li><a href="./">Importing untrusted TLS certificates to Che</a></li>
+    <li><a href="../caching-images-for-faster-workspace-start/">Caching images for faster workspace start</a></li>
+    <li><a href="./">Installing Image Puller on OpenShift using CLI</a></li>
   </ul>
 </nav>
 <div class="page-versions">
   <button class="version-menu-toggle" title="Show other versions of page">7.85.x</button>
   <div class="version-menu">
-    <a class="version" href="../../../next/administration-guide/importing-untrusted-tls-certificates/">next</a>
+    <a class="version" href="../../../next/administration-guide/installing-image-puller-on-openshift-using-cli/">next</a>
     <a class="version is-current" href="./">7.85.x</a>
   </div>
 </div>
-<div class="edit-this-page"><a href="https://github.com/eclipse-che/che-docs/edit/7.85.x/modules/administration-guide/pages/importing-untrusted-tls-certificates.adoc">Edit this Page</a></div>
+<div class="edit-this-page"><a href="https://github.com/eclipse-che/che-docs/edit/7.85.x/modules/administration-guide/pages/installing-image-puller-on-openshift-using-cli.adoc">Edit this Page</a></div>
 </div>
   <div class="content">
 <aside class="toc sidebar" data-title="Contents" data-levels="2">
   <div class="toc-menu"></div>
 </aside>
 <article class="doc">
-<h1 class="page">Importing untrusted TLS certificates to Che</h1>
+<h1 class="page">Installing Image Puller on OpenShift by using the CLI</h1>
 <div class="paragraph">
-<p>Che components communications with external services are encrypted with TLS.
-They require TLS certificates signed by trusted Certificate Authorities (CA).
-Therefore, you must import into Che all untrusted CA chains in use by an external service such as:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>A proxy</p>
-</li>
-<li>
-<p>An identity provider (OIDC)</p>
-</li>
-<li>
-<p>A source code repositories provider (Git)</p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p>Che uses labeled config maps in Che namespace as sources for TLS certificates.
-The config maps can have an arbitrary amount of keys with a random amount of certificates each.</p>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-<div class="paragraph">
-<p>When an OpenShift cluster contains cluster-wide trusted CA certificates added through the <a href="https://docs.openshift.com/container-platform/latest/networking/configuring-a-custom-pki.html#nw-proxy-configure-object_configuring-a-custom-pki">cluster-wide-proxy configuration</a>,
-Che Operator detects them and automatically injects them into a config map with the <code>config.openshift.io/inject-trusted-cabundle="true"</code> label.
-Based on this annotation, OpenShift automatically injects the cluster-wide trusted CA certificates inside the <code>ca-bundle.crt</code> key of the config map.</p>
-</div>
-</td>
-</tr>
-</table>
+<p>You can install the Kubernetes Image Puller on OpenShift by using OpenShift <code>oc</code> management tool.</p>
 </div>
 <div class="ulist">
 <div class="title">Prerequisites</div>
 <ul>
 <li>
-<p>An active <code>kubectl</code> session with administrative permissions to the destination Kubernetes cluster.
-See <a href="https://kubernetes.io/docs/reference/kubectl/overview/">Overview of kubectl</a>.</p>
-</li>
-<li>
-<p>The <code>eclipse-che</code> namespace exists.</p>
-</li>
-<li>
-<p>For each CA chain to import: the root CA and intermediate certificates, in <a href="https://wiki.openssl.org/index.php/PEM">PEM</a> format, in a <code>ca-cert-for-che-<em>&lt;count&gt;</em>.pem</code> file.</p>
+<p>An active <code>oc</code> session with administrative permissions to the OpenShift cluster. See <a href="https://docs.openshift.com/container-platform/4.12/cli_reference/openshift_cli/getting-started-cli.html">Getting started with the OpenShift CLI</a>.</p>
 </li>
 </ul>
 </div>
@@ -785,40 +743,194 @@ See <a href="https://kubernetes.io/docs/reference/kubectl/overview/">Overview of
 <div class="title">Procedure</div>
 <ol class="arabic">
 <li>
-<p>Concatenate all CA chains PEM files to import, into the <code>custom-ca-certificates.pem</code> file, and remove the return character that is incompatible with the Java truststore.</p>
+<p>Gather a list of relevant container images to pull by navigating to the links:</p>
+<div class="ulist">
+<ul>
+<li>
+<p><code>https://<em>&lt;che_fqdn&gt;</em>/plugin-registry/v3/external_images.txt</code></p>
+</li>
+<li>
+<p><code>https://<em>&lt;che_fqdn&gt;</em>/devfile-registry/devfiles/external_images.txt</code></p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Define the memory requests and limits parameters to ensure pulled containers and the platform have enough memory to run.</p>
+<div class="paragraph">
+<p>When defining the minimal value for <code>CACHING_MEMORY_REQUEST</code> or <code>CACHING_MEMORY_LIMIT</code>, consider the necessary amount of memory required to run each of the container images to pull.</p>
+</div>
+<div class="paragraph">
+<p>When defining the maximal value for <code>CACHING_MEMORY_REQUEST</code> or <code>CACHING_MEMORY_LIMIT</code>, consider the total memory allocated to the DaemonSet Pods in the cluster:</p>
+</div>
 <div class="listingblock">
 <div class="content">
-<pre>$ cat ca-cert-for-che-*.pem | tr -d '\r' &gt; custom-ca-certificates.pem</pre>
+<pre>(memory limit) * (number of images) * (number of nodes in the cluster)</pre>
+</div>
+</div>
+<div class="exampleblock">
+<div class="content">
+<div class="paragraph">
+<p>Pulling 5 images on 20 nodes, with a container memory limit of <code>20Mi</code> requires <code>2000Mi</code> of memory.</p>
+</div>
 </div>
 </div>
 </li>
 <li>
-<p>Create the <code>custom-ca-certificates</code> config map with the required TLS certificates:</p>
+<p>Clone the Image Puller repository and get in the directory containing the OpenShift templates:</p>
 <div class="listingblock">
 <div class="content">
-<pre>$ kubectl create configmap custom-ca-certificates \
-    --from-file=custom-ca-certificates.pem \
-    --namespace=eclipse-che</pre>
+<pre>$ git clone https://github.com/che-incubator/kubernetes-image-puller
+$ cd kubernetes-image-puller/deploy/openshift</pre>
 </div>
 </div>
 </li>
 <li>
-<p>Label the <code>custom-ca-certificates</code> config map:</p>
+<p>Configure the <code>app.yaml</code>, <code>configmap.yaml</code> and <code>serviceaccount.yaml</code> OpenShift templates using following parameters:</p>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 1. Image Puller OpenShift templates parameters in <code>app.yaml</code></caption>
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Value</th>
+<th class="tableblock halign-left valign-top">Usage</th>
+<th class="tableblock halign-left valign-top">Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>DEPLOYMENT_NAME</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The value of <code>DEPLOYMENT_NAME</code> in the ConfigMap</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>kubernetes-image-puller</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>IMAGE</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Image used for the <code>kubernetes-image-puller</code> deployment</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>quay.io/eclipse/kubernetes-image-puller</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>IMAGE_TAG</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The image tag to pull</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>latest</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>SERVICEACCOUNT_NAME</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The name of the ServiceAccount created and used by the deployment</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>kubernetes-image-puller</code></p></td>
+</tr>
+</tbody>
+</table>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 2. Image Puller OpenShift templates parameters in <code>configmap.yaml</code></caption>
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Value</th>
+<th class="tableblock halign-left valign-top">Usage</th>
+<th class="tableblock halign-left valign-top">Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>CACHING_CPU_LIMIT</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The value of <code>CACHING_CPU_LIMIT</code> in the ConfigMap</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>.2</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>CACHING_CPU_REQUEST</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The value of <code>CACHING_CPU_REQUEST</code> in the ConfigMap</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>.05</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>CACHING_INTERVAL_HOURS</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The value of <code>CACHING_INTERVAL_HOURS</code> in the ConfigMap</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>"1"</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>CACHING_MEMORY_LIMIT</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The value of <code>CACHING_MEMORY_LIMIT</code> in the ConfigMap</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>"20Mi"</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>CACHING_MEMORY_REQUEST</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The value of <code>CACHING_MEMORY_REQUEST</code> in the ConfigMap</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>"10Mi"</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>DAEMONSET_NAME</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The value of <code>DAEMONSET_NAME</code> in the ConfigMap</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>kubernetes-image-puller</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>DEPLOYMENT_NAME</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The value of <code>DEPLOYMENT_NAME</code> in the ConfigMap</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>kubernetes-image-puller</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>IMAGES</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The value of <code>IMAGES</code> in the ConfigMap</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>{}</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>NAMESPACE</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The value of <code>NAMESPACE</code> in the ConfigMap</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>k8s-image-puller</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>NODE_SELECTOR</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The value of <code>NODE_SELECTOR</code> in the ConfigMap</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>"{}"</code></p></td>
+</tr>
+</tbody>
+</table>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 3. Image Puller OpenShift templates parameters in <code>serviceaccount.yaml</code></caption>
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Value</th>
+<th class="tableblock halign-left valign-top">Usage</th>
+<th class="tableblock halign-left valign-top">Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>SERVICEACCOUNT_NAME</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The name of the ServiceAccount created and used by the deployment</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>kubernetes-image-puller</code></p></td>
+</tr>
+</tbody>
+</table>
+</li>
+<li>
+<p>Create an OpenShift project to host the Image Puller:</p>
 <div class="listingblock">
 <div class="content">
-<pre>$ kubectl label configmap custom-ca-certificates \
-    app.kubernetes.io/component=ca-bundle \
-    app.kubernetes.io/part-of=che.eclipse.org \
-    --namespace=eclipse-che</pre>
+<pre>$ oc new-project <em>&lt;k8s-image-puller&gt;</em></pre>
 </div>
 </div>
 </li>
 <li>
-<p>Deploy Che if it hasn&#8217;t been deployed before.
-Otherwise, wait until the rollout of Che components finishes.</p>
-</li>
-<li>
-<p>Restart running workspaces for the changes to take effect.</p>
+<p>Process and apply the templates to install the puller:</p>
+<div class="listingblock">
+<div class="content">
+<pre>$ oc process -f serviceaccount.yaml | oc apply -f -
+$ oc process -f configmap.yaml | oc apply -f -
+$ oc process -f app.yaml | oc apply -f -</pre>
+</div>
+</div>
 </li>
 </ol>
 </div>
@@ -826,138 +938,22 @@ Otherwise, wait until the rollout of Che components finishes.</p>
 <div class="title">Verification steps</div>
 <ol class="arabic">
 <li>
-<p>Verify that the config map contains your custom CA certificates.
-This command returns your custom CA certificates in PEM format:</p>
-<div class="listingblock white-space-pre">
+<p>Verify the existence of a <em>&lt;kubernetes-image-puller&gt;</em> deployment and a <em>&lt;kubernetes-image-puller&gt;</em> DaemonSet. The DaemonSet needs to have a Pod for each node in the cluster:</p>
+<div class="listingblock">
 <div class="content">
-<pre class="nowrap">$ kubectl get configmap \
-    --namespace=eclipse-che \
-    --output='jsonpath={.items[0:].data.custom-ca-certificates\.pem}' \
-    --selector=app.kubernetes.io/component=ca-bundle,app.kubernetes.io/part-of=che.eclipse.org</pre>
+<pre class="highlightjs highlight nowrap"><code class="language-dummy hljs" data-lang="dummy">$ oc get deployment,daemonset,pod --namespace <em>&lt;k8s-image-puller&gt;</em></code></pre>
 </div>
 </div>
 </li>
 <li>
-<p>Verify Che pod contains a volume mounting the <code>ca-certs-merged</code> config map:</p>
-<div class="listingblock white-space-pre">
+<p>Verify the values of the <em>&lt;kubernetes-image-puller&gt;</em> <code>ConfigMap</code>.</p>
+<div class="listingblock">
 <div class="content">
-<pre class="nowrap">$ kubectl get pod \
-    --selector=app.kubernetes.io/component=che \
-    --output='jsonpath={.items[0].spec.volumes[0:].configMap.name}' \
-    --namespace=eclipse-che \
-    | grep ca-certs-merged</pre>
-</div>
-</div>
-</li>
-<li>
-<p>Verify the Che server container has your custom CA certificates.
-This command returns your custom CA certificates in PEM format:</p>
-<div class="listingblock white-space-pre">
-<div class="content">
-<pre class="nowrap">$ kubectl exec -t deploy/che \
-    --namespace=eclipse-che \
-    -- cat /public-certs/custom-ca-certificates.pem</pre>
-</div>
-</div>
-</li>
-<li>
-<p>Verify in the Che server logs that the imported certificates count is not null:</p>
-<div class="listingblock white-space-pre">
-<div class="content">
-<pre class="nowrap">$ kubectl logs deploy/che --namespace=eclipse-che \
-    | grep custom-ca-certificates.pem</pre>
-</div>
-</div>
-</li>
-<li>
-<p>List the SHA256 fingerprints of your certificates:</p>
-<div class="listingblock white-space-pre">
-<div class="content">
-<pre class="nowrap">$ for certificate in ca-cert*.pem ;
-  do openssl x509 -in $certificate -digest -sha256 -fingerprint -noout | cut -d= -f2;
-  done</pre>
-</div>
-</div>
-</li>
-<li>
-<p>Verify  that Che server Java truststore contains certificates with the same fingerprint:</p>
-<div class="listingblock white-space-pre">
-<div class="content">
-<pre class="nowrap">$ kubectl exec -t deploy/che --namespace=eclipse-che -- \
-    keytool -list -keystore /home/user/cacerts \
-    | grep --after-context=1 custom-ca-certificates.pem</pre>
-</div>
-</div>
-</li>
-<li>
-<p>Start a workspace, get the namespace name in which it has been created: <em>&lt;workspace_namespace&gt;</em>, and wait for the workspace to be started.</p>
-</li>
-<li>
-<p>Verify that the <code>che-trusted-ca-certs</code> config map contains your custom CA certificates.
-This command returns your custom CA certificates in PEM format:</p>
-<div class="listingblock white-space-pre">
-<div class="content">
-<pre class="nowrap">$ kubectl get configmap che-trusted-ca-certs \
-    --namespace=<em>&lt;workspace_namespace&gt;</em> \
-    --output='jsonpath={.data.custom-ca-certificates\.custom-ca-certificates\.pem}'</pre>
-</div>
-</div>
-</li>
-<li>
-<p>Verify that the workspace pod mounts the <code>che-trusted-ca-certs</code> config map:</p>
-<div class="listingblock white-space-pre">
-<div class="content">
-<pre class="nowrap">$ kubectl get pod \
-    --namespace=<em>&lt;workspace_namespace&gt;</em> \
-    --selector='controller.devfile.io/devworkspace_name=<em>&lt;workspace_name&gt;</em>' \
-    --output='jsonpath={.items[0:].spec.volumes[0:].configMap.name}' \
-    | grep che-trusted-ca-certs</pre>
-</div>
-</div>
-</li>
-<li>
-<p>Verify that the <code>universal-developer-image</code> container (or the container defined in the workspace devfile) mounts the <code>che-trusted-ca-certs</code> volume:</p>
-<div class="listingblock white-space-pre">
-<div class="content">
-<pre class="nowrap">$ kubectl get pod \
-    --namespace=<em>&lt;workspace_namespace&gt;</em> \
-    --selector='controller.devfile.io/devworkspace_name=<em>&lt;workspace_name&gt;</em>' \
-    --output='jsonpath={.items[0:].spec.containers[0:]}' \
-    | jq 'select (.volumeMounts[].name == "che-trusted-ca-certs") | .name'</pre>
-</div>
-</div>
-</li>
-<li>
-<p>Get the workspace pod name <em>&lt;workspace_pod_name&gt;</em>:</p>
-<div class="listingblock white-space-pre">
-<div class="content">
-<pre class="nowrap">$ kubectl get pod \
-    --namespace=<em>&lt;workspace_namespace&gt;</em> \
-    --selector='controller.devfile.io/devworkspace_name=<em>&lt;workspace_name&gt;</em>' \
-    --output='jsonpath={.items[0:].metadata.name}' \</pre>
-</div>
-</div>
-</li>
-<li>
-<p>Verify that the workspace container has your custom CA certificates.
-This command returns your custom CA certificates in PEM format:</p>
-<div class="listingblock white-space-pre">
-<div class="content">
-<pre class="nowrap">$ kubectl exec <em>&lt;workspace_pod_name&gt;</em> \
-    --namespace=<em>&lt;workspace_namespace&gt;</em> \
-    -- cat /public-certs/custom-ca-certificates.custom-ca-certificates.pem</pre>
+<pre class="highlightjs highlight nowrap"><code class="language-dummy hljs" data-lang="dummy">$ oc get configmap <em>&lt;kubernetes-image-puller&gt;</em> --output yaml</code></pre>
 </div>
 </div>
 </li>
 </ol>
-</div>
-<div class="ulist">
-<div class="title">Additional resources</div>
-<ul>
-<li>
-<p><a href="../deploying-che-with-support-for-git-repositories-with-self-signed-certificates/" class="xref page">Deploying Che with support for Git repositories with self-signed certificates</a>.</p>
-</li>
-</ul>
 </div>
 </article>
   </div>
