@@ -1,6 +1,6 @@
 {
   ".svelte-kit/runtime/client/start.js": {
-    "file": "start-a6764d4f.js",
+    "file": "start-f8973596.js",
     "src": ".svelte-kit/runtime/client/start.js",
     "isEntry": true,
     "imports": [
@@ -44,7 +44,7 @@
     ]
   },
   "src/routes/index.svelte": {
-    "file": "pages/index.svelte-be446d2e.js",
+    "file": "pages/index.svelte-d3bac41a.js",
     "src": "src/routes/index.svelte",
     "isEntry": true,
     "isDynamicEntry": true,
@@ -52,49 +52,49 @@
       "_index-b08af0f1.js",
       "_stores-e5a4d478.js",
       "_Eclipseide-32ff12cd.js",
-      "_Try-95f5dd1c.js",
+      "_Try-d446ffa4.js",
       "_variables-d8dce8d8.js",
       "_index-8d3a1611.js",
-      "_TryOnline-6b5f88e3.js"
+      "_TryOnline-81d65c12.js"
     ]
   },
   "src/routes/getting-started/index.svelte": {
-    "file": "pages/getting-started/index.svelte-1c5fd7e2.js",
+    "file": "pages/getting-started/index.svelte-362d5706.js",
     "src": "src/routes/getting-started/index.svelte",
     "isEntry": true,
     "isDynamicEntry": true,
     "imports": [
       "_index-b08af0f1.js",
       "_stores-e5a4d478.js",
-      "_Try-95f5dd1c.js",
+      "_Try-d446ffa4.js",
       "_index-8d3a1611.js",
-      "_TryOnline-6b5f88e3.js",
+      "_TryOnline-81d65c12.js",
       "_variables-d8dce8d8.js"
     ]
   },
   "src/routes/getting-started/download/index.svelte": {
-    "file": "pages/getting-started/download/index.svelte-3432d877.js",
+    "file": "pages/getting-started/download/index.svelte-f39c8d2f.js",
     "src": "src/routes/getting-started/download/index.svelte",
     "isEntry": true,
     "isDynamicEntry": true,
     "imports": [
       "_index-b08af0f1.js",
       "_stores-e5a4d478.js",
-      "_Try-95f5dd1c.js",
+      "_Try-d446ffa4.js",
       "_index-8d3a1611.js",
-      "_TryOnline-6b5f88e3.js",
+      "_TryOnline-81d65c12.js",
       "_variables-d8dce8d8.js"
     ]
   },
   "src/routes/getting-started/cloud/index.svelte": {
-    "file": "pages/getting-started/cloud/index.svelte-1c2b1d69.js",
+    "file": "pages/getting-started/cloud/index.svelte-af4dfd12.js",
     "src": "src/routes/getting-started/cloud/index.svelte",
     "isEntry": true,
     "isDynamicEntry": true,
     "imports": [
       "_index-b08af0f1.js",
       "_stores-e5a4d478.js",
-      "_TryOnline-6b5f88e3.js",
+      "_TryOnline-81d65c12.js",
       "_index-8d3a1611.js"
     ]
   },
@@ -159,17 +159,17 @@
       "_index-b08af0f1.js"
     ]
   },
-  "_Try-95f5dd1c.js": {
-    "file": "chunks/Try-95f5dd1c.js",
+  "_Try-d446ffa4.js": {
+    "file": "chunks/Try-d446ffa4.js",
     "imports": [
       "_index-b08af0f1.js",
-      "_TryOnline-6b5f88e3.js",
+      "_TryOnline-81d65c12.js",
       "_stores-e5a4d478.js",
       "_variables-d8dce8d8.js"
     ]
   },
-  "_TryOnline-6b5f88e3.js": {
-    "file": "chunks/TryOnline-6b5f88e3.js",
+  "_TryOnline-81d65c12.js": {
+    "file": "chunks/TryOnline-81d65c12.js",
     "imports": [
       "_index-b08af0f1.js",
       "_stores-e5a4d478.js"
