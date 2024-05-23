@@ -695,7 +695,7 @@
           <a href="../../overview/introduction-to-eclipse-che/">next</a>
         </li>
         <li class="version is-latest">
-          <a href="../../../stable/overview/introduction-to-eclipse-che/">7.85.x</a>
+          <a href="../../../stable/overview/introduction-to-eclipse-che/">7.86.x</a>
         </li>
       </ul>
     </li>
@@ -722,7 +722,7 @@
   <button class="version-menu-toggle" title="Show other versions of page">next</button>
   <div class="version-menu">
     <a class="version is-current" href="./">next</a>
-    <a class="version" href="../../../stable/administration-guide/configuring-oauth-2-for-github/">7.85.x</a>
+    <a class="version" href="../../../stable/administration-guide/configuring-oauth-2-for-github/">7.86.x</a>
   </div>
 </div>
 <div class="edit-this-page"><a href="https://github.com/eclipse-che/che-docs/edit/main/modules/administration-guide/pages/configuring-oauth-2-for-github.adoc">Edit this Page</a></div>
@@ -858,7 +858,7 @@ metadata:
   annotations:
     che.eclipse.org/oauth-scm-server: github
     che.eclipse.org/scm-server-endpoint: <em>&lt;github_server_url&gt;</em> <i class="conum" data-value="2"></i><b>(2)</b>
-    che.eclipse.org/scm-github-disable-subdomain-isolation: true <i class="conum" data-value="3"></i><b>(3)</b>
+    che.eclipse.org/scm-github-disable-subdomain-isolation: 'false' <i class="conum" data-value="3"></i><b>(3)</b>
 type: Opaque
 stringData:
   id: <em>&lt;GitHub_OAuth_Client_ID&gt;</em> <i class="conum" data-value="4"></i><b>(4)</b>
@@ -877,7 +877,7 @@ stringData:
 </tr>
 <tr>
 <td><i class="conum" data-value="3"></i><b>3</b></td>
-<td>This line is only added for GitHub Enterprise Server with disabled <a href="https://docs.github.com/en/enterprise-server/admin/configuration/hardening-security-for-your-enterprise/enabling-subdomain-isolation#about-subdomain-isolation">subdomain isolation</a> option. If the subdomain isolation option is enabled on GitHub Enterprise Server, you must either omit this annotation or set it to <code>false</code>.</td>
+<td>If you are using GitHub Enterprise Server with a disabled <a href="https://docs.github.com/en/enterprise-server/admin/configuration/hardening-security-for-your-enterprise/enabling-subdomain-isolation#about-subdomain-isolation">subdomain isolation</a> option, you must set the annotation to <code>true</code>, otherwise you can either omit the annotation or set it to <code>false</code>.</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="4"></i><b>4</b></td>

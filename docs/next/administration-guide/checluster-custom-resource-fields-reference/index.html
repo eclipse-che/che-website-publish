@@ -695,7 +695,7 @@
           <a href="../../overview/introduction-to-eclipse-che/">next</a>
         </li>
         <li class="version is-latest">
-          <a href="../../../stable/overview/introduction-to-eclipse-che/">7.85.x</a>
+          <a href="../../../stable/overview/introduction-to-eclipse-che/">7.86.x</a>
         </li>
       </ul>
     </li>
@@ -721,7 +721,7 @@
   <button class="version-menu-toggle" title="Show other versions of page">next</button>
   <div class="version-menu">
     <a class="version is-current" href="./">next</a>
-    <a class="version" href="../../../stable/administration-guide/checluster-custom-resource-fields-reference/">7.85.x</a>
+    <a class="version" href="../../../stable/administration-guide/checluster-custom-resource-fields-reference/">7.86.x</a>
   </div>
 </div>
 <div class="edit-this-page"><a href="https://github.com/eclipse-che/che-docs/edit/main/modules/administration-guide/pages/checluster-custom-resource-fields-reference.adoc">Edit this Page</a></div>
@@ -1533,7 +1533,7 @@ spec:
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">nonProxyHosts</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">A list of hosts that can be reached directly, bypassing the proxy. Specify wild card domain use the following form <code>.&lt;DOMAIN&gt;</code>, for example:    - localhost    - my.host.com    - 123.42.12.32 Use only when a proxy configuration is required. The Operator respects OpenShift cluster-wide proxy configuration, defining <code>nonProxyHosts</code> in a custom resource leads to merging non-proxy hosts lists from the cluster proxy configuration, and the ones defined in the custom resources. See the following page: <a href="https://docs.openshift.com/container-platform/4.4/networking/enable-cluster-wide-proxy.html" class="bare">https://docs.openshift.com/container-platform/4.4/networking/enable-cluster-wide-proxy.html</a>.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">A list of hosts that can be reached directly, bypassing the proxy. Specify wild card domain use the following form <code>.&lt;DOMAIN&gt;</code>, for example:    - localhost    - my.host.com    - 123.42.12.32 Use only when a proxy configuration is required. The Operator respects OpenShift cluster-wide proxy configuration, defining <code>nonProxyHosts</code> in a custom resource leads to merging non-proxy hosts lists from the cluster proxy configuration, and the ones defined in the custom resources. See the following page: <a href="https://docs.openshift.com/container-platform/latest/networking/enable-cluster-wide-proxy.html" class="bare">https://docs.openshift.com/container-platform/latest/networking/enable-cluster-wide-proxy.html</a>.</p></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
@@ -1543,7 +1543,7 @@ spec:
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">url</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">URL (protocol+hostname) of the proxy server. Use only when a proxy configuration is required. The Operator respects OpenShift cluster-wide proxy configuration, defining <code>url</code> in a custom resource leads to overriding the cluster proxy configuration. See the following page: <a href="https://docs.openshift.com/container-platform/4.4/networking/enable-cluster-wide-proxy.html" class="bare">https://docs.openshift.com/container-platform/4.4/networking/enable-cluster-wide-proxy.html</a>.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">URL (protocol+hostname) of the proxy server. Use only when a proxy configuration is required. The Operator respects OpenShift cluster-wide proxy configuration, defining <code>url</code> in a custom resource leads to overriding the cluster proxy configuration. See the following page: <a href="https://docs.openshift.com/container-platform/latest/networking/enable-cluster-wide-proxy.html" class="bare">https://docs.openshift.com/container-platform/latest/networking/enable-cluster-wide-proxy.html</a>.</p></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 </tbody>
@@ -2028,7 +2028,7 @@ spec:
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">oAuthSecret</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Name of the secret set in the OpenShift <code>OAuthClient</code> resource used to set up identity federation on the OpenShift side.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Name of the secret set in the OpenShift <code>OAuthClient</code> resource used to set up identity federation on the OpenShift side. For Kubernetes, this can either be the plain text oAuthSecret value, or the name of a kubernetes secret which contains a key <code>oAuthSecret</code> and the value is the secret. NOTE: this secret must exist in the same namespace as the <code>CheCluster</code> resource and contain the label <code>app.kubernetes.io/part-of=che.eclipse.org</code>.</p></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 </tbody>
