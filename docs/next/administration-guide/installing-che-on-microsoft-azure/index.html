@@ -338,6 +338,9 @@
     <a class="nav-link" href="../installing-che/">Installing Che</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../installing-che-on-the-virtual-kubernetes-cluster/">Installing Che on the virtual Kubernetes cluster</a>
+  </li>
+  <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
     <a class="nav-link" href="../installing-che-in-the-cloud/">Installing Che in the cloud</a>
 <ul class="nav-list">
@@ -878,7 +881,7 @@ az aks create \
 <div class="title">Procedure</div>
 <ol class="arabic">
 <li>
-<p>Install NGINX Ingress Controller:</p>
+<p>Install <a href="https://docs.nginx.com/nginx-ingress-controller">NGINX Ingress Controller</a>:</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">helm repo add ingress-nginx https://kubernetes.github.io/ingress-nginx
@@ -924,7 +927,7 @@ ingress-nginx-controller             LoadBalancer   10.0.65.52     XX.XXX.XX.XXX
 <div class="title">Procedure</div>
 <ol class="arabic">
 <li>
-<p>Install the cert-manager:</p>
+<p>Install <a href="https://cert-manager.io">cert-manager</a></p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">helm repo add jetstack https://charts.jetstack.io
@@ -971,7 +974,7 @@ helm install cert-manager jetstack/cert-manager \
 <p>Define the domain name.</p>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">export DOMAIN_NAME=azr.my-ide.cloud</code></pre>
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">DOMAIN_NAME=azr.my-ide.cloud</code></pre>
 </div>
 </div>
 </li>
