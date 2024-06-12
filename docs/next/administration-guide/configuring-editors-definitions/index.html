@@ -3,10 +3,9 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Configuring OAuth 2.0 for GitHub :: Eclipse Che Documentation</title>
-    <link rel="canonical" href="https://www.eclipse.org/che/docs/stable/administration-guide/configuring-oauth-2-for-github/">
-    <meta name="description" content="Configuring OAuth 2.0 for GitHub">
-    <meta name="keywords" content="configuring-oauth, authorization, github, oauth-2, oauth-2.0">
+    <title>Configuring editors definitions :: Eclipse Che Documentation</title>
+    <meta name="description" content="Configuring editors definitions">
+    <meta name="keywords" content="administration guide, configuring, dashboard, editors">
     <meta name="generator" content="Antora 3.1.7">
     <link rel="stylesheet" href="../../../../docs/_/css/site.css">
 <link rel="stylesheet" href="../../../../docs/_/css/extra.css">
@@ -542,8 +541,8 @@
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="../configuring-getting-started-samples/">Configuring getting started samples</a>
   </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../configuring-editors-definitions/">Configuring editors definitions</a>
+  <li class="nav-item is-current-page" data-depth="3">
+    <a class="nav-link" href="./">Configuring editors definitions</a>
   </li>
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="../customizing-openshift-che-consolelink-icon/">Customizing OpenShift Eclipse Che ConsoleLink icon</a>
@@ -558,8 +557,8 @@
     <button class="nav-item-toggle"></button>
     <a class="nav-link" href="../configuring-oauth-for-git-providers/">Configuring OAuth for Git providers</a>
 <ul class="nav-list">
-  <li class="nav-item is-current-page" data-depth="4">
-    <a class="nav-link" href="./">Configuring OAuth 2.0 for GitHub</a>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../configuring-oauth-2-for-github/">Configuring OAuth 2.0 for GitHub</a>
   </li>
   <li class="nav-item" data-depth="4">
     <a class="nav-link" href="../configuring-oauth-2-for-gitlab/">Configuring OAuth 2.0 for GitLab</a>
@@ -719,54 +718,33 @@
     <li><a href="../../overview/introduction-to-eclipse-che/">Documentation</a></li>
     <li>Administration Guide</li>
     <li><a href="../configuring-che/">Configuring Che</a></li>
-    <li><a href="../managing-identities-and-authorizations/">Managing identities and authorizations</a></li>
-    <li><a href="../configuring-oauth-for-git-providers/">Configuring OAuth for Git providers</a></li>
-    <li><a href="./">Configuring OAuth 2.0 for GitHub</a></li>
+    <li><a href="../configuring-dashboard/">Configuring dashboard</a></li>
+    <li><a href="./">Configuring editors definitions</a></li>
   </ul>
 </nav>
 <div class="page-versions">
   <button class="version-menu-toggle" title="Show other versions of page">next</button>
   <div class="version-menu">
     <a class="version is-current" href="./">next</a>
-    <a class="version" href="../../../stable/administration-guide/configuring-oauth-2-for-github/">7.87.x</a>
+    <a class="version is-missing" href="../../../stable/overview/introduction-to-eclipse-che/">7.87.x</a>
   </div>
 </div>
-<div class="edit-this-page"><a href="https://github.com/eclipse-che/che-docs/edit/main/modules/administration-guide/pages/configuring-oauth-2-for-github.adoc">Edit this Page</a></div>
+<div class="edit-this-page"><a href="https://github.com/eclipse-che/che-docs/edit/main/modules/administration-guide/pages/configuring-editors-definitions.adoc">Edit this Page</a></div>
 </div>
   <div class="content">
 <aside class="toc sidebar" data-title="Contents" data-levels="2">
   <div class="toc-menu"></div>
 </aside>
 <article class="doc">
-<h1 class="page">Configuring OAuth 2.0 for GitHub</h1>
-<div id="preamble">
-<div class="sectionbody">
+<h1 class="page">Configuring editors definitions</h1>
 <div class="paragraph">
-<p>To enable users to work with a remote Git repository that is hosted on GitHub:</p>
-</div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>Set up the GitHub OAuth App (OAuth 2.0).</p>
-</li>
-<li>
-<p>Apply the GitHub OAuth App Secret.</p>
-</li>
-</ol>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="setting-up-the-github-oauth-app"><a class="anchor" href="#setting-up-the-github-oauth-app"></a>Setting up the GitHub OAuth App</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>Set up a GitHub OAuth App using OAuth 2.0.</p>
+<p>Learn how to configure Che editor definitions.</p>
 </div>
 <div class="ulist">
 <div class="title">Prerequisites</div>
 <ul>
 <li>
-<p>You are logged in to GitHub.</p>
+<p>An active <code>kubectl</code> session with administrative permissions to the Kubernetes cluster. See <a href="https://kubernetes.io/docs/reference/kubectl/overview/">Overview of kubectl</a>.</p>
 </li>
 </ul>
 </div>
@@ -774,35 +752,177 @@
 <div class="title">Procedure</div>
 <ol class="arabic">
 <li>
-<p>Go to <a href="https://github.com/settings/applications/new" class="bare">https://github.com/settings/applications/new</a>.</p>
-</li>
-<li>
-<p>Enter the following values:</p>
-<div class="olist loweralpha">
-<ol class="loweralpha" type="a">
-<li>
-<p><strong>Application name</strong>: <code>&lt;<em>application name</em>&gt;</code></p>
-</li>
-<li>
-<p><strong>Homepage URL</strong>: <code>https://<em>&lt;che_fqdn&gt;</em>/</code></p>
-</li>
-<li>
-<p><strong>Authorization callback URL</strong>: <code>https://<em>&lt;che_fqdn&gt;</em>/api/oauth/callback</code></p>
-</li>
-</ol>
+<p>Create the <code>my-editor-definition-devfile.yaml</code> YAML file with the editor definition configuration.</p>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Make sure you provide the actual values for <code>publisher</code> and <code>version</code> under <code>metadata.attributes</code>.
+They are used to construct the editor id along with editor name in the following format <code>publisher/name/version</code>.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Below you can find the supported values, including optional ones:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml"># Version of the devile schema
+schemaVersion: 2.2.2
+# Meta information of the editor
+metadata:
+  # (MANDATORY) The editor name
+  name: EditorName
+  displayName: Display Name
+  description: Run Editor Foo on top of Eclipse Che
+  # (OPTIONAL) Array of tags of the current editor. The Tech-Preview tag means the option is considered experimental and is not recommended for production environments. While it can include new features and improvements, it may still contain bugs or undergo significant changes before reaching a stable version.
+  tags:
+    - Tech-Preview
+  # Additional attributes
+  attributes:
+    title: This is my editor
+    # (MANDATORY) The publisher name
+    publisher: publisher
+    # (MANDATORY) The editor version
+    version: version
+    repository: https://github.com/editor/repository/
+    firstPublicationDate: '2024-01-01'
+    iconMediatype: image/svg+xml
+    iconData: |
+      <em>&lt;icon-content&gt;</em>
+# List of editor components
+components:
+  # Name of the component
+  - name: che-code-injector
+    # Configuration of devworkspace-related container
+    container:
+      # Image of the container
+      image: 'quay.io/che-incubator/che-code:insiders'
+      # The command to run in the dockerimage component instead of the default one provided in the image
+      command:
+        - /entrypoint-init-container.sh
+      # (OPTIONAL) List of volumes mounts that should be mounted in this container
+      volumeMounts:
+          # The name of the mount
+        - name: checode
+          # The path of the mount
+          path: /checode
+      # (OPTIONAL) The memory limit of the container
+      memoryLimit: 256Mi
+      # (OPTIONAL) The memory request of the container
+      memoryRequest: 32Mi
+      # (OPTIONAL) The CPU limit of the container
+      cpuLimit: 500m
+      # (OPTIONAL) The CPU request of the container
+      cpuRequest: 30m
+  # Name of the component
+  - name: che-code-runtime-description
+    # (OPTIONAL) Map of implementation-dependant free-form YAML attributes
+    attributes:
+      # The component within the architecture
+      app.kubernetes.io/component: che-code-runtime
+      # The name of a higher level application this one is part of
+      app.kubernetes.io/part-of: che-code.eclipse.org
+      # Defines a container component as a "container contribution". If a flattened DevWorkspace has a container component with the merge-contribution attribute, then any container contributions are merged into that container component
+      controller.devfile.io/container-contribution: true
+    container:
+      # Can be a dummy image because the component is expected to be injected into workspace dev component
+      image: quay.io/devfile/universal-developer-image:latest
+      # (OPTIONAL) List of volume mounts that should be mounted in this container
+      volumeMounts:
+          # The name of the mount
+        - name: checode
+          # (OPTIONAL) The path in the component container where the volume should be mounted. If no path is defined, the default path is the is /&lt;name&gt;
+          path: /checode
+      # (OPTIONAL) The memory limit of the container
+      memoryLimit: 1024Mi
+      # (OPTIONAL) The memory request of the container
+      memoryRequest: 256Mi
+      # (OPTIONAL) The CPU limit of the container
+      cpuLimit: 500m
+      # (OPTIONAL) The CPU request of the container
+      cpuRequest: 30m
+      # (OPTIONAL) Environment variables used in this container
+      env:
+        - name: ENV_NAME
+          value: value
+      # Component endpoints
+      endpoints:
+        # Name of the editor
+        - name: che-code
+          # (OPTIONAL) Map of implementation-dependant string-based free-form attributes
+          attributes:
+            # Type of the endpoint. You can only set its value to main, indicating that the endpoint should be used as the mainUrl in the workspace status (i.e. it should be the URL used to access the editor in this context)
+            type: main
+            # An attribute that instructs the service to automatically redirect the unauthenticated requests for current user authentication. Setting this attribute to true has security consequences because it makes Cross-site request forgery (CSRF) attacks possible. The default value of the attribute is false.
+            cookiesAuthEnabled: true
+            # Defines an endpoint as "discoverable", meaning that a service should be created using the endpoint name (i.e. instead of generating a service name for all endpoints, this endpoint should be statically accessible)
+            discoverable: false
+            # Used to secure the endpoint with authorization on OpenShift, so that not anyone on the cluster can access the endpoint, the attribute enables authentication.
+            urlRewriteSupported: true
+          # Port number to be used within the container component
+          targetPort: 3100
+          # (OPTIONAL) Describes how the endpoint should be exposed on the network (public, internal, none)
+          exposure: public
+          # (OPTIONAL) Describes whether the endpoint should be secured and protected by some authentication process
+          secure: true
+          # (OPTIONAL) Describes the application and transport protocols of the traffic that will go through this endpoint
+          protocol: https
+    # Mandatory name that allows referencing the component from other elements
+  - name: checode
+    # (OPTIONAL) Allows specifying the definition of a volume shared by several other components. Ephemeral volumes are not stored persistently across restarts. Defaults to false
+    volume: {ephemeral: true}
+# (OPTIONAL) Bindings of commands to events. Each command is referred-to by its name
+events:
+  # IDs of commands that should be executed before the devworkspace start. These commands would typically be executed in an init container
+  preStart:
+    - init-container-command
+  # IDs of commands that should be executed after the devworkspace has completely started. In the case of Che-Code, these commands should be executed after all plugins and extensions have started, including project cloning. This means that those commands are not triggered until the user opens the IDE within the browser
+  postStart:
+    - init-che-code-command
+# (OPTIONAL) Predefined, ready-to-use, devworkspace-related commands
+commands:
+    # Mandatory identifier that allows referencing this command
+  - id: init-container-command
+    apply:
+      # Describes the component for the apply command
+      component: che-code-injector
+    # Mandatory identifier that allows referencing this command
+  - id: init-che-code-command
+    # CLI Command executed in an existing component container
+    exec:
+      # Describes component for the exec command
+      component: che-code-runtime-description
+      # The actual command-line string
+      commandLine: 'nohup /checode/entrypoint-volume.sh &gt; /checode/entrypoint-logs.txt
+        2&gt;&amp;1 &amp;'</code></pre>
+</div>
 </div>
 </li>
 <li>
-<p>Click <strong>Register application</strong>.</p>
+<p>Create a ConfigMap with the editor definition content:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">kubectl create configmap my-editor-definition --from-file=my-editor-definition-devfile.yaml -n eclipse-che</code></pre>
+</div>
+</div>
 </li>
 <li>
-<p>Click <strong>Generate new client secret</strong>.</p>
+<p>Add the required labels to the ConfigMap:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">kubectl label configmap my-editor-definition app.kubernetes.io/part-of=che.eclipse.org app.kubernetes.io/component=editor-definition -n eclipse-che</code></pre>
+</div>
+</div>
 </li>
 <li>
-<p>Copy and save the <strong>GitHub OAuth Client ID</strong> for use when applying the GitHub OAuth App Secret.</p>
-</li>
-<li>
-<p>Copy and save the <strong>GitHub OAuth Client Secret</strong> for use when applying the GitHub OAuth App Secret.</p>
+<p>Refresh the Che Dashboard page to see new available editor.</p>
 </li>
 </ol>
 </div>
@@ -810,112 +930,12 @@
 <div class="title">Additional resources</div>
 <ul>
 <li>
-<p><a href="https://docs.github.com/en/developers/apps/building-oauth-apps/creating-an-oauth-app">GitHub Docs: Creating an OAuth App</a></p>
+<p><a href="https://devfile.io/docs/2.2.2/what-is-a-devfile">Devfile documentation</a></p>
+</li>
+<li>
+<p><a href="https://github.com/eclipse-che/che-operator/tree/main/editors-definitions">Editors definitions samples</a></p>
 </li>
 </ul>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="applying-the-github-oauth-app-secret"><a class="anchor" href="#applying-the-github-oauth-app-secret"></a>Applying the GitHub OAuth App Secret</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>Prepare and apply the GitHub OAuth App Secret.</p>
-</div>
-<div class="ulist">
-<div class="title">Prerequisites</div>
-<ul>
-<li>
-<p>Setting up the GitHub OAuth App is completed.</p>
-</li>
-<li>
-<p>The following values, which were generated when setting up the GitHub OAuth App, are prepared:</p>
-<div class="ulist">
-<ul>
-<li>
-<p><strong>GitHub OAuth Client ID</strong></p>
-</li>
-<li>
-<p><strong>GitHub OAuth Client Secret</strong></p>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p>An active <code>kubectl</code> session with administrative permissions to the destination Kubernetes cluster. See <a href="https://kubernetes.io/docs/reference/kubectl/overview/">Overview of kubectl</a>.</p>
-</li>
-</ul>
-</div>
-<div class="olist arabic">
-<div class="title">Procedure</div>
-<ol class="arabic">
-<li>
-<p>Prepare the Secret:</p>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">kind: Secret
-apiVersion: v1
-metadata:
-  name: github-oauth-config
-  namespace: eclipse-che <i class="conum" data-value="1"></i><b>(1)</b>
-  labels:
-    app.kubernetes.io/part-of: che.eclipse.org
-    app.kubernetes.io/component: oauth-scm-configuration
-  annotations:
-    che.eclipse.org/oauth-scm-server: github
-    che.eclipse.org/scm-server-endpoint: <em>&lt;github_server_url&gt;</em> <i class="conum" data-value="2"></i><b>(2)</b>
-    che.eclipse.org/scm-github-disable-subdomain-isolation: 'false' <i class="conum" data-value="3"></i><b>(3)</b>
-type: Opaque
-stringData:
-  id: <em>&lt;GitHub_OAuth_Client_ID&gt;</em> <i class="conum" data-value="4"></i><b>(4)</b>
-  secret: <em>&lt;GitHub_OAuth_Client_Secret&gt;</em> <i class="conum" data-value="5"></i><b>(5)</b></code></pre>
-</div>
-</div>
-<div class="colist arabic">
-<table>
-<tr>
-<td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>The Che namespace. The default is <code>eclipse-che</code>.</td>
-</tr>
-<tr>
-<td><i class="conum" data-value="2"></i><b>2</b></td>
-<td>This depends on the GitHub product your organization is using: When hosting repositories on GitHub.com or GitHub Enterprise Cloud, omit this line or enter the default <code><a href="https://github.com" class="bare">https://github.com</a></code>. When hosting repositories on GitHub Enterprise Server, enter the GitHub Enterprise Server URL.</td>
-</tr>
-<tr>
-<td><i class="conum" data-value="3"></i><b>3</b></td>
-<td>If you are using GitHub Enterprise Server with a disabled <a href="https://docs.github.com/en/enterprise-server/admin/configuration/hardening-security-for-your-enterprise/enabling-subdomain-isolation#about-subdomain-isolation">subdomain isolation</a> option, you must set the annotation to <code>true</code>, otherwise you can either omit the annotation or set it to <code>false</code>.</td>
-</tr>
-<tr>
-<td><i class="conum" data-value="4"></i><b>4</b></td>
-<td>The <strong>GitHub OAuth Client ID</strong>.</td>
-</tr>
-<tr>
-<td><i class="conum" data-value="5"></i><b>5</b></td>
-<td>The <strong>GitHub OAuth Client Secret</strong>.</td>
-</tr>
-</table>
-</div>
-</li>
-<li>
-<p>Apply the Secret:</p>
-<div class="listingblock">
-<div class="content">
-<pre>$ kubectl apply -f - &lt;&lt;EOF
-<em>&lt;Secret_prepared_in_the_previous_step&gt;</em>
-EOF</pre>
-</div>
-</div>
-</li>
-<li>
-<p>Verify in the output that the Secret is created.</p>
-</li>
-</ol>
-</div>
-<div class="paragraph">
-<p>To configure OAuth 2.0 for another GitHub provider,
-you have to repeat the steps above and create a second GitHub OAuth Secret with a different name.</p>
-</div>
-</div>
 </div>
 </article>
   </div>
