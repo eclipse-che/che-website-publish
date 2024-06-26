@@ -737,6 +737,8 @@
 </aside>
 <article class="doc">
 <h1 class="page">Configuring editors definitions</h1>
+<div id="preamble">
+<div class="sectionbody">
 <div class="paragraph">
 <p>Learn how to configure Che editor definitions.</p>
 </div>
@@ -778,7 +780,8 @@ schemaVersion: 2.2.2
 # Meta information of the editor
 metadata:
   # (MANDATORY) The editor name
-  name: EditorName
+  # Must consist of lower case alphanumeric characters, '-' or '.'
+  name: editor-name
   displayName: Display Name
   description: Run Editor Foo on top of Eclipse Che
   # (OPTIONAL) Array of tags of the current editor. The Tech-Preview tag means the option is considered experimental and is not recommended for production environments. While it can include new features and improvements, it may still contain bugs or undergo significant changes before reaching a stable version.
@@ -926,6 +929,35 @@ commands:
 </li>
 </ol>
 </div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_retrieving_the_editor_definition"><a class="anchor" href="#_retrieving_the_editor_definition"></a>Retrieving the editor definition</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The editor definition is also served by the Che dashboard API from the following URL:</p>
+</div>
+<div class="paragraph">
+<p><code>https://<em>&lt;che_fqdn&gt;</em>/dashboard/api/editors/devfile?che-editor=<em>&lt;editor id&gt;</em></code></p>
+</div>
+<div class="paragraph">
+<p>For the example from <a href="./" class="xref page">Configuring editors definitions</a>, the editor definition can be retrieved by accessing the following URL:</p>
+</div>
+<div class="paragraph">
+<p><code>https://<em>&lt;che_fqdn&gt;</em>/dashboard/api/editors/devfile?che-editor=publisher/editor-name/version</code></p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+When retrieving the editor definition from within the Kubernetes cluster, the Che dashboard API can be accessed via the dashboard service: <code>http://che-dashboard.eclipse-che.svc.cluster.local:8080/dashboard/api/editors/devfile?che-editor=<em>&lt;editor id&gt;</em></code>
+</td>
+</tr>
+</table>
+</div>
 <div class="ulist">
 <div class="title">Additional resources</div>
 <ul>
@@ -936,6 +968,8 @@ commands:
 <p><a href="https://github.com/eclipse-che/che-operator/tree/main/editors-definitions">Editors definitions samples</a></p>
 </li>
 </ul>
+</div>
+</div>
 </div>
 </article>
   </div>
