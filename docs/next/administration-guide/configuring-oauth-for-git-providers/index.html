@@ -136,6 +136,9 @@
   </li>
 </ul>
   </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../end-user-guide/running-containers-with-kubedock/">Running containers with kubedock</a>
+  </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="1">
@@ -590,7 +593,16 @@
 </ul>
   </li>
   <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
     <a class="nav-link" href="../configuring-fuse/">Configuring fuse-overlayfs</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../enabling-access-to-dev-fuse-for-openshift/">Enabling access to for OpenShift version older than 4.15</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../enabling-fuse-for-all-workspaces/">Enabling fuse-overlayfs for all workspaces</a>
+  </li>
+</ul>
   </li>
 </ul>
   </li>
@@ -738,6 +750,29 @@
 </aside>
 <article class="doc">
 <h1 class="page">Configuring OAuth for Git providers</h1>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>To enable the experimental feature that forces a refresh of the personal access token on workspace startup in Eclipse&#160;Che, modify the Custom Resource configuration as follows:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">spec:
+  components:
+    cheServer:
+      extraProperties:
+        CHE_FORCE_REFRESH_PERSONAL_ACCESS_TOKEN: "true"</code></pre>
+</div>
+</div>
+</td>
+</tr>
+</table>
+</div>
 <div class="paragraph">
 <p>You can configure OAuth between Che and Git providers, enabling users to work with remote Git repositories:</p>
 </div>

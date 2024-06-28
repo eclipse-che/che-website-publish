@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <title>Configuring fuse-overlayfs :: Eclipse Che Documentation</title>
     <link rel="canonical" href="https://www.eclipse.org/che/docs/stable/administration-guide/configuring-fuse/">
-    <meta name="description" content="Configuring fuse-overlayfs">
-    <meta name="keywords" content="administration-guide, configuring, fuse">
+    <meta name="description" content="Configuring fuse for workspaces">
+    <meta name="keywords" content="administration-guide, configuring-fuse">
     <meta name="generator" content="Antora 3.1.7">
     <link rel="stylesheet" href="../../../../docs/_/css/site.css">
 <link rel="stylesheet" href="../../../../docs/_/css/extra.css">
@@ -135,6 +135,9 @@
     <a class="nav-link" href="../../end-user-guide/enabling-overlay-with-a-configmap/">Enabling fuse-overlayfs with a ConfigMap</a>
   </li>
 </ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../end-user-guide/running-containers-with-kubedock/">Running containers with kubedock</a>
   </li>
 </ul>
   </li>
@@ -590,7 +593,16 @@
 </ul>
   </li>
   <li class="nav-item is-current-page" data-depth="2">
+    <button class="nav-item-toggle"></button>
     <a class="nav-link" href="./">Configuring fuse-overlayfs</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../enabling-access-to-dev-fuse-for-openshift/">Enabling access to for OpenShift version older than 4.15</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../enabling-fuse-for-all-workspaces/">Enabling fuse-overlayfs for all workspaces</a>
+  </li>
+</ul>
   </li>
 </ul>
   </li>
@@ -737,225 +749,29 @@
 </aside>
 <article class="doc">
 <h1 class="page">Configuring fuse-overlayfs</h1>
-<div id="preamble">
-<div class="sectionbody">
 <div class="paragraph">
 <p>By default, the Universal Developer Image (UDI) contains Podman and Buildah which you can use to build and push container images within a workspace.
 However, Podman and Buildah in the UDI are configured to use the <code>vfs</code> storage driver which does not provide copy-on-write support.
 For more efficient image management, use the fuse-overlayfs storage driver which supports copy-on-write in rootless environments.</p>
 </div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_enabling_container_access_to_devfuse_for_openshift"><a class="anchor" href="#_enabling_container_access_to_devfuse_for_openshift"></a>Enabling container access to /dev/fuse for OpenShift</h2>
-<div class="sectionbody">
 <div class="paragraph">
-<p>To use fuse-overlayfs, you must make <code>/dev/fuse</code> accessible to workspace containers first.</p>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-<div class="paragraph">
-<p>This procedure is not necessary for OpenShift versions 4.15 and later, since the <code>/dev/fuse</code> device is available by default. See <a href="https://docs.openshift.com/container-platform/4.15/release_notes/ocp-4-15-release-notes.html#ocp-4-15-nodes-dev-fuse">Release Notes</a>.</p>
-</div>
-</td>
-</tr>
-</table>
-</div>
-<div class="admonitionblock warning">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-warning" title="Warning"></i>
-</td>
-<td class="content">
-<div class="paragraph">
-<p>Creating <code>MachineConfig</code> resources on an OpenShift cluster is a potentially dangerous task, as you are making advanced, system-level changes to the cluster.</p>
+<p>To enable fuse-overlayfs for workspaces for OpenShift versions older than 4.15, the administrator must first enable <code>/dev/fuse</code> access on the cluster by following <a href="../enabling-access-to-dev-fuse-for-openshift/" class="xref page">Enabling container access to /dev/fuse for OpenShift older than 4.15</a>.</p>
 </div>
 <div class="paragraph">
-<p>View the <a href="https://docs.openshift.com/container-platform/4.12/post_installation_configuration/machine-configuration-tasks.html#machine-config-overview-post-install-machine-configuration-tasks">MachineConfig documentation</a> for more details and possible risks.</p>
+<p>This is not necessary for OpenShift versions 4.15 and later, since the <code>/dev/fuse</code> device is available by default. See <a href="https://docs.openshift.com/container-platform/4.15/release_notes/ocp-4-15-release-notes.html#ocp-4-15-nodes-dev-fuse">Release Notes</a>.</p>
 </div>
-</td>
-</tr>
-</table>
-</div>
-<div class="ulist">
-<div class="title">Prerequisites</div>
-<ul>
-<li>
-<p>The <a href="https://docs.openshift.com/container-platform/4.12/installing/install_config/installing-customizing.html#installation-special-config-butane-install_installing-customizing">Butane</a> tool (<code>butane</code>) is installed in the operating system you are using.</p>
-</li>
-<li>
-<p>An active <code>kubectl</code> session with administrative permissions to the destination OpenShift cluster. See <a href="https://kubernetes.io/docs/reference/kubectl/overview/">Overview of kubectl</a>.</p>
-</li>
-</ul>
+<div class="paragraph">
+<p>After enabling <code>/dev/fuse</code> access, fuse-overlayfs can be enabled in two ways:</p>
 </div>
 <div class="olist arabic">
-<div class="title">Procedure</div>
 <ol class="arabic">
 <li>
-<p>Set the environment variable based on the type of your OpenShift cluster: a single node cluster, or a multi node cluster with separate control plane and worker nodes.</p>
-<div class="ulist">
-<ul>
-<li>
-<p>For a single node cluster, set:</p>
-<div class="listingblock">
-<div class="content">
-<pre>$ NODE_ROLE=master</pre>
-</div>
-</div>
+<p>For all user workspaces within the cluster. See <a href="../enabling-fuse-for-all-workspaces/" class="xref page">Enabling fuse-overlayfs for all workspaces</a>.</p>
 </li>
 <li>
-<p>For a multi node cluster, set:</p>
-<div class="listingblock">
-<div class="content">
-<pre>$ NODE_ROLE=worker</pre>
-</div>
-</div>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p>Set the environment variable for the OpenShift Butane config version. This variable is the major and minor version of the OpenShift cluster. For example, <code>4.12.0</code>, <code>4.13.0</code>, or <code>4.14.0</code>.</p>
-<div class="listingblock">
-<div class="content">
-<pre>$ VERSION=4.12.0</pre>
-</div>
-</div>
-</li>
-<li>
-<p>Create a <code>MachineConfig</code> resource that creates a drop-in CRI-O configuration file named <code>99-podman-fuse</code> in the <code>NODE_ROLE</code> nodes. This configuration file makes access to the <code>/dev/fuse</code> device possible for certain pods.</p>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-none hljs">cat &lt;&lt; EOF | butane | oc apply -f -
-variant: openshift
-version: ${VERSION}
-metadata:
-  labels:
-    machineconfiguration.openshift.io/role: ${NODE_ROLE}
-  name: 99-podman-dev-fuse-${NODE_ROLE}
-storage:
-  files:
-  - path: /etc/crio/crio.conf.d/99-podman-fuse <i class="conum" data-value="1"></i><b>(1)</b>
-    mode: 0644
-    overwrite: true
-    contents: <i class="conum" data-value="2"></i><b>(2)</b>
-      inline: |
-        [crio.runtime.workloads.podman-fuse] <i class="conum" data-value="3"></i><b>(3)</b>
-        activation_annotation = "io.openshift.podman-fuse" <i class="conum" data-value="4"></i><b>(4)</b>
-        allowed_annotations = [
-          "io.kubernetes.cri-o.Devices" <i class="conum" data-value="5"></i><b>(5)</b>
-        ]
-        [crio.runtime]
-        allowed_devices = ["/dev/fuse"] <i class="conum" data-value="6"></i><b>(6)</b>
-EOF</code></pre>
-</div>
-</div>
-<div class="colist arabic">
-<table>
-<tr>
-<td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>The absolute file path to the new drop-in configuration file for CRI-O.</td>
-</tr>
-<tr>
-<td><i class="conum" data-value="2"></i><b>2</b></td>
-<td>The content of the new drop-in configuration file.</td>
-</tr>
-<tr>
-<td><i class="conum" data-value="3"></i><b>3</b></td>
-<td>Define a <code>podman-fuse</code> workload.</td>
-</tr>
-<tr>
-<td><i class="conum" data-value="4"></i><b>4</b></td>
-<td>The pod annotation that activates the <code>podman-fuse</code> workload settings.</td>
-</tr>
-<tr>
-<td><i class="conum" data-value="5"></i><b>5</b></td>
-<td>List of annotations the <code>podman-fuse</code> workload is allowed to process.</td>
-</tr>
-<tr>
-<td><i class="conum" data-value="6"></i><b>6</b></td>
-<td>List of devices on the host that a user can specify with the <code>io.kubernetes.cri-o.Devices</code> annotation.</td>
-</tr>
-</table>
-</div>
-</li>
-<li>
-<p>After applying the <code>MachineConfig</code> resource, scheduling will be temporarily disabled for each node with the <code>worker</code> role as changes are applied. View the nodes' statuses.</p>
-<div class="listingblock">
-<div class="content">
-<pre>$ oc get nodes</pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Example output:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre>NAME                           STATUS                     ROLES    AGE   VERSION
-ip-10-0-136-161.ec2.internal   Ready                      worker   28m   v1.27.9
-ip-10-0-136-243.ec2.internal   Ready                      master   34m   v1.27.9
-ip-10-0-141-105.ec2.internal   Ready,SchedulingDisabled   worker   28m   v1.27.9
-ip-10-0-142-249.ec2.internal   Ready                      master   34m   v1.27.9
-ip-10-0-153-11.ec2.internal    Ready                      worker   28m   v1.27.9
-ip-10-0-153-150.ec2.internal   Ready                      master   34m   v1.27.9</pre>
-</div>
-</div>
-</li>
-<li>
-<p>Once all nodes with the <code>worker</code> role have a status <code>Ready</code>, <code>/dev/fuse</code> will be available to any pod with the following annotations.</p>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">io.openshift.podman-fuse: ''
-io.kubernetes.cri-o.Devices: /dev/fuse</code></pre>
-</div>
-</div>
+<p>For workspaces belonging to certain users. See <a href="../../end-user-guide/using-the-fuse-overlay-storage-driver/" class="xref page">Using the fuse-overlayfs storage driver for Podman and Buildah</a>.</p>
 </li>
 </ol>
-</div>
-<div class="olist arabic">
-<div class="title">Verification steps</div>
-<ol class="arabic">
-<li>
-<p>Get the name of a node with a <code>worker</code> role:</p>
-<div class="listingblock">
-<div class="content">
-<pre>$ oc get nodes</pre>
-</div>
-</div>
-</li>
-<li>
-<p>Open an <code>oc debug</code> session to a worker node.</p>
-<div class="listingblock">
-<div class="content">
-<pre>$ oc debug node/<em>&lt;nodename&gt;</em></pre>
-</div>
-</div>
-</li>
-<li>
-<p>Verify that a new CRI-O config file named <code>99-podman-fuse</code> exists.</p>
-<div class="listingblock">
-<div class="content">
-<pre>sh-4.4# stat /host/etc/crio/crio.conf.d/99-podman-fuse</pre>
-</div>
-</div>
-</li>
-</ol>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_using_fuse_overlayfs_for_podman_and_buildah_within_a_workspace"><a class="anchor" href="#_using_fuse_overlayfs_for_podman_and_buildah_within_a_workspace"></a>Using fuse-overlayfs for Podman and Buildah within a workspace</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>Users can follow <a href="../../end-user-guide/using-the-fuse-overlay-storage-driver/" class="xref page">Using the fuse-overlayfs storage driver for Podman and Buildah</a> to update existing workspaces to use the fuse-overlayfs storage driver for Podman and Buildah.</p>
-</div>
-</div>
 </div>
 </article>
   </div>
