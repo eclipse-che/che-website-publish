@@ -45,7 +45,7 @@
   </nav>
 </header>
 <div class="body">
-<div class="nav-container" data-component="docs" data-version="7.87.x">
+<div class="nav-container" data-component="docs" data-version="7.88.x">
   <aside class="nav">
     <div class="panels">
 <div class="nav-panel-menu is-active" data-panel="menu">
@@ -134,6 +134,9 @@
     <a class="nav-link" href="../../end-user-guide/enabling-overlay-with-a-configmap/">Enabling fuse-overlayfs with a ConfigMap</a>
   </li>
 </ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../end-user-guide/running-containers-with-kubedock/">Running containers with kubedock</a>
   </li>
 </ul>
   </li>
@@ -542,6 +545,9 @@
     <a class="nav-link" href="../configuring-getting-started-samples/">Configuring getting started samples</a>
   </li>
   <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../configuring-editors-definitions/">Configuring editors definitions</a>
+  </li>
+  <li class="nav-item" data-depth="3">
     <a class="nav-link" href="../customizing-openshift-che-consolelink-icon/">Customizing OpenShift Eclipse Che ConsoleLink icon</a>
   </li>
 </ul>
@@ -586,7 +592,16 @@
 </ul>
   </li>
   <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
     <a class="nav-link" href="../configuring-fuse/">Configuring fuse-overlayfs</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../enabling-access-to-dev-fuse-for-openshift/">Enabling access to for OpenShift version older than 4.15</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../enabling-fuse-for-all-workspaces/">Enabling fuse-overlayfs for all workspaces</a>
+  </li>
+</ul>
   </li>
 </ul>
   </li>
@@ -687,7 +702,7 @@
 <div class="nav-panel-explore" data-panel="explore">
   <div class="context">
     <span class="title">Documentation</span>
-    <span class="version">7.87.x</span>
+    <span class="version">7.88.x</span>
   </div>
   <ul class="components">
     <li class="component is-current">
@@ -697,7 +712,7 @@
           <a href="../../../next/overview/introduction-to-eclipse-che/">next</a>
         </li>
         <li class="version is-current is-latest">
-          <a href="../../overview/introduction-to-eclipse-che/">7.87.x</a>
+          <a href="../../overview/introduction-to-eclipse-che/">7.88.x</a>
         </li>
       </ul>
     </li>
@@ -720,13 +735,13 @@
   </ul>
 </nav>
 <div class="page-versions">
-  <button class="version-menu-toggle" title="Show other versions of page">7.87.x</button>
+  <button class="version-menu-toggle" title="Show other versions of page">7.88.x</button>
   <div class="version-menu">
     <a class="version" href="../../../next/administration-guide/mounting-a-secret-as-a-file-or-an-environment-variable-into-a-container/">next</a>
-    <a class="version is-current" href="./">7.87.x</a>
+    <a class="version is-current" href="./">7.88.x</a>
   </div>
 </div>
-<div class="edit-this-page"><a href="https://github.com/eclipse-che/che-docs/edit/7.87.x/modules/administration-guide/pages/mounting-a-secret-as-a-file-or-an-environment-variable-into-a-container.adoc">Edit this Page</a></div>
+<div class="edit-this-page"><a href="https://github.com/eclipse-che/che-docs/edit/7.88.x/modules/administration-guide/pages/mounting-a-secret-as-a-file-or-an-environment-variable-into-a-container.adoc">Edit this Page</a></div>
 </div>
   <div class="content">
 <aside class="toc sidebar" data-title="Contents" data-levels="2">
@@ -788,7 +803,7 @@
 <div class="title">Procedure</div>
 <ol class="arabic">
 <li>
-<p>Create a new Kubernetes or OpenShift Secret or a ConfigMap in the Kubernetes or OpenShift namespace where a Che is deployed. The labels of the object that is about to be created must match the set of labels:</p>
+<p>Create a new Kubernetes or OpenShift Secret or a ConfigMap in the Kubernetes or OpenShift namespace where Che is deployed. The labels of the object that is about to be created must match the set of labels:</p>
 <div class="ulist">
 <ul>
 <li>
@@ -971,7 +986,7 @@ data:
 </div>
 </div>
 <div class="paragraph">
-<p>This results in a file named <code>ca.crt</code> being mounted at the <code>/data</code> path of Che container.</p>
+<p>This results in a file named <code>ca.crt</code> being mounted at the <code>/data</code> path of the Che container.</p>
 </div>
 <div class="admonitionblock important">
 <table>
@@ -980,7 +995,7 @@ data:
 <i class="fa icon-important" title="Important"></i>
 </td>
 <td class="content">
-To make the changes in a Che container visible, re-create the Secret or the ConfigMap object entirely.
+To make the changes in the Che container visible, re-create the Secret or the ConfigMap object entirely.
 </td>
 </tr>
 </table>
@@ -1013,7 +1028,7 @@ To make the changes in a Che container visible, re-create the Secret or the Conf
 <div class="title">Procedure</div>
 <ol class="arabic">
 <li>
-<p>Create a new Kubernetes or OpenShift Secret or a ConfigMap in the Kubernetes or OpenShift namespace where a Che is deployed. The labels of the object that is about to be created must match the set of labels:</p>
+<p>Create a new Kubernetes or OpenShift Secret or a ConfigMap in the Kubernetes or OpenShift namespace where Che is deployed. The labels of the object that is about to be created must match the set of labels:</p>
 <div class="ulist">
 <ul>
 <li>
@@ -1224,7 +1239,7 @@ To make the changes in a Che container visible, re-create the Secret or the Conf
 </div>
 </div>
 <div class="sect1">
-<h2 id="mounting-a-secret-or-a-configmap-as-an-environment-variable-into-a-container"><a class="anchor" href="#mounting-a-secret-or-a-configmap-as-an-environment-variable-into-a-container"></a>Mounting a Secret or a ConfigMap as an environment variable into a Che container</h2>
+<h2 id="mounting-a-secret-or-a-configmap-as-an-environment-variable-into-a-container"><a class="anchor" href="#mounting-a-secret-or-a-configmap-as-an-environment-variable-into-a-container"></a>Mounting a Secret or a ConfigMap as an environment variable into Che container</h2>
 <div class="sectionbody">
 <div class="ulist">
 <div class="title">Prerequisites</div>
@@ -1238,7 +1253,7 @@ To make the changes in a Che container visible, re-create the Secret or the Conf
 <div class="title">Procedure</div>
 <ol class="arabic">
 <li>
-<p>Create a new Kubernetes or OpenShift Secret or a ConfigMap in the Kubernetes or OpenShift namespace where a Che is deployed. The labels of the object that is about to be created must match the set of labels:</p>
+<p>Create a new Kubernetes or OpenShift Secret or a ConfigMap in the Kubernetes or OpenShift namespace where Che is deployed. The labels of the object that is about to be created must match the set of labels:</p>
 <div class="ulist">
 <ul>
 <li>
@@ -1393,7 +1408,7 @@ data:
 </ul>
 </div>
 <div class="paragraph">
-<p>being provisioned into a Che container.</p>
+<p>being provisioned into the Che container.</p>
 </div>
 <div class="paragraph">
 <p>If the object provides more than one data item, the environment variable name must be provided for each of the data keys as follows:</p>
@@ -1477,7 +1492,7 @@ The maximum length of annotation names in a Kubernetes object is 63 characters, 
 <i class="fa icon-important" title="Important"></i>
 </td>
 <td class="content">
-To make the changes in a Che container visible, re-create the Secret or the ConfigMap object entirely.
+To make the changes in the Che container visible, re-create the Secret or the ConfigMap object entirely.
 </td>
 </tr>
 </table>
