@@ -866,17 +866,17 @@ To get the latest security fixes after a Che update, rebuild your container base
 <div class="title">Procedure</div>
 <ol class="arabic">
 <li>
-<p>Get the publisher and extension names of each chosen extension:</p>
+<p>Get the publisher and extension name of each chosen extension:</p>
 <div class="olist loweralpha">
 <ol class="loweralpha" type="a">
 <li>
-<p>Find the extension on the <a href="https://www.open-vsx.org/">Open VSX registry website</a> and copy the URL of the extension&#8217;s listing page.</p>
+<p>Find the extension on the <a href="https://open-vsx.org/">Open VSX registry website</a> and copy the URL of the extension&#8217;s listing page and extension&#8217;s version.</p>
 </li>
 <li>
-<p>Extract the <em>&lt;publisher&gt;</em> and <em>&lt;extension&gt;</em> names from the copied URL:</p>
+<p>Extract the <em>&lt;publisher&gt;</em> and <em>&lt;extension&gt;</em> name from the copied URL:</p>
 <div class="listingblock">
 <div class="content">
-<pre>https://www.open-vsx.org/extension/<em>&lt;publisher&gt;</em>/<em>&lt;extension&gt;</em></pre>
+<pre>https://open-vsx.org/extension/<em>&lt;publisher&gt;</em>/<em>&lt;name&gt;</em></pre>
 </div>
 </div>
 <div class="admonitionblock tip">
@@ -901,6 +901,80 @@ To get the latest security fixes after a Che update, rebuild your container base
 </div>
 </li>
 <li>
+<p>Build the custom plugin registry image and update CheCluster custom resource:</p>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>During the build process, each extension will be verified for compatibility with the version of Visual Studio Code used in Che.</p>
+</li>
+</ul>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Using Che instance:</p>
+<div class="olist lowerroman">
+<ol class="lowerroman" type="i">
+<li>
+<p>Login to your Che instance as an administrator.</p>
+</li>
+<li>
+<p>Start a workspace using the <a href="https://github.com/eclipse-che/che-plugin-registry">plugin registry repository</a>.</p>
+</li>
+<li>
+<p>Open a terminal and check out the Git tag that corresponds to your Che version (e.g., <code>7.87.0</code>):</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">git checkout $PRODUCT_VERSION</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Open the <code>che-plugin-registry/openvsx-sync.json</code> file and add or remove extensions.</p>
+</li>
+<li>
+<p>Execute <code>1. Build and Publish a Custom Plugin Registry</code> task in the workspace (Terminal &#8594; Run Task&#8230;&#8203; &#8594; devfile &#8594; 1. Build and Publish a Custom Plugin Registry).</p>
+</li>
+<li>
+<p>Execute <code>2. Configure Che to use the Custom Plugin Registry</code> task in the workspace (Terminal &#8594; Run Task&#8230;&#8203; &#8594; devfile &#8594; 2. Configure Che to use the Custom Plugin Registry).</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Using Linux operating system:</p>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>Podman and NodeJS version 18.20.3 or higher should be installed in the system.</p>
+</li>
+</ul>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="olist lowerroman">
+<ol class="lowerroman" type="i">
+<li>
 <p>Download or fork and clone the <a href="https://github.com/eclipse-che/che-plugin-registry">plugin registry repository</a>.</p>
 </li>
 <li>
@@ -908,17 +982,18 @@ To get the latest security fixes after a Che update, rebuild your container base
 <div class="ulist">
 <ul>
 <li>
-<p>To add extensions, add the publisher and extension names to the <code>openvsx-sync.json</code> file.</p>
+<p>To add extensions, add the publisher, name and extension version to the <code>openvsx-sync.json</code> file.</p>
 </li>
 <li>
-<p>To remove extensions, remove the publisher and extension names from the <code>openvsx-sync.json</code> file.</p>
+<p>To remove extensions, remove the publisher, name and extension version from the <code>openvsx-sync.json</code> file.</p>
 </li>
 <li>
 <p>Use the following JSON syntax:</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json">    {
-        "id": "<em>&lt;publisher&gt;</em>.<em>&lt;extension&gt;</em>"
+        "id": "<em>&lt;publisher&gt;</em>.<em>&lt;name&gt;</em>",
+        "version": "<em>&lt;extension_version&gt;</em>"
     }</code></pre>
 </div>
 </div>
@@ -932,14 +1007,11 @@ To get the latest security fixes after a Che update, rebuild your container base
 <div class="ulist">
 <ul>
 <li>
-<p>The latest extension version on <a href="https://open-vsx.org">open-vsx.org</a> is the default. Alternatively, you can add <code>"version": "<em>&lt;extension_version&gt;</em>"</code> on a new line to specify a version.</p>
-</li>
-<li>
 <p>If you have a closed-source extension or an extension developed only for internal use in your organization, you can add the extension directly from a <code>.vsix</code> file by using a URL accessible to your custom plugin registry container:</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json">    {
-        "id": "<em>&lt;publisher&gt;</em>.<em>&lt;extension&gt;</em>",
+        "id": "<em>&lt;publisher&gt;</em>.<em>&lt;name&gt;</em>",
         "download": "<em>&lt;url_to_download_vsix_file&gt;</em>",
         "version": "<em>&lt;extension_version&gt;</em>"
     }</code></pre>
@@ -960,9 +1032,9 @@ To get the latest security fixes after a Che update, rebuild your container base
 </div>
 </li>
 <li>
-<p>Build the plugin registry container image and publish it to a container registry like <a href="https://quay.io/">quay.io</a>:</p>
-<div class="olist loweralpha">
-<ol class="loweralpha" type="a">
+<p>Build the plugin registry container image and publish it to a container registry such as <a href="https://quay.io/">quay.io</a>:</p>
+<div class="olist upperalpha">
+<ol class="upperalpha" type="A">
 <li>
 <p></p>
 <div class="listingblock">
@@ -994,6 +1066,12 @@ To get the latest security fixes after a Che update, rebuild your container base
           - image: quay.io/<em>&lt;username/plugin_registry:custom&gt;</em>
       openVSXURL: ''</code></pre>
 </div>
+</div>
+</li>
+</ol>
+</div>
+</li>
+</ol>
 </div>
 </li>
 </ol>
