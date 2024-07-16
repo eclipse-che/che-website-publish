@@ -802,7 +802,7 @@ data:
 </div>
 </li>
 <li>
-<p>Set the necessary annotation in the <code>spec.devEnvironments.annotations</code> field of the CheCluster custom resource.</p>
+<p>Set the necessary annotation in the <code>spec.devEnvironments.workspacesPodAnnotations</code> field of the CheCluster custom resource.</p>
 <div class="exampleblock">
 <div class="content">
 <div class="listingblock">
@@ -811,7 +811,7 @@ data:
 apiVersion: org.eclipse.che/v2
 spec:
   devEnvironments:
-    workspacePodAnnotations:
+    workspacesPodAnnotations:
       io.kubernetes.cri-o.Devices: /dev/fuse</code></pre>
 </div>
 </div>
