@@ -784,24 +784,27 @@
 <div class="title">Procedure</div>
 <ol class="arabic">
 <li>
-<p>In the CheCluster Custom Resource, set the <code>spec.devEnvironments.startTimeoutSeconds</code> field to at least 600 seconds to allow time for a new node to be provisioned when needed during workspace startup.</p>
+<p>In the CheCluster Custom Resource, set the following fields to allow proper workspace startup when the autoscaler is provisioning a new node.</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">spec:
   devEnvironments:
-    startTimeoutSeconds: 600</code></pre>
+    startTimeoutSeconds: 600 <i class="conum" data-value="1"></i><b>(1)</b>
+    ignoredUnrecoverableEvents: <i class="conum" data-value="2"></i><b>(2)</b>
+      - FailedScheduling</code></pre>
 </div>
 </div>
-</li>
-<li>
-<p>In the DevWorkspaceOperatorConfig Custom Resource in the eclipse-che namespace, add the <code>FailedScheduling</code> event to the <code>config.workpsace.ignoredUnrecoverableEvents</code> field. This allows the workspace startup to not fail if not enough nodes are available. When the new node is provisioned, this allows the workspace startup to continue.</p>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">config:
-  workspace:
-    ignoredUnrecoverableEvents:
-    - FailedScheduling</code></pre>
-</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Set to at least 600 seconds to allow time for a new node to be provisioned during workspace startup.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Ignore the <code>FailedScheduling</code> event to allow workspace startup to continue when a new node is provisioned.</td>
+</tr>
+</table>
 </div>
 </li>
 </ol>
