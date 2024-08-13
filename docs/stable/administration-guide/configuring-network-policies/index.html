@@ -7,7 +7,7 @@
     <link rel="canonical" href="https://www.eclipse.org/che/docs/stable/administration-guide/configuring-network-policies/">
     <meta name="description" content="Configuring network policies">
     <meta name="keywords" content="administration guide, configuring, namespace, network policy, network policies, multitenant isolation">
-    <meta name="generator" content="Antora 3.1.7">
+    <meta name="generator" content="Antora 3.1.9">
     <link rel="stylesheet" href="../../../../docs/_/css/site.css">
 <link rel="stylesheet" href="../../../../docs/_/css/extra.css">
 <link rel="stylesheet" href="../../../../docs/_/font-awesome-4.7.0/css/font-awesome.min.css">
@@ -800,8 +800,6 @@ spec:
     - Ingress</code></pre>
 </div>
 </div>
-</div>
-</div>
 <div class="colist arabic">
 <table>
 <tr>
@@ -814,6 +812,8 @@ The default is <code>eclipse-che</code>.</td>
 <td>The empty <code>podSelector</code> selects all Pods in the namespace.</td>
 </tr>
 </table>
+</div>
+</div>
 </div>
 </li>
 <li>
@@ -844,8 +844,6 @@ spec:
     - Ingress</code></pre>
 </div>
 </div>
-</div>
-</div>
 <div class="colist arabic">
 <table>
 <tr>
@@ -858,6 +856,8 @@ The default is <code>eclipse-che</code>.</td>
 <td>The <code>podSelector</code> only selects devworkspace-webhook-server pods</td>
 </tr>
 </table>
+</div>
+</div>
 </div>
 <div class="exampleblock">
 <div class="title">Example 3. <code>allow-from-workspaces-namespaces.yaml</code></div>
@@ -883,8 +883,6 @@ spec:
     - Ingress</code></pre>
 </div>
 </div>
-</div>
-</div>
 <div class="colist arabic">
 <table>
 <tr>
@@ -898,12 +896,9 @@ The default is <code>eclipse-che</code>.</td>
 </tr>
 </table>
 </div>
-</li>
-</ul>
 </div>
-<div class="ulist">
-<div class="title">Additional resources</div>
-<ul>
+</div>
+</li>
 <li>
 <p><a href="../configuring-namespace-provisioning/" class="xref page">Configuring user namespace provisioning</a></p>
 </li>

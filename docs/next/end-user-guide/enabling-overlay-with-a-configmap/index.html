@@ -7,7 +7,7 @@
     <link rel="canonical" href="https://www.eclipse.org/che/docs/stable/end-user-guide/enabling-overlay-with-a-configmap/">
     <meta name="description" content="You can enable fuse-overlayfs storage driver for Podman">
     <meta name="keywords" content="overlay, configmap, podman, storage, driver, fuse-overlayfs">
-    <meta name="generator" content="Antora 3.1.7">
+    <meta name="generator" content="Antora 3.1.9">
     <link rel="stylesheet" href="../../../../docs/_/css/site.css">
 <link rel="stylesheet" href="../../../../docs/_/css/extra.css">
 <link rel="stylesheet" href="../../../../docs/_/font-awesome-4.7.0/css/font-awesome.min.css">
@@ -847,6 +847,18 @@ data:
     mount_program="/usr/bin/fuse-overlayfs"</code></pre>
 </div>
 </div>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-warning" title="Warning"></i>
+</td>
+<td class="content">
+Creating this ConfigMap will cause all of your running workspaces to restart.
+</td>
+</tr>
+</table>
+</div>
 </li>
 </ol>
 </div>
@@ -872,6 +884,28 @@ data:
       fuse-overlayfs: version 1.12
   Backing Filesystem: overlayfs</pre>
 </div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>The following error might occur for existing workspaces:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">ERRO[0000] User-selected graph driver "overlay" overwritten by graph driver "vfs" from database - delete libpod local files ("/home/user/.local/share/containers/storage") to resolve.  May prevent use of images created by other tools</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>In this case, delete the libpod local files as mentioned in the error message.</p>
+</div>
+</td>
+</tr>
+</table>
 </div>
 </li>
 </ol>
