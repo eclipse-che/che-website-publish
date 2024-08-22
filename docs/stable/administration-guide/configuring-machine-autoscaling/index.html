@@ -815,19 +815,19 @@
 <h2 id="_when_the_autoscaler_removes_a_node"><a class="anchor" href="#_when_the_autoscaler_removes_a_node"></a>When the autoscaler removes a node</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>To prevent workspace pods from being evicted when the autoscaler needs to remove a node, add the <code>"cluster-autoscaler.kubernetes.io/safe-to-evict": "true"</code> annotation to every workspace pod.</p>
+<p>To prevent workspace pods from being evicted when the autoscaler needs to remove a node, add the <code>"cluster-autoscaler.kubernetes.io/safe-to-evict": "false"</code> annotation to every workspace pod.</p>
 </div>
 <div class="olist arabic">
 <div class="title">Procedure</div>
 <ol class="arabic">
 <li>
-<p>In the CheCluster Custom Resource, add the <code>cluster-autoscaler.kubernetes.io/safe-to-evict: "true"</code> annotation in the <code>spec.devEnvironments.workspacesPodAnnotations</code> field.</p>
+<p>In the CheCluster Custom Resource, add the <code>cluster-autoscaler.kubernetes.io/safe-to-evict: "false"</code> annotation in the <code>spec.devEnvironments.workspacesPodAnnotations</code> field.</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">spec:
   devEnvironments:
     workspacesPodAnnotations:
-      cluster-autoscaler.kubernetes.io/safe-to-evict: "true"</code></pre>
+      cluster-autoscaler.kubernetes.io/safe-to-evict: "false"</code></pre>
 </div>
 </div>
 </li>
@@ -837,11 +837,11 @@
 <div class="title">Verification steps</div>
 <ol class="arabic">
 <li>
-<p>Start a workspace and verify that the workspace pod contains the <code>cluster-autoscaler.kubernetes.io/safe-to-evict: "true"</code> annotation.</p>
+<p>Start a workspace and verify that the workspace pod contains the <code>cluster-autoscaler.kubernetes.io/safe-to-evict: "false"</code> annotation.</p>
 <div class="listingblock">
 <div class="content">
 <pre>$ kubectl get pod <em>&lt;workspace_pod_name&gt;</em> -o jsonpath='{.metadata.annotations.cluster-autoscaler\.kubernetes\.io/safe-to-evict}'
-true</pre>
+false</pre>
 </div>
 </div>
 </li>
