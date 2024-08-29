@@ -787,22 +787,6 @@ The pods contribute to the resource consumption in CPU and memory limits and req
 </div>
 </div>
 </div>
-<div class="exampleblock">
-<div class="title">Example 2. <code>postgresql</code></div>
-<div class="content">
-<div class="paragraph">
-<p>The <code>postgresql</code> component does not define any requests and limits and therefore falls back on the defaults for the dedicated container:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">    memoryLimit: 128M
-    memoryRequest: 64M
-    cpuRequest: 10m
-    cpuLimit: 1000m</code></pre>
-</div>
-</div>
-</div>
-</div>
 </li>
 <li>
 <p>During the workspace startup, an internal <code>che-gateway</code> container is implicitly provisioned with the following requests and limits:</p>
@@ -821,7 +805,7 @@ The pods contribute to the resource consumption in CPU and memory limits and req
 <li>
 <p>Calculate the sums of the resources required for each workspace. If you intend to use multiple devfiles, repeat this calculation for every expected devfile.</p>
 <div class="exampleblock">
-<div class="title">Example 3. Workspace requirements for the <a href="https://github.com/che-incubator/quarkus-api-example/blob/main/devfile.yaml">example devfile</a> in the previous step</div>
+<div class="title">Example 2. Workspace requirements for the <a href="https://github.com/che-incubator/quarkus-api-example/blob/main/devfile.yaml">example devfile</a> in the previous step</div>
 <div class="content">
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
@@ -870,29 +854,6 @@ The pods contribute to the resource consumption in CPU and memory limits and req
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>Database</p>
-</div></div></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><code>workspace</code></p>
-</div></div></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><code>postgresql</code></p>
-</div></div></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>128 MiB</p>
-</div></div></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>64 MiB</p>
-</div></div></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>1000 m</p>
-</div></div></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>10 m</p>
-</div></div></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Che gateway</p>
 </div></div></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
@@ -916,10 +877,10 @@ The pods contribute to the resource consumption in CPU and memory limits and req
 </tr>
 <tr>
 <td class="tableblock halign-right valign-top" colspan="3"><p class="tableblock"><strong>Total</strong></p></td>
-<td class="tableblock halign-right valign-top"><p class="tableblock"><strong>6.4 GiB</strong></p></td>
-<td class="tableblock halign-right valign-top"><p class="tableblock"><strong>640 MiB</strong></p></td>
-<td class="tableblock halign-right valign-top"><p class="tableblock"><strong>5500 m</strong></p></td>
-<td class="tableblock halign-right valign-top"><p class="tableblock"><strong>1060 m</strong></p></td>
+<td class="tableblock halign-right valign-top"><p class="tableblock"><strong>6.3 GiB</strong></p></td>
+<td class="tableblock halign-right valign-top"><p class="tableblock"><strong>576 MiB</strong></p></td>
+<td class="tableblock halign-right valign-top"><p class="tableblock"><strong>4500 m</strong></p></td>
+<td class="tableblock halign-right valign-top"><p class="tableblock"><strong>1050 m</strong></p></td>
 </tr>
 </tbody>
 </table>
