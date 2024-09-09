@@ -3,10 +3,9 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Devfile registries :: Eclipse Che Documentation</title>
-    <link rel="canonical" href="https://www.eclipse.org/che/docs/stable/administration-guide/devfile-registries/">
-    <meta name="description" content="Devfile registries">
-    <meta name="keywords" content="administration-guide, architecture, server, devworkspace, devfile, registry">
+    <title>Devfile registry :: Eclipse Che Documentation</title>
+    <meta name="description" content="Devfile registry">
+    <meta name="keywords" content="administration-guide, devfile">
     <meta name="generator" content="Antora 3.1.9">
     <link rel="stylesheet" href="../../../../docs/_/css/site.css">
 <link rel="stylesheet" href="../../../../docs/_/css/extra.css">
@@ -315,11 +314,11 @@
   <li class="nav-item" data-depth="4">
     <a class="nav-link" href="../dashboard/">User dashboard</a>
   </li>
-  <li class="nav-item is-current-page" data-depth="4">
-    <a class="nav-link" href="./">Devfile registries</a>
-  </li>
   <li class="nav-item" data-depth="4">
     <a class="nav-link" href="../che-server/">Che server</a>
+  </li>
+  <li class="nav-item is-current-page" data-depth="4">
+    <a class="nav-link" href="./">Devfile registry</a>
   </li>
   <li class="nav-item" data-depth="4">
     <a class="nav-link" href="../plugin-registry/">Plug-in registry</a>
@@ -742,51 +741,45 @@
     <li><a href="../preparing-the-installation/">Preparing the installation</a></li>
     <li><a href="../architecture-overview/">Architecture</a></li>
     <li><a href="../server-components/">Server components</a></li>
-    <li><a href="./">Devfile registries</a></li>
+    <li><a href="./">Devfile registry</a></li>
   </ul>
 </nav>
 <div class="page-versions">
   <button class="version-menu-toggle" title="Show other versions of page">next</button>
   <div class="version-menu">
     <a class="version is-current" href="./">next</a>
-    <a class="version" href="../../../stable/administration-guide/devfile-registries/">7.91.x</a>
+    <a class="version is-missing" href="../../../stable/overview/introduction-to-eclipse-che/">7.91.x</a>
   </div>
 </div>
-<div class="edit-this-page"><a href="https://github.com/eclipse-che/che-docs/edit/main/modules/administration-guide/pages/devfile-registries.adoc">Edit this Page</a></div>
+<div class="edit-this-page"><a href="https://github.com/eclipse-che/che-docs/edit/main/modules/administration-guide/pages/che-devfile-registry.adoc">Edit this Page</a></div>
 </div>
   <div class="content">
 <aside class="toc sidebar" data-title="Contents" data-levels="2">
   <div class="toc-menu"></div>
 </aside>
 <article class="doc">
-<h1 class="page">Devfile registries</h1>
+<h1 class="page">Devfile registry</h1>
 <div class="paragraph">
-<p>The Che devfile registries are services providing a list of sample devfiles to create ready-to-use workspaces.
-The <a href="../dashboard/" class="xref page">User dashboard</a> displays the samples list on the <strong>Dashboard</strong> &#8594; <strong>Create Workspace</strong> page.
-Each sample includes a Devfile v2.
-The Che deployment starts one devfile registry instance in the <code>devfile-registry</code> deployment.</p>
+<p>A devfile registry is a service providing a list of sample devfiles.
+You can use these samples to create ready-to-use workspaces.</p>
 </div>
-<div class="imageblock">
-<div class="content">
-<img src="../_images/architecture/che-devfile-registry-interactions.png" alt="che devfile registry interactions">
-</div>
-<div class="title">Figure 1. Devfile registries interactions with other components</div>
+<div class="paragraph">
+<p>For Eclipse&#160;Che, use the devfile registry available <a href="https://registry.devfile.io/viewer">here</a>.</p>
 </div>
 <div class="ulist">
 <div class="title">Additional resources</div>
 <ul>
 <li>
-<p><a href="https://devfile.io/docs/2.1.0/overview">Devfile v2 documentation</a></p>
+<p><a href="https://devfile.io/docs/2.2.2/what-is-a-devfile">What is a devfile</a></p>
 </li>
 <li>
-<p><a href="https://eclipse-che.github.io/che-devfile-registry/main/devfiles/">devfile registry latest community version online instance</a></p>
+<p><a href="https://devfile.io/docs/2.2.0/benefits-of-devfile">Benefits of devfile</a></p>
 </li>
-</ul>
-</div>
-<div class="ulist">
-<ul>
 <li>
-<p><a href="https://github.com/eclipse/che-devfile-registry">Che devfile registry repository</a></p>
+<p><a href="https://devfile.io/docs/2.2.2/overview">Devfile customization overview</a></p>
+</li>
+<li>
+<p><a href="https://devfile.io/">Devfile.io</a></p>
 </li>
 </ul>
 </div>
