@@ -444,6 +444,9 @@
     <a class="nav-link" href="../limiting-the-number-of-workspaces-that-a-user-can-keep/">Limiting the number of workspaces that a user can keep</a>
   </li>
   <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../limiting-the-number-of-workspaces-that-all-users-can-run-simultaneously/">Limiting the number of workspaces that all users can run simultaneously</a>
+  </li>
+  <li class="nav-item" data-depth="3">
     <a class="nav-link" href="../enabling-users-to-run-multiple-workspaces-simultaneously/">Enabling users to run multiple workspaces simultaneously</a>
   </li>
   <li class="nav-item" data-depth="3">
@@ -556,6 +559,12 @@
   </li>
   <li class="nav-item is-current-page" data-depth="3">
     <a class="nav-link" href="./">Configuring editors definitions</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../configuring-default-editor-definition/">Configuring default editor definition</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../concealing-editors-definitions/">Concealing editors definitions</a>
   </li>
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="../customizing-openshift-che-consolelink-icon/">Customizing OpenShift Eclipse Che ConsoleLink icon</a>
@@ -960,7 +969,7 @@ commands:
 <p>The editor definition is also served by the Che dashboard API from the following URL:</p>
 </div>
 <div class="paragraph">
-<p><code>https://<em>&lt;che_fqdn&gt;</em>/dashboard/api/editors/devfile?che-editor=<em>&lt;editor id&gt;</em></code></p>
+<p><code>https://<em>&lt;che_fqdn&gt;</em>/dashboard/api/editors</code></p>
 </div>
 <div class="paragraph">
 <p>For the example from <a href="./" class="xref page">Configuring editors definitions</a>, the editor definition can be retrieved by accessing the following URL:</p>
@@ -975,7 +984,7 @@ commands:
 <i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
-When retrieving the editor definition from within the Kubernetes cluster, the Che dashboard API can be accessed via the dashboard service: <code>http://che-dashboard.eclipse-che.svc.cluster.local:8080/dashboard/api/editors/devfile?che-editor=<em>&lt;editor id&gt;</em></code>
+When retrieving the editor definition from within the Kubernetes cluster, the Che dashboard API can be accessed via the dashboard service: <code>http://che-dashboard.eclipse-che.svc.cluster.local:8080/dashboard/api/editors</code>
 </td>
 </tr>
 </table>
