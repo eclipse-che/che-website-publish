@@ -3,10 +3,9 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Installing Che on Minikube :: Eclipse Che Documentation</title>
-    <link rel="canonical" href="https://www.eclipse.org/che/docs/stable/administration-guide/installing-che-on-minikube/">
-    <meta name="description" content="Installing Che on Minikube">
-    <meta name="keywords" content="overview, installing-che-on-minikube">
+    <title>Configuring allowed URLs for Cloud Development Environments :: Eclipse Che Documentation</title>
+    <meta name="description" content="Configuring allowed URLs for Cloud Development Environments">
+    <meta name="keywords" content="administration guide, configuring-allowed-sources">
     <meta name="generator" content="Antora 3.1.9">
     <link rel="stylesheet" href="../../../../docs/_/css/site.css">
 <link rel="stylesheet" href="../../../../docs/_/css/extra.css">
@@ -368,8 +367,8 @@
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="../installing-che-on-red-hat-openshift-local/">Installing Che on Red Hat OpenShift Local</a>
   </li>
-  <li class="nav-item is-current-page" data-depth="3">
-    <a class="nav-link" href="./">Installing Che on Minikube</a>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../installing-che-on-minikube/">Installing Che on Minikube</a>
   </li>
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="../installing-che-on-minikube-keycloak-oidc/">Installing Che on Minikube with Keycloak as the OIDC provider</a>
@@ -461,8 +460,8 @@
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="../configuring-a-user-namespace/">Configuring a user namespace</a>
   </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../configuring-allowed-urls-for-cloud-development-environments/">Configuring allowed URLs for Cloud Development Environments</a>
+  <li class="nav-item is-current-page" data-depth="3">
+    <a class="nav-link" href="./">Configuring allowed URLs for Cloud Development Environments</a>
   </li>
 </ul>
   </li>
@@ -751,104 +750,68 @@
   <ul>
     <li><a href="../../overview/introduction-to-eclipse-che/">Documentation</a></li>
     <li>Administration Guide</li>
-    <li><a href="../installing-che/">Installing Che</a></li>
-    <li><a href="../installing-che-locally/">Installing Che locally</a></li>
-    <li><a href="./">Installing Che on Minikube</a></li>
+    <li><a href="../configuring-che/">Configuring Che</a></li>
+    <li><a href="../configuring-workspaces-globally/">Configuring workspaces globally</a></li>
+    <li><a href="./">Configuring allowed URLs for Cloud Development Environments</a></li>
   </ul>
 </nav>
 <div class="page-versions">
   <button class="version-menu-toggle" title="Show other versions of page">next</button>
   <div class="version-menu">
     <a class="version is-current" href="./">next</a>
-    <a class="version" href="../../../stable/administration-guide/installing-che-on-minikube/">7.91.x</a>
+    <a class="version is-missing" href="../../../stable/overview/introduction-to-eclipse-che/">7.91.x</a>
   </div>
 </div>
-<div class="edit-this-page"><a href="https://github.com/eclipse-che/che-docs/edit/main/modules/administration-guide/pages/installing-che-on-minikube.adoc">Edit this Page</a></div>
+<div class="edit-this-page"><a href="https://github.com/eclipse-che/che-docs/edit/main/modules/administration-guide/pages/configuring-allowed-urls-for-cloud-development-environments.adoc">Edit this Page</a></div>
 </div>
   <div class="content">
 <aside class="toc sidebar" data-title="Contents" data-levels="2">
   <div class="toc-menu"></div>
 </aside>
 <article class="doc">
-<h1 class="page">Installing Che on Minikube</h1>
+<h1 class="page">Configuring allowed URLs for Cloud Development Environments</h1>
 <div class="paragraph">
-<p>This article explains how to create a single-node Kubernetes cluster with Minikube to deploy Che.</p>
+<p>Allowed URLs play an important role in securing the initiation of Cloud Development Environments (CDEs), ensuring that they can only be launched from authorized sources. By utilizing wildcard support, such as <code>*</code>, organizations can implement flexible URL patterns, allowing for dynamic and secure CDE initiation across various paths within a domain.</p>
 </div>
-<div class="admonitionblock warning">
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Configure allowed sources:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">kubectl patch checluster/eclipse-che \
+    --namespace eclipse-che \
+    --type='merge' \
+    -p \
+'{
+   "spec": {
+     "devEnvironments": {
+       "allowedSources": {
+         "urls": ["url_1", "url_2"] <i class="conum" data-value="1"></i><b>(1)</b>
+       }
+     }
+   }
+ }'</code></pre>
+</div>
+</div>
+<div class="colist arabic">
 <table>
 <tr>
-<td class="icon">
-<i class="fa icon-warning" title="Warning"></i>
-</td>
-<td class="content">
-Remember that single-node Kubernetes clusters are suited only for testing or development. Do <strong>NOT</strong> use such clusters to run Che for organizations or developer teams.
-</td>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>The array of approved URLs for starting Cloud Development Environments (CDEs). CDEs can only be initiated from these URLs. Wildcards <code>*</code> are supported in URLs. For example, <code><a href="https://example.com/*" class="bare">https://example.com/*</a></code> would allow CDEs to be initiated from any path within <code>example.com</code>.</td>
 </tr>
 </table>
 </div>
-<div class="ulist">
-<div class="title">Prerequisites</div>
-<ul>
-<li>
-<p>Minikube stable release. See <a href="https://kubernetes.io/docs/tasks/tools/install-minikube/">Installing Minikube</a>.</p>
-</li>
-<li>
-<p><code>kubectl</code> stable release. See <a href="https://kubernetes.io/docs/tasks/tools/#kubectl">Installing <code>kubectl</code></a>.</p>
-</li>
-<li>
-<p><code>chectl</code>. See <a href="../installing-the-chectl-management-tool/" class="xref page">Installing the chectl management tool</a>.</p>
-</li>
-</ul>
-</div>
-<div class="olist arabic">
-<div class="title">Procedure</div>
-<ol class="arabic">
-<li>
-<p>Start Minikube with required add-ons and sufficient resources:</p>
-<div class="listingblock">
-<div class="content">
-<pre>$ minikube start --addons=ingress,dashboard --vm=true --memory=10240 --cpus=4 --disk-size=50GB --kubernetes-version=v1.23.9</pre>
-</div>
-</div>
-</li>
-<li>
-<p>Create the Che instance:</p>
-<div class="listingblock">
-<div class="content">
-<pre>$ chectl server:deploy --platform minikube</pre>
-</div>
-</div>
 </li>
 </ol>
-</div>
-<div class="olist arabic">
-<div class="title">Verification steps</div>
-<ol class="arabic">
-<li>
-<p>Verify the Che instance status:</p>
-<div class="listingblock">
-<div class="content">
-<pre>$ chectl server:status</pre>
-</div>
-</div>
-</li>
-<li>
-<p>Navigate to the Che cluster instance:</p>
-<div class="listingblock">
-<div class="content">
-<pre>$ chectl dashboard:open</pre>
-</div>
 </div>
 <div class="ulist">
 <div class="title">Additional resources</div>
 <ul>
 <li>
-<p><a href="../configuring-che-with-self-signed-certificate/" class="xref page">Configuring Eclipse&#160;Che with self-signed certificate</a></p>
+<p><a href="../using-the-cli-to-configure-the-checluster-custom-resource/" class="xref page">Using the CLI to configure the CheCluster Custom Resource</a></p>
 </li>
 </ul>
-</div>
-</li>
-</ol>
 </div>
 </article>
   </div>
