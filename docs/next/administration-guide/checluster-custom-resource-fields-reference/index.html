@@ -734,7 +734,7 @@
           <a href="../../overview/introduction-to-eclipse-che/">next</a>
         </li>
         <li class="version is-latest">
-          <a href="../../../stable/overview/introduction-to-eclipse-che/">7.91.x</a>
+          <a href="../../../stable/overview/introduction-to-eclipse-che/">7.92.x</a>
         </li>
       </ul>
     </li>
@@ -760,7 +760,7 @@
   <button class="version-menu-toggle" title="Show other versions of page">next</button>
   <div class="version-menu">
     <a class="version is-current" href="./">next</a>
-    <a class="version" href="../../../stable/administration-guide/checluster-custom-resource-fields-reference/">7.91.x</a>
+    <a class="version" href="../../../stable/administration-guide/checluster-custom-resource-fields-reference/">7.92.x</a>
   </div>
 </div>
 <div class="edit-this-page"><a href="https://github.com/eclipse-che/che-docs/edit/main/modules/administration-guide/pages/checluster-custom-resource-fields-reference.adoc">Edit this Page</a></div>
@@ -1099,6 +1099,11 @@ spec:
 </thead>
 <tbody>
 <tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">allowedSources</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">AllowedSources defines the allowed sources on which workspaces can be started.</p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">containerBuildConfiguration</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Container build configuration.</p></td>
 <td class="tableblock halign-left valign-top"></td>
@@ -1141,7 +1146,7 @@ spec:
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">ignoredUnrecoverableEvents</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">IgnoredUnrecoverableEvents defines a list of Kubernetes event names that should be ignored when deciding to fail a workspace that is starting. This option should be used if a transient cluster issue is triggering false-positives (for example, if the cluster occasionally encounters FailedScheduling events). Events listed here will not trigger workspace failures.</p></td>
-<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">[  "FailedScheduling"]</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">imagePullPolicy</p></td>
@@ -1181,6 +1186,11 @@ spec:
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">projectCloneContainer</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Project clone container configuration.</p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">runtimeClassName</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">RuntimeClassName specifies the spec.runtimeClassName for workspace pods.</p></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
@@ -2177,8 +2187,18 @@ spec:
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">nodeSelector</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The node selector limits the nodes that can run the pod.</p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">securityContext</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Security options the pod should run with.</p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">tolerations</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The pod tolerations of the component pod limit where the pod can run.</p></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 </tbody>
