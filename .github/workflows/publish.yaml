@@ -10,7 +10,7 @@ on:
 jobs:
   build:
     name: "Build"
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
     steps:
       - name: Checkout local code
         uses: actions/checkout@v4
@@ -21,12 +21,8 @@ jobs:
           repository: eclipse-che/che-website
           ref: main
           path: che-website
-      - name: Install packages to build che-website
-        uses: bahmutov/npm-install@v1
-        with:
-          working-directory: che-website
       - name: Build che-website to website/build/che
-        run: yarn build
+        run: yarn && yarn build
         working-directory: che-website
 
       - name: Checkout che-docs publication branch
