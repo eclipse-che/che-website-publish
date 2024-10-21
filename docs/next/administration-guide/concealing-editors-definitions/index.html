@@ -870,14 +870,15 @@ For example, to conceal the <code>che-idea-next.yaml</code> editor definition, s
 </div>
 </li>
 <li>
-<p>Find out the Operator subscription namespace (if it exists):</p>
+<p>Find out the Operator subscription name and namespace (if it exists):</p>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-none hljs">SUBSCRIPTION_NAMESPACE=$(kubectl get subscription \
+<pre class="highlightjs highlight"><code class="language-none hljs">SUBSCRIPTION=$(kubectl get subscriptions \
     --all-namespaces \
-    --field-selector=metadata.name=eclipse-che \
-    --output jsonpath='{.items[0].metadata.namespace}' 2&gt;/dev/null
-)</code></pre>
+    --output json \
+        | jq -r '.items[] | select(.spec.name=="eclipse-che")')
+SUBSCRIPTION_NAMESPACE=$(echo $SUBSCRIPTION | jq -r '.metadata.namespace')
+SUBSCRIPTION_NAME=$(echo $SUBSCRIPTION | jq -r '.metadata.name')</code></pre>
 </div>
 </div>
 </li>
@@ -886,8 +887,8 @@ For example, to conceal the <code>che-idea-next.yaml</code> editor definition, s
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-none hljs">if [[ -n $SUBSCRIPTION_NAMESPACE ]]; then
-    if [[ $(kubectl get subscription eclipse-che --namespace $SUBSCRIPTION_NAMESPACE --output jsonpath='{.spec.config}') == "" ]]; then
-        kubectl patch subscription eclipse-che \
+    if [[ $(kubectl get subscription $SUBSCRIPTION_NAME --namespace $SUBSCRIPTION_NAMESPACE --output jsonpath='{.spec.config}') == "" ]]; then
+        kubectl patch subscription $SUBSCRIPTION_NAME \
           --namespace $SUBSCRIPTION_NAMESPACE \
           --type json \
           --patch '[{
@@ -897,8 +898,8 @@ For example, to conceal the <code>che-idea-next.yaml</code> editor definition, s
             }]'
     fi
 
-    if [[ $(kubectl get subscription eclipse-che --namespace $SUBSCRIPTION_NAMESPACE --output jsonpath='{.spec.config.volumes}') == "" ]]; then
-        kubectl patch subscription eclipse-che \
+    if [[ $(kubectl get subscription $SUBSCRIPTION_NAME --namespace $SUBSCRIPTION_NAMESPACE --output jsonpath='{.spec.config.volumes}') == "" ]]; then
+        kubectl patch subscription $SUBSCRIPTION_NAME \
           --namespace $SUBSCRIPTION_NAMESPACE \
           --type json \
           --patch '[{
@@ -908,8 +909,8 @@ For example, to conceal the <code>che-idea-next.yaml</code> editor definition, s
             }]'
     fi
 
-    if [[ $(kubectl get subscription eclipse-che --namespace $SUBSCRIPTION_NAMESPACE --output jsonpath='{.spec.config.volumeMounts}') == "" ]]; then
-        kubectl patch subscription eclipse-che \
+    if [[ $(kubectl get subscription $SUBSCRIPTION_NAME --namespace $SUBSCRIPTION_NAMESPACE --output jsonpath='{.spec.config.volumeMounts}') == "" ]]; then
+        kubectl patch subscription $SUBSCRIPTION_NAME \
           --namespace $SUBSCRIPTION_NAMESPACE \
           --type json \
           --patch '[{
@@ -919,7 +920,7 @@ For example, to conceal the <code>che-idea-next.yaml</code> editor definition, s
             }]'
     fi
 
-    kubectl patch subscription eclipse-che \
+    kubectl patch subscription $SUBSCRIPTION_NAME \
       --namespace $SUBSCRIPTION_NAMESPACE \
       --type json \
       --patch '[{
