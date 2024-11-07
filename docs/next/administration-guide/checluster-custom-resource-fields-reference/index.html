@@ -764,7 +764,7 @@
           <a href="../../overview/introduction-to-eclipse-che/">next</a>
         </li>
         <li class="version is-latest">
-          <a href="../../../stable/overview/introduction-to-eclipse-che/">7.93.x</a>
+          <a href="../../../stable/overview/introduction-to-eclipse-che/">7.94.x</a>
         </li>
       </ul>
     </li>
@@ -790,7 +790,7 @@
   <button class="version-menu-toggle" title="Show other versions of page">next</button>
   <div class="version-menu">
     <a class="version is-current" href="./">next</a>
-    <a class="version" href="../../../stable/administration-guide/checluster-custom-resource-fields-reference/">7.93.x</a>
+    <a class="version" href="../../../stable/administration-guide/checluster-custom-resource-fields-reference/">7.94.x</a>
   </div>
 </div>
 <div class="edit-this-page"><a href="https://github.com/eclipse-che/che-docs/edit/main/modules/administration-guide/pages/checluster-custom-resource-fields-reference.adoc">Edit this Page</a></div>
@@ -1478,6 +1478,11 @@ spec:
 </thead>
 <tbody>
 <tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">disableWorkspaceCaBundleMount</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">By default, the Operator creates and mounts the 'ca-certs-merged' ConfigMap containing the CA certificate bundle in users' workspaces at two locations: '/public-certs' and '/etc/pki/ca-trust/extracted/pem'. The '/etc/pki/ca-trust/extracted/pem' directory is where the system stores extracted CA certificates for trusted certificate authorities on Red Hat (e.g., CentOS, Fedora). This option disables mounting the CA bundle to the '/etc/pki/ca-trust/extracted/pem' directory while still mounting it to '/public-certs'.</p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">gitTrustedCertsConfigMapName</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">The ConfigMap contains certificates to propagate to the Che components and to provide a particular configuration for Git. See the following page: <a href="https://www.eclipse.org/che/docs/stable/administration-guide/deploying-che-with-support-for-git-repositories-with-self-signed-certificates/" class="bare">https://www.eclipse.org/che/docs/stable/administration-guide/deploying-che-with-support-for-git-repositories-with-self-signed-certificates/</a> The ConfigMap must have a <code>app.kubernetes.io/part-of=che.eclipse.org</code> label.</p></td>
 <td class="tableblock halign-left valign-top"></td>
@@ -1627,7 +1632,7 @@ spec:
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">nonProxyHosts</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">A list of hosts that can be reached directly, bypassing the proxy. Specify wild card domain use the following form <code>.&lt;DOMAIN&gt;</code>, for example:    - localhost    - my.host.com    - 123.42.12.32 Use only when a proxy configuration is required. The Operator respects OpenShift cluster-wide proxy configuration, defining <code>nonProxyHosts</code> in a custom resource leads to merging non-proxy hosts lists from the cluster proxy configuration, and the ones defined in the custom resources. See the following page: <a href="https://docs.openshift.com/container-platform/latest/networking/enable-cluster-wide-proxy.html" class="bare">https://docs.openshift.com/container-platform/latest/networking/enable-cluster-wide-proxy.html</a>.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">A list of hosts that can be reached directly, bypassing the proxy. Specify wild card domain use the following form <code>.&lt;DOMAIN&gt;</code>, for example:    - localhost    - 127.0.0.1    - my.host.com    - 123.42.12.32 Use only when a proxy configuration is required. The Operator respects OpenShift cluster-wide proxy configuration, defining <code>nonProxyHosts</code> in a custom resource leads to merging non-proxy hosts lists from the cluster proxy configuration, and the ones defined in the custom resources. See the following page: <a href="https://docs.openshift.com/container-platform/latest/networking/enable-cluster-wide-proxy.html" class="bare">https://docs.openshift.com/container-platform/latest/networking/enable-cluster-wide-proxy.html</a>. In some proxy configurations, localhost may not translate to 127.0.0.1. Both localhost and 127.0.0.1 should be specified in this situation.</p></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>

@@ -45,7 +45,7 @@
   </nav>
 </header>
 <div class="body">
-<div class="nav-container" data-component="docs" data-version="7.93.x">
+<div class="nav-container" data-component="docs" data-version="7.94.x">
   <aside class="nav">
     <div class="panels">
 <div class="nav-panel-menu is-active" data-panel="menu">
@@ -421,6 +421,9 @@
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="../provisioning-namespaces-in-advance/">Provisioning namespaces in advance</a>
   </li>
+  <li class="nav-item is-current-page" data-depth="3">
+    <a class="nav-link" href="./">Configuring a user namespace</a>
+  </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="2">
@@ -468,9 +471,6 @@
   </li>
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="../configuring-the-open-vsx-registry-url/">Open VSX registry URL</a>
-  </li>
-  <li class="nav-item is-current-page" data-depth="3">
-    <a class="nav-link" href="./">Configuring a user namespace</a>
   </li>
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="../configuring-allowed-urls-for-cloud-development-environments/">Configuring allowed URLs for Cloud Development Environments</a>
@@ -750,7 +750,7 @@
 <div class="nav-panel-explore" data-panel="explore">
   <div class="context">
     <span class="title">Documentation</span>
-    <span class="version">7.93.x</span>
+    <span class="version">7.94.x</span>
   </div>
   <ul class="components">
     <li class="component is-current">
@@ -760,7 +760,7 @@
           <a href="../../../next/overview/introduction-to-eclipse-che/">next</a>
         </li>
         <li class="version is-current is-latest">
-          <a href="../../overview/introduction-to-eclipse-che/">7.93.x</a>
+          <a href="../../overview/introduction-to-eclipse-che/">7.94.x</a>
         </li>
       </ul>
     </li>
@@ -778,18 +778,18 @@
     <li><a href="../../overview/introduction-to-eclipse-che/">Documentation</a></li>
     <li>Administration Guide</li>
     <li><a href="../configuring-che/">Configuring Che</a></li>
-    <li><a href="../configuring-workspaces-globally/">Configuring workspaces globally</a></li>
+    <li><a href="../configuring-namespace-provisioning/">Configuring namespaces</a></li>
     <li><a href="./">Configuring a user namespace</a></li>
   </ul>
 </nav>
 <div class="page-versions">
-  <button class="version-menu-toggle" title="Show other versions of page">7.93.x</button>
+  <button class="version-menu-toggle" title="Show other versions of page">7.94.x</button>
   <div class="version-menu">
     <a class="version" href="../../../next/administration-guide/configuring-a-user-namespace/">next</a>
-    <a class="version is-current" href="./">7.93.x</a>
+    <a class="version is-current" href="./">7.94.x</a>
   </div>
 </div>
-<div class="edit-this-page"><a href="https://github.com/eclipse-che/che-docs/edit/7.93.x/modules/administration-guide/pages/configuring-a-user-namespace.adoc">Edit this Page</a></div>
+<div class="edit-this-page"><a href="https://github.com/eclipse-che/che-docs/edit/7.94.x/modules/administration-guide/pages/configuring-a-user-namespace.adoc">Edit this Page</a></div>
 </div>
   <div class="content">
 <aside class="toc sidebar" data-title="Contents" data-levels="2">
@@ -799,9 +799,7 @@
 <h1 class="page">Configuring a user namespace</h1>
 <div class="paragraph">
 <p>This procedure walks you through the process of using Che
-to replicate <code>ConfigMaps</code>, <code>Secrets</code> and <code>PersistentVolumeClaim</code> from <code>eclipse-che</code> namespace to numerous
-user-specific namespaces. The Che automates the synchronization of important configuration
-data such as shared credentials, configuration files, and certificates to user namespaces.</p>
+to replicate <code>ConfigMaps</code>, <code>Secrets</code>, <code>PersistentVolumeClaim</code> and other Kubernetes objects from <code>eclipse-che</code> namespace to numerous user-specific namespaces. The Che automates the synchronization of important configuration data such as shared credentials, configuration files, and certificates to user namespaces.</p>
 </div>
 <div class="paragraph">
 <p>If you make changes to a Kubernetes resource in an eclipse-che namespace,
@@ -822,7 +820,7 @@ for other possible labels and annotations.</p>
 <pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">kind: ConfigMap
 apiVersion: v1
 metadata:
-  name: user-configmap
+  name: che-user-configmap
   namespace: eclipse-che
   labels:
     app.kubernetes.io/part-of: che.eclipse.org
@@ -839,7 +837,7 @@ data:
 <pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">kind: ConfigMap
 apiVersion: v1
 metadata:
-  name: user-settings-xml
+  name: che-user-configmap
   namespace: eclipse-che
   labels:
     app.kubernetes.io/part-of: che.eclipse.org
@@ -869,7 +867,7 @@ for other possible labels and annotations.</p>
 <pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">kind: Secret
 apiVersion: v1
 metadata:
-  name: user-secret
+  name: che-user-secret
   namespace: eclipse-che
   labels:
     app.kubernetes.io/part-of: che.eclipse.org
@@ -886,7 +884,7 @@ data:
 <pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">kind: Secret
 apiVersion: v1
 metadata:
-  name: user-certificates
+  name: che-user-secret
   namespace: eclipse-che
   labels:
     app.kubernetes.io/part-of: che.eclipse.org
@@ -923,7 +921,7 @@ See the <a href="https://devfile.io/docs/2.3.0/adding-event-bindings#post-start-
 <pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">kind: Secret
 apiVersion: v1
 metadata:
-  name: user-env
+  name: che-user-secret
   namespace: eclipse-che
   labels:
     app.kubernetes.io/part-of: che.eclipse.org
@@ -946,14 +944,14 @@ See the <a href="https://github.com/devfile/devworkspace-operator/blob/main/docs
 for other possible labels and annotations.</p>
 </div>
 <div class="paragraph">
-<p>To modify the 'PersistentVolumeClaim', delete it and create a new one in eclipse-che namespace.</p>
+<p>To modify the <code>PersistentVolumeClaim</code>, delete it and create a new one in eclipse-che namespace.</p>
 </div>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: user-pvc
+  name: che-user-pvc
   namespace: eclipse-che
   labels:
     app.kubernetes.io/part-of: che.eclipse.org
@@ -970,7 +968,7 @@ spec:
 <pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: user-pvc
+  name: che-user-pvc
   namespace: eclipse-che
   labels:
     app.kubernetes.io/part-of: che.eclipse.org
@@ -991,6 +989,116 @@ spec:
 </div>
 </div>
 </li>
+<li>
+<p>To leverage the OpenShift Kubernetes Engine, you can create a <code>Template</code> object to replicate all resources defined within the template across each user namespace.</p>
+<div class="paragraph">
+<p>Aside from the previously mentioned <code>ConfigMap</code>, <code>Secret</code>, and <code>PersistentVolumeClaim</code>, <code>Template</code> objects can include:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>LimitRange</code></p>
+</li>
+<li>
+<p><code>NetworkPolicy</code></p>
+</li>
+<li>
+<p><code>ResourceQuota</code></p>
+</li>
+<li>
+<p><code>Role</code></p>
+</li>
+<li>
+<p><code>RoleBinding</code></p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">apiVersion: template.openshift.io/v1
+kind: Template
+metadata:
+  name: che-user-namespace-configurator
+  namespace: eclipse-che
+  labels:
+    app.kubernetes.io/part-of: che.eclipse.org
+    app.kubernetes.io/component: workspaces-config
+objects:
+  ...
+parameters:
+- name: PROJECT_NAME
+- name: PROJECT_ADMIN_USER</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The <code>parameters</code> are optional and define which parameters can be used. Currently, only <code>PROJECT_NAME</code> and <code>PROJECT_ADMIN_USER</code> are supported. <code>PROJECT_NAME</code> is the name of the Che namespace, while <code>PROJECT_ADMIN_USER</code> is the Che user of the namespace.</p>
+</div>
+<div class="paragraph">
+<p>The namespace name in objects will be replaced with the user&#8217;s namespace name during synchronization.</p>
+</div>
+<div class="exampleblock">
+<div class="title">Example 5. Replicating Kubernetes resources to a user namespace:</div>
+<div class="content">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">apiVersion: template.openshift.io/v1
+kind: Template
+metadata:
+  name: che-user-namespace-configurator
+  namespace: eclipse-che
+  labels:
+    app.kubernetes.io/part-of: che.eclipse.org
+    app.kubernetes.io/component: workspaces-config
+objects:
+- apiVersion: v1
+  kind: ResourceQuota
+  metadata:
+    name: che-user-resource-quota
+  spec:
+    ...
+- apiVersion: v1
+  kind: LimitRange
+  metadata:
+    name: che-user-resource-constraint
+  spec:
+    ...
+- apiVersion: rbac.authorization.k8s.io/v1
+  kind: Role
+  metadata:
+    name: che-user-roles
+  rules:
+    ...
+- apiVersion: rbac.authorization.k8s.io/v1
+  kind: RoleBinding
+  metadata:
+    name: che-user-rolebinding
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: Role
+    name: che-user-roles
+  subjects:
+  - kind: User
+    apiGroup: rbac.authorization.k8s.io
+    name: ${PROJECT_ADMIN_USER}
+parameters:
+- name: PROJECT_ADMIN_USER</code></pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Creating Template Kubernetes resources is supported only on OpenShift.
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+</li>
+</ul>
+</div>
+</li>
 </ol>
 </div>
 <div class="ulist">
@@ -1007,6 +1115,12 @@ spec:
 </li>
 <li>
 <p><a href="https://github.com/devfile/devworkspace-operator/blob/main/docs/additional-configuration.adoc#automatically-mounting-volumes-configmaps-and-secrets">Automatically mounting volumes, configmaps, and secrets</a></p>
+</li>
+<li>
+<p><a href="https://docs.openshift.com/container-platform/latest/rest_api/template_apis/template-template-openshift-io-v1.html">OpenShift API reference for <code>Template</code></a></p>
+</li>
+<li>
+<p><a href="https://docs.openshift.com/container-platform/latest/applications/projects/configuring-project-creation.html">Configuring OpenShift project creation</a></p>
 </li>
 </ul>
 </div>
