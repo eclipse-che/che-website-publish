@@ -1139,6 +1139,12 @@ spec:
       gateway:
         oAuthProxy:
           cookieExpireSeconds: 300
+        deployment:
+          containers:
+            - env:
+                - name: OAUTH2_PROXY_BACKEND_LOGOUT_URL
+                  value: "http://keycloak.$(minikube ip).nip.io/realms/che/protocol/openid-connect/logout?id_token_hint={id_token}"
+              name: oauth-proxy
   components:
     cheServer:
       extraProperties:
@@ -1166,7 +1172,8 @@ EOF</code></pre>
     --set networking.auth.oAuthClientName=k8s-client \
     --set networking.auth.identityProviderURL=https://keycloak.$(minikube ip).nip.io/realms/che . &amp;&amp; \
 sleep 5s &amp;&amp; \
-kubectl patch checluster/eclipse-che --patch '{"spec": {"components": {"cheServer": {"extraProperties": {"CHE_OIDC_USERNAME__CLAIM": "email"}}}}}' --type=merge -n eclipse-che</code></pre>
+kubectl patch checluster/eclipse-che --patch '{"spec": {"components": {"cheServer": {"extraProperties": {"CHE_OIDC_USERNAME__CLAIM": "email"}}}}}' --type=merge -n eclipse-che
+kubectl patch checluster/eclipse-che --patch '{"spec": {"networking": {"auth": {"gateway": {"deployment": {"containers": [{"name": "oauth-proxy", "env":[{"name": "OAUTH2_PROXY_BACKEND_LOGOUT_URL", "value": "http://keycloak.$(minikube ip).nip.io/realms/che/protocol/openid-connect/logout?id_token_hint={id_token}"}]}]}}}}}}' --type=merge -n eclipse-che</code></pre>
 </div>
 </div>
 </li>
