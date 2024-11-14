@@ -913,9 +913,7 @@ metadata:
   name: allow-from-workspaces-namespaces
   namespace: eclipse-che   <i class="conum" data-value="1"></i><b>(1)</b>
 spec:
-  podSelector:
-    matchLabels:
-      app.kubernetes.io/component: che-gateway   <i class="conum" data-value="2"></i><b>(2)</b>
+  podSelector: {}   <i class="conum" data-value="2"></i><b>(2)</b>
   ingress:
     - from:
         - podSelector: {}
@@ -935,7 +933,7 @@ The default is <code>eclipse-che</code>.</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="2"></i><b>2</b></td>
-<td>The <code>podSelector</code> only selects che-gateway pods</td>
+<td>The empty <code>podSelector</code> selects all pods in the Che namespace.</td>
 </tr>
 </table>
 </div>
