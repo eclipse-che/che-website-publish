@@ -45,7 +45,7 @@
   </nav>
 </header>
 <div class="body">
-<div class="nav-container" data-component="docs" data-version="7.94.x">
+<div class="nav-container" data-component="docs" data-version="7.95.x">
   <aside class="nav">
     <div class="panels">
 <div class="nav-panel-menu is-active" data-panel="menu">
@@ -57,6 +57,9 @@
 <ul class="nav-list">
   <li class="nav-item" data-depth="1">
     <a class="nav-link" href="../../overview/introduction-to-eclipse-che/">Introduction to Che</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../../overview/security-best-practices/">Security best practices</a>
   </li>
 </ul>
   </li>
@@ -660,9 +663,6 @@
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../extensions-for-microsoft-visual-studio-code-open-source/">Extensions for Microsoft Visual Studio Code - Open Source</a>
   </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../trusted-extensions-for-microsoft-visual-studio-code/">Configure trusted extensions for Microsoft Visual Studio Code</a>
-  </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="1">
@@ -671,6 +671,12 @@
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../configuring-single-and-multiroot-workspaces/">Configuring single and multiroot workspaces</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../trusted-extensions-for-microsoft-visual-studio-code/">Configure trusted extensions for Microsoft Visual Studio Code</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../default-extensions-for-microsoft-visual-studio-code/">Configure default extensions</a>
   </li>
 </ul>
   </li>
@@ -750,7 +756,7 @@
 <div class="nav-panel-explore" data-panel="explore">
   <div class="context">
     <span class="title">Documentation</span>
-    <span class="version">7.94.x</span>
+    <span class="version">7.95.x</span>
   </div>
   <ul class="components">
     <li class="component is-current">
@@ -760,7 +766,7 @@
           <a href="../../../next/overview/introduction-to-eclipse-che/">next</a>
         </li>
         <li class="version is-current is-latest">
-          <a href="../../overview/introduction-to-eclipse-che/">7.94.x</a>
+          <a href="../../overview/introduction-to-eclipse-che/">7.95.x</a>
         </li>
       </ul>
     </li>
@@ -782,13 +788,13 @@
   </ul>
 </nav>
 <div class="page-versions">
-  <button class="version-menu-toggle" title="Show other versions of page">7.94.x</button>
+  <button class="version-menu-toggle" title="Show other versions of page">7.95.x</button>
   <div class="version-menu">
     <a class="version" href="../../../next/administration-guide/upgrading-che-using-the-cli-management-tool-in-restricted-environment/">next</a>
-    <a class="version is-current" href="./">7.94.x</a>
+    <a class="version is-current" href="./">7.95.x</a>
   </div>
 </div>
-<div class="edit-this-page"><a href="https://github.com/eclipse-che/che-docs/edit/7.94.x/modules/administration-guide/pages/upgrading-che-using-the-cli-management-tool-in-restricted-environment.adoc">Edit this Page</a></div>
+<div class="edit-this-page"><a href="https://github.com/eclipse-che/che-docs/edit/7.95.x/modules/administration-guide/pages/upgrading-che-using-the-cli-management-tool-in-restricted-environment.adoc">Edit this Page</a></div>
 </div>
   <div class="content">
 <aside class="toc sidebar" data-title="Contents" data-levels="2">
@@ -845,7 +851,7 @@
 <p>An active <code>skopeo</code> session with administrative access to the private Docker registry. <a href="https://github.com/containers/skopeo#authenticating-to-a-registry">Authenticating to a registry</a>, and <a href="https://docs.openshift.com/container-platform/4.12/installing/disconnected_install/installing-mirroring-installation-images.html">Mirroring images for a disconnected installation</a>.</p>
 </li>
 <li>
-<p><code>chectl</code> for Che version 7.94. See <a href="../installing-the-chectl-management-tool/" class="xref page">Installing the chectl management tool</a>.</p>
+<p><code>chectl</code> for Che version 7.95. See <a href="../installing-the-chectl-management-tool/" class="xref page">Installing the chectl management tool</a>.</p>
 </li>
 </ul>
 </div>
@@ -858,11 +864,11 @@
 <div class="content">
 <pre>$ bash prepare-restricted-environment.sh \
   --devworkspace_operator_index quay.io/devfile/devworkspace-operator-index:release-digest\
-  --devworkspace_operator_version "v0.31.1" \
+  --devworkspace_operator_version "v0.31.2" \
   --prod_operator_index "registry.access.redhat.com/redhat/community-operator-index:v4.12" \
   --prod_operator_package_name "eclipse-che" \
   --prod_operator_bundle_name "eclipse-che" \
-  --prod_operator_version "v7.94.0" \
+  --prod_operator_version "v7.95.0" \
   --my_registry "<em>&lt;my_registry&gt;</em>" <i class="conum" data-value="1"></i><b>(1)</b></pre>
 </div>
 </div>
@@ -898,7 +904,7 @@
 <p>Navigate to the Che instance.</p>
 </li>
 <li>
-<p>The 7.94 version number is visible at the bottom of the page.</p>
+<p>The 7.95 version number is visible at the bottom of the page.</p>
 </li>
 </ol>
 </div>
