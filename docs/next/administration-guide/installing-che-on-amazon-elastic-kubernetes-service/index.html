@@ -3,10 +3,9 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Specifying the update approval strategy for the Eclipse&#160;Che Operator :: Eclipse Che Documentation</title>
-    <link rel="canonical" href="https://www.eclipse.org/che/docs/stable/administration-guide/specifying-the-update-approval-strategy/">
-    <meta name="description" content="Specifying the update approval strategy">
-    <meta name="keywords" content="administration guide, upgrading-che-using-operatorhub">
+    <title>Installing Che on Amazon Elastic Kubernetes Service :: Eclipse Che Documentation</title>
+    <meta name="description" content="Installing Che on Amazon Elastic Kubernetes Service">
+    <meta name="keywords" content="overview, installing-che-on-amazon-elastic-kubernetes-service.adoc">
     <meta name="generator" content="Antora 3.1.9">
     <link rel="stylesheet" href="../../../../docs/_/css/site.css">
 <link rel="stylesheet" href="../../../../docs/_/css/extra.css">
@@ -362,8 +361,8 @@
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="../installing-che-on-microsoft-azure/">Installing Che on Microsoft Azure</a>
   </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../installing-che-on-amazon-elastic-kubernetes-service/">Installing Che on Amazon Elastic Kubernetes Service</a>
+  <li class="nav-item is-current-page" data-depth="3">
+    <a class="nav-link" href="./">Installing Che on Amazon Elastic Kubernetes Service</a>
   </li>
 </ul>
   </li>
@@ -700,8 +699,8 @@
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../upgrading-the-chectl-management-tool/">Upgrading the chectl management tool</a>
   </li>
-  <li class="nav-item is-current-page" data-depth="2">
-    <a class="nav-link" href="./">Specifying the update approval strategy</a>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../specifying-the-update-approval-strategy/">Specifying the update approval strategy</a>
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../upgrading-che-using-the-web-console/">Upgrading Che using the OpenShift web console</a>
@@ -793,51 +792,64 @@
   <ul>
     <li><a href="../../overview/introduction-to-eclipse-che/">Documentation</a></li>
     <li>Administration Guide</li>
-    <li><a href="../upgrading-che/">Upgrading Che</a></li>
-    <li><a href="./">Specifying the update approval strategy</a></li>
+    <li><a href="../installing-che/">Installing Che</a></li>
+    <li><a href="../installing-che-in-the-cloud/">Installing Che in the cloud</a></li>
+    <li><a href="./">Installing Che on Amazon Elastic Kubernetes Service</a></li>
   </ul>
 </nav>
 <div class="page-versions">
   <button class="version-menu-toggle" title="Show other versions of page">next</button>
   <div class="version-menu">
     <a class="version is-current" href="./">next</a>
-    <a class="version" href="../../../stable/administration-guide/specifying-the-update-approval-strategy/">7.95.x</a>
+    <a class="version is-missing" href="../../../stable/overview/introduction-to-eclipse-che/">7.95.x</a>
   </div>
 </div>
-<div class="edit-this-page"><a href="https://github.com/eclipse-che/che-docs/edit/main/modules/administration-guide/pages/specifying-the-update-approval-strategy.adoc">Edit this Page</a></div>
+<div class="edit-this-page"><a href="https://github.com/eclipse-che/che-docs/edit/main/modules/administration-guide/pages/installing-che-on-amazon-elastic-kubernetes-service.adoc">Edit this Page</a></div>
 </div>
   <div class="content">
 <aside class="toc sidebar" data-title="Contents" data-levels="2">
   <div class="toc-menu"></div>
 </aside>
 <article class="doc">
-<h1 class="page">Specifying the update approval strategy for the Eclipse&#160;Che Operator</h1>
+<h1 class="page">Installing Che on Amazon Elastic Kubernetes Service</h1>
+<div id="preamble">
+<div class="sectionbody">
 <div class="paragraph">
-<p>The Eclipse&#160;Che Operator supports two upgrade strategies:</p>
-</div>
-<div class="dlist">
-<dl>
-<dt class="hdlist1"><code>Automatic</code></dt>
-<dd>
-<p>The Operator installs new updates when they become available.</p>
-</dd>
-<dt class="hdlist1"><code>Manual</code></dt>
-<dd>
-<p>New updates need to be manually approved before installation begins.</p>
-</dd>
-</dl>
+<p>Amazon Elastic Kubernetes Service (Amazon EKS) is a managed Kubernetes service to run Kubernetes in the AWS cloud and on-premises data centers.</p>
 </div>
 <div class="paragraph">
-<p>You can specify the update approval strategy for the Eclipse&#160;Che Operator by using the OpenShift web console.</p>
+<p>Follow the instructions below to install and enable Che on Amazon EKS.</p>
 </div>
 <div class="ulist">
 <div class="title">Prerequisites</div>
 <ul>
 <li>
-<p>An OpenShift web console session by a cluster administrator. See <a href="https://docs.openshift.com/container-platform/4.12/web_console/web-console.html">Accessing the web console</a>.</p>
+<p><code>helm</code>: The package manager for Kubernetes. See: <a href="https://helm.sh/docs/intro/install/">Installing Helm</a>.</p>
 </li>
 <li>
-<p>An instance of Che that was installed by using Red Hat Ecosystem Catalog.</p>
+<p><code>chectl</code>. See: <a href="../installing-the-chectl-management-tool/" class="xref page">Installing the chectl management tool</a>.</p>
+</li>
+<li>
+<p><code>aws</code>: The AWS Command Line Interface. See: <a href="https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html">AWS CLI install and update instructions</a></p>
+</li>
+<li>
+<p><code>eksctl</code>: The Command Line Interface for creating and managing Kubernetes clusters on Amazon EKS. See: <a href="https://eksctl.io/installation/">Installing eksctl</a></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="configuring-environment-variables-for-amazon-elastic-kubernetes-service"><a class="anchor" href="#configuring-environment-variables-for-amazon-elastic-kubernetes-service"></a>Configuring environment variables for Amazon EKS</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Follow these instructions to define environment variables and update your <code>kubeconfig</code> to connect to Amazon EKS.</p>
+</div>
+<div class="ulist">
+<div class="title">Prerequisites</div>
+<ul>
+<li>
+<p>Amazon EKS cluster with storage addon. See: <a href="https://docs.aws.amazon.com/eks/latest/userguide/create-cluster.html">Create an Amazon EKS cluster</a></p>
 </li>
 </ul>
 </div>
@@ -845,16 +857,53 @@
 <div class="title">Procedure</div>
 <ol class="arabic">
 <li>
-<p>In the OpenShift web console, navigate to <span class="menuseq"><b class="menu">Operators</b>&#160;<i class="fa fa-angle-right caret"></i> <b class="menuitem">Installed Operators</b></span>.</p>
+<p>Find the AWS account ID:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">AWS_ACCOUNT_ID=$(aws sts get-caller-identity --query "Account" --output text)</code></pre>
+</div>
+</div>
 </li>
 <li>
-<p>Click <strong>Eclipse&#160;Che</strong> in the list of installed Operators.</p>
+<p>Define the cluster name:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">CHE_EKS_CLUSTER_NAME=che</code></pre>
+</div>
+</div>
 </li>
 <li>
-<p>Navigate to the <strong>Subscription</strong> tab.</p>
+<p>Define the region:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">CHE_EKS_CLUSTER_REGION=eu-central-1</code></pre>
+</div>
+</div>
 </li>
 <li>
-<p>Configure the <strong>Update approval</strong> strategy to <code>Automatic</code> or <code>Manual</code>.</p>
+<p>Update <code>kubeconfig</code>:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">aws eks update-kubeconfig --region $CHE_EKS_CLUSTER_REGION --name $CHE_EKS_CLUSTER_NAME</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Make sure that you have the default storage class set:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">kubectl get storageclass</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The output should display a storage class with <code>default</code> next to its name:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">NAME            PROVISIONER             RECLAIMPOLICY   VOLUMEBINDINGMODE      ALLOWVOLUMEEXPANSION   AGE
+gp2 (default)   kubernetes.io/aws-ebs   Delete          WaitForFirstConsumer   false                  126m</code></pre>
+</div>
+</div>
 </li>
 </ol>
 </div>
@@ -862,9 +911,749 @@
 <div class="title">Additional resources</div>
 <ul>
 <li>
-<p><a href="https://docs.openshift.com/container-platform/4.12/operators/admin/olm-upgrading-operators.html#olm-changing-update-channel_olm-upgrading-operators">Changing the update channel for an Operator</a></p>
+<p><a href="https://aws.amazon.com/eks/">Amazon Elastic Kubernetes Service</a></p>
+</li>
+<li>
+<p><a href="https://docs.aws.amazon.com/eks/latest/userguide/ebs-csi.html">Store Kubernetes volumes with Amazon EBS</a></p>
+</li>
+<li>
+<p><a href="https://docs.aws.amazon.com/eks/latest/userguide/create-managed-node-group.html">Create a managed node group for Amazon EKS</a></p>
+</li>
+<li>
+<p><a href="https://kubernetes.io/docs/tasks/administer-cluster/change-default-storage-class/">Change the default storage class on Kubernetes cluster</a></p>
 </li>
 </ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="installing-ingress-nginx-controller-on-amazon-elastic-kubernetes-service"><a class="anchor" href="#installing-ingress-nginx-controller-on-amazon-elastic-kubernetes-service"></a>Installing Ingress-Nginx Controller on Amazon EKS</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Follow these instructions to install the <a href="https://kubernetes.github.io/ingress-nginx/">Ingress-Nginx Controller</a> on Amazon EKS.</p>
+</div>
+<div class="olist arabic">
+<div class="title">Procedure</div>
+<ol class="arabic">
+<li>
+<p>Install the <code>Ingress-Nginx Controller</code> using <code>Helm</code>:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">helm repo add ingress-nginx https://kubernetes.github.io/ingress-nginx
+helm repo update
+
+helm install ingress-nginx ingress-nginx/ingress-nginx \
+  --wait \
+  --create-namespace \
+  --namespace ingress-nginx \
+  --set controller.service.annotations."service\.beta\.kubernetes\.io/aws-load-balancer-backend-protocol"=tcp \
+  --set controller.service.annotations."service\.beta\.kubernetes\.io/aws-load-balancer-cross-zone-load-balancing-enabled"="true" \
+  --set controller.service.annotations."service\.beta\.kubernetes\.io/aws-load-balancer-type"=nlb</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Verify that you can access the load balancer externally.
+It may take a few minutes for the load balancer to be created:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">until curl $(kubectl get service -n ingress-nginx ingress-nginx-controller -o=jsonpath='{.status.loadBalancer.ingress[0].hostname}'); do sleep 5s; done</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>You should receive the output similar to:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-html hljs" data-lang="html">&lt;html&gt;
+&lt;head&gt;&lt;title&gt;404 Not Found&lt;/title&gt;&lt;/head&gt;
+&lt;body&gt;
+&lt;center&gt;&lt;h1&gt;404 Not Found&lt;/h1&gt;&lt;/center&gt;
+&lt;hr&gt;&lt;center&gt;nginx&lt;/center&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+<div class="ulist">
+<div class="title">Additional resources</div>
+<ul>
+<li>
+<p><a href="https://kubernetes.github.io/ingress-nginx/deploy/">Ingress-Nginx Controller Installation Guide</a></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="configuring-DNS-on-amazon-elastic-kubernetes-service"><a class="anchor" href="#configuring-DNS-on-amazon-elastic-kubernetes-service"></a>Configuring DNS on Amazon EKS</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Follow these instructions to configure DNS on Amazon EKS.</p>
+</div>
+<div class="ulist">
+<div class="title">Prerequisites</div>
+<ul>
+<li>
+<p>A registered domain. See: <a href="https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/domain-register.html">Registering a new domain on Amazon EKS</a>.</p>
+</li>
+</ul>
+</div>
+<div class="olist arabic">
+<div class="title">Procedure</div>
+<ol class="arabic">
+<li>
+<p>Define the registered domain name:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">CHE_DOMAIN_NAME=eclipse-che-eks-clould.click</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Define domain name for Keycloak OIDC provider:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">KEYCLOAK_DOMAIN_NAME=keycloak.$CHE_DOMAIN_NAME</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Find out the hosted zone ID for the domain:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">HOSTED_ZONE_ID=$(aws route53 list-hosted-zones-by-name --dns-name $CHE_DOMAIN_NAME --query "HostedZones[0].Id" --output text)</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Find out the Canonical Hosted Zone ID for the load balancer:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">CANONICAL_HOSTED_ZONE_ID=$(aws elbv2 describe-load-balancers --query "LoadBalancers[0].CanonicalHostedZoneId" --output text)</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Find out the DNS name for the load balancer:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">DNS_NAME=$(kubectl get service -n ingress-nginx ingress-nginx-controller -o=jsonpath='{.status.loadBalancer.ingress[0].hostname}')</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Create a DNS record set:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">aws route53 change-resource-record-sets \
+  --hosted-zone-id $HOSTED_ZONE_ID \
+  --change-batch '
+  {
+    "Comment": "Ceating a record set",
+     "Changes": [{
+      "Action"              : "CREATE",
+       "ResourceRecordSet"  : {
+         "Name"              : "'"$CHE_DOMAIN_NAME"'",
+         "Type"             : "A",
+         "AliasTarget"      : {
+            "HostedZoneId"            : "'"$CANONICAL_HOSTED_ZONE_ID"'",
+            "DNSName"                 : "'"$DNS_NAME"'",
+            "EvaluateTargetHealth"    : false
+        }
+      }
+    }]
+  }
+  '</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Verify that you can access Che domain externally:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">until curl $CHE_DOMAIN_NAME; do sleep 5s; done</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Create a DNS record set:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">aws route53 change-resource-record-sets \
+  --hosted-zone-id $HOSTED_ZONE_ID \
+  --change-batch '
+  {
+    "Comment": "Ceating a record set",
+     "Changes": [{
+      "Action"              : "CREATE",
+       "ResourceRecordSet"  : {
+         "Name"              : "'"$KEYCLOAK_DOMAIN_NAME"'",
+         "Type"             : "A",
+         "AliasTarget"      : {
+            "HostedZoneId"            : "'"$CANONICAL_HOSTED_ZONE_ID"'",
+            "DNSName"                 : "'"$DNS_NAME"'",
+            "EvaluateTargetHealth"    : false
+        }
+      }
+    }]
+  }
+  '</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Verify that you can access the Keycloak domain externally:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">until curl $KEYCLOAK_DOMAIN_NAME; do sleep 5s; done</code></pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="installing-cert-manager-on-amazon-elastic-kubernetes-service"><a class="anchor" href="#installing-cert-manager-on-amazon-elastic-kubernetes-service"></a>Installing cert-manager on Amazon EKS</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Follow these instructions to install the <a href="https://cert-manager.io">cert-manager</a> on Amazon EKS.</p>
+</div>
+<div class="olist arabic">
+<div class="title">Procedure</div>
+<ol class="arabic">
+<li>
+<p>Install <code>cert-manager</code> using <code>Helm</code>:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">helm repo add jetstack https://charts.jetstack.io
+helm repo update
+
+helm install cert-manager jetstack/cert-manager \
+  --wait \
+  --create-namespace \
+  --namespace cert-manager \
+  --set crds.enabled=true</code></pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+<div class="ulist">
+<div class="title">Additional resources</div>
+<ul>
+<li>
+<p><a href="https://cert-manager.io/docs/tutorials/getting-started-aws-letsencrypt/">cert-manager Installation Guide</a></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="creating-lets-encrypt-certificate-for-che-on-amazon-elastic-kubernetes-service"><a class="anchor" href="#creating-lets-encrypt-certificate-for-che-on-amazon-elastic-kubernetes-service"></a>Creating Let&#8217;s Encrypt certificate for Che on Amazon EKS</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Follow these instructions to create a Let&#8217;s Encrypt certificate for Che on Amazon EKS.</p>
+</div>
+<div class="olist arabic">
+<div class="title">Procedure</div>
+<ol class="arabic">
+<li>
+<p>Create an IAM OIDC provider:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">eksctl utils associate-iam-oidc-provider --cluster $CHE_EKS_CLUSTER_NAME --approve</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Create a service principal:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">aws iam create-policy \
+     --policy-name cert-manager-acme-dns01-route53 \
+     --description "This policy allows cert-manager to manage ACME DNS01 records in Route53 hosted zones. See https://cert-manager.io/docs/configuration/acme/dns01/route53" \
+     --policy-document file:///dev/stdin &lt;&lt;EOF
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Action": "route53:GetChange",
+      "Resource": "arn:aws:route53:::change/*"
+    },
+    {
+      "Effect": "Allow",
+      "Action": [
+        "route53:ChangeResourceRecordSets",
+        "route53:ListResourceRecordSets"
+      ],
+      "Resource": "arn:aws:route53:::hostedzone/*"
+    },
+    {
+      "Effect": "Allow",
+      "Action": "route53:ListHostedZonesByName",
+      "Resource": "*"
+    }
+  ]
+}
+EOF</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Create an IAM role and associate it with a Kubernetes Service Account:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">eksctl create iamserviceaccount \
+  --name cert-manager-acme-dns01-route53 \
+  --namespace cert-manager \
+  --cluster $CHE_EKS_CLUSTER_NAME \
+  --role-name cert-manager-acme-dns01-route53 \
+  --attach-policy-arn arn:aws:iam::$AWS_ACCOUNT_ID:policy/cert-manager-acme-dns01-route53 \
+  --approve</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Grant permission for <code>cert-manager</code> to create Service Account tokens:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">kubectl apply -f - &lt;&lt; EOF
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  name: cert-manager-acme-dns01-route53-tokenrequest
+  namespace: cert-manager
+rules:
+  - apiGroups: ['']
+    resources: ['serviceaccounts/token']
+    resourceNames: ['cert-manager-acme-dns01-route53']
+    verbs: ['create']
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: cert-manager-acme-dns01-route53-tokenrequest
+  namespace: cert-manager
+subjects:
+  - kind: ServiceAccount
+    name: cert-manager
+    namespace: cert-manager
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: Role
+  name: cert-manager-acme-dns01-route53-tokenrequest
+EOF</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Create the Issuer:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">kubectl apply -f - &lt;&lt; EOF
+apiVersion: cert-manager.io/v1
+kind: ClusterIssuer
+metadata:
+  name: che-letsencrypt
+spec:
+  acme:
+    server: https://acme-v02.api.letsencrypt.org/directory
+    email: <em>&lt;email_address&gt;</em> <i class="conum" data-value="1"></i><b>(1)</b>
+    privateKeySecretRef:
+      name: che-letsencrypt-production
+    solvers:
+    - dns01:
+        route53:
+          region: $CHE_EKS_CLUSTER_REGION
+          role: arn:aws:iam::${AWS_ACCOUNT_ID}:role/cert-manager-acme-dns01-route53
+          auth:
+            kubernetes:
+              serviceAccountRef:
+                name: cert-manager-acme-dns01-route53
+EOF</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Replace <code><em>&lt;email_address&gt;</em></code> with your email address.</td>
+</tr>
+</table>
+</div>
+</li>
+<li>
+<p>Create the eclipse-che namespace:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">kubectl create namespace eclipse-che</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Create the Certificate:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">kubectl apply -f - &lt;&lt; EOF
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: che-tls
+  namespace: eclipse-che
+spec:
+  secretName: che-tls
+  issuerRef:
+    name: che-letsencrypt
+    kind: ClusterIssuer
+  commonName: '$CHE_DOMAIN_NAME'
+  dnsNames:
+  - '$CHE_DOMAIN_NAME'
+  - '*.$CHE_DOMAIN_NAME'
+  usages:
+    - server auth
+    - digital signature
+    - key encipherment
+    - key agreement
+    - data encipherment
+EOF</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Wait for the <code>che-tls</code> secret to be created:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">until kubectl get secret -n eclipse-che che-tls; do sleep 5s; done</code></pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+<div class="ulist">
+<div class="title">Additional resources</div>
+<ul>
+<li>
+<p><a href="https://cert-manager.io/docs/tutorials/getting-started-aws-letsencrypt/">cert-manager Installation Guide</a></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="installing-keycloak-on-amazon-elastic-kubernetes-service"><a class="anchor" href="#installing-keycloak-on-amazon-elastic-kubernetes-service"></a>Installing Keycloak on Amazon Elastic Kubernetes Service</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Follow these instructions to install <a href="https://www.keycloak.org/">Keycloak</a> as the OpenID Connect (OIDC) provider.</p>
+</div>
+<div class="olist arabic">
+<div class="title">Procedure</div>
+<ol class="arabic">
+<li>
+<p>Install Keycloak:</p>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+<div class="literalblock">
+<div class="content">
+<pre>While this guide provides a development configuration for deploying Keycloak on {kubernetes}, remember that production environments might require different settings, such as external database configuration.</pre>
+</div>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">kubectl apply -f - &lt;&lt;EOF
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: keycloak
+---
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: keycloak
+  namespace: keycloak
+  labels:
+    app: keycloak
+spec:
+  secretName: keycloak.tls
+  issuerRef:
+    name: che-letsencrypt
+    kind: ClusterIssuer
+  commonName: '$KEYCLOAK_DOMAIN_NAME'
+  dnsNames:
+  - '$KEYCLOAK_DOMAIN_NAME'
+  usages:
+    - server auth
+    - digital signature
+    - key encipherment
+    - key agreement
+    - data encipherment
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: keycloak
+  namespace: keycloak
+  labels:
+    app: keycloak
+spec:
+  ports:
+  - name: http
+    port: 8080
+    targetPort: 8080
+  selector:
+    app: keycloak
+  type: LoadBalancer
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: keycloak
+  namespace: keycloak
+  labels:
+    app: keycloak
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: keycloak
+  template:
+    metadata:
+      labels:
+        app: keycloak
+    spec:
+      containers:
+      - name: keycloak
+        image: quay.io/keycloak/keycloak:18.0.2
+        args: ["start-dev"]
+        env:
+        - name: KEYCLOAK_ADMIN
+          value: "admin"
+        - name: KEYCLOAK_ADMIN_PASSWORD
+          value: "admin"
+        - name: KC_PROXY
+          value: "edge"
+        ports:
+        - name: http
+          containerPort: 8080
+        readinessProbe:
+          httpGet:
+            path: /realms/master
+            port: 8080
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: keycloak
+  namespace: keycloak
+  annotations:
+    nginx.ingress.kubernetes.io/proxy-connect-timeout: '3600'
+    nginx.ingress.kubernetes.io/proxy-read-timeout: '3600'
+    nginx.ingress.kubernetes.io/ssl-redirect: 'true'
+spec:
+  ingressClassName: nginx
+  tls:
+    - hosts:
+        - $KEYCLOAK_DOMAIN_NAME
+      secretName: keycloak.tls
+  rules:
+  - host: $KEYCLOAK_DOMAIN_NAME
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: keycloak
+            port:
+              number: 8080
+EOF</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Wait until the Keycloak pod is ready:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">kubectl wait --for=condition=ready pod -l app=keycloak -n keycloak --timeout=120s</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Wait for the <code>keycloak.tls</code> secret to be created:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">until kubectl get secret -n keycloak keycloak.tls; do sleep 5s; done</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Configure Keycloak to create the realm, client, and user:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">kubectl exec deploy/keycloak -n keycloak -- bash -c \
+    "/opt/keycloak/bin/kcadm.sh config credentials \
+        --server http://localhost:8080 \
+        --realm master \
+        --user admin  \
+        --password admin &amp;&amp; \
+    /opt/keycloak/bin/kcadm.sh create realms \
+        -s realm='che' \
+        -s displayName='che' \
+        -s enabled=true \
+        -s registrationAllowed=false \
+        -s resetPasswordAllowed=true &amp;&amp; \
+    /opt/keycloak/bin/kcadm.sh create clients \
+        -r 'che' \
+        -s clientId=k8s-client \
+        -s id=k8s-client \
+        -s redirectUris='[\"*\"]' \
+        -s directAccessGrantsEnabled=true \
+        -s secret=eclipse-che &amp;&amp; \
+    /opt/keycloak/bin/kcadm.sh create users \
+        -r 'che' \
+        -s username=test \
+        -s email=\"test@test.com\" \
+        -s enabled=true \
+        -s emailVerified=true &amp;&amp;  \
+    /opt/keycloak/bin/kcadm.sh set-password \
+        -r 'che' \
+        --username test \
+        --new-password test"</code></pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+<div class="ulist">
+<div class="title">Additional resources</div>
+<ul>
+<li>
+<p><a href="https://www.keycloak.org/server/configuration-production">Configuring Keycloak for production</a></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="associate-keycloak-as-oidc-identity-provider-on-amazon-elastic-kubernetes-service"><a class="anchor" href="#associate-keycloak-as-oidc-identity-provider-on-amazon-elastic-kubernetes-service"></a>Associate keycloak as OIDC identity provider on Amazon EKS</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Follow these instructions to associate Keycloak an OIDC identity provider on Amazon EKS.</p>
+</div>
+<div class="olist arabic">
+<div class="title">Procedure</div>
+<ol class="arabic">
+<li>
+<p>Associate Keycloak an identity provider using <code>eksctl</code>:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">eksctl associate identityprovider \
+  --wait \
+  --config-file - &lt;&lt; EOF
+---
+apiVersion: eksctl.io/v1alpha5
+kind: ClusterConfig
+metadata:
+  name: $CHE_EKS_CLUSTER_NAME
+  region: $CHE_EKS_CLUSTER_REGION
+identityProviders:
+  - name: keycloak-oidc
+    type: oidc
+    issuerUrl: https://$KEYCLOAK_DOMAIN_NAME/realms/che
+    clientId: k8s-client
+    usernameClaim: email
+EOF</code></pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+<div class="ulist">
+<div class="title">Additional resources</div>
+<ul>
+<li>
+<p><a href="https://docs.aws.amazon.com/eks/latest/userguide/authenticate-oidc-identity-provider.html">Grant users access to Kubernetes with an external OIDC provider</a></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="installing-che-on-amazon-elastic-kubernetes-service"><a class="anchor" href="#installing-che-on-amazon-elastic-kubernetes-service"></a>Installing Che on Amazon EKS</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Follow these instructions to install Che on Amazon EKS.</p>
+</div>
+<div class="olist arabic">
+<div class="title">Procedure</div>
+<ol class="arabic">
+<li>
+<p>Prepare a CheCluster patch YAML file:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">cat &gt; che-cluster-patch.yaml &lt;&lt; EOF
+spec:
+  networking:
+    auth:
+      oAuthClientName: k8s-client
+      oAuthSecret: eclipse-che
+      identityProviderURL: "https://$KEYCLOAK_DOMAIN_NAME/realms/che"
+      gateway:
+        oAuthProxy:
+          cookieExpireSeconds: 300
+        deployment:
+          containers:
+          - env:
+             - name: OAUTH2_PROXY_BACKEND_LOGOUT_URL
+               value: "http://$KEYCLOAK_DOMAIN_NAME/realms/che/protocol/openid-connect/logout?id_token_hint={id_token}"
+            name: oauth-proxy
+  components:
+    cheServer:
+      extraProperties:
+        CHE_OIDC_USERNAME__CLAIM: email
+EOF</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Deploy Che:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">chectl server:deploy \
+    --platform k8s \
+    --domain $CHE_DOMAIN_NAME \
+    --che-operator-cr-patch-yaml che-cluster-patch.yaml \
+    --skip-cert-manager \
+    --k8spodreadytimeout 240000 \
+    --k8spoddownloadimagetimeout 240000</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Navigate to the Che cluster instance:</p>
+<div class="listingblock">
+<div class="content">
+<pre>chectl dashboard:open</pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+</div>
 </div>
 </article>
   </div>
