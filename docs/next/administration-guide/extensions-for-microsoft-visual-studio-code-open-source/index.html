@@ -875,15 +875,18 @@
 <tr>
 <td><i class="conum" data-value="1"></i><b>1</b></td>
 <td>For example: <code>openVSXURL: "https://open-vsx.org"</code>.
-<div class="admonitionblock tip">
+<div class="admonitionblock important">
 <table>
 <tr>
 <td class="icon">
-<i class="fa icon-tip" title="Tip"></i>
+<i class="fa icon-important" title="Important"></i>
 </td>
 <td class="content">
 <div class="ulist">
 <ul>
+<li>
+<p>Using <a href="https://open-vsx.org">https://open-vsx.org</a> is not recommended in an air-gapped environment, isolated from the internet. In order to reduce the risk of malware infections and unauthorized access to your code use the embedded or self-hosted Open VSX registry with the curated set of extensions.</p>
+</li>
 <li>
 <p>To select the embedded Open VSX registry instance in the <code>plugin-registry</code> pod, use <code>openVSXURL: ''</code>. You can <a href="#adding-or-removing-extensions-in-the-embedded-open-vsx-registry-instance">customize the list of included extensions</a>.</p>
 </li>
