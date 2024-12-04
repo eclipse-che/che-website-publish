@@ -3,10 +3,9 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Configuring default extensions :: Eclipse Che Documentation</title>
-    <link rel="canonical" href="https://www.eclipse.org/che/docs/stable/administration-guide/default-extensions-for-microsoft-visual-studio-code/">
-    <meta name="description" content="Configure default extensions">
-    <meta name="keywords" content="extensions, workspace">
+    <title>Persistent user home :: Eclipse Che Documentation</title>
+    <meta name="description" content="About persistent user home">
+    <meta name="keywords" content="administration guide, about, che, persistent, user, home">
     <meta name="generator" content="Antora 3.1.9">
     <link rel="stylesheet" href="../../../../docs/_/css/site.css">
 <link rel="stylesheet" href="../../../../docs/_/css/extra.css">
@@ -590,8 +589,8 @@
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="../configuring-storage-sizes/">Configuring storage sizes</a>
   </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../about-persistent-user-home/">Persistent user home</a>
+  <li class="nav-item is-current-page" data-depth="3">
+    <a class="nav-link" href="./">Persistent user home</a>
   </li>
 </ul>
   </li>
@@ -688,8 +687,8 @@
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../trusted-extensions-for-microsoft-visual-studio-code/">Configure trusted extensions for Microsoft Visual Studio Code</a>
   </li>
-  <li class="nav-item is-current-page" data-depth="2">
-    <a class="nav-link" href="./">Configure default extensions</a>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../default-extensions-for-microsoft-visual-studio-code/">Configure default extensions</a>
   </li>
 </ul>
   </li>
@@ -796,33 +795,42 @@
   <ul>
     <li><a href="../../overview/introduction-to-eclipse-che/">Documentation</a></li>
     <li>Administration Guide</li>
-    <li><a href="../configuring-visual-studio-code/">Configuring Visual Studio Code - Open Source ("Code - OSS")</a></li>
-    <li><a href="./">Configure default extensions</a></li>
+    <li><a href="../configuring-che/">Configuring Che</a></li>
+    <li><a href="../configuring-storage/">Configuring storage</a></li>
+    <li><a href="./">Persistent user home</a></li>
   </ul>
 </nav>
 <div class="page-versions">
   <button class="version-menu-toggle" title="Show other versions of page">next</button>
   <div class="version-menu">
     <a class="version is-current" href="./">next</a>
-    <a class="version" href="../../../stable/administration-guide/default-extensions-for-microsoft-visual-studio-code/">7.95.x</a>
+    <a class="version is-missing" href="../../../stable/overview/introduction-to-eclipse-che/">7.95.x</a>
   </div>
 </div>
-<div class="edit-this-page"><a href="https://github.com/eclipse-che/che-docs/edit/main/modules/administration-guide/pages/default-extensions-for-microsoft-visual-studio-code.adoc">Edit this Page</a></div>
+<div class="edit-this-page"><a href="https://github.com/eclipse-che/che-docs/edit/main/modules/administration-guide/pages/about-persistent-user-home.adoc">Edit this Page</a></div>
 </div>
   <div class="content">
 <aside class="toc sidebar" data-title="Contents" data-levels="2">
   <div class="toc-menu"></div>
 </aside>
 <article class="doc">
-<h1 class="page">Configuring default extensions</h1>
+<h1 class="page">Persistent user home</h1>
 <div class="paragraph">
-<p>Default extensions are a pre-installed set of extensions, specified by putting the extension binary <code>.vsix</code> file path to the <em>DEFAULT_EXTENSIONS</em> environment variable.</p>
+<p>Eclipse&#160;Che provides a persistent home directory feature that allows each non-ephemeral workspace to have their <code>/home/user</code> directory be persisted across workspace restarts.
+You can enable this feature in the CheCluster by setting <code>spec.devEnvironments.persistUserHome.enabled</code> to <code>true</code>.</p>
 </div>
 <div class="paragraph">
-<p>After startup, the editor checks for this environment variable, and if it is specified, takes the path to the extensions and installs it in the background without disturbing the user.</p>
+<p>For newly started workspaces, this feature creates a PVC mounted to the <code>/home/user</code> path of the tools container.
+In this documentation, a "tools container" will be used to refer to the first container in the devfile.
+This container is the container that includes the project source code by default.</p>
 </div>
 <div class="paragraph">
-<p>Configuring default extensions is useful for installing .vsix extensions from the editor level.</p>
+<p>When the PVC is mounted for the first time, the persistent volume&#8217;s content are empty and therefore must be populated with the <code>/home/user</code> directory content.</p>
+</div>
+<div class="paragraph">
+<p>By default, the <code>persistUserHome</code> feature creates an init container for each new workspace pod named <code>init-persistent-home</code>.
+This init container is created with the tools container image and is responsible for running a <code>stow</code> command to create symbolic links
+in the persistent volume to populate the <code>/home/user</code> directory.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -831,239 +839,89 @@
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-<div class="paragraph">
-<p>If you want to specify multiple extensions, separate them by semicolon.</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">  DEFAULT_EXTENSIONS='/projects/extension-1.vsix;/projects/extension-2.vsix'</code></pre>
-</div>
-</div>
+For files that cannot be symbolically linked to the <code>/home/user</code> directory such as the <code>.viminfo</code> and <code>.bashrc</code> file, <code>cp</code> is used instead of <code>stow</code>.
 </td>
 </tr>
 </table>
 </div>
 <div class="paragraph">
-<p>Read on to learn how to define the DEFAULT_EXTENSIONS environment variable, including multiple examples of adding <code>.vsix</code> files to your workspace.</p>
-</div>
-<div class="paragraph">
-<p>There are three different ways to embed default <code>.vsix</code> extensions into your workspace:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>Put the extension binary into the source repository.</p>
-</li>
-<li>
-<p>Use the devfile <code>postStart</code> event to fetch extension binaries from the network.</p>
-</li>
-<li>
-<p>Include the extensions' <code>.vsix</code> binaries in the <code>che-code</code> image.</p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<div class="title">Putting the extension binary into the source repository</div>
-<p>Putting the extension binary into the Git repository and defining the environment variable in the devfile is the easiest way to add default extensions to your workspace.
-If the <code>extension.vsix</code> file exists in the repository root, you can set the <em>DEFAULT_EXTENSIONS</em> for a tooling container.</p>
-</div>
-<div class="ulist">
-<div class="title">Procedure</div>
-<ul>
-<li>
-<p>Specify <em>DEFAULT_EXTENSIONS</em> in your <code>.devfile.yaml</code> as shown in the following example:</p>
-<div class="exampleblock">
-<div class="content">
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">schemaVersion: 2.3.0
-metadata:
-  generateName: example-project
-components:
-  - name: tools
-    container:
-      image: quay.io/devfile/universal-developer-image:ubi8-latest
-      env:
-        - name: 'DEFAULT_EXTENSIONS'
-          value: '/projects/example-project/extension.vsix'</code></pre>
-</div>
-</div>
-</div>
-</div>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<div class="title">Using the devfile <strong>postStart</strong> event to fetch extension binaries from the network</div>
-<p>You can use cURL or GNU Wget to download extensions to your workspace.
-For that you need to:</p>
-</div>
-<div class="openblock">
-<div class="content">
-<div class="ulist">
-<ul>
-<li>
-<p>specify a devfile command to download extensions to your workpace</p>
-</li>
-<li>
-<p>add a <code>postStart</code> event to run the command on workspace startup</p>
-</li>
-<li>
-<p>define the <em>DEFAULT_EXTENSIONS</em> environment variable in the devfile</p>
-</li>
-</ul>
-</div>
-</div>
-</div>
-<div class="ulist">
-<div class="title">Procedure</div>
-<ul>
-<li>
-<p>Add the values shown in the following example to the devfile:</p>
-<div class="exampleblock">
-<div class="content">
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">schemaVersion: 2.3.0
-metadata:
-  generateName: example-project
-components:
-  - name: tools
-    container:
-      image: quay.io/devfile/universal-developer-image:ubi8-latest
-      env:
-        - name: DEFAULT_EXTENSIONS
-          value: '/tmp/extension-1.vsix;/tmp/extension-2.vsix'
-
-commands:
-  - id: add-default-extensions
-    exec:
-      # name of the tooling container
-      component: tools
-      # download several extensions using curl
-      commandLine: |
-        curl https://.../extension-1.vsix --location -o /tmp/extension-1.vsix
-        curl https://.../extension-2.vsix --location -o /tmp/extension-2.vsix
-
-events:
-  postStart:
-    - add-default-extensions</code></pre>
-</div>
-</div>
-</div>
-</div>
-<div class="admonitionblock warning">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-warning" title="Warning"></i>
-</td>
-<td class="content">
-<div class="paragraph">
-<p>In some cases curl may download a <code>.gzip</code> compressed file. This might make installing the extension impossible.
-To fix that try to save the file as a <strong>.vsix.gz</strong> file and then decompress it with <strong>gunzip</strong>. This will replace the <strong>.vsix.gz</strong> file with an unpacked <strong>.vsix</strong> file.</p>
+<p>The primary function of the <code>stow</code> command is to run:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">curl https://some-extension-url --location -o /tmp/extension.vsix.gz
-gunzip /tmp/extension.vsix.gz</code></pre>
+<pre>stow -t /home/user/ -d /home/tooling/ --no-folding</pre>
 </div>
-</div>
-</td>
-</tr>
-</table>
-</div>
-</li>
-</ul>
 </div>
 <div class="paragraph">
-<div class="title">Including the extensions <code>.vsix</code> binaries in the <code>che-code</code> image.</div>
-<p>With default extensions bundled in the editor image, and the <em>DEFAULT_EXTENSIONS</em> environment variable defined in the ConfigMap, you can apply the default extensions without changing the devfile.</p>
+<p>The command above creates symbolic links in <code>/home/user</code> for files and directories located in /home/tooling. This populates the persistent volume with symbolic links to the content in <code>/home/tooling</code>. As a result, it the <code>persistentUserHome</code> feature expects the tooling image to have its <code>/home/user/</code> content within <code>/home/tooling</code>.</p>
 </div>
 <div class="paragraph">
-<p>Following the steps below to add the extensions you need to the editor image.</p>
+<p>For example, if the tools container image contains files in the <code>home/tooling</code> directory such as <code>.config</code> and <code>.config-folder/another-file</code>, stow will create symbolic links in the persistent volume in the following manner:</p>
 </div>
-<div class="ulist">
-<div class="title">Procedure</div>
-<ul>
+<div class="imageblock">
+<div class="content">
+<img src="../_images/persistent-user-home/tools-container-example.png" alt="Persistent user home example scenario">
+</div>
+<div class="title">Figure 1. Tools container with <code>persistUserHome</code> enabled</div>
+</div>
+<div class="paragraph">
+<p>The init container writes the output of the <code>stow</code> command to <code>/home/user/.stow.log</code> and will only run <code>stow</code> the first time the persistent volume is mounted to the workspace.</p>
+</div>
+<div class="paragraph">
+<p>Using the <code>stow</code> command to populate <code>/home/user</code> content in the persistent volume provides two main advantages:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
 <li>
-<p>Create a directory and place your selected <code>.vsix</code> extensions in this directory.</p>
+<p>Creating symbolic links is faster and consumes less storage than creating copies of the <code>/home/user</code> directory content in the persistent volume. To put it differently, the persistent volume in this case contains symbolic links and not the actual files themselves.</p>
 </li>
 <li>
-<p>Create a Dockerfile with the following content:</p>
-<div class="exampleblock">
-<div class="content">
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-none hljs"># inherit che-incubator/che-code:latest
-FROM quay.io/che-incubator/che-code:latest
-USER 0
-
-# copy all .vsix files to /default-extensions directory
-RUN mkdir --mode=775 /default-extensions
-COPY --chmod=755 *.vsix /default-extensions/
-
-# add instruction to the script to copy default extensions to the working container
-RUN echo "cp -r /default-extensions /checode/" &gt;&gt; /entrypoint-init-container.sh</code></pre>
-</div>
-</div>
-</div>
-</div>
-</li>
-<li>
-<p>Build the image and then push it to a registry:</p>
-<div class="exampleblock">
-<div class="content">
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-console hljs" data-lang="console">$ docker build -t yourname/che-code:next .
-$ docker push yourname/che-code:next</code></pre>
-</div>
-</div>
-</div>
-</div>
-</li>
-<li>
-<p>Add the new ConfigMap to the user&#8217;s namespace, define the <em>DEFAULT_EXTENSIONS</em> environment variable, and specify the absolute paths to the extensions. This ConfigMap sets the environment variable to all workspaces in the user&#8217;s namespace.</p>
-<div class="exampleblock">
-<div class="content">
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">kind: ConfigMap
-apiVersion: v1
-metadata:
-  name: vscode-default-extensions
-  labels:
-    controller.devfile.io/mount-to-devworkspace: 'true'
-    controller.devfile.io/watch-configmap: 'true'
-  annotations:
-    controller.devfile.io/mount-as: env
-data:
-  DEFAULT_EXTENSIONS: '/checode/default-extensions/extension1.vsix;/checode/default-extensions/extension2.vsix'</code></pre>
-</div>
-</div>
-</div>
-</div>
-</li>
-<li>
-<p>Create a workspace using <code>yourname/che-code:next</code> image.
-First, open the dashboard and navigate to the <strong>Create Workspace</strong> tab on the left side.</p>
-<div class="openblock">
-<div class="content">
-<div class="olist loweralpha">
-<ol class="loweralpha" type="a">
-<li>
-<p>In the <strong>Editor Selector</strong> section, expand the <strong>Use an Editor Definition</strong> dropdown and set the editor URI to the <strong>Editor Image</strong>.</p>
-</li>
-<li>
-<p>Create a workspace by clicking on any sample or by using a Git repository URL.</p>
+<p>If the tools image is updated with newer versions of existing binaries, configs, and files, the init container does not need to <code>stow</code> the new versions, as the existing symbolic links will link to the newer versions in <code>/home/tooling</code> already.</p>
 </li>
 </ol>
 </div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+If the tooling image is updated with additional binaries or files, they won&#8217;t be symbolically linked to the <code>/home/user</code> directory since the <code>stow</code> command won&#8217;t be run again. In this case, the user must delete the <code>/home/user/.stow_completed</code> file and restart the workspace to rerun <code>stow</code>.
+</td>
+</tr>
+</table>
 </div>
+<div class="paragraph">
+<div class="title"><code>persistUserHome</code> tools image requirements</div>
+<p>The <code>persistUserHome</code> depends on the tools image used for the workspace. By default Che uses the Universal Developer Image (UDI) for sample workspaces, which supports <code>persistUserHome</code> out of the box.</p>
 </div>
+<div class="paragraph">
+<p>If you are using a custom image, there are three requirements that should be met to support the <code>persistUserHome</code> feature.</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>The tools image should contain <code>stow</code> version &gt;= 2.4.0.</p>
 </li>
-</ul>
+<li>
+<p>The <code>$HOME</code> environment variable is set to <code>/home/user</code>.</p>
+</li>
+<li>
+<p>In the tools image, the directory that is intended to contain the <code>/home/user</code> content is <code>/home/tooling</code>.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>Due to requirement three, the default UDI image for example adds the <code>/home/user</code> content to <code>/home/tooling</code> instead, and runs:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>RUN stow -t /home/user/ -d /home/tooling/ --no-folding</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>in the Dockerfile so that files in <code>/home/tooling</code> are accessible from <code>/home/user</code> even when not using the <code>persistUserHome</code> feature.</p>
 </div>
 </article>
   </div>
