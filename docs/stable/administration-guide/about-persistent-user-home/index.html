@@ -3,10 +3,10 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Mounting a Secret or a ConfigMap as a file or an environment variable into a Che container :: Eclipse Che Documentation</title>
-    <link rel="canonical" href="https://www.eclipse.org/che/docs/stable/administration-guide/mounting-a-secret-as-a-file-or-an-environment-variable-into-a-container/">
-    <meta name="description" content="Mounting a Secret or a ConfigMap as a file or an environment variable into a Eclipse&#160;Che container">
-    <meta name="keywords" content="administration guide, mounting-a-secret-or-a-configmap-as-a-file-or-an-environment-variable-into-a-container">
+    <title>Persistent user home :: Eclipse Che Documentation</title>
+    <link rel="canonical" href="https://www.eclipse.org/che/docs/stable/administration-guide/about-persistent-user-home/">
+    <meta name="description" content="About persistent user home">
+    <meta name="keywords" content="administration guide, about, che, persistent, user, home">
     <meta name="generator" content="Antora 3.1.9">
     <link rel="stylesheet" href="../../../../docs/_/css/site.css">
 <link rel="stylesheet" href="../../../../docs/_/css/extra.css">
@@ -433,8 +433,8 @@
     <button class="nav-item-toggle"></button>
     <a class="nav-link" href="../configuring-server-components/">Configuring server components</a>
 <ul class="nav-list">
-  <li class="nav-item is-current-page" data-depth="3">
-    <a class="nav-link" href="./">Mounting a Secret or a ConfigMap as a file or an environment variable into a Eclipse&#160;Che container</a>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../mounting-a-secret-as-a-file-or-an-environment-variable-into-a-container/">Mounting a Secret or a ConfigMap as a file or an environment variable into a Eclipse&#160;Che container</a>
   </li>
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="../advanced-configuration-options-for-the-che-server-component/">Advanced configuration options for Che server</a>
@@ -580,8 +580,8 @@
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="../configuring-storage-sizes/">Configuring storage sizes</a>
   </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../about-persistent-user-home/">Persistent user home</a>
+  <li class="nav-item is-current-page" data-depth="3">
+    <a class="nav-link" href="./">Persistent user home</a>
   </li>
 </ul>
   </li>
@@ -787,748 +787,41 @@
     <li><a href="../../overview/introduction-to-eclipse-che/">Documentation</a></li>
     <li>Administration Guide</li>
     <li><a href="../configuring-che/">Configuring Che</a></li>
-    <li><a href="../configuring-server-components/">Configuring server components</a></li>
-    <li><a href="./">Mounting a Secret or a ConfigMap as a file or an environment variable into a Eclipse&#160;Che container</a></li>
+    <li><a href="../configuring-storage/">Configuring storage</a></li>
+    <li><a href="./">Persistent user home</a></li>
   </ul>
 </nav>
 <div class="page-versions">
   <button class="version-menu-toggle" title="Show other versions of page">7.95.x</button>
   <div class="version-menu">
-    <a class="version" href="../../../next/administration-guide/mounting-a-secret-as-a-file-or-an-environment-variable-into-a-container/">next</a>
+    <a class="version" href="../../../next/administration-guide/about-persistent-user-home/">next</a>
     <a class="version is-current" href="./">7.95.x</a>
   </div>
 </div>
-<div class="edit-this-page"><a href="https://github.com/eclipse-che/che-docs/edit/7.95.x/modules/administration-guide/pages/mounting-a-secret-as-a-file-or-an-environment-variable-into-a-container.adoc">Edit this Page</a></div>
+<div class="edit-this-page"><a href="https://github.com/eclipse-che/che-docs/edit/7.95.x/modules/administration-guide/pages/about-persistent-user-home.adoc">Edit this Page</a></div>
 </div>
   <div class="content">
 <aside class="toc sidebar" data-title="Contents" data-levels="2">
   <div class="toc-menu"></div>
 </aside>
 <article class="doc">
-<h1 class="page">Mounting a Secret or a ConfigMap as a file or an environment variable into a Che container</h1>
-<div id="preamble">
-<div class="sectionbody">
+<h1 class="page">Persistent user home</h1>
 <div class="paragraph">
-<p>Secrets are Kubernetes or OpenShift objects that store sensitive data such as:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>usernames</p>
-</li>
-<li>
-<p>passwords</p>
-</li>
-<li>
-<p>authentication tokens</p>
-</li>
-</ul>
+<p>Eclipse&#160;Che provides a persistent home directory feature that allows each non-ephemeral workspace to have their <code>/home/user</code> directory be persisted across workspace restarts.
+You can enable this feature in the CheCluster by setting <code>spec.devEnvironments.persistUserHome.enabled</code> to <code>true</code>.</p>
 </div>
 <div class="paragraph">
-<p>in an encrypted form.</p>
+<p>For newly started workspaces, this feature creates a PVC mounted to the <code>/home/user</code> path of the tools container.
+In this documentation, a "tools container" will be used to refer to the first container in the devfile.
+This container is the container that includes the project source code by default.</p>
 </div>
 <div class="paragraph">
-<p>Users can mount a Kubernetes or OpenShift Secret that contains sensitive data or a ConfigMap that contains configuration in a Che managed containers as:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>a file</p>
-</li>
-<li>
-<p>an environment variable</p>
-</li>
-</ul>
+<p>When the PVC is mounted for the first time, the persistent volume&#8217;s content are empty and therefore must be populated with the <code>/home/user</code> directory content.</p>
 </div>
 <div class="paragraph">
-<p>The mounting process uses the standard Kubernetes or OpenShift mounting mechanism, but it requires additional annotations and labeling.</p>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="mounting-a-secret-or-a-configmap-as-a-file-into-a-container"><a class="anchor" href="#mounting-a-secret-or-a-configmap-as-a-file-into-a-container"></a>Mounting a Secret or a ConfigMap as a file into a Che container</h2>
-<div class="sectionbody">
-<div class="ulist">
-<div class="title">Prerequisites</div>
-<ul>
-<li>
-<p>A running instance of Eclipse&#160;Che.</p>
-</li>
-</ul>
-</div>
-<div class="olist arabic">
-<div class="title">Procedure</div>
-<ol class="arabic">
-<li>
-<p>Create a new Kubernetes or OpenShift Secret or a ConfigMap in the Kubernetes or OpenShift namespace where Che is deployed. The labels of the object that is about to be created must match the set of labels:</p>
-<div class="ulist">
-<ul>
-<li>
-<p><code>app.kubernetes.io/part-of: che.eclipse.org</code></p>
-</li>
-<li>
-<p><code>app.kubernetes.io/component: &lt;DEPLOYMENT_NAME&gt;-&lt;OBJECT_KIND&gt;</code></p>
-</li>
-<li>
-<p>The <code>&lt;DEPLOYMENT_NAME&gt;</code> corresponds to the one following deployments:</p>
-<div class="ulist">
-<ul>
-<li>
-<p><code>che-dashboard</code></p>
-</li>
-<li>
-<p><code>devfile-registry</code></p>
-</li>
-<li>
-<p><code>plugin-registry</code></p>
-</li>
-<li>
-<p><code>che</code></p>
-<div class="paragraph">
-<p>and</p>
-</div>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p><code>&lt;OBJECT_KIND&gt;</code> is either:</p>
-<div class="ulist">
-<ul>
-<li>
-<p><code>secret</code></p>
-<div class="paragraph">
-<p>or</p>
-</div>
-</li>
-<li>
-<p><code>configmap</code></p>
-</li>
-</ul>
-</div>
-</li>
-</ul>
-</div>
-</li>
-</ol>
-</div>
-<div class="exampleblock">
-<div class="title">Example 1. Example:</div>
-<div class="content">
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">apiVersion: v1
-kind: Secret
-metadata:
-  name: custom-settings
-  labels:
-    app.kubernetes.io/part-of: che.eclipse.org
-    app.kubernetes.io/component: che-secret
-...</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>or</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: custom-settings
-  labels:
-    app.kubernetes.io/part-of: che.eclipse.org
-    app.kubernetes.io/component: che-configmap
-...</code></pre>
-</div>
-</div>
-</div>
-</div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>Configure the annotation values. Annotations must indicate that the given object is mounted as a file:</p>
-<div class="ulist">
-<ul>
-<li>
-<p><code>che.eclipse.org/mount-as: file</code> - To indicate that a object is mounted as a file.</p>
-</li>
-<li>
-<p><code>che.eclipse.org/mount-path: <em>&lt;TARGET_PATH&gt;</em></code> - To provide a required mount path.</p>
-</li>
-</ul>
-</div>
-</li>
-</ol>
-</div>
-<div class="exampleblock">
-<div class="title">Example 2. Example:</div>
-<div class="content">
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">apiVersion: v1
-kind: Secret
-metadata:
-  name: custom-data
-  annotations:
-    che.eclipse.org/mount-as: file
-    che.eclipse.org/mount-path: /data
-  labels:
-    app.kubernetes.io/part-of: che.eclipse.org
-    app.kubernetes.io/component: che-secret
-...</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>or</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: custom-data
-  annotations:
-    che.eclipse.org/mount-as: file
-    che.eclipse.org/mount-path: /data
-  labels:
-    app.kubernetes.io/part-of: che.eclipse.org
-    app.kubernetes.io/component: che-configmap
-...</code></pre>
-</div>
-</div>
-</div>
-</div>
-<div class="paragraph">
-<p>The Kubernetes object can contain several items whose names must match the desired file name mounted into the container.</p>
-</div>
-<div class="exampleblock">
-<div class="title">Example 3. Example:</div>
-<div class="content">
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">apiVersion: v1
-kind: Secret
-metadata:
-  name: custom-data
-  labels:
-    app.kubernetes.io/part-of: che.eclipse.org
-    app.kubernetes.io/component: che-secret
-  annotations:
-    che.eclipse.org/mount-as: file
-    che.eclipse.org/mount-path: /data
-data:
-  ca.crt: <em>&lt;base64 encoded data content here&gt;</em></code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>or</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: custom-data
-  labels:
-    app.kubernetes.io/part-of: che.eclipse.org
-    app.kubernetes.io/component: che-configmap
-  annotations:
-    che.eclipse.org/mount-as: file
-    che.eclipse.org/mount-path: /data
-data:
-  ca.crt: <em>&lt;data content here&gt;</em></code></pre>
-</div>
-</div>
-</div>
-</div>
-<div class="paragraph">
-<p>This results in a file named <code>ca.crt</code> being mounted at the <code>/data</code> path of the Che container.</p>
-</div>
-<div class="admonitionblock important">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-important" title="Important"></i>
-</td>
-<td class="content">
-To make the changes in the Che container visible, re-create the Secret or the ConfigMap object entirely.
-</td>
-</tr>
-</table>
-</div>
-<div class="ulist">
-<div class="title">Additional resources</div>
-<ul>
-<li>
-<p><a href="../using-chectl-to-configure-the-checluster-custom-resource-during-installation/" class="xref page">Using chectl to configure the <code>CheCluster</code> Custom Resource during installation</a></p>
-</li>
-<li>
-<p><a href="../using-the-cli-to-configure-the-checluster-custom-resource/" class="xref page">Using the CLI to configure the CheCluster Custom Resource</a></p>
-</li>
-</ul>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="mounting-a-secret-or-a-configmap-as-a-subpath-into-a-container"><a class="anchor" href="#mounting-a-secret-or-a-configmap-as-a-subpath-into-a-container"></a>Mounting a Secret or a ConfigMap as a subPath into a Che container</h2>
-<div class="sectionbody">
-<div class="ulist">
-<div class="title">Prerequisites</div>
-<ul>
-<li>
-<p>A running instance of Eclipse&#160;Che.</p>
-</li>
-</ul>
-</div>
-<div class="olist arabic">
-<div class="title">Procedure</div>
-<ol class="arabic">
-<li>
-<p>Create a new Kubernetes or OpenShift Secret or a ConfigMap in the Kubernetes or OpenShift namespace where Che is deployed. The labels of the object that is about to be created must match the set of labels:</p>
-<div class="ulist">
-<ul>
-<li>
-<p><code>app.kubernetes.io/part-of: che.eclipse.org</code></p>
-</li>
-<li>
-<p><code>app.kubernetes.io/component: &lt;DEPLOYMENT_NAME&gt;-&lt;OBJECT_KIND&gt;</code></p>
-</li>
-<li>
-<p>The <code>&lt;DEPLOYMENT_NAME&gt;</code> corresponds to the one following deployments:</p>
-<div class="ulist">
-<ul>
-<li>
-<p><code>che-dashboard</code></p>
-</li>
-<li>
-<p><code>devfile-registry</code></p>
-</li>
-<li>
-<p><code>plugin-registry</code></p>
-</li>
-<li>
-<p><code>che</code></p>
-<div class="paragraph">
-<p>and</p>
-</div>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p><code>&lt;OBJECT_KIND&gt;</code> is either:</p>
-<div class="ulist">
-<ul>
-<li>
-<p><code>secret</code></p>
-<div class="paragraph">
-<p>or</p>
-</div>
-</li>
-<li>
-<p><code>configmap</code></p>
-</li>
-</ul>
-</div>
-</li>
-</ul>
-</div>
-</li>
-</ol>
-</div>
-<div class="exampleblock">
-<div class="title">Example 4. Example:</div>
-<div class="content">
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">apiVersion: v1
-kind: Secret
-metadata:
-  name: custom-settings
-  labels:
-    app.kubernetes.io/part-of: che.eclipse.org
-    app.kubernetes.io/component: che-secret
-...</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>or</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: custom-settings
-  labels:
-    app.kubernetes.io/part-of: che.eclipse.org
-    app.kubernetes.io/component: che-configmap
-...</code></pre>
-</div>
-</div>
-</div>
-</div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>Configure the annotation values. Annotations must indicate that the given object is mounted as a subPath.:</p>
-<div class="ulist">
-<ul>
-<li>
-<p><code>che.eclipse.org/mount-as: subpath</code> - To indicate that an object is mounted as a subPath.</p>
-</li>
-<li>
-<p><code>che.eclipse.org/mount-path: <em>&lt;TARGET_PATH&gt;</em></code> - To provide a required mount path.</p>
-</li>
-</ul>
-</div>
-</li>
-</ol>
-</div>
-<div class="exampleblock">
-<div class="title">Example 5. Example:</div>
-<div class="content">
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">apiVersion: v1
-kind: Secret
-metadata:
-  name: custom-data
-  annotations:
-    che.eclipse.org/mount-as: subpath
-    che.eclipse.org/mount-path: /data
-  labels:
-    app.kubernetes.io/part-of: che.eclipse.org
-    app.kubernetes.io/component: che-secret
-...</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>or</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: custom-data
-  annotations:
-    che.eclipse.org/mount-as: subpath
-    che.eclipse.org/mount-path: /data
-  labels:
-    app.kubernetes.io/part-of: che.eclipse.org
-    app.kubernetes.io/component: che-configmap
-...</code></pre>
-</div>
-</div>
-</div>
-</div>
-<div class="paragraph">
-<p>The Kubernetes object can contain several items whose names must match the file name mounted into the container.</p>
-</div>
-<div class="exampleblock">
-<div class="title">Example 6. Example:</div>
-<div class="content">
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">apiVersion: v1
-kind: Secret
-metadata:
-  name: custom-data
-  labels:
-    app.kubernetes.io/part-of: che.eclipse.org
-    app.kubernetes.io/component: che-secret
-  annotations:
-    che.eclipse.org/mount-as: subpath
-    che.eclipse.org/mount-path: /data
-data:
-  ca.crt: <em>&lt;base64 encoded data content here&gt;</em></code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>or</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: custom-data
-  labels:
-    app.kubernetes.io/part-of: che.eclipse.org
-    app.kubernetes.io/component: che-configmap
-  annotations:
-    che.eclipse.org/mount-as: subpath
-    che.eclipse.org/mount-path: /data
-data:
-  ca.crt: <em>&lt;data content here&gt;</em></code></pre>
-</div>
-</div>
-</div>
-</div>
-<div class="paragraph">
-<p>This results in a file named <code>ca.crt</code> being mounted at the <code>/data</code> path of Che container.</p>
-</div>
-<div class="admonitionblock important">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-important" title="Important"></i>
-</td>
-<td class="content">
-To make the changes in a Che container visible, re-create the Secret or the ConfigMap object entirely.
-</td>
-</tr>
-</table>
-</div>
-<div class="ulist">
-<div class="title">Additional resources</div>
-<ul>
-<li>
-<p><a href="../using-chectl-to-configure-the-checluster-custom-resource-during-installation/" class="xref page">Using chectl to configure the <code>CheCluster</code> Custom Resource during installation</a></p>
-</li>
-<li>
-<p><a href="../using-the-cli-to-configure-the-checluster-custom-resource/" class="xref page">Using the CLI to configure the CheCluster Custom Resource</a></p>
-</li>
-</ul>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="mounting-a-secret-or-a-configmap-as-an-environment-variable-into-a-container"><a class="anchor" href="#mounting-a-secret-or-a-configmap-as-an-environment-variable-into-a-container"></a>Mounting a Secret or a ConfigMap as an environment variable into Che container</h2>
-<div class="sectionbody">
-<div class="ulist">
-<div class="title">Prerequisites</div>
-<ul>
-<li>
-<p>A running instance of Eclipse&#160;Che.</p>
-</li>
-</ul>
-</div>
-<div class="olist arabic">
-<div class="title">Procedure</div>
-<ol class="arabic">
-<li>
-<p>Create a new Kubernetes or OpenShift Secret or a ConfigMap in the Kubernetes or OpenShift namespace where Che is deployed. The labels of the object that is about to be created must match the set of labels:</p>
-<div class="ulist">
-<ul>
-<li>
-<p><code>app.kubernetes.io/part-of: che.eclipse.org</code></p>
-</li>
-<li>
-<p><code>app.kubernetes.io/component: &lt;DEPLOYMENT_NAME&gt;-&lt;OBJECT_KIND&gt;</code></p>
-</li>
-<li>
-<p>The <code>&lt;DEPLOYMENT_NAME&gt;</code> corresponds to the one following deployments:</p>
-<div class="ulist">
-<ul>
-<li>
-<p><code>che-dashboard</code></p>
-</li>
-<li>
-<p><code>devfile-registry</code></p>
-</li>
-<li>
-<p><code>plugin-registry</code></p>
-</li>
-<li>
-<p><code>che</code></p>
-<div class="paragraph">
-<p>and</p>
-</div>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p><code>&lt;OBJECT_KIND&gt;</code> is either:</p>
-<div class="ulist">
-<ul>
-<li>
-<p><code>secret</code></p>
-<div class="paragraph">
-<p>or</p>
-</div>
-</li>
-<li>
-<p><code>configmap</code></p>
-</li>
-</ul>
-</div>
-</li>
-</ul>
-</div>
-</li>
-</ol>
-</div>
-<div class="exampleblock">
-<div class="title">Example 7. Example:</div>
-<div class="content">
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">apiVersion: v1
-kind: Secret
-metadata:
-  name: custom-settings
-  labels:
-    app.kubernetes.io/part-of: che.eclipse.org
-    app.kubernetes.io/component: che-secret
-...</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>or</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: custom-settings
-  labels:
-    app.kubernetes.io/part-of: che.eclipse.org
-    app.kubernetes.io/component: che-configmap
-...</code></pre>
-</div>
-</div>
-</div>
-</div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>Configure the annotation values. Annotations must indicate that the given object is mounted as an environment variable:</p>
-<div class="ulist">
-<ul>
-<li>
-<p><code>che.eclipse.org/mount-as: env</code> - to indicate that a object is mounted as an environment variable</p>
-</li>
-<li>
-<p><code>che.eclipse.org/env-name: <em>&lt;FOO_ENV&gt;</em></code> - to provide an environment variable name, which is required to mount a object key value</p>
-</li>
-</ul>
-</div>
-</li>
-</ol>
-</div>
-<div class="exampleblock">
-<div class="title">Example 8. Example:</div>
-<div class="content">
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">apiVersion: v1
-kind: Secret
-metadata:
-  name: custom-settings
-  annotations:
-    che.eclipse.org/env-name: FOO_ENV
-    che.eclipse.org/mount-as: env
-  labels:
-    app.kubernetes.io/part-of: che.eclipse.org
-    app.kubernetes.io/component: che-secret
-data:
-  mykey: myvalue</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>or</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: custom-settings
-  annotations:
-    che.eclipse.org/env-name: FOO_ENV
-    che.eclipse.org/mount-as: env
-  labels:
-    app.kubernetes.io/part-of: che.eclipse.org
-    app.kubernetes.io/component: che-configmap
-data:
-  mykey: myvalue</code></pre>
-</div>
-</div>
-</div>
-</div>
-<div class="paragraph">
-<p>This results in two environment variables:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>FOO_ENV</code></p>
-</li>
-<li>
-<p><code>myvalue</code></p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p>being provisioned into the Che container.</p>
-</div>
-<div class="paragraph">
-<p>If the object provides more than one data item, the environment variable name must be provided for each of the data keys as follows:</p>
-</div>
-<div class="exampleblock">
-<div class="title">Example 9. Example:</div>
-<div class="content">
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">apiVersion: v1
-kind: Secret
-metadata:
-  name: custom-settings
-  annotations:
-    che.eclipse.org/mount-as: env
-    che.eclipse.org/mykey_env-name: FOO_ENV
-    che.eclipse.org/otherkey_env-name: OTHER_ENV
-  labels:
-    app.kubernetes.io/part-of: che.eclipse.org
-    app.kubernetes.io/component: che-secret
-stringData:
-  mykey: <em>&lt;data_content_here&gt;</em>
-  otherkey: <em>&lt;data_content_here&gt;</em></code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>or</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: custom-settings
-  annotations:
-    che.eclipse.org/mount-as: env
-    che.eclipse.org/mykey_env-name: FOO_ENV
-    che.eclipse.org/otherkey_env-name: OTHER_ENV
-  labels:
-    app.kubernetes.io/part-of: che.eclipse.org
-    app.kubernetes.io/component: che-configmap
-data:
-  mykey: <em>&lt;data content here&gt;</em>
-  otherkey: <em>&lt;data content here&gt;</em></code></pre>
-</div>
-</div>
-</div>
-</div>
-<div class="paragraph">
-<p>This results in two environment variables:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>FOO_ENV</code></p>
-</li>
-<li>
-<p><code>OTHER_ENV</code></p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p>being provisioned into a Che container.</p>
+<p>By default, the <code>persistUserHome</code> feature creates an init container for each new workspace pod named <code>init-persistent-home</code>.
+This init container is created with the tools container image and is responsible for running a <code>stow</code> command to create symbolic links
+in the persistent volume to populate the <code>/home/user</code> directory.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -1537,35 +830,89 @@ data:
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-The maximum length of annotation names in a Kubernetes object is 63 characters, where 9 characters are reserved for a prefix that ends with <code>/</code>. This acts as a restriction for the maximum length of the key that can be used for the object.
+For files that cannot be symbolically linked to the <code>/home/user</code> directory such as the <code>.viminfo</code> and <code>.bashrc</code> file, <code>cp</code> is used instead of <code>stow</code>.
 </td>
 </tr>
 </table>
 </div>
-<div class="admonitionblock important">
+<div class="paragraph">
+<p>The primary function of the <code>stow</code> command is to run:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>stow -t /home/user/ -d /home/tooling/ --no-folding</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The command above creates symbolic links in <code>/home/user</code> for files and directories located in /home/tooling. This populates the persistent volume with symbolic links to the content in <code>/home/tooling</code>. As a result, it the <code>persistentUserHome</code> feature expects the tooling image to have its <code>/home/user/</code> content within <code>/home/tooling</code>.</p>
+</div>
+<div class="paragraph">
+<p>For example, if the tools container image contains files in the <code>home/tooling</code> directory such as <code>.config</code> and <code>.config-folder/another-file</code>, stow will create symbolic links in the persistent volume in the following manner:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../_images/persistent-user-home/tools-container-example.png" alt="Persistent user home example scenario">
+</div>
+<div class="title">Figure 1. Tools container with <code>persistUserHome</code> enabled</div>
+</div>
+<div class="paragraph">
+<p>The init container writes the output of the <code>stow</code> command to <code>/home/user/.stow.log</code> and will only run <code>stow</code> the first time the persistent volume is mounted to the workspace.</p>
+</div>
+<div class="paragraph">
+<p>Using the <code>stow</code> command to populate <code>/home/user</code> content in the persistent volume provides two main advantages:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Creating symbolic links is faster and consumes less storage than creating copies of the <code>/home/user</code> directory content in the persistent volume. To put it differently, the persistent volume in this case contains symbolic links and not the actual files themselves.</p>
+</li>
+<li>
+<p>If the tools image is updated with newer versions of existing binaries, configs, and files, the init container does not need to <code>stow</code> the new versions, as the existing symbolic links will link to the newer versions in <code>/home/tooling</code> already.</p>
+</li>
+</ol>
+</div>
+<div class="admonitionblock note">
 <table>
 <tr>
 <td class="icon">
-<i class="fa icon-important" title="Important"></i>
+<i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-To make the changes in the Che container visible, re-create the Secret or the ConfigMap object entirely.
+If the tooling image is updated with additional binaries or files, they won&#8217;t be symbolically linked to the <code>/home/user</code> directory since the <code>stow</code> command won&#8217;t be run again. In this case, the user must delete the <code>/home/user/.stow_completed</code> file and restart the workspace to rerun <code>stow</code>.
 </td>
 </tr>
 </table>
 </div>
-<div class="ulist">
-<div class="title">Additional resources</div>
-<ul>
+<div class="paragraph">
+<div class="title"><code>persistUserHome</code> tools image requirements</div>
+<p>The <code>persistUserHome</code> depends on the tools image used for the workspace. By default Che uses the Universal Developer Image (UDI) for sample workspaces, which supports <code>persistUserHome</code> out of the box.</p>
+</div>
+<div class="paragraph">
+<p>If you are using a custom image, there are three requirements that should be met to support the <code>persistUserHome</code> feature.</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
 <li>
-<p><a href="../using-chectl-to-configure-the-checluster-custom-resource-during-installation/" class="xref page">Using chectl to configure the <code>CheCluster</code> Custom Resource during installation</a></p>
+<p>The tools image should contain <code>stow</code> version &gt;= 2.4.0.</p>
 </li>
 <li>
-<p><a href="../using-the-cli-to-configure-the-checluster-custom-resource/" class="xref page">Using the CLI to configure the CheCluster Custom Resource</a></p>
+<p>The <code>$HOME</code> environment variable is set to <code>/home/user</code>.</p>
 </li>
-</ul>
+<li>
+<p>In the tools image, the directory that is intended to contain the <code>/home/user</code> content is <code>/home/tooling</code>.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>Due to requirement three, the default UDI image for example adds the <code>/home/user</code> content to <code>/home/tooling</code> instead, and runs:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>RUN stow -t /home/user/ -d /home/tooling/ --no-folding</pre>
 </div>
 </div>
+<div class="paragraph">
+<p>in the Dockerfile so that files in <code>/home/tooling</code> are accessible from <code>/home/user</code> even when not using the <code>persistUserHome</code> feature.</p>
 </div>
 </article>
   </div>
