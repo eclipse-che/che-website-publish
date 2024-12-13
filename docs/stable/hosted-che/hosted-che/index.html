@@ -44,7 +44,7 @@
   </nav>
 </header>
 <div class="body">
-<div class="nav-container" data-component="docs" data-version="7.95.x">
+<div class="nav-container" data-component="docs" data-version="7.96.x">
   <aside class="nav">
     <div class="panels">
 <div class="nav-panel-menu is-active" data-panel="menu">
@@ -360,6 +360,9 @@
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="../../administration-guide/installing-che-on-microsoft-azure/">Installing Che on Microsoft Azure</a>
   </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../../administration-guide/installing-che-on-amazon-elastic-kubernetes-service/">Installing Che on Amazon Elastic Kubernetes Service</a>
+  </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="2">
@@ -561,6 +564,12 @@
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="../../administration-guide/adding-labels-and-annotations/">Adding labels and annotations</a>
   </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../../administration-guide/configuring-workspaces-endpoints-base-domain/">Configuring workspace endpoints base domain</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../../administration-guide/configuring-proxy/">Configuring proxy</a>
+  </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="2">
@@ -758,7 +767,7 @@
 <div class="nav-panel-explore" data-panel="explore">
   <div class="context">
     <span class="title">Documentation</span>
-    <span class="version">7.95.x</span>
+    <span class="version">7.96.x</span>
   </div>
   <ul class="components">
     <li class="component is-current">
@@ -768,7 +777,7 @@
           <a href="../../../next/overview/introduction-to-eclipse-che/">next</a>
         </li>
         <li class="version is-current is-latest">
-          <a href="../../overview/introduction-to-eclipse-che/">7.95.x</a>
+          <a href="../../overview/introduction-to-eclipse-che/">7.96.x</a>
         </li>
       </ul>
     </li>
@@ -788,13 +797,13 @@
   </ul>
 </nav>
 <div class="page-versions">
-  <button class="version-menu-toggle" title="Show other versions of page">7.95.x</button>
+  <button class="version-menu-toggle" title="Show other versions of page">7.96.x</button>
   <div class="version-menu">
     <a class="version" href="../../../next/hosted-che/hosted-che/">next</a>
-    <a class="version is-current" href="./">7.95.x</a>
+    <a class="version is-current" href="./">7.96.x</a>
   </div>
 </div>
-<div class="edit-this-page"><a href="https://github.com/eclipse-che/che-docs/edit/7.95.x/modules/hosted-che/pages/hosted-che.adoc">Edit this Page</a></div>
+<div class="edit-this-page"><a href="https://github.com/eclipse-che/che-docs/edit/7.96.x/modules/hosted-che/pages/hosted-che.adoc">Edit this Page</a></div>
 </div>
   <div class="content">
 <aside class="toc sidebar" data-title="Contents" data-levels="2">
@@ -1087,7 +1096,8 @@ The common FAQs are available on the <a href="https://developers.redhat.com/deve
 <h3 id="_troubleshooting"><a class="anchor" href="#_troubleshooting"></a>Troubleshooting</h3>
 <div class="paragraph">
 <div class="title">Authentication</div>
-<p>To authenticate to <a href="https://workspaces.openshift.com">Red Hat Developer Sandbox</a>, allow cookies from the <code>static.developers.redhat.com</code> page. This authentication will fail in a scenario where these cookies are blocked by a browser extension such as <a href="https://www.eff.org/privacybadger">Privacy Badger</a>.</p>
+<p>To authenticate to <a href="https://workspaces.openshift.com">Red Hat Developer Sandbox</a>, allow cookies from the <code>static.developers.redhat.com</code> page.
+WARNING: The authentication may fail if the the cookies are blocked by the browser extensions that interfere with cookie handling, such as ad-blockers or privacy-focused extensions.</p>
 </div>
 <div class="paragraph">
 <div class="title">Telemetry</div>
