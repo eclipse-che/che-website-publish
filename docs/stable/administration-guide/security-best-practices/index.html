@@ -45,7 +45,7 @@
   </nav>
 </header>
 <div class="body">
-<div class="nav-container" data-component="docs" data-version="7.98.x">
+<div class="nav-container" data-component="docs" data-version="7.99.x">
   <aside class="nav">
     <div class="panels">
 <div class="nav-panel-menu is-active" data-panel="menu">
@@ -167,6 +167,9 @@
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../../end-user-guide/microsoft-visual-studio-code-open-source-ide/">Microsoft Visual Studio Code - Open Source</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../end-user-guide/connect-visual-studio-code-to-che-workspace/">Connecting Visual Studio Code to a Che workspace</a>
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../../end-user-guide/idea-ultimate/">Connecting JetBrains IntelliJ IDEA Ultimate Edition to a Che workspace</a>
@@ -771,7 +774,7 @@
 <div class="nav-panel-explore" data-panel="explore">
   <div class="context">
     <span class="title">Documentation</span>
-    <span class="version">7.98.x</span>
+    <span class="version">7.99.x</span>
   </div>
   <ul class="components">
     <li class="component is-current">
@@ -781,7 +784,7 @@
           <a href="../../../next/overview/introduction-to-eclipse-che/">next</a>
         </li>
         <li class="version is-current is-latest">
-          <a href="../../overview/introduction-to-eclipse-che/">7.98.x</a>
+          <a href="../../overview/introduction-to-eclipse-che/">7.99.x</a>
         </li>
       </ul>
     </li>
@@ -802,13 +805,13 @@
   </ul>
 </nav>
 <div class="page-versions">
-  <button class="version-menu-toggle" title="Show other versions of page">7.98.x</button>
+  <button class="version-menu-toggle" title="Show other versions of page">7.99.x</button>
   <div class="version-menu">
     <a class="version" href="../../../next/administration-guide/security-best-practices/">next</a>
-    <a class="version is-current" href="./">7.98.x</a>
+    <a class="version is-current" href="./">7.99.x</a>
   </div>
 </div>
-<div class="edit-this-page"><a href="https://github.com/eclipse-che/che-docs/edit/7.98.x/modules/administration-guide/pages/security-best-practices.adoc">Edit this Page</a></div>
+<div class="edit-this-page"><a href="https://github.com/eclipse-che/che-docs/edit/7.99.x/modules/administration-guide/pages/security-best-practices.adoc">Edit this Page</a></div>
 </div>
   <div class="content">
 <aside class="toc sidebar" data-title="Contents" data-levels="2">
@@ -841,7 +844,7 @@ foster a more resilient development environment.</p>
 <p>With this setup, you achieve a curated access to Che,
 where cluster administrators control provisioning for each user
 and can explicitly configure various settings including resource limits and quotas.
-Learn more about project provisioning in the <a href="https://eclipse.dev/che/docs/stable/administration-guide/mounting-a-secret-as-a-file-or-an-environment-variable-into-a-container/#mounting-a-secret-or-a-configmap-as-an-environment-variable-into-a-container">product documentation</a>.</p>
+Learn more about project provisioning in the <a href="../provisioning-namespaces-in-advance/" class="xref page">Provisioning namespaces in advance</a>.</p>
 </div>
 <div class="paragraph">
 <div class="title">Role-based access control (RBAC)</div>
@@ -908,11 +911,11 @@ Learn more about project provisioning in the <a href="https://eclipse.dev/che/do
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">configmaps</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">“get", "list", "create", "update", "patch", "delete"</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">"get", "list", "create", "update", "patch", "delete"</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">events</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">“watch”</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">"list", "watch"</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">secrets</p></td>
@@ -924,11 +927,11 @@ Learn more about project provisioning in the <a href="https://eclipse.dev/che/do
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">routes</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">”get", "list", "create", "delete"</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">"get", "list", "create", "delete"</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">persistentvolumeclaims</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">“get", "list", "watch", "create", "delete", "update", "patch"</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">"get", "list", "watch", "create", "delete", "update", "patch"</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">apps/deployments</p></td>
@@ -944,7 +947,7 @@ Learn more about project provisioning in the <a href="https://eclipse.dev/che/do
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">projects</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">“get”</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">"get"</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">devworkspace</p></td>
@@ -1158,8 +1161,8 @@ By default, only the owner of the namespace has access to the CDE Pod.</p>
 </div>
 <div class="paragraph">
 <div class="title">Resource Quotas and Limit Ranges</div>
-<p>Resource Quotas and Limit Ranges are Kubernetes features you can use to help prevent bad actors or resource abuse within a cluster.
-They help in controlling and managing resource consumption by pods and containers.
+<p>Resource Quotas and Limit Ranges are Kubernetes features you can use to help prevent bad actors and resource abuse within a cluster.
+Specifically, they allow you to set resource consumption constraints for pods and containers.
 By combining Resource Quotas and Limit Ranges,
 you can enforce project-specific policies to prevent bad actors from consuming excessive resources.</p>
 </div>
@@ -1171,8 +1174,7 @@ More details about <a href="https://docs.openshift.com/container-platform/4.14/a
 <div class="title">Disconnected environment</div>
 <p>An air-gapped OpenShift disconnected cluster refers to an OpenShift cluster
 isolated from the internet or any external network.
-This isolation is often done for security reasons,
-to protect sensitive or critical systems from potential cyber threats.
+This isolation is often done for security reasons to protect sensitive or critical systems from potential cyber threats.
 In an air-gapped environment,
 the cluster cannot access external repositories or registries to download container images, updates, or dependencies.</p>
 </div>
@@ -1184,7 +1186,7 @@ Installation instructions are available in the <a href="https://eclipse.dev/che/
 <div class="title">Managing extensions</div>
 <p>By default, Eclipse&#160;Che
 includes the embedded Open VSX registry
-which contains a limited set of extensions used by Microsoft Visual Studio Code -
+which contains a limited set of extensions for the Microsoft Visual Studio Code -
 Open Source editor.
 Alternatively, cluster administrators can specify a different plugin registry in the Custom Resource, e.g.
 <a href="https://open-vsx.org" class="bare">https://open-vsx.org</a> that contains thousands of extensions.
