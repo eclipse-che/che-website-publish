@@ -875,7 +875,7 @@ Ask a DNS provider to point the custom hostname to the cluster ingress.
 <p>Create a TLS secret:</p>
 <div class="listingblock">
 <div class="content">
-<pre>$ kubectl create secret TLS <em>&lt;tls_secret_name&gt;</em> \ <i class="conum" data-value="1"></i><b>(1)</b>
+<pre>$ kubectl create secret tls <em>&lt;tls_secret_name&gt;</em> \ <i class="conum" data-value="1"></i><b>(1)</b>
 --key <em>&lt;key_file&gt;</em> \ <i class="conum" data-value="2"></i><b>(2)</b>
 --cert <em>&lt;cert_file&gt;</em> \ <i class="conum" data-value="3"></i><b>(3)</b>
 -n eclipse-che</pre>
