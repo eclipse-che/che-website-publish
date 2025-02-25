@@ -842,20 +842,31 @@ Therefore, you must import into Che all untrusted CA chains in use by an externa
 </div>
 <div class="paragraph">
 <p>Che uses labeled ConfigMaps in Che namespace as sources for TLS certificates.
-The ConfigMaps can have an arbitrary amount of keys with a random amount of certificates each. Operator merges all ConfigMaps into a single one titled <code>ca-certs-merged</code>, and mounts it as a volume in the Che server, dashboard and workspace pods.
-By default, the Operator mounts the <code>ca-certs-merged</code> ConfigMap in a user&#8217;s workspace at two locations: <code>/public-certs</code> and <code>/etc/pki/ca-trust/extracted/pem</code>. The <code>/etc/pki/ca-trust/extracted/pem</code> directory is where the system stores extracted CA certificates for trusted certificate authorities on Red Hat (e.g., CentOS, Fedora). CLI tools automatically use certificates from the system-trusted locations, when the user&#8217;s workspace is up and running.</p>
+The ConfigMaps can have an arbitrary amount of keys with a random amount of certificates each.
+All certificates are mounted into:</p>
 </div>
-<div class="admonitionblock note">
+<div class="ulist">
+<ul>
+<li>
+<p><code>/public-certs</code> location of Che server and dashboard pods</p>
+</li>
+<li>
+<p><code>/public-certs</code> and <code>/etc/pki/ca-trust/extracted/pem</code> locations of workspaces pods</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>The <code>/etc/pki/ca-trust/extracted/pem</code> directory is where the system stores extracted CA certificates for trusted certificate authorities on Red Hat (e.g., CentOS, Fedora). CLI tools automatically use certificates from the system-trusted locations, when the user&#8217;s workspace is up and running.</p>
+</div>
+<div class="admonitionblock important">
 <table>
 <tr>
 <td class="icon">
-<i class="fa icon-note" title="Note"></i>
+<i class="fa icon-important" title="Important"></i>
 </td>
 <td class="content">
 <div class="paragraph">
-<p>When an OpenShift cluster contains cluster-wide trusted CA certificates added through the <a href="https://docs.openshift.com/container-platform/latest/networking/configuring-a-custom-pki.html#nw-proxy-configure-object_configuring-a-custom-pki">cluster-wide-proxy configuration</a>,
-Che Operator detects them and automatically injects them into a ConfigMap with the <code>config.openshift.io/inject-trusted-cabundle="true"</code> label.
-Based on this annotation, OpenShift automatically injects the cluster-wide trusted CA certificates inside the <code>ca-bundle.crt</code> key of the ConfigMap.</p>
+<p>On OpenShift cluster, Che operator automatically adds Red Hat Enterprise Linux CoreOS (RHCOS) trust bundle into mounted certificates.</p>
 </div>
 </td>
 </tr>
