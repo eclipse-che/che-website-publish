@@ -860,7 +860,7 @@ For files that cannot be symbolically linked to the <code>/home/user</code> dire
 </div>
 </div>
 <div class="paragraph">
-<p>The command above creates symbolic links in <code>/home/user</code> for files and directories located in /home/tooling. This populates the persistent volume with symbolic links to the content in <code>/home/tooling</code>. As a result, it the <code>persistentUserHome</code> feature expects the tooling image to have its <code>/home/user/</code> content within <code>/home/tooling</code>.</p>
+<p>The command above creates symbolic links in <code>/home/user</code> for files and directories located in <code>/home/tooling</code>. This populates the persistent volume with symbolic links to the content in <code>/home/tooling</code>. As a result, the <code>persistUserHome</code> feature expects the tooling image to have its <code>/home/user/</code> content within <code>/home/tooling</code>.</p>
 </div>
 <div class="paragraph">
 <p>For example, if the tools container image contains files in the <code>home/tooling</code> directory such as <code>.config</code> and <code>.config-folder/another-file</code>, stow will create symbolic links in the persistent volume in the following manner:</p>
