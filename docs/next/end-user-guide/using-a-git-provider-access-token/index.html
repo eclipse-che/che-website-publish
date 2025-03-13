@@ -958,7 +958,7 @@ type: Opaque</code></pre>
 </tr>
 <tr>
 <td><i class="conum" data-value="4"></i><b>4</b></td>
-<td>This line is only applicable to <code>azure-devops</code>: your Git provider user organization.</td>
+<td>This line is only applicable to <code>azure-devops</code>: your Git provider user organization, or collection if Azure DevOps Server is used.</td>
 </tr>
 </table>
 </div>
@@ -1024,6 +1024,41 @@ EOF</code></pre>
 </div>
 </li>
 </ol>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>If you are using Azure DevOps Server, you must also modify the <a href="../mounting-git-configuration/" class="xref page">workspace&#8217;s
+gitconfig</a> with the following section:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">[http]
+    extraheader = "Authorization: Basic &lt;base64-encoded(:personal-access-token)&gt;"</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>To generate the key-value pair, use the following command:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">echo -n "extraheader = \"Authorization: Basic "$(printf ":%s" &lt;personal access token&gt; | base64)\"</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>see <a href="https://learn.microsoft.com/en-us/azure/devops/repos/git/auth-overview?view=azure-devops&amp;tabs=Linux#personal-access-tokens">the documentation page</a> for more information.</p>
+</div>
+<div class="paragraph">
+<p>The <code>extraheader</code> configuration is needed for remote git operations to Azure Devops Server, e.g. <code>git clone</code>. This authorization method has a higher priority over the git credentials store, and as a result, the remote operations to other Git providers will fail.</p>
+</div>
+</td>
+</tr>
+</table>
 </div>
 <div class="olist arabic">
 <div class="title">Verification</div>
