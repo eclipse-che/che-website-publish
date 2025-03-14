@@ -785,7 +785,7 @@
           <a href="../../overview/introduction-to-eclipse-che/">next</a>
         </li>
         <li class="version is-latest">
-          <a href="../../../stable/overview/introduction-to-eclipse-che/">7.99.x</a>
+          <a href="../../../stable/overview/introduction-to-eclipse-che/">7.100.x</a>
         </li>
       </ul>
     </li>
@@ -810,7 +810,7 @@
   <button class="version-menu-toggle" title="Show other versions of page">next</button>
   <div class="version-menu">
     <a class="version is-current" href="./">next</a>
-    <a class="version" href="../../../stable/administration-guide/upgrading-che-using-the-cli-management-tool-in-restricted-environment/">7.99.x</a>
+    <a class="version" href="../../../stable/administration-guide/upgrading-che-using-the-cli-management-tool-in-restricted-environment/">7.100.x</a>
   </div>
 </div>
 <div class="edit-this-page"><a href="https://github.com/eclipse-che/che-docs/edit/main/modules/administration-guide/pages/upgrading-che-using-the-cli-management-tool-in-restricted-environment.adoc">Edit this Page</a></div>
@@ -870,7 +870,7 @@
 <p>An active <code>skopeo</code> session with administrative access to the private Docker registry. <a href="https://github.com/containers/skopeo#authenticating-to-a-registry">Authenticating to a registry</a>, and <a href="https://docs.openshift.com/container-platform/4.12/installing/disconnected_install/installing-mirroring-installation-images.html">Mirroring images for a disconnected installation</a>.</p>
 </li>
 <li>
-<p><code>chectl</code> for Che version 7.99. See <a href="../installing-the-chectl-management-tool/" class="xref page">Installing the chectl management tool</a>.</p>
+<p><code>chectl</code> for Che version 7.100. See <a href="../installing-the-chectl-management-tool/" class="xref page">Installing the chectl management tool</a>.</p>
 </li>
 </ul>
 </div>
@@ -883,11 +883,11 @@
 <div class="content">
 <pre>$ bash prepare-restricted-environment.sh \
   --devworkspace_operator_index quay.io/devfile/devworkspace-operator-index:release-digest\
-  --devworkspace_operator_version "v0.32.1" \
+  --devworkspace_operator_version "v0.33.0" \
   --prod_operator_index "registry.access.redhat.com/redhat/community-operator-index:v4.12" \
   --prod_operator_package_name "eclipse-che" \
   --prod_operator_bundle_name "eclipse-che" \
-  --prod_operator_version "v7.99.0" \
+  --prod_operator_version "v7.100.0" \
   --my_registry "<em>&lt;my_registry&gt;</em>" <i class="conum" data-value="1"></i><b>(1)</b></pre>
 </div>
 </div>
@@ -923,7 +923,7 @@
 <p>Navigate to the Che instance.</p>
 </li>
 <li>
-<p>The 7.99 version number is visible at the bottom of the page.</p>
+<p>The 7.100 version number is visible at the bottom of the page.</p>
 </li>
 </ol>
 </div>
