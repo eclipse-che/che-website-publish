@@ -836,11 +836,15 @@ Once a workspace is started, the editor checks for this ConfigMap and stores con
 <li>
 <p>extensions.json</p>
 </li>
+<li>
+<p>product.json</p>
+</li>
 </ul>
 </div>
 <div class="paragraph">
-<p>The <code>settings.json</code> section contains various settings that allow to customize different parts of the Code - OSS editor.<br>
-The <code>extensions.json</code> section contains recommented extensions are installed when a workspace is started.</p>
+<p>The <strong>settings.json</strong> section contains various settings with which you can customize different parts of the Code - OSS editor.<br>
+The <strong>extensions.json</strong> section contains recommended extensions that are installed when a workspace is started.<br>
+The <strong>product.json</strong> section contains properties that you need to add to the editor&#8217;s <strong>product.json</strong> file. If the property already exists, its value will be updated.</p>
 </div>
 <div class="ulist">
 <div class="title">Procedure</div>
@@ -871,6 +875,19 @@ data:
         "titleBar.activeBackground": "#CCA700",
         "titleBar.activeForeground": "#ffffff"
       }
+    }
+  product.json: |
+    {
+      "extensionEnabledApiProposals": {
+        "ms-python.python": [
+          "contribEditorContentMenu",
+          "quickPickSortByLabel",
+        ]
+      },
+      "trustedExtensionAuthAccess": [
+        "&lt;publisher1&gt;.&lt;extension1&gt;",
+        "&lt;publisher2&gt;.&lt;extension2&gt;"
+      ]
     }
 immutable: false</code></pre>
 </div>
@@ -922,6 +939,22 @@ immutable: false</code></pre>
 </li>
 <li>
 <p>Ensure that the extensions from the ConfigMap are present in the <code>.code-workspace</code> file by using the <code>F1 → File: Open File&#8230;&#8203;</code> command. By default, the workspace file is placed at <code>/projects/.code-workspace</code>.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Verify that product properties defined in the ConfigMap are being added to the Visual Studio Code <strong>product.json</strong>:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Open a terminal, run the command <code>cat /checode/entrypoint-logs.txt | grep "Node.js dir"</code> and copy the Visual Studio Code path.</p>
+</li>
+<li>
+<p>Press <code>Ctrl + O</code>, paste the copied path and open <strong>product.json</strong> file.</p>
+</li>
+<li>
+<p>Ensure that <strong>product.json</strong> file contains all the properties defined in the ConfigMap.</p>
 </li>
 </ul>
 </div>
