@@ -851,14 +851,14 @@
 <p>The OpenShift cluster has at least 64 GB of disk space.</p>
 </li>
 <li>
-<p>The OpenShift cluster is ready to operate on a restricted network. See <a href="https://docs.openshift.com/container-platform/4.12/installing/disconnected_install/index.html">About disconnected installation mirroring</a> and <a href="https://docs.openshift.com/container-platform/4.12/operators/admin/olm-restricted-networks.html">Using Operator Lifecycle Manager on restricted networks</a>.</p>
+<p>The OpenShift cluster is ready to operate on a restricted network. See <a href="https://docs.redhat.com/en/documentation/openshift_container_platform/4.18/html/disconnected_environments/mirroring-in-disconnected-environments">About disconnected installation mirroring</a> and <a href="https://docs.openshift.com/container-platform/4.18/operators/admin/olm-restricted-networks.html">Using Operator Lifecycle Manager on restricted networks</a>.</p>
 </li>
 </ul>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>An active <code>oc</code> session with administrative permissions to the OpenShift cluster. See <a href="https://docs.openshift.com/container-platform/4.12/cli_reference/openshift_cli/getting-started-cli.html">Getting started with the OpenShift CLI</a>.</p>
+<p>An active <code>oc</code> session with administrative permissions to the OpenShift cluster. See <a href="https://docs.openshift.com/container-platform/4.18/cli_reference/openshift_cli/getting-started-cli.html">Getting started with the OpenShift CLI</a>.</p>
 </li>
 <li>
 <p>An active <code>oc registry</code> session to the <code>registry.redhat.io</code> Red Hat Ecosystem Catalog. See: <a href="https://access.redhat.com/RegistryAuthentication">Red Hat Container Registry authentication</a>.</p>
@@ -868,7 +868,7 @@
 <div class="ulist">
 <ul>
 <li>
-<p><code>opm</code>. See <a href="https://docs.openshift.com/container-platform/4.12/cli_reference/opm/cli-opm-install.html">Installing the <code>opm</code> CLI</a>.</p>
+<p><code>opm</code>. See <a href="https://docs.openshift.com/container-platform/4.18/cli_reference/opm/cli-opm-install.html">Installing the <code>opm</code> CLI</a>.</p>
 </li>
 <li>
 <p><code>jq</code>. See <a href="https://stedolan.github.io/jq/download/">Downloading <code>jq</code></a>.</p>
@@ -880,7 +880,7 @@
 <p><code>skopeo</code> version 1.6 or higher. See <a href="https://github.com/containers/skopeo/blob/main/install.md">Installing Skopeo</a>.</p>
 </li>
 <li>
-<p>An active <code>skopeo</code> session with administrative access to the private Docker registry. <a href="https://github.com/containers/skopeo#authenticating-to-a-registry">Authenticating to a registry</a>, and <a href="https://docs.openshift.com/container-platform/4.12/installing/disconnected_install/installing-mirroring-installation-images.html">Mirroring images for a disconnected installation</a>.</p>
+<p>An active <code>skopeo</code> session with administrative access to the private Docker registry. <a href="https://github.com/containers/skopeo#authenticating-to-a-registry">Authenticating to a registry</a>, and <a href="https://docs.redhat.com/en/documentation/openshift_container_platform/4.18/html/disconnected_environments/mirroring-in-disconnected-environments">Mirroring images for a disconnected installation</a>.</p>
 </li>
 <li>
 <p><code>chectl</code> for Che version 7.101. See <a href="../installing-the-chectl-management-tool/" class="xref page">Installing the chectl management tool</a>.</p>
@@ -897,7 +897,7 @@
 <pre>$ bash prepare-restricted-environment.sh \
   --devworkspace_operator_index quay.io/devfile/devworkspace-operator-index:release-digest\
   --devworkspace_operator_version "v0.33.0" \
-  --prod_operator_index "registry.access.redhat.com/redhat/community-operator-index:v4.12" \
+  --prod_operator_index "registry.access.redhat.com/redhat/community-operator-index:v4.18" \
   --prod_operator_package_name "eclipse-che" \
   --prod_operator_bundle_name "eclipse-che" \
   --prod_operator_version "v7.101.0" \
@@ -936,10 +936,10 @@
 <div class="title">Additional resources</div>
 <ul>
 <li>
-<p><a href="https://docs.openshift.com/container-platform/4.12/operators/understanding/olm-rh-catalogs.html">Red Hat-provided Operator catalogs</a></p>
+<p><a href="https://docs.openshift.com/container-platform/4.18/operators/understanding/olm-rh-catalogs.html">Red Hat-provided Operator catalogs</a></p>
 </li>
 <li>
-<p><a href="https://docs.openshift.com/container-platform/4.12/operators/admin/olm-managing-custom-catalogs.html">Managing custom catalogs</a></p>
+<p><a href="https://docs.openshift.com/container-platform/4.18/operators/admin/olm-managing-custom-catalogs.html">Managing custom catalogs</a></p>
 </li>
 </ul>
 </div>
