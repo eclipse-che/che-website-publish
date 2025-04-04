@@ -840,18 +840,22 @@ Once a workspace is started, the editor checks for this ConfigMap and stores con
 <li>
 <p>product.json</p>
 </li>
+<li>
+<p>configurations.json</p>
+</li>
 </ul>
 </div>
 <div class="paragraph">
 <p>The <strong>settings.json</strong> section contains various settings with which you can customize different parts of the Code - OSS editor.<br>
 The <strong>extensions.json</strong> section contains recommended extensions that are installed when a workspace is started.<br>
-The <strong>product.json</strong> section contains properties that you need to add to the editor&#8217;s <strong>product.json</strong> file. If the property already exists, its value will be updated.</p>
+The <strong>product.json</strong> section contains properties that you need to add to the editor&#8217;s <strong>product.json</strong> file. If the property already exists, its value will be updated.<br>
+The <strong>configurations.json</strong> section contains properties related to Code - OSS editor configuration. For example, you can use the <code>extensions.install-from-vsix-enabled</code> property to disable <code>Install from VSIX</code> command.</p>
 </div>
 <div class="ulist">
 <div class="title">Procedure</div>
 <ul>
 <li>
-<p>Add a new ConfigMap to the user&#8217;s namespace, define the <code>settings.json</code>  and <code>extensions.json</code> sections, specify the settings you want to add, and the IDs of the extensions you want to install.</p>
+<p>Add a new ConfigMap to the user&#8217;s namespace, define the supported sections, and specify the properties you want to add.</p>
 <div class="exampleblock">
 <div class="content">
 <div class="listingblock">
@@ -890,6 +894,10 @@ data:
         "&lt;publisher2&gt;.&lt;extension2&gt;"
       ]
     }
+  configurations.json: |
+    {
+      "extensions.install-from-vsix-enabled": false
+    }
 immutable: false</code></pre>
 </div>
 </div>
@@ -911,6 +919,18 @@ immutable: false</code></pre>
 <div class="paragraph">
 <p>Make sure that the Configmap contains data in a valid JSON format.</p>
 </div>
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+Consider adding the ConfigMap to the <code>eclipse-che</code> namespace. It allows to replicate the ConfigMap across all user namespaces while preventing modifications within user&#8217;s namespaces. See <a href="../configuring-a-user-namespace/" class="xref page">Configuring a user namespace</a>.
 </td>
 </tr>
 </table>
@@ -956,6 +976,22 @@ immutable: false</code></pre>
 </li>
 <li>
 <p>Ensure that <strong>product.json</strong> file contains all the properties defined in the ConfigMap.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Verify that <code>extensions.install-from-vsix-enabled</code> property defined in the ConfigMap is applied to the Code - OSS editor:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Open the Command Palette (use <code>F1</code>) to check that <code>Install from VSIX</code> command is not present in the list of commands.</p>
+</li>
+<li>
+<p>Use <code>F1 → Open View → Extensions</code> to open the <code>Extensions</code> panel, then click <code>&#8230;&#8203;</code> on the view (<code>Views and More Actions</code> tooltip) to check that <code>Install from VSIX</code> action is absent in the list of actions.</p>
+</li>
+<li>
+<p>Go to the Explorer, find a file with the <code>vsix</code> extension (redhat.vscode-yaml-1.17.0.vsix, for example), open menu for that file. <code>Install from VSIX</code> action should be absent in the menu.</p>
 </li>
 </ul>
 </div>
