@@ -849,7 +849,7 @@ Once a workspace is started, the editor checks for this ConfigMap and stores con
 <p>The <strong>settings.json</strong> section contains various settings with which you can customize different parts of the Code - OSS editor.<br>
 The <strong>extensions.json</strong> section contains recommended extensions that are installed when a workspace is started.<br>
 The <strong>product.json</strong> section contains properties that you need to add to the editor&#8217;s <strong>product.json</strong> file. If the property already exists, its value will be updated.<br>
-The <strong>configurations.json</strong> section contains properties related to Code - OSS editor configuration. For example, you can use the <code>extensions.install-from-vsix-enabled</code> property to disable <code>Install from VSIX</code> command.</p>
+The <strong>configurations.json</strong> section contains properties for Code - OSS editor configuration. For example, you can use the <code>extensions.install-from-vsix-enabled</code> property to disable <code>Install from VSIX</code> command.</p>
 </div>
 <div class="ulist">
 <div class="title">Procedure</div>
@@ -897,8 +897,7 @@ data:
   configurations.json: |
     {
       "extensions.install-from-vsix-enabled": false
-    }
-immutable: false</code></pre>
+    }</code></pre>
 </div>
 </div>
 </div>
@@ -930,7 +929,7 @@ immutable: false</code></pre>
 <i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
-Consider adding the ConfigMap to the <code>eclipse-che</code> namespace. It allows to replicate the ConfigMap across all user namespaces while preventing modifications within user&#8217;s namespaces. See <a href="../configuring-a-user-namespace/" class="xref page">Configuring a user namespace</a>.
+Consider adding the ConfigMap to the eclipse-che namespace. By adding it to the namespace, you replicate the ConfigMap across all user namespaces while preventing modifications within user&#8217;s namespaces. See <a href="../configuring-a-user-namespace/" class="xref page">Configuring a user namespace</a>.
 </td>
 </tr>
 </table>
