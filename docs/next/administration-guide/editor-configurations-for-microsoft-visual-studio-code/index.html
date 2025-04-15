@@ -864,6 +864,8 @@ The <strong>configurations.json</strong> section contains properties for Code - 
 kind: ConfigMap
 metadata:
   name: vscode-editor-configurations
+  labels:
+     app.kubernetes.io/part-of: che.eclipse.org
 data:
   extensions.json: |
     {
