@@ -842,7 +842,7 @@ Therefore, you must import into Che all untrusted CA chains in use by an externa
 </div>
 <div class="paragraph">
 <p>Che uses labeled ConfigMaps in Che namespace as sources for TLS certificates.
-The ConfigMaps can have an arbitrary amount of keys with a random amount of certificates each.
+The ConfigMaps can have an arbitrary amount of keys with an arbitrary amount of certificates each.
 All certificates are mounted into:</p>
 </div>
 <div class="ulist">
@@ -851,12 +851,34 @@ All certificates are mounted into:</p>
 <p><code>/public-certs</code> location of Che server and dashboard pods</p>
 </li>
 <li>
-<p><code>/public-certs</code> and <code>/etc/pki/ca-trust/extracted/pem</code> locations of workspaces pods</p>
+<p><code>/etc/pki/ca-trust/extracted/pem</code> locations of workspaces pods</p>
 </li>
 </ul>
 </div>
 <div class="paragraph">
-<p>The <code>/etc/pki/ca-trust/extracted/pem</code> directory is where the system stores extracted CA certificates for trusted certificate authorities on Red Hat (e.g., CentOS, Fedora). CLI tools automatically use certificates from the system-trusted locations, when the user&#8217;s workspace is up and running.</p>
+<p>Configure the <code>CheCluster</code> custom resource to disable CA bundle mounting at <code>/etc/pki/ca-trust/extracted/pem</code>. The certificates will instead be mounted at <code>/public-certs</code> to keep the behaviour from the previous version.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Configure the <code>CheCluster</code> Custom Resource in order to disable the mounting of the CA bundle under the path <code>/etc/pki/ca-trust/extracted/pem</code>. Certificates will be mounted under the path <code>/public-certs</code> in this case.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">spec:
+  devEnvironments:
+    trustedCerts:
+      disableWorkspaceCaBundleMount: true</code></pre>
+</div>
+</div>
+</td>
+</tr>
+</table>
 </div>
 <div class="admonitionblock important">
 <table>
@@ -936,7 +958,7 @@ Otherwise, wait until the rollout of Che components finishes.</p>
 This command returns CA bundle certificates in PEM format:</p>
 <div class="listingblock white-space-pre">
 <div class="content">
-<pre class="nowrap">$ kubectl get configmap \
+<pre class="nowrap">kubectl get configmap \
     --namespace=eclipse-che \
     --output='jsonpath={.items[0:].data.custom-ca-certificates\.pem}' \
     --selector=app.kubernetes.io/component=ca-bundle,app.kubernetes.io/part-of=che.eclipse.org</pre>
@@ -947,7 +969,7 @@ This command returns CA bundle certificates in PEM format:</p>
 <p>Verify in the Che server logs that the imported certificates count is not null:</p>
 <div class="listingblock white-space-pre">
 <div class="content">
-<pre class="nowrap">$ kubectl logs deploy/che --namespace=eclipse-che \
+<pre class="nowrap">kubectl logs deploy/che --namespace=eclipse-che \
     | grep tls-ca-bundle.pem</pre>
 </div>
 </div>
@@ -960,7 +982,7 @@ This command returns CA bundle certificates in PEM format:</p>
 This command returns Che CA bundle certificates in PEM format:</p>
 <div class="listingblock white-space-pre">
 <div class="content">
-<pre class="nowrap">$ kubectl get configmap che-trusted-ca-certs \
+<pre class="nowrap">kubectl get configmap che-trusted-ca-certs \
     --namespace=<em>&lt;workspace_namespace&gt;</em> \
     --output='jsonpath={.data.tls-ca-bundle\.pem}'</pre>
 </div>
@@ -970,7 +992,7 @@ This command returns Che CA bundle certificates in PEM format:</p>
 <p>Verify that the workspace pod mounts the <code>ca-certs-merged</code> ConfigMap:</p>
 <div class="listingblock white-space-pre">
 <div class="content">
-<pre class="nowrap">$ kubectl get pod \
+<pre class="nowrap">kubectl get pod \
     --namespace=<em>&lt;workspace_namespace&gt;</em> \
     --selector='controller.devfile.io/devworkspace_name=<em>&lt;workspace_name&gt;</em>' \
     --output='jsonpath={.items[0:].spec.volumes[0:].configMap.name}' \
@@ -982,7 +1004,7 @@ This command returns Che CA bundle certificates in PEM format:</p>
 <p>Get the workspace pod name <em>&lt;workspace_pod_name&gt;</em>:</p>
 <div class="listingblock white-space-pre">
 <div class="content">
-<pre class="nowrap">$ kubectl get pod \
+<pre class="nowrap">kubectl get pod \
     --namespace=<em>&lt;workspace_namespace&gt;</em> \
     --selector='controller.devfile.io/devworkspace_name=<em>&lt;workspace_name&gt;</em>' \
     --output='jsonpath={.items[0:].metadata.name}' \</pre>
@@ -994,9 +1016,9 @@ This command returns Che CA bundle certificates in PEM format:</p>
 This command returns Che CA bundle certificates in PEM format:</p>
 <div class="listingblock white-space-pre">
 <div class="content">
-<pre class="nowrap">$ kubectl exec <em>&lt;workspace_pod_name&gt;</em> \
+<pre class="nowrap">kubectl exec <em>&lt;workspace_pod_name&gt;</em> \
     --namespace=<em>&lt;workspace_namespace&gt;</em> \
-    -- cat /public-certs/tls-ca-bundle.pem</pre>
+    -- cat /etc/pki/ca-trust/extracted/pem/tls-ca-bundle.pem</pre>
 </div>
 </div>
 </li>
