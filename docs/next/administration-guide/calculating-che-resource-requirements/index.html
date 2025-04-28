@@ -862,6 +862,17 @@ The pods contribute to the resource consumption in CPU and memory limits and req
 </div>
 </div>
 </li>
+<li>
+<p>IMPORTANT: Additional memory and CPU will be added implicitly for the Visual Studio Code - Open Source ("Code - OSS"):</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">    memoryLimit: 1024M
+    memoryRequest: 256M
+    cpuRequest: 30m
+    cpuLimit: 500m</code></pre>
+</div>
+</div>
+</li>
 </ul>
 </div>
 </li>
@@ -939,11 +950,34 @@ The pods contribute to the resource consumption in CPU and memory limits and req
 </div></div></td>
 </tr>
 <tr>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>Visual Studio Code</p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><code>workspace</code></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p><code>tools</code></p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>1024 MiB</p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>256 MiB</p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>500 m</p>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
+<p>30 m</p>
+</div></div></td>
+</tr>
+<tr>
 <td class="tableblock halign-right valign-top" colspan="3"><p class="tableblock"><strong>Total</strong></p></td>
-<td class="tableblock halign-right valign-top"><p class="tableblock"><strong>6.3 GiB</strong></p></td>
-<td class="tableblock halign-right valign-top"><p class="tableblock"><strong>576 MiB</strong></p></td>
-<td class="tableblock halign-right valign-top"><p class="tableblock"><strong>4500 m</strong></p></td>
-<td class="tableblock halign-right valign-top"><p class="tableblock"><strong>1050 m</strong></p></td>
+<td class="tableblock halign-right valign-top"><p class="tableblock"><strong>7.3 GiB</strong></p></td>
+<td class="tableblock halign-right valign-top"><p class="tableblock"><strong>832 MiB</strong></p></td>
+<td class="tableblock halign-right valign-top"><p class="tableblock"><strong>5000 m</strong></p></td>
+<td class="tableblock halign-right valign-top"><p class="tableblock"><strong>1080 m</strong></p></td>
 </tr>
 </tbody>
 </table>
@@ -1141,29 +1175,6 @@ The pods contribute to the resource consumption in CPU and memory limits and req
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>Devfile registry</p>
-</div></div></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><code>devfile-registry</code></p>
-</div></div></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p><code>devfile-registry</code></p>
-</div></div></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>256 MiB</p>
-</div></div></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>32 MiB</p>
-</div></div></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>500 m</p>
-</div></div></td>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>100 m</p>
-</div></div></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>Plugin registry</p>
 </div></div></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
@@ -1196,13 +1207,13 @@ The pods contribute to the resource consumption in CPU and memory limits and req
 <p><code>devworkspace-controller</code></p>
 </div></div></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>1 GiB</p>
+<p>5 GiB</p>
 </div></div></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>100 MiB</p>
 </div></div></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
-<p>1000 m</p>
+<p>3000 m</p>
 </div></div></td>
 <td class="tableblock halign-left valign-top"><div class="content"><div class="paragraph">
 <p>250 m</p>
@@ -1325,10 +1336,10 @@ The pods contribute to the resource consumption in CPU and memory limits and req
 </tr>
 <tr>
 <td class="tableblock halign-right valign-top" colspan="3"><p class="tableblock"><strong>Total</strong></p></td>
-<td class="tableblock halign-right valign-top"><p class="tableblock"><strong>9 GiB</strong></p></td>
+<td class="tableblock halign-right valign-top"><p class="tableblock"><strong>13 GiB</strong></p></td>
 <td class="tableblock halign-right valign-top"><p class="tableblock"><strong>1.2 GiB</strong></p></td>
-<td class="tableblock halign-right valign-top"><p class="tableblock"><strong>6.9</strong></p></td>
-<td class="tableblock halign-right valign-top"><p class="tableblock"><strong>1.3</strong></p></td>
+<td class="tableblock halign-right valign-top"><p class="tableblock"><strong>8.4</strong></p></td>
+<td class="tableblock halign-right valign-top"><p class="tableblock"><strong>1.2</strong></p></td>
 </tr>
 </tbody>
 </table>
