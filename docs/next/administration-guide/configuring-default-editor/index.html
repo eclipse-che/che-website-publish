@@ -3,10 +3,9 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Concealing editors definitions :: Eclipse Che Documentation</title>
-    <link rel="canonical" href="https://www.eclipse.org/che/docs/stable/administration-guide/concealing-editors-definitions/">
-    <meta name="description" content="Concealing editors definitions">
-    <meta name="keywords" content="administration guide, concealing, dashboard, editors">
+    <title>Configuring default editor :: Eclipse Che Documentation</title>
+    <meta name="description" content="Configuring default editor">
+    <meta name="keywords" content="administration guide, dashboard, editors">
     <meta name="generator" content="Antora 3.1.10">
     <link rel="stylesheet" href="../../../../docs/_/css/site.css">
 <link rel="stylesheet" href="../../../../docs/_/css/extra.css">
@@ -606,10 +605,13 @@
     <a class="nav-link" href="../configuring-editors-definitions/">Configuring editors definitions</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../configuring-default-editor-definition/">Configuring default editor definition</a>
+    <a class="nav-link" href="../show-deprecated-editors/">Show deprecated editors</a>
   </li>
   <li class="nav-item is-current-page" data-depth="3">
-    <a class="nav-link" href="./">Concealing editors definitions</a>
+    <a class="nav-link" href="./">Configuring default editor</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../concealing-editors/">Concealing editors</a>
   </li>
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="../customizing-openshift-che-consolelink-icon/">Customizing OpenShift Eclipse Che ConsoleLink icon</a>
@@ -804,26 +806,26 @@
     <li>Administration Guide</li>
     <li><a href="../configuring-che/">Configuring Che</a></li>
     <li><a href="../configuring-dashboard/">Configuring dashboard</a></li>
-    <li><a href="./">Concealing editors definitions</a></li>
+    <li><a href="./">Configuring default editor</a></li>
   </ul>
 </nav>
 <div class="page-versions">
   <button class="version-menu-toggle" title="Show other versions of page">next</button>
   <div class="version-menu">
     <a class="version is-current" href="./">next</a>
-    <a class="version" href="../../../stable/administration-guide/concealing-editors-definitions/">7.103.x</a>
+    <a class="version is-missing" href="../../../stable/overview/introduction-to-eclipse-che/">7.103.x</a>
   </div>
 </div>
-<div class="edit-this-page"><a href="https://github.com/eclipse-che/che-docs/edit/main/modules/administration-guide/pages/concealing-editors-definitions.adoc">Edit this Page</a></div>
+<div class="edit-this-page"><a href="https://github.com/eclipse-che/che-docs/edit/main/modules/administration-guide/pages/configuring-default-editor.adoc">Edit this Page</a></div>
 </div>
   <div class="content">
 <aside class="toc sidebar" data-title="Contents" data-levels="2">
   <div class="toc-menu"></div>
 </aside>
 <article class="doc">
-<h1 class="page">Concealing editors definitions</h1>
+<h1 class="page">Configuring default editor</h1>
 <div class="paragraph">
-<p>Learn how to conceal Che editor definitions. This is useful when you want to hide selected editors from the Dashboard UI, e.g. hide the IntelliJ IDEA Ultimate and have only Visual Studio Code - Open Source visible.</p>
+<p>Learn how to configure Che default editor.</p>
 </div>
 <div class="ulist">
 <div class="title">Prerequisites</div>
@@ -840,158 +842,31 @@
 <div class="title">Procedure</div>
 <ol class="arabic">
 <li>
-<p>Find out the namespace where the Che Operator is deployed:</p>
+<p>An editor ID has the following format: <code>publisher/name/version</code>. Find out the IDs of the available editors:</p>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-none hljs">OPERATOR_NAMESPACE=$(kubectl get pods -l app.kubernetes.io/component=che-operator -o jsonpath={".items[0].metadata.namespace"} --all-namespaces)</code></pre>
+<pre class="highlightjs highlight"><code class="language-none hljs">kubectl exec deploy/che-dashboard -n eclipse-che  \
+    -- curl -s http://localhost:8080/dashboard/api/editors | jq -r '[.[] | "\(.metadata.attributes.publisher)/\(.metadata.name)/\(.metadata.attributes.version)"]'</code></pre>
 </div>
 </div>
 </li>
 <li>
-<p>Find out the available editors definitions files:</p>
+<p>Configure the <code>defaultEditor</code>:</p>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-none hljs">kubectl exec -n $OPERATOR_NAMESPACE deploy/che-operator -- ls /tmp/editors-definitions</code></pre>
+<pre class="highlightjs highlight"><code class="language-none hljs">kubectl patch checluster/eclipse-che \
+    --namespace eclipse-che \
+    --type='merge' \
+    -p '{"spec":{"devEnvironments":{"defaultEditor": "<em>&lt;default_editor&gt;</em>"}}}'<i class="conum" data-value="1"></i><b>(1)</b></code></pre>
 </div>
 </div>
-<div class="paragraph">
-<p>The output should look similar to the following example:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-none hljs">che-code-insiders.yaml
-che-code-latest.yaml
-che-idea-latest.yaml
-che-idea-next.yaml</code></pre>
-</div>
-</div>
-</li>
-<li>
-<p>Choose an editor definition to conceal.
-For example, to conceal the <code>che-idea-next.yaml</code> editor definition, set the editor definition file name:</p>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-none hljs">CHE_EDITOR_CONCEAL_FILE_NAME=che-idea-next.yaml</code></pre>
-</div>
-</div>
-</li>
-<li>
-<p>Define the ConfigMap name for the concealed editor definition:</p>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-none hljs">CHE_EDITOR_CONCEAL_CONFIGMAP_NAME=che-conceal-$CHE_EDITOR_CONCEAL_FILE_NAME</code></pre>
-</div>
-</div>
-</li>
-<li>
-<p>Create the ConfigMap:</p>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-none hljs">kubectl create configmap $CHE_EDITOR_CONCEAL_CONFIGMAP_NAME \
-    --namespace $OPERATOR_NAMESPACE \
-    --from-literal=$CHE_EDITOR_CONCEAL_FILE_NAME=""</code></pre>
-</div>
-</div>
-</li>
-<li>
-<p>Find out the Operator subscription name and namespace (if it exists):</p>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-none hljs">SUBSCRIPTION=$(kubectl get subscriptions \
-    --all-namespaces \
-    --output json \
-        | jq -r '.items[] | select(.spec.name=="eclipse-che")')
-SUBSCRIPTION_NAMESPACE=$(echo $SUBSCRIPTION | jq -r '.metadata.namespace')
-SUBSCRIPTION_NAME=$(echo $SUBSCRIPTION | jq -r '.metadata.name')</code></pre>
-</div>
-</div>
-</li>
-<li>
-<p>Patch the Kubernetes resource to mount the ConfigMap with the empty editor definition. The resource to patch depends on the existence of the Operator subscription. If the subscription exists, then the subscription should be patched. If not, patch the Operator deployment:</p>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-none hljs">if [[ -n $SUBSCRIPTION_NAMESPACE ]]; then
-    if [[ $(kubectl get subscription $SUBSCRIPTION_NAME --namespace $SUBSCRIPTION_NAMESPACE --output jsonpath='{.spec.config}') == "" ]]; then
-        kubectl patch subscription $SUBSCRIPTION_NAME \
-          --namespace $SUBSCRIPTION_NAMESPACE \
-          --type json \
-          --patch '[{
-                "op":"add",
-                "path":"/spec/config",
-                "value": {}
-            }]'
-    fi
-
-    if [[ $(kubectl get subscription $SUBSCRIPTION_NAME --namespace $SUBSCRIPTION_NAMESPACE --output jsonpath='{.spec.config.volumes}') == "" ]]; then
-        kubectl patch subscription $SUBSCRIPTION_NAME \
-          --namespace $SUBSCRIPTION_NAMESPACE \
-          --type json \
-          --patch '[{
-                "op":"add",
-                "path":"/spec/config/volumes",
-                "value": []
-            }]'
-    fi
-
-    if [[ $(kubectl get subscription $SUBSCRIPTION_NAME --namespace $SUBSCRIPTION_NAMESPACE --output jsonpath='{.spec.config.volumeMounts}') == "" ]]; then
-        kubectl patch subscription $SUBSCRIPTION_NAME \
-          --namespace $SUBSCRIPTION_NAMESPACE \
-          --type json \
-          --patch '[{
-                "op":"add",
-                "path":"/spec/config/volumeMounts",
-                "value": []
-            }]'
-    fi
-
-    kubectl patch subscription $SUBSCRIPTION_NAME \
-      --namespace $SUBSCRIPTION_NAMESPACE \
-      --type json \
-      --patch '[{
-        "op":"add",
-        "path":"/spec/config/volumes/-",
-        "value": {
-            "name":"'$(echo ${CHE_EDITOR_CONCEAL_FILE_NAME%.*})'",
-            "configMap": {
-                "name": "'$CHE_EDITOR_CONCEAL_CONFIGMAP_NAME'"
-            }
-        }
-      },
-      {
-        "op":"add",
-        "path":"/spec/config/volumeMounts/-",
-        "value":{
-            "name": "'$(echo ${CHE_EDITOR_CONCEAL_FILE_NAME%.*})'",
-            "subPath":"'$CHE_EDITOR_CONCEAL_FILE_NAME'",
-            "mountPath": "/tmp/editors-definitions/'$CHE_EDITOR_CONCEAL_FILE_NAME'"
-        }
-      }]'
-else
-    kubectl patch deployment che-operator \
-      --namespace $OPERATOR_NAMESPACE \
-      --type json \
-      --patch '[{
-        "op":"add",
-        "path":"/spec/template/spec/volumes/-",
-        "value": {
-            "name":"'$(echo ${CHE_EDITOR_CONCEAL_FILE_NAME%.*})'",
-            "configMap": {
-                "name": "'$CHE_EDITOR_CONCEAL_CONFIGMAP_NAME'"
-            }
-        }
-    },
-    {
-        "op":"add",
-        "path":"/spec/template/spec/containers/0/volumeMounts/-",
-        "value":{
-            "name": "'$(echo ${CHE_EDITOR_CONCEAL_FILE_NAME%.*})'",
-            "subPath":"'$CHE_EDITOR_CONCEAL_FILE_NAME'",
-            "mountPath": "/tmp/editors-definitions/'$CHE_EDITOR_CONCEAL_FILE_NAME'"
-        }
-    }
-]'
-fi</code></pre>
-</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>The default editor for creating a workspace can be specified using either a plugin ID or a URI. The plugin ID should follow the format: <code>publisher/name/version</code>. See available editors IDs in the first step.</td>
+</tr>
+</table>
 </div>
 </li>
 </ol>
@@ -1003,7 +878,7 @@ fi</code></pre>
 <p><a href="../configuring-editors-definitions/" class="xref page">Configuring editors definitions</a></p>
 </li>
 <li>
-<p><a href="../configuring-default-editor-definition/" class="xref page">Configuring default editor definition</a></p>
+<p><a href="../concealing-editors/" class="xref page">Concealing editors</a></p>
 </li>
 <li>
 <p><a href="https://github.com/eclipse-che/che-operator/tree/main/editors-definitions">Editors definitions samples</a></p>
