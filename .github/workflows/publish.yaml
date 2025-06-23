@@ -23,7 +23,7 @@ jobs:
           ref: main
           path: che-website
       - name: Build che-website to website/build/che
-        run: yarn && yarn build
+        run: node --version && yarn --version && yarn && yarn build
         working-directory: che-website
 
       - name: Checkout che-docs publication branch
@@ -38,10 +38,10 @@ jobs:
           cp -R che-docs/* che-website/build/che
           cp -R static/* che-website/build/che
           
-      - name: Deploy
-        uses: peaceiris/actions-gh-pages@v4
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./che-website/build/che
-          publish_branch: publish
-          force_orphan: false
+      # - name: Deploy
+      #   uses: peaceiris/actions-gh-pages@v4
+      #   with:
+      #     github_token: ${{ secrets.GITHUB_TOKEN }}
+      #     publish_dir: ./che-website/build/che
+      #     publish_branch: publish
+      #     force_orphan: false
