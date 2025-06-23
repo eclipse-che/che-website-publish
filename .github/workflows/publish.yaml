@@ -12,6 +12,7 @@ jobs:
   build:
     name: "Build"
     runs-on: ubuntu-22.04
+    container: node:18
     steps:
       - name: Checkout local code
         uses: actions/checkout@v4
