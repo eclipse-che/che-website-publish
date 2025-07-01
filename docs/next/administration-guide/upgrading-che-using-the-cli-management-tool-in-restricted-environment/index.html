@@ -111,6 +111,12 @@
   <li class="nav-item" data-depth="4">
     <a class="nav-link" href="../../end-user-guide/url-parameter-for-container-image/">URL parameter for a container image</a>
   </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../../end-user-guide/url-parameter-for-memory-limit/">URL parameter for a memory limit</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../../end-user-guide/url-parameter-for-cpu-limit/">URL parameter for a CPU limit</a>
+  </li>
 </ul>
   </li>
 </ul>
@@ -788,7 +794,7 @@
           <a href="../../overview/introduction-to-eclipse-che/">next</a>
         </li>
         <li class="version is-latest">
-          <a href="../../../stable/overview/introduction-to-eclipse-che/">7.104.x</a>
+          <a href="../../../stable/overview/introduction-to-eclipse-che/">7.105.x</a>
         </li>
       </ul>
     </li>
@@ -813,7 +819,7 @@
   <button class="version-menu-toggle" title="Show other versions of page">next</button>
   <div class="version-menu">
     <a class="version is-current" href="./">next</a>
-    <a class="version" href="../../../stable/administration-guide/upgrading-che-using-the-cli-management-tool-in-restricted-environment/">7.104.x</a>
+    <a class="version" href="../../../stable/administration-guide/upgrading-che-using-the-cli-management-tool-in-restricted-environment/">7.105.x</a>
   </div>
 </div>
 <div class="edit-this-page"><a href="https://github.com/eclipse-che/che-docs/edit/main/modules/administration-guide/pages/upgrading-che-using-the-cli-management-tool-in-restricted-environment.adoc">Edit this Page</a></div>
@@ -873,7 +879,7 @@
 <p>An active <code>skopeo</code> session with administrative access to the private Docker registry. <a href="https://github.com/containers/skopeo#authenticating-to-a-registry">Authenticating to a registry</a>, and <a href="https://docs.redhat.com/en/documentation/openshift_container_platform/4.18/html/disconnected_environments/mirroring-in-disconnected-environments">Mirroring images for a disconnected installation</a>.</p>
 </li>
 <li>
-<p><code>chectl</code> for Che version 7.104. See <a href="../installing-the-chectl-management-tool/" class="xref page">Installing the chectl management tool</a>.</p>
+<p><code>chectl</code> for Che version 7.105. See <a href="../installing-the-chectl-management-tool/" class="xref page">Installing the chectl management tool</a>.</p>
 </li>
 </ul>
 </div>
@@ -886,11 +892,11 @@
 <div class="content">
 <pre>$ bash prepare-restricted-environment.sh \
   --devworkspace_operator_index quay.io/devfile/devworkspace-operator-index:release-digest\
-  --devworkspace_operator_version "v0.34.0" \
+  --devworkspace_operator_version "v0.35.0" \
   --prod_operator_index "registry.access.redhat.com/redhat/community-operator-index:v4.18" \
   --prod_operator_package_name "eclipse-che" \
   --prod_operator_bundle_name "eclipse-che" \
-  --prod_operator_version "v7.104.0" \
+  --prod_operator_version "v7.105.0" \
   --my_registry "<em>&lt;my_registry&gt;</em>" <i class="conum" data-value="1"></i><b>(1)</b></pre>
 </div>
 </div>
@@ -926,7 +932,7 @@
 <p>Navigate to the Che instance.</p>
 </li>
 <li>
-<p>The 7.104 version number is visible at the bottom of the page.</p>
+<p>The 7.105 version number is visible at the bottom of the page.</p>
 </li>
 </ol>
 </div>
