@@ -797,7 +797,7 @@
           <a href="../../overview/introduction-to-eclipse-che/">next</a>
         </li>
         <li class="version is-latest">
-          <a href="../../../stable/overview/introduction-to-eclipse-che/">7.106.x</a>
+          <a href="../../../stable/overview/introduction-to-eclipse-che/">7.107.x</a>
         </li>
       </ul>
     </li>
@@ -823,7 +823,7 @@
   <button class="version-menu-toggle" title="Show other versions of page">next</button>
   <div class="version-menu">
     <a class="version is-current" href="./">next</a>
-    <a class="version" href="../../../stable/administration-guide/configuring-network-policies/">7.106.x</a>
+    <a class="version" href="../../../stable/administration-guide/configuring-network-policies/">7.107.x</a>
   </div>
 </div>
 <div class="edit-this-page"><a href="https://github.com/eclipse-che/che-docs/edit/main/modules/administration-guide/pages/configuring-network-policies.adoc">Edit this Page</a></div>
@@ -893,7 +893,7 @@ The default is <code>eclipse-che</code>.</td>
 </div>
 </li>
 <li>
-<p>OPTIONAL: In case you applied <a href="https://docs.redhat.com/en/documentation/openshift_container_platform/4.18/html/networking/network-security#nw-networkpolicy-multitenant-isolation_multitenant-network-policy">Configuring multitenant isolation with network policy</a>, you also must apply <code>allow-from-openshift-apiserver</code> and <code>allow-from-workspaces-namespaces</code> NetworkPolicies to <code>eclipse-che</code>.
+<p>OPTIONAL: In case you applied <a href="https://docs.redhat.com/en/documentation/openshift_container_platform/4.18/html/network_security/network-policy#multitenant-network-policy">Configuring multitenant isolation with network policy</a>, you also must apply <code>allow-from-openshift-apiserver</code> and <code>allow-from-workspaces-namespaces</code> NetworkPolicies to <code>eclipse-che</code>.
 The <code>allow-from-openshift-apiserver</code> NetworkPolicy allows incoming traffic from <code>openshift-apiserver</code> namespace to the <code>devworkspace-webhook-server</code> enabling webhooks.
 The <code>allow-from-workspaces-namespaces</code> NetworkPolicy allows incoming traffic from each user project to <code>che-gateway</code> pod.</p>
 <div class="exampleblock">
@@ -980,7 +980,7 @@ The default is <code>eclipse-che</code>.</td>
 <p><a href="https://kubernetes.io/docs/concepts/security/multi-tenancy/#network-isolation">Network isolation</a></p>
 </li>
 <li>
-<p><a href="https://docs.redhat.com/en/documentation/openshift_container_platform/4.18/html/networking/network-security#nw-networkpolicy-multitenant-isolation_multitenant-network-policy">Configuring multitenant isolation with network policy</a></p>
+<p><a href="https://docs.redhat.com/en/documentation/openshift_container_platform/4.18/html/network_security/network-policy#multitenant-network-policy">Configuring multitenant isolation with network policy</a></p>
 </li>
 </ul>
 </div>

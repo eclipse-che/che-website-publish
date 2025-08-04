@@ -797,7 +797,7 @@
           <a href="../../overview/introduction-to-eclipse-che/">next</a>
         </li>
         <li class="version is-latest">
-          <a href="../../../stable/overview/introduction-to-eclipse-che/">7.106.x</a>
+          <a href="../../../stable/overview/introduction-to-eclipse-che/">7.107.x</a>
         </li>
       </ul>
     </li>
@@ -823,7 +823,7 @@
   <button class="version-menu-toggle" title="Show other versions of page">next</button>
   <div class="version-menu">
     <a class="version is-current" href="./">next</a>
-    <a class="version" href="../../../stable/administration-guide/checluster-custom-resource-fields-reference/">7.106.x</a>
+    <a class="version" href="../../../stable/administration-guide/checluster-custom-resource-fields-reference/">7.107.x</a>
   </div>
 </div>
 <div class="edit-this-page"><a href="https://github.com/eclipse-che/che-docs/edit/main/modules/administration-guide/pages/checluster-custom-resource-fields-reference.adoc">Edit this Page</a></div>
@@ -1198,7 +1198,7 @@ spec:
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">disableContainerBuildCapabilities</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Disables the container build capabilities. When set to <code>false</code> (the default value), the devEnvironments.security.containerSecurityContext field is ignored, and the following container SecurityContext is applied:    containerSecurityContext:    allowPrivilegeEscalation: true    capabilities:      add:      - SETGID      - SETUID</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Disables the container build capabilities. When set to <code>false</code> (the default value), the devEnvironments.security.containerSecurityContext field is ignored, and the following container SecurityContext is applied:   containerSecurityContext:    allowPrivilegeEscalation: true    capabilities:      add:      - SETGID      - SETUID</p></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
@@ -1462,6 +1462,11 @@ spec:
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">storageAccessMode</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">StorageAccessMode are the desired access modes the volume should have. It is used to specify PersistentVolume access mode type to RWO/RWX when using per-user strategy, allowing user to re-use volume across multiple workspaces.  It defaults to ReadWriteOnce if not specified</p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">storageClass</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Storage class for the Persistent Volume Claim. When omitted or left blank, a default storage class is used.</p></td>
 <td class="tableblock halign-left valign-top"></td>
@@ -1486,6 +1491,11 @@ spec:
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">claimSize</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Persistent Volume Claim size. To update the claim size, the storage class that provisions it must support resizing.</p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">storageAccessMode</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">StorageAccessMode are the desired access modes the volume should have. It is used to specify PersistentVolume access mode type to RWO/RWX when using per-user strategy, allowing user to re-use volume across multiple workspaces.  It defaults to ReadWriteOnce if not specified</p></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
