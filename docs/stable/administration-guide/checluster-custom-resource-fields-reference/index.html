@@ -7,7 +7,7 @@
     <link rel="canonical" href="https://www.eclipse.org/che/docs/stable/administration-guide/checluster-custom-resource-fields-reference/">
     <meta name="description" content="`CheCluster` Custom Resource fields reference">
     <meta name="keywords" content="administration guide, checluster, custom resource">
-    <meta name="generator" content="Antora 3.1.10">
+    <meta name="generator" content="Antora 3.1.12">
     <link rel="stylesheet" href="../../../../docs/_/css/site.css">
 <link rel="stylesheet" href="../../../../docs/_/css/extra.css">
 <link rel="stylesheet" href="../../../../docs/_/font-awesome-4.7.0/css/font-awesome.min.css">
@@ -623,6 +623,9 @@
     <a class="nav-link" href="../concealing-editors/">Concealing editors</a>
   </li>
   <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../configuring-editors-download-urls/">Configuring editors download urls</a>
+  </li>
+  <li class="nav-item" data-depth="3">
     <a class="nav-link" href="../customizing-openshift-che-consolelink-icon/">Customizing OpenShift Eclipse Che ConsoleLink icon</a>
   </li>
 </ul>
@@ -1198,6 +1201,11 @@ spec:
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">disableContainerBuildCapabilities</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Disables the container build capabilities. When set to <code>false</code> (the default value), the devEnvironments.security.containerSecurityContext field is ignored, and the following container SecurityContext is applied:   containerSecurityContext:    allowPrivilegeEscalation: true    capabilities:      add:      - SETGID      - SETUID</p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">editorsDownloadUrls</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">EditorsDownloadUrls provides a list of custom download URLs for JetBrains editors in a local-to-remote flow. It is particularly useful in disconnected or air-gapped environments, where editors cannot be downloaded from the public internet. Each entry contains an editor identifier in the <code>publisher/name/version</code> format and the corresponding download URL. Currently, this field is intended only for JetBrains editors and should not be used for other editor types.</p></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
