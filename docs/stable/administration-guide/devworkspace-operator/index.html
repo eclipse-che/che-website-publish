@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>DevWorkspace operator :: Eclipse Che Documentation</title>
+    <title>DevWorkspace Operator overview :: Eclipse Che Documentation</title>
     <link rel="canonical" href="https://www.eclipse.org/che/docs/stable/administration-guide/devworkspace-operator/">
     <meta name="description" content="DevWorkspace operator">
     <meta name="keywords" content="administration-guide, workspace operator, devworkspace">
@@ -839,32 +839,263 @@
   <div class="toc-menu"></div>
 </aside>
 <article class="doc">
-<h1 class="page">DevWorkspace operator</h1>
+<h1 class="page">DevWorkspace Operator overview</h1>
+<div id="preamble">
+<div class="sectionbody">
 <div class="paragraph">
-<p>The DevWorkspace operator extends Kubernetes to provide DevWorkspace support. It introduces:</p>
+<p>The DevWorkspace Operator (DWO) is a dependency of Che, and is an integral part of how Che functions. One of DWO&#8217;s main responsibilities is to reconcile DevWorkspace custom resources (CR).</p>
 </div>
-<div class="dlist">
-<dl>
-<dt class="hdlist1">DevWorkspace custom resource definition</dt>
-<dd>
-<p>Defines the DevWorkspace Kubernetes object from the Devfile v2 specification.</p>
-</dd>
-<dt class="hdlist1">DevWorkspace controller</dt>
-<dd>
-<p>Creates and controls the necessary Kubernetes objects to run a DevWorkspace, such as pods, services, and persistent volumes.</p>
-</dd>
-<dt class="hdlist1">DevWorkspace custom resource</dt>
-<dd>
-<p>On a cluster with the DevWorkspace operator, it is possible to create DevWorkspace custom resources (CR). A DevWorkspace CR is a Kubernetes representation of a Devfile. It defines a User workspaces in a Kubernetes cluster.</p>
-</dd>
-</dl>
+<div class="paragraph">
+<p>The DevWorkspace CR is a Kubernetes resource representation of a Che workspace. Whenever a user creates a workspace using Che in the background, Dashboard Che creates a DevWorkspace CR in the cluster. For every Che workspace, there is an underlying DevWorkspace CR on the cluster.</p>
+</div>
+<div class="paragraph">
+<p>Figure 1 shows an example of a DevWorkspace CR in a cluster:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../_images/devworkspace-operator/devworkspace-cr-example.png" alt="DevWorkspace CR example" width="624" height="465">
+</div>
+<div class="title">Figure 1. Example of a DevWorkspace CR in a cluster</div>
+</div>
+<div class="paragraph">
+<p>When creating a workspace with Che with a devfile, the DevWorkspace CR contains the devfile details. Additionally, Che adds the editor definition into the DevWorkspace CR depending on which editor was chosen for the workspace. Che will also add attributes to the DevWorkspace which further configures the workspace depending on how you configured the <code>CheCluster</code> CR.</p>
+</div>
+<div class="paragraph">
+<p>A <code>DevWorkspaceTemplate</code> is a custom resource that defines a reusable <code>spec.template</code> for DevWorkspaces.</p>
+</div>
+<div class="paragraph">
+<p>When a workspace is started, DWO reads the corresponding DevWorkspace CR and creates the necessary resources such as deployments, secrets, configmaps, routes such that at the end a workspace pod representing the development environment defined in the devfile is created.</p>
+</div>
+<div class="paragraph">
+<div class="title">Custom Resources overview</div>
+<p>The following Custom Resource Definitions are provided by the DevWorkspace Operator:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>DevWorkspace</code></p>
+</li>
+<li>
+<p><code>DevWorkspaceTemplate</code></p>
+</li>
+<li>
+<p><code>DevWorkspaceOperatorConfig</code></p>
+</li>
+<li>
+<p><code>DevWorkspaceRouting</code></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<div class="title">DevWorkspace</div>
+<p>The DevWorkspace custom resource contains details about an Che workspace. Notably, it contains devfile details and a reference to the editor definition.</p>
+</div>
+<div class="paragraph">
+<div class="title">DevWorkspaceTemplate</div>
+<p>In Che the <code>DevWorkspaceTemplate</code> custom resource is typically used to define an editor (such as Visual Studio Code - Open Source) for Che workspaces. You can use this custom resource to define reusable <code>spec.template</code> content that is reused by multiple DevWorkspaces.</p>
+</div>
+<div class="paragraph">
+<div class="title">DevWorkspaceOperatorConfig</div>
+<p>The <code>DevWorkspaceOperatorConfig</code> (DWOC) custom resource defines configuration options for the DWO. There are two different types of DWOC:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>global configuration</p>
+</li>
+<li>
+<p>non-global configuration</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>The global configuration is a DWOC custom resource named <code>devworkspace-operator-config</code> and is usually located in the DWO installation namespace. By default, the global configuration is not created upon installation. Configuration fields set in the global configuration will apply to the DWO and all DevWorkspaces. However, the DWOC configuration can be overridden by a non-global configuration.</p>
+</div>
+<div class="paragraph">
+<p>Any other DWOC custom resource than <code>devworkspace-operator-config</code> is considered to be non-global configuration. A non-global configuration does not apply to any DevWorkspaces unless the DevWorkspace contains a reference to the DWOC. If the global configuration and non-global configuration have the same fields, the non-global configuration field takes precedence.</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 1. Global DWOC and Che-owned DWOC comparison</caption>
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top"></th>
+<th class="tableblock halign-left valign-top">Global DWOC</th>
+<th class="tableblock halign-left valign-top">Che-owned DWOC</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Resource name</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>devworkspace-operator-config</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>devworkspace-config</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Namespace</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">DWO installation namespace</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Che installation namespace</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Default creation</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Not created by default upon DWO installation</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Created by default on Che installation</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Scope</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Applies to the DWO itself and all DevWorkspaces managed by DWO</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Applies to DevWorkspaces created by Che</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Precedence</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Overridden by fields set in Che-owned config</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Takes precedence over global config if both define the same field</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Primary use case</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Used to define default, broad settings that apply to DWO in general.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Used to define specific configuration for DevWorkspaces created by Che</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>For example, by default Che creates and manages a non-global DWOC in the Che namespace named <code>devworkspace-config</code>. This DWOC contains configuration specific to Che workspaces, and is maintained by Che depending on how you configure the CheCluster CR. When Che creates a workspace, Che adds a reference to the Che-owned DWOC with the <code>controller.devfile.io/devworkspace-config</code> attribute.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../_images/devworkspace-operator/devworkspace-config-attribute.png" alt="DevWorkspace config attribute example" width="624" height="280">
+</div>
+<div class="title">Figure 2. Example of DevWorkspace configuration attribute</div>
+</div>
+<div class="paragraph">
+<div class="title">DevWorkspaceRouting</div>
+<p>The <code>DevWorkspaceRouting</code> custom resource defines details about the endpoints of a DevWorkspace. Every DevWorkspace has its corresponding <code>DevWorkspaceRouting</code> object that specifies the workspace&#8217;s container endpoints. Endpoints defined from the devfile, as well as endpoints defined by the editor definition will appear in the <code>DevWorkspaceRouting</code> custom resource.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">apiVersion: controller.devfile.io/v1alpha1
+kind: DevWorkspaceRouting
+metadata:
+  annotations:
+    controller.devfile.io/devworkspace-started: 'false'
+  name: routing-workspaceb14aa33254674065
+  labels:
+    controller.devfile.io/devworkspace_id: workspaceb14aa33254674065
+spec:
+  devworkspaceId: workspaceb14aa33254674065
+  endpoints:
+    universal-developer-image:
+      - attributes:
+          cookiesAuthEnabled: true
+          discoverable: false
+          type: main
+          urlRewriteSupported: true
+        exposure: public
+        name: che-code
+        protocol: https
+        secure: true
+        targetPort: 3100
+  podSelector:
+    controller.devfile.io/devworkspace_id: workspaceb14aa33254674065
+  routingClass: che
+status:
+  exposedEndpoints:
+    ...</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_devworkspace_operators_operands"><a class="anchor" href="#_devworkspace_operators_operands"></a>DevWorkspace Operator&#8217;s operands</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The DevWorkspace Operator has two operands:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>controller deployment</p>
+</li>
+<li>
+<p>webhook deployment.</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-terminal hljs" data-lang="terminal">$ oc get pods -l 'app.kubernetes.io/part-of=devworkspace-operator' -o custom-columns=NAME:.metadata.name -n openshift-operators
+NAME
+devworkspace-controller-manager-66c6f674f5-l7rhj <i class="conum" data-value="1"></i><b>(1)</b>
+devworkspace-webhook-server-d4958d9cd-gh7vr <i class="conum" data-value="2"></i><b>(2)</b>
+devworkspace-webhook-server-d4958d9cd-rfvj6 <i class="conum" data-value="2"></i><b>(2)</b></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>The DevWorkspace controller pod, which is responsible for reconciling custom resources</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>The DevWorkspace operator webhook server pods</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<div class="title">Configuring the DevWorkspace-controller-manager deployment</div>
+<p>You can configure the <code>devworkspace-controller-manager</code> pod in the DevWorkspace Operator Subscription object:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">apiVersion: operators.coreos.com/v1alpha1
+kind: Subscription
+metadata:
+  name: devworkspace-operator
+  namespace: openshift-operators
+spec:
+  config:
+    affinity:
+      nodeAffinity: ...
+      podAffinity: ...
+    resources:
+      limits:
+        memory: ...
+        cpu: ...
+      requests:
+        memory: ...
+        cpu: ...</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Learn more about configuration in this <a href="https://github.com/operator-framework/operator-lifecycle-manager/blob/master/doc/design/subscription-config.md">documentation</a>.</p>
+</div>
+<div class="paragraph">
+<div class="title">Configuring the DevWorkspace-webhook-server deployment</div>
+<p>You can configure the <code>devworkspace-webhook-server</code> deployment in the global DWOC:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">apiVersion: controller.devfile.io/v1alpha1
+kind: DevWorkspaceOperatorConfig
+metadata:
+  name: devworkspace-operator-config
+  namespace: &lt;DWO install namespace&gt;
+config:
+  webhooks:
+    nodeSelector: &lt;map[string]string&gt;
+    replicas: &lt;int&gt;
+    tolerations: &lt;[]corev1.Toleration&gt;</code></pre>
+</div>
 </div>
 <div class="ulist">
 <div class="title">Additional resources</div>
 <ul>
 <li>
-<p><a href="https://github.com/devfile/api">Devfile API repository</a>
-:_content-type: SNIPPET</p>
+<p><a href="https://github.com/devfile/api">Devfile API repository</a></p>
 </li>
 <li>
 <p><a href="https://quay.io/repository/devfile/devworkspace-controller?tab=history"><code>quay.io/devfile/devworkspace-controller</code> container image</a></p>
@@ -873,6 +1104,8 @@
 <p><a href="https://github.com/devfile/devworkspace-operator">DevWorkspace Operator repository</a></p>
 </li>
 </ul>
+</div>
+</div>
 </div>
 </article>
   </div>
