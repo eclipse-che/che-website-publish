@@ -45,7 +45,7 @@
   </nav>
 </header>
 <div class="body">
-<div class="nav-container" data-component="docs" data-version="7.108.x">
+<div class="nav-container" data-component="docs" data-version="7.109.x">
   <aside class="nav">
     <div class="panels">
 <div class="nav-panel-menu is-active" data-panel="menu">
@@ -795,7 +795,7 @@
 <div class="nav-panel-explore" data-panel="explore">
   <div class="context">
     <span class="title">Documentation</span>
-    <span class="version">7.108.x</span>
+    <span class="version">7.109.x</span>
   </div>
   <ul class="components">
     <li class="component is-current">
@@ -805,7 +805,7 @@
           <a href="../../../next/overview/introduction-to-eclipse-che/">next</a>
         </li>
         <li class="version is-current is-latest">
-          <a href="../../overview/introduction-to-eclipse-che/">7.108.x</a>
+          <a href="../../overview/introduction-to-eclipse-che/">7.109.x</a>
         </li>
       </ul>
     </li>
@@ -828,13 +828,13 @@
   </ul>
 </nav>
 <div class="page-versions">
-  <button class="version-menu-toggle" title="Show other versions of page">7.108.x</button>
+  <button class="version-menu-toggle" title="Show other versions of page">7.109.x</button>
   <div class="version-menu">
     <a class="version" href="../../../next/administration-guide/checluster-custom-resource-fields-reference/">next</a>
-    <a class="version is-current" href="./">7.108.x</a>
+    <a class="version is-current" href="./">7.109.x</a>
   </div>
 </div>
-<div class="edit-this-page"><a href="https://github.com/eclipse-che/che-docs/edit/7.108.x/modules/administration-guide/pages/checluster-custom-resource-fields-reference.adoc">Edit this Page</a></div>
+<div class="edit-this-page"><a href="https://github.com/eclipse-che/che-docs/edit/7.109.x/modules/administration-guide/pages/checluster-custom-resource-fields-reference.adoc">Edit this Page</a></div>
 </div>
   <div class="content">
 <aside class="toc sidebar" data-title="Contents" data-levels="2">
@@ -1185,6 +1185,11 @@ spec:
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">defaultContainerResources</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">DefaultContainerResources defines the resource requirements (memory/cpu limit/request) used for container components that do not define limits or requests.</p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">defaultEditor</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">The default editor to workspace create with. It could be a plugin ID or a URI. The plugin ID must have <code>publisher/name/version</code> format. The URI must start from <code>http://</code> or <code>https://</code>.</p></td>
 <td class="tableblock halign-left valign-top"></td>
@@ -1243,6 +1248,11 @@ spec:
 <td class="tableblock halign-left valign-top"><p class="tableblock">maxNumberOfWorkspacesPerUser</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Total number of workspaces, both stopped and running, that a user can keep. The value, -1, allows users to keep an unlimited number of workspaces.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">-1</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">networking</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Configuration settings related to the workspaces networking.</p></td>
+<td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">nodeSelector</p></td>

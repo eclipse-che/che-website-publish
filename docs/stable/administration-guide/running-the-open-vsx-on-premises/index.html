@@ -45,7 +45,7 @@
   </nav>
 </header>
 <div class="body">
-<div class="nav-container" data-component="docs" data-version="7.108.x">
+<div class="nav-container" data-component="docs" data-version="7.109.x">
   <aside class="nav">
     <div class="panels">
 <div class="nav-panel-menu is-active" data-panel="menu">
@@ -795,7 +795,7 @@
 <div class="nav-panel-explore" data-panel="explore">
   <div class="context">
     <span class="title">Documentation</span>
-    <span class="version">7.108.x</span>
+    <span class="version">7.109.x</span>
   </div>
   <ul class="components">
     <li class="component is-current">
@@ -805,7 +805,7 @@
           <a href="../../../next/overview/introduction-to-eclipse-che/">next</a>
         </li>
         <li class="version is-current is-latest">
-          <a href="../../overview/introduction-to-eclipse-che/">7.108.x</a>
+          <a href="../../overview/introduction-to-eclipse-che/">7.109.x</a>
         </li>
       </ul>
     </li>
@@ -827,13 +827,13 @@
   </ul>
 </nav>
 <div class="page-versions">
-  <button class="version-menu-toggle" title="Show other versions of page">7.108.x</button>
+  <button class="version-menu-toggle" title="Show other versions of page">7.109.x</button>
   <div class="version-menu">
     <a class="version" href="../../../next/administration-guide/running-the-open-vsx-on-premises/">next</a>
-    <a class="version is-current" href="./">7.108.x</a>
+    <a class="version is-current" href="./">7.109.x</a>
   </div>
 </div>
-<div class="edit-this-page"><a href="https://github.com/eclipse-che/che-docs/edit/7.108.x/modules/administration-guide/pages/running-the-open-vsx-on-premises.adoc">Edit this Page</a></div>
+<div class="edit-this-page"><a href="https://github.com/eclipse-che/che-docs/edit/7.109.x/modules/administration-guide/pages/running-the-open-vsx-on-premises.adoc">Edit this Page</a></div>
 </div>
   <div class="content">
 <aside class="toc sidebar" data-title="Contents" data-levels="2">
@@ -866,6 +866,20 @@
 <p>Start a workspace using the Open VSX repository.</p>
 <div class="paragraph">
 <p>Create a workspace by using the following <a href="https://github.com/eclipse/openvsx">Eclipse Open VSX repository</a>.</p>
+</div>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-warning" title="Warning"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>The <a href="https://github.com/eclipse/openvsx/blob/master/.devfile.yaml">.devfile.yaml</a> includes an <code>elasticsearch</code> component that does not support IBM Power (ppc64le) or IBM Z (s390x) architectures. To successfully start the workspace on these architectures, the only option is to remove this component from the devfile. Alternatively, you can refer to  <a href="#using-oc-tool">Using OpenShift CLI tool</a> documentation, which describes how to run Open VSX separately without starting a workspace.</p>
+</div>
+</td>
+</tr>
+</table>
 </div>
 <div class="admonitionblock tip">
 <table>
@@ -1012,7 +1026,7 @@ To publish your extensions to Open VSX, update the <code>extensions.txt</code> f
 </div>
 </div>
 <div class="sect1">
-<h2 id="_using_openshift_cli_oc_tool"><a class="anchor" href="#_using_openshift_cli_oc_tool"></a>Using OpenShift CLI (<code>oc</code>) tool</h2>
+<h2 id="using-oc-tool"><a class="anchor" href="#using-oc-tool"></a>Using OpenShift CLI (<code>oc</code>) tool</h2>
 <div class="sectionbody">
 <div class="ulist">
 <div class="title">Prerequisites</div>

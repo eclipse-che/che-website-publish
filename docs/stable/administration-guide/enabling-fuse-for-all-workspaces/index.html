@@ -45,7 +45,7 @@
   </nav>
 </header>
 <div class="body">
-<div class="nav-container" data-component="docs" data-version="7.108.x">
+<div class="nav-container" data-component="docs" data-version="7.109.x">
   <aside class="nav">
     <div class="panels">
 <div class="nav-panel-menu is-active" data-panel="menu">
@@ -795,7 +795,7 @@
 <div class="nav-panel-explore" data-panel="explore">
   <div class="context">
     <span class="title">Documentation</span>
-    <span class="version">7.108.x</span>
+    <span class="version">7.109.x</span>
   </div>
   <ul class="components">
     <li class="component is-current">
@@ -805,7 +805,7 @@
           <a href="../../../next/overview/introduction-to-eclipse-che/">next</a>
         </li>
         <li class="version is-current is-latest">
-          <a href="../../overview/introduction-to-eclipse-che/">7.108.x</a>
+          <a href="../../overview/introduction-to-eclipse-che/">7.109.x</a>
         </li>
       </ul>
     </li>
@@ -828,13 +828,13 @@
   </ul>
 </nav>
 <div class="page-versions">
-  <button class="version-menu-toggle" title="Show other versions of page">7.108.x</button>
+  <button class="version-menu-toggle" title="Show other versions of page">7.109.x</button>
   <div class="version-menu">
     <a class="version" href="../../../next/administration-guide/enabling-fuse-for-all-workspaces/">next</a>
-    <a class="version is-current" href="./">7.108.x</a>
+    <a class="version is-current" href="./">7.109.x</a>
   </div>
 </div>
-<div class="edit-this-page"><a href="https://github.com/eclipse-che/che-docs/edit/7.108.x/modules/administration-guide/pages/enabling-fuse-for-all-workspaces.adoc">Edit this Page</a></div>
+<div class="edit-this-page"><a href="https://github.com/eclipse-che/che-docs/edit/7.109.x/modules/administration-guide/pages/enabling-fuse-for-all-workspaces.adoc">Edit this Page</a></div>
 </div>
   <div class="content">
 <aside class="toc sidebar" data-title="Contents" data-levels="2">
@@ -856,47 +856,6 @@
 <div class="olist arabic">
 <div class="title">Procedure</div>
 <ol class="arabic">
-<li>
-<p>Create a ConfigMap that mounts the <code>storage.conf</code> file for all user workspaces.</p>
-<div class="exampleblock">
-<div class="content">
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">kind: ConfigMap
-apiVersion: v1
-metadata:
-  name: fuse-overlay
-  namespace: eclipse-che
-  labels:
-    app.kubernetes.io/part-of: che.eclipse.org
-    app.kubernetes.io/component: workspaces-config
-  annotations:
-    controller.devfile.io/mount-as: subpath
-    controller.devfile.io/mount-path: /home/user/.config/containers/
-data:
-  storage.conf: |
-    [storage]
-    driver = "overlay"
-
-    [storage.options.overlay]
-    mount_program="/usr/bin/fuse-overlayfs"</code></pre>
-</div>
-</div>
-</div>
-</div>
-<div class="admonitionblock warning">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-warning" title="Warning"></i>
-</td>
-<td class="content">
-Creating this ConfigMap will cause all running workspaces to restart.
-</td>
-</tr>
-</table>
-</div>
-</li>
 <li>
 <p>Set the necessary annotation in the <code>spec.devEnvironments.workspacesPodAnnotations</code> field of the CheCluster custom resource.</p>
 <div class="exampleblock">
@@ -922,6 +881,33 @@ spec:
 <td class="content">
 <div class="paragraph">
 <p>For OpenShift versions before 4.15, the <code>io.openshift.podman-fuse: ""</code> annotation is also required.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>The Universal Development Image (UDI) includes the following logic in the entrypoint script to detect fuse-overlayfs and set the storage driver.
+If you use a custom image, you should add an equivalent logic the image&#8217;s entrypoint.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="nowrap">if [ ! -d "${HOME}/.config/containers" ]; then
+  mkdir -p ${HOME}/.config/containers
+  if [ -c "/dev/fuse" ] &amp;&amp; [ -f "/usr/bin/fuse-overlayfs" ]; then
+    (echo '[storage]';echo 'driver = "overlay"';echo '[storage.options.overlay]';echo 'mount_program = "/usr/bin/fuse-overlayfs"') &gt; ${HOME}/.config/containers/storage.conf
+  else
+    (echo '[storage]';echo 'driver = "vfs"') &gt; "${HOME}"/.config/containers/storage.conf
+  fi
+fi</pre>
+</div>
 </div>
 </td>
 </tr>

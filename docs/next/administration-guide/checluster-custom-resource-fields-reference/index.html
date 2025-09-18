@@ -806,7 +806,7 @@
           <a href="../../overview/introduction-to-eclipse-che/">next</a>
         </li>
         <li class="version is-latest">
-          <a href="../../../stable/overview/introduction-to-eclipse-che/">7.108.x</a>
+          <a href="../../../stable/overview/introduction-to-eclipse-che/">7.109.x</a>
         </li>
       </ul>
     </li>
@@ -832,7 +832,7 @@
   <button class="version-menu-toggle" title="Show other versions of page">next</button>
   <div class="version-menu">
     <a class="version is-current" href="./">next</a>
-    <a class="version" href="../../../stable/administration-guide/checluster-custom-resource-fields-reference/">7.108.x</a>
+    <a class="version" href="../../../stable/administration-guide/checluster-custom-resource-fields-reference/">7.109.x</a>
   </div>
 </div>
 <div class="edit-this-page"><a href="https://github.com/eclipse-che/che-docs/edit/main/modules/administration-guide/pages/checluster-custom-resource-fields-reference.adoc">Edit this Page</a></div>
@@ -1186,6 +1186,11 @@ spec:
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">defaultContainerResources</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">DefaultContainerResources defines the resource requirements (memory/cpu limit/request) used for container components that do not define limits or requests.</p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">defaultEditor</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">The default editor to workspace create with. It could be a plugin ID or a URI. The plugin ID must have <code>publisher/name/version</code> format. The URI must start from <code>http://</code> or <code>https://</code>.</p></td>
 <td class="tableblock halign-left valign-top"></td>
@@ -1244,6 +1249,11 @@ spec:
 <td class="tableblock halign-left valign-top"><p class="tableblock">maxNumberOfWorkspacesPerUser</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Total number of workspaces, both stopped and running, that a user can keep. The value, -1, allows users to keep an unlimited number of workspaces.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">-1</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">networking</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Configuration settings related to the workspaces networking.</p></td>
+<td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">nodeSelector</p></td>
