@@ -301,9 +301,6 @@
     <a class="nav-link" href="../security-best-practices/">Security best practices</a>
   </li>
   <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="../running-at-scale/">Running Eclipse&#160;Che at scale</a>
-  </li>
-  <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
     <a class="nav-link" href="../preparing-the-installation/">Preparing the installation</a>
 <ul class="nav-list">
@@ -353,6 +350,9 @@
     <a class="nav-link" href="../calculating-che-resource-requirements/">Calculating Che resource requirements</a>
   </li>
 </ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../running-at-scale/">Running Eclipse&#160;Che at scale</a>
   </li>
   <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
@@ -1051,13 +1051,13 @@ To get the latest security fixes after a Che update, rebuild your container base
 <div class="olist lowerroman">
 <ol class="lowerroman" type="i">
 <li>
-<p>Login to your Che instance as an administrator.</p>
+<p>Log in to your Che instance as an administrator.</p>
 </li>
 <li>
 <p>Start a workspace using the <a href="https://github.com/eclipse-che/che-plugin-registry">plugin registry repository</a>.</p>
 </li>
 <li>
-<p>Open a terminal and check out the Git tag that corresponds to your Che version (e.g., <code>7.87.0</code>):</p>
+<p>Open a terminal and check out the Git tag that corresponds to your Che version (for example, <code>7.87.0</code>):</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-none hljs">git checkout $PRODUCT_VERSION</code></pre>

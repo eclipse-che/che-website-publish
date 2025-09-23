@@ -301,9 +301,6 @@
     <a class="nav-link" href="../../administration-guide/security-best-practices/">Security best practices</a>
   </li>
   <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="../../administration-guide/running-at-scale/">Running Eclipse&#160;Che at scale</a>
-  </li>
-  <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
     <a class="nav-link" href="../../administration-guide/preparing-the-installation/">Preparing the installation</a>
 <ul class="nav-list">
@@ -353,6 +350,9 @@
     <a class="nav-link" href="../../administration-guide/calculating-che-resource-requirements/">Calculating Che resource requirements</a>
   </li>
 </ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../../administration-guide/running-at-scale/">Running Eclipse&#160;Che at scale</a>
   </li>
   <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
@@ -1059,8 +1059,7 @@ gitconfig</a> with the following section:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-none hljs">[http]
-    extraheader = "Authorization: Basic &lt;base64-encoded(:personal-access-token)&gt;"</code></pre>
+<pre class="highlightjs highlight"><code class="language-http hljs" data-lang="http">    extraheader = "Authorization: Basic &lt;base64-encoded(:personal-access-token)&gt;"</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -1068,14 +1067,14 @@ gitconfig</a> with the following section:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-none hljs">echo -n "extraheader = \"Authorization: Basic "$(printf ":%s" &lt;personal access token&gt; | base64)\"</code></pre>
+<pre class="highlightjs highlight"><code class="language-commandline hljs" data-lang="commandline">echo -n "extraheader = \"Authorization: Basic "$(printf ":%s" &lt;personal access token&gt; | base64)\"</code></pre>
 </div>
 </div>
 <div class="paragraph">
 <p>see <a href="https://learn.microsoft.com/en-us/azure/devops/repos/git/auth-overview?view=azure-devops&amp;tabs=Linux#personal-access-tokens">the documentation page</a> for more information.</p>
 </div>
 <div class="paragraph">
-<p>The <code>extraheader</code> configuration is needed for remote git operations to Azure Devops Server, e.g. <code>git clone</code>. This authorization method has a higher priority over the git credentials store, and as a result, the remote operations to other Git providers will fail.</p>
+<p>The <code>extraheader</code> configuration is needed for remote git operations to Azure Devops Server, for example <code>git clone</code>. This authorization method has a higher priority over the git credentials store, and as a result, the remote operations to other Git providers will fail.</p>
 </div>
 </td>
 </tr>
