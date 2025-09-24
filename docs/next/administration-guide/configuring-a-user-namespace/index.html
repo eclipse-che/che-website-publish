@@ -959,7 +959,7 @@ stringData:
 </div>
 </div>
 <div class="exampleblock">
-<div class="title">Example 4. Replicate a Secret into every user namespace and automatically mount a <code>trusted-certificates.crt</code> file into every user container by path <code>/etc/pki/ca-trust/source/anchors</code>:</div>
+<div class="title">Example 4. Replicate a Secret into every user namespace and automatically mount a <code>secret.data</code> file into every user container by path <code>/home/user/secrets</code>:</div>
 <div class="content">
 <div class="listingblock">
 <div class="content">
@@ -973,25 +973,11 @@ metadata:
     app.kubernetes.io/component: workspaces-config
   annotations:
     controller.devfile.io/mount-as: subpath
-    controller.devfile.io/mount-path: /etc/pki/ca-trust/source/anchors
+    controller.devfile.io/mount-path: /home/user/secrets
 stringData:
-  trusted-certificates.crt: |
+  secret.data: |
     ...</code></pre>
 </div>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-Run <code>update-ca-trust</code> command on workspace startup to import certificates.
-It can be achieved manually or by adding this command to a <code>postStart</code> event in a devfile.
-See the <a href="https://devfile.io/docs/2.3.0/adding-event-bindings#post-start-object">Adding event bindings in a devfile</a>.
-</td>
-</tr>
-</table>
 </div>
 </div>
 </div>
