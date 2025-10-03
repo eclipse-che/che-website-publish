@@ -45,7 +45,7 @@
   </nav>
 </header>
 <div class="body">
-<div class="nav-container" data-component="docs" data-version="7.109.x">
+<div class="nav-container" data-component="docs" data-version="7.110.x">
   <aside class="nav">
     <div class="panels">
 <div class="nav-panel-menu is-active" data-panel="menu">
@@ -300,9 +300,6 @@
     <a class="nav-link" href="./">Security best practices</a>
   </li>
   <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="../running-at-scale/">Running Eclipse&#160;Che at scale</a>
-  </li>
-  <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
     <a class="nav-link" href="../preparing-the-installation/">Preparing the installation</a>
 <ul class="nav-list">
@@ -352,6 +349,9 @@
     <a class="nav-link" href="../calculating-che-resource-requirements/">Calculating Che resource requirements</a>
   </li>
 </ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../running-at-scale/">Running Eclipse&#160;Che at scale</a>
   </li>
   <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
@@ -795,7 +795,7 @@
 <div class="nav-panel-explore" data-panel="explore">
   <div class="context">
     <span class="title">Documentation</span>
-    <span class="version">7.109.x</span>
+    <span class="version">7.110.x</span>
   </div>
   <ul class="components">
     <li class="component is-current">
@@ -805,7 +805,7 @@
           <a href="../../../next/overview/introduction-to-eclipse-che/">next</a>
         </li>
         <li class="version is-current is-latest">
-          <a href="../../overview/introduction-to-eclipse-che/">7.109.x</a>
+          <a href="../../overview/introduction-to-eclipse-che/">7.110.x</a>
         </li>
       </ul>
     </li>
@@ -826,13 +826,13 @@
   </ul>
 </nav>
 <div class="page-versions">
-  <button class="version-menu-toggle" title="Show other versions of page">7.109.x</button>
+  <button class="version-menu-toggle" title="Show other versions of page">7.110.x</button>
   <div class="version-menu">
     <a class="version" href="../../../next/administration-guide/security-best-practices/">next</a>
-    <a class="version is-current" href="./">7.109.x</a>
+    <a class="version is-current" href="./">7.110.x</a>
   </div>
 </div>
-<div class="edit-this-page"><a href="https://github.com/eclipse-che/che-docs/edit/7.109.x/modules/administration-guide/pages/security-best-practices.adoc">Edit this Page</a></div>
+<div class="edit-this-page"><a href="https://github.com/eclipse-che/che-docs/edit/7.110.x/modules/administration-guide/pages/security-best-practices.adoc">Edit this Page</a></div>
 </div>
   <div class="content">
 <aside class="toc sidebar" data-title="Contents" data-levels="2">
@@ -1209,7 +1209,7 @@ Installation instructions are available in the <a href="https://eclipse.dev/che/
 includes the embedded Open VSX registry
 which contains a limited set of extensions for the Microsoft Visual Studio Code -
 Open Source editor.
-Alternatively, cluster administrators can specify a different plugin registry in the Custom Resource, e.g.
+Alternatively, cluster administrators can specify a different plugin registry in the Custom Resource, for example
 <a href="https://open-vsx.org" class="bare">https://open-vsx.org</a> that contains thousands of extensions.
 They can also build a custom Open VSX registry.
 More details about managing IDE extensions are available in <a href="https://eclipse.dev/che/docs/stable/administration-guide/extensions-for-microsoft-visual-studio-code-open-source/">the official documentation</a>.</p>
@@ -1231,7 +1231,7 @@ More details about managing IDE extensions are available in <a href="https://ecl
 <div class="paragraph">
 <div class="title">Secrets</div>
 <p>Keep sensitive data stored as Kubernetes secrets in the users’
-namespaces confidential (e.g. Personal Access Tokens (PAT), and SSH keys).</p>
+namespaces confidential (for example Personal Access Tokens (PAT), and SSH keys).</p>
 </div>
 <div class="paragraph">
 <div class="title">Git repositories</div>
