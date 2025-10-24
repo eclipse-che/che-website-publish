@@ -1126,7 +1126,10 @@ spec:
     components:<i class="conum" data-value="6"></i><b>(6)</b>
       - name: tooling-container
         container:
-          image: quay.io/devfile/universal-developer-image:ubi9-latest</code></pre>
+          image: quay.io/devfile/universal-developer-image:ubi9-latest
+          env:
+            - name: CHE_DASHBOARD_URL
+              value: https://<em>&lt;che_fqdn&gt;</em>/dashboard/ <i class="conum" data-value="7"></i><b>(7)</b></code></pre>
 </div>
 </div>
 <div class="colist arabic">
@@ -1154,6 +1157,10 @@ spec:
 <tr>
 <td><i class="conum" data-value="6"></i><b>6</b></td>
 <td>List of components such as workspace containers and volume components.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="7"></i><b>7</b></td>
+<td>URL to Che dashboard</td>
 </tr>
 </table>
 </div>
