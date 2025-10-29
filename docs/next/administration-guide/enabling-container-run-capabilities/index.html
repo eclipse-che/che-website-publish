@@ -3,10 +3,9 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>The Woopra telemetry plugin :: Eclipse Che Documentation</title>
-    <link rel="canonical" href="https://www.eclipse.org/che/docs/stable/administration-guide/the-woopra-telemetry-plugin/">
-    <meta name="description" content="The Woopra telemetry plugin">
-    <meta name="keywords" content="extensions, telemetry">
+    <title>Enabling container run capabilities :: Eclipse Che Documentation</title>
+    <meta name="description" content="Enabling container run capabilities">
+    <meta name="keywords" content="administration-guide, container, podman, nested containers">
     <meta name="generator" content="Antora 3.1.14">
     <link rel="stylesheet" href="../../../../docs/_/css/site.css">
 <link rel="stylesheet" href="../../../../docs/_/css/extra.css">
@@ -494,8 +493,8 @@
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="../configuring-allowed-urls-for-cloud-development-environments/">Configuring allowed URLs for Cloud Development Environments</a>
   </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../enabling-container-run-capabilities/">Enabling container run capabilities</a>
+  <li class="nav-item is-current-page" data-depth="3">
+    <a class="nav-link" href="./">Enabling container run capabilities</a>
   </li>
 </ul>
   </li>
@@ -542,8 +541,8 @@
     <button class="nav-item-toggle"></button>
     <a class="nav-link" href="../configuring-observability/">Configuring observability</a>
 <ul class="nav-list">
-  <li class="nav-item is-current-page" data-depth="3">
-    <a class="nav-link" href="./">The Woopra telemetry plugin</a>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../the-woopra-telemetry-plugin/">The Woopra telemetry plugin</a>
   </li>
   <li class="nav-item" data-depth="3">
     <button class="nav-item-toggle"></button>
@@ -827,95 +826,94 @@
     <li><a href="../../overview/introduction-to-eclipse-che/">Documentation</a></li>
     <li>Administration Guide</li>
     <li><a href="../configuring-che/">Configuring Che</a></li>
-    <li><a href="../configuring-observability/">Configuring observability</a></li>
-    <li><a href="./">The Woopra telemetry plugin</a></li>
+    <li><a href="../configuring-workspaces-globally/">Configuring workspaces globally</a></li>
+    <li><a href="./">Enabling container run capabilities</a></li>
   </ul>
 </nav>
 <div class="page-versions">
   <button class="version-menu-toggle" title="Show other versions of page">next</button>
   <div class="version-menu">
     <a class="version is-current" href="./">next</a>
-    <a class="version" href="../../../stable/administration-guide/the-woopra-telemetry-plugin/">7.110.x</a>
+    <a class="version is-missing" href="../../../stable/overview/introduction-to-eclipse-che/">7.110.x</a>
   </div>
 </div>
-<div class="edit-this-page"><a href="https://github.com/eclipse-che/che-docs/edit/main/modules/administration-guide/pages/the-woopra-telemetry-plugin.adoc">Edit this Page</a></div>
+<div class="edit-this-page"><a href="https://github.com/eclipse-che/che-docs/edit/main/modules/administration-guide/pages/enabling-container-run-capabilities.adoc">Edit this Page</a></div>
 </div>
   <div class="content">
 <aside class="toc sidebar" data-title="Contents" data-levels="2">
   <div class="toc-menu"></div>
 </aside>
 <article class="doc">
-<h1 class="page">The Woopra telemetry plugin</h1>
+<h1 class="page">Enabling container run capabilities</h1>
 <div class="paragraph">
-<p>The <a href="https://github.com/che-incubator/devworkspace-telemetry-woopra-plugin">Woopra Telemetry Plugin</a> is a plugin built to send telemetry from a Eclipse&#160;Che installation to Segment and Woopra.
-This plugin is used by <a href="https://workspaces.openshift.com">Eclipse Che hosted by Red Hat</a>, but any Eclipse&#160;Che deployment can take advantage of this plugin.
-There are no dependencies other than a valid Woopra domain and Segment Write key.
-The devfile v2 for the plugin, <a href="https://raw.githubusercontent.com/che-incubator/devworkspace-telemetry-woopra-plugin/main/plugin.yaml">plugin.yaml</a>, has four environment variables that can be passed to the plugin:</p>
+<p>You can enable container run capabilities in Che workspaces to
+allow running nested containers using tools like Podman. This feature leverages Linux kernel
+user namespaces for isolation, so that users can build and run container
+images within their workspaces.</p>
 </div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>WOOPRA_DOMAIN</code> - The Woopra domain to send events to.</p>
-</li>
-<li>
-<p><code>SEGMENT_WRITE_KEY</code> - The write key to send events to Segment and Woopra.</p>
-</li>
-<li>
-<p><code>WOOPRA_DOMAIN_ENDPOINT</code> - If you prefer not to pass in the Woopra domain directly, the plugin will get it from a supplied HTTP endpoint that returns the Woopra Domain.</p>
-</li>
-<li>
-<p><code>SEGMENT_WRITE_KEY_ENDPOINT</code> - If you prefer not to pass in the Segment write key directly, the plugin will get it from a supplied HTTP endpoint that returns the Segment write key.</p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p>To enable the Woopra plugin on the Eclipse&#160;Che installation:</p>
-</div>
-<div class="ulist">
-<div class="title">Procedure</div>
-<ul>
-<li>
-<p>Deploy the <code>plugin.yaml</code> devfile v2 file to an HTTP server with the environment variables set correctly.</p>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>Configure the <code>CheCluster</code> Custom Resource. See <a href="../using-the-cli-to-configure-the-checluster-custom-resource/" class="xref page">Using the CLI to configure the CheCluster Custom Resource</a>.</p>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">spec:
-  devEnvironments:
-    defaultPlugins:
-    - editor: eclipse/che-theia/next     <i class="conum" data-value="1"></i><b>(1)</b>
-      plugins:                           <i class="conum" data-value="2"></i><b>(2)</b>
-      - 'https://your-web-server/plugin.yaml'</code></pre>
-</div>
-</div>
-<div class="colist arabic">
+<div class="admonitionblock important">
 <table>
 <tr>
-<td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>The <code>editorId</code> to set the telemetry plugin for.</td>
-</tr>
-<tr>
-<td><i class="conum" data-value="2"></i><b>2</b></td>
-<td>The URL to the telemetry plugin&#8217;s devfile v2 definition.</td>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Previously created workspaces can not be started after enabling this feature. Users will need to create new workspaces.</p>
+</div>
+</td>
 </tr>
 </table>
 </div>
-</li>
-</ol>
-</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>This feature is available on OpenShift 4.20 and later versions.</p>
 </li>
 </ul>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="ulist">
+<div class="title">Prerequisites</div>
+<ul>
+<li>
+<p>An active <code>kubectl</code> session with administrative permissions to the destination Kubernetes cluster. See <a href="https://kubernetes.io/docs/reference/kubectl/overview/">Overview of kubectl</a>.</p>
+</li>
+<li>
+<p>An instance of Che running in Kubernetes.</p>
+</li>
+</ul>
+</div>
+<div class="olist arabic">
+<div class="title">Procedure</div>
+<ol class="arabic">
+<li>
+<p>Configure the <code>CheCluster</code> custom resource to enable container run capabilities:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">kubectl patch checluster/eclipse-che -n eclipse-che \
+  --type='merge' -p \
+  '{"spec":{"devEnvironments":{"disableContainerRunCapabilities":false}}}'</code></pre>
+</div>
+</div>
+</li>
+</ol>
 </div>
 <div class="ulist">
 <div class="title">Additional resources</div>
 <ul>
 <li>
-<p><a href="../using-chectl-to-configure-the-checluster-custom-resource-during-installation/" class="xref page">Using chectl to configure the <code>CheCluster</code> Custom Resource during installation</a></p>
-</li>
-<li>
-<p><a href="../using-the-cli-to-configure-the-checluster-custom-resource/" class="xref page">Using the CLI to configure the CheCluster Custom Resource</a></p>
+<p><a href="https://docs.redhat.com/en/documentation/openshift_container_platform/4.20/html-single/release_notes/index#ocp-release-notes-machine-config-operator-namespace_release-notes4.18/authentication/managing-security-context-constraints.html">Linux user namespace support</a></p>
 </li>
 </ul>
 </div>
