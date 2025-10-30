@@ -1006,7 +1006,7 @@ This command returns CA bundle certificates in PEM format:</p>
 This command returns Che CA bundle certificates in PEM format:</p>
 <div class="listingblock white-space-pre">
 <div class="content">
-<pre class="nowrap">kubectl get configmap che-trusted-ca-certs \
+<pre class="nowrap">kubectl get configmap ca-certs-merged \
     --namespace=<em>&lt;workspace_namespace&gt;</em> \
     --output='jsonpath={.data.tls-ca-bundle\.pem}'</pre>
 </div>
@@ -1043,6 +1043,16 @@ This command returns Che CA bundle certificates in PEM format:</p>
 <pre class="nowrap">kubectl exec <em>&lt;workspace_pod_name&gt;</em> \
     --namespace=<em>&lt;workspace_namespace&gt;</em> \
     -- cat /etc/pki/ca-trust/extracted/pem/tls-ca-bundle.pem</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Or if <code>disableWorkspaceCaBundleMount</code> set to <code>true</code>:</p>
+</div>
+<div class="listingblock white-space-pre">
+<div class="content">
+<pre class="nowrap">kubectl exec <em>&lt;workspace_pod_name&gt;</em> \
+    --namespace=<em>&lt;workspace_namespace&gt;</em> \
+    -- cat /public-certs/tls-ca-bundle.pem</pre>
 </div>
 </div>
 </li>
