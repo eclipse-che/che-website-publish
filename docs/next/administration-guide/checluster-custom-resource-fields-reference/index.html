@@ -1184,6 +1184,11 @@ spec:
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">containerRunConfiguration</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Container run configuration.</p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">defaultComponents</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Default components applied to DevWorkspaces. These default components are meant to be used when a Devfile, that does not contain any components.</p></td>
 <td class="tableblock halign-left valign-top"></td>
@@ -1217,6 +1222,11 @@ spec:
 <td class="tableblock halign-left valign-top"><p class="tableblock">disableContainerBuildCapabilities</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Disables the container build capabilities. When set to <code>false</code> (the default value), the devEnvironments.security.containerSecurityContext field is ignored, and the following container SecurityContext is applied:   containerSecurityContext:    allowPrivilegeEscalation: true    capabilities:      add:      - SETGID      - SETUID</p></td>
 <td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">disableContainerRunCapabilities</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Disables container run capabilities. Can be enabled on OpenShift version 4.20 or later. When set to <code>false</code>, the value from <code>devEnvironments.security.containerSecurityContext</code> is ignored, and instead the SecurityContext defined in <code>devEnvironments.containerRunConfiguration.containerSecurityContext</code> is applied.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">true</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">editorsDownloadUrls</p></td>
