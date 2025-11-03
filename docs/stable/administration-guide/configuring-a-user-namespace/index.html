@@ -45,7 +45,7 @@
   </nav>
 </header>
 <div class="body">
-<div class="nav-container" data-component="docs" data-version="7.110.x">
+<div class="nav-container" data-component="docs" data-version="7.111.x">
   <aside class="nav">
     <div class="panels">
 <div class="nav-panel-menu is-active" data-panel="menu">
@@ -493,6 +493,9 @@
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="../configuring-allowed-urls-for-cloud-development-environments/">Configuring allowed URLs for Cloud Development Environments</a>
   </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../enabling-container-run-capabilities/">Enabling container run capabilities</a>
+  </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="2">
@@ -795,7 +798,7 @@
 <div class="nav-panel-explore" data-panel="explore">
   <div class="context">
     <span class="title">Documentation</span>
-    <span class="version">7.110.x</span>
+    <span class="version">7.111.x</span>
   </div>
   <ul class="components">
     <li class="component is-current">
@@ -805,7 +808,7 @@
           <a href="../../../next/overview/introduction-to-eclipse-che/">next</a>
         </li>
         <li class="version is-current is-latest">
-          <a href="../../overview/introduction-to-eclipse-che/">7.110.x</a>
+          <a href="../../overview/introduction-to-eclipse-che/">7.111.x</a>
         </li>
       </ul>
     </li>
@@ -828,13 +831,13 @@
   </ul>
 </nav>
 <div class="page-versions">
-  <button class="version-menu-toggle" title="Show other versions of page">7.110.x</button>
+  <button class="version-menu-toggle" title="Show other versions of page">7.111.x</button>
   <div class="version-menu">
     <a class="version" href="../../../next/administration-guide/configuring-a-user-namespace/">next</a>
-    <a class="version is-current" href="./">7.110.x</a>
+    <a class="version is-current" href="./">7.111.x</a>
   </div>
 </div>
-<div class="edit-this-page"><a href="https://github.com/eclipse-che/che-docs/edit/7.110.x/modules/administration-guide/pages/configuring-a-user-namespace.adoc">Edit this Page</a></div>
+<div class="edit-this-page"><a href="https://github.com/eclipse-che/che-docs/edit/7.111.x/modules/administration-guide/pages/configuring-a-user-namespace.adoc">Edit this Page</a></div>
 </div>
   <div class="content">
 <aside class="toc sidebar" data-title="Contents" data-levels="2">
@@ -843,12 +846,15 @@
 <article class="doc">
 <h1 class="page">Configuring a user namespace</h1>
 <div class="paragraph">
-<p>This procedure walks you through the process of using Che
-to replicate <code>ConfigMaps</code>, <code>Secrets</code>, <code>PersistentVolumeClaim</code> and other Kubernetes objects from <code>eclipse-che</code> namespace to numerous user-specific namespaces. The Che automates the synchronization of important configuration data such as shared credentials, configuration files, and certificates to user namespaces.</p>
+<p>Learn how to use Che
+to synchronize <code>ConfigMaps</code>, <code>Secrets</code>, <code>PersistentVolumeClaim</code> and other Kubernetes objects
+from <code>eclipse-che</code> namespace to numerous user-specific namespaces.
+The Che automates the synchronization of important configuration data, such as
+shared credentials, configuration files, and certificates to user namespaces.</p>
 </div>
 <div class="paragraph">
 <p>If you make changes to a Kubernetes resource in an eclipse-che namespace,
-Che will immediately replicate the changes across all users namespaces.
+Che will immediately synchronize the changes across all users namespaces.
 In reverse, if a Kubernetes resource is modified in a user namespace,
 Che will immediately revert the changes.</p>
 </div>
@@ -856,10 +862,31 @@ Che will immediately revert the changes.</p>
 <div class="title">Procedure</div>
 <ol class="arabic">
 <li>
-<p>Create the <code>ConfigMap</code> below to replicate into every user namespace.
-To enhance the configurability, you can customize the <code>ConfigMap</code> by adding additional labels and annotations.
-By default, the ConfigMap is automatically mounted into user workspaces.
-If you do not want the ConfigMap to be mounted, explicitly add the following labels to override the behavior:</p>
+<p>Create the <code>ConfigMap</code> below to create and mount it into every workspace.</p>
+<div class="exampleblock">
+<div class="content">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">kind: ConfigMap
+apiVersion: v1
+metadata:
+  name: che-user-configmap
+  namespace: eclipse-che
+  labels:
+    app.kubernetes.io/part-of: che.eclipse.org
+    app.kubernetes.io/component: workspaces-config
+data:
+  ...</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>To enhance the configurability, you can customize the <code>ConfigMap</code> by adding additional labels and annotations.</p>
+</div>
+<div class="paragraph">
+<p>Add the following labels if you do not want the ConfigMap to be mounted automatically:</p>
+</div>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">controller.devfile.io/watch-configmap: "false"
@@ -867,63 +894,45 @@ controller.devfile.io/mount-to-devworkspace: "false"</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>See the <a href="https://github.com/devfile/devworkspace-operator/blob/main/docs/additional-configuration.adoc#automatically-mounting-volumes-configmaps-and-secrets">Automatically mounting volumes, configmaps, and secrets</a>
+<p>Add the annotation below if you want the ConfigMap to be retained in a user namespace
+after being deleted from eclipse-che namespace:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">che.eclipse.org/sync-retain-on-delete: "true"</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>See the <a href="https://github.com/devfile/devworkspace-operator/blob/main/docs/additional-configuration.adoc#automatically-mounting-volumes-configmaps-and-secrets">mounting volumes, configmaps, and secrets</a>
 for other possible labels and annotations.</p>
-</div>
-<div class="exampleblock">
-<div class="title">Example 1. Replicate a ConfigMap into every user namespace:</div>
-<div class="content">
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">kind: ConfigMap
-apiVersion: v1
-metadata:
-  name: che-user-configmap
-  namespace: eclipse-che
-  labels:
-    app.kubernetes.io/part-of: che.eclipse.org
-    app.kubernetes.io/component: workspaces-config
-    controller.devfile.io/watch-configmap: "false"
-    controller.devfile.io/mount-to-devworkspace: "false"
-data:
-  ...</code></pre>
-</div>
-</div>
-</div>
-</div>
-<div class="exampleblock">
-<div class="title">Example 2. Replicate a ConfigMap into every user namespace and automatically mount a <code>settings.xml</code> file into every user container by path <code>/home/user/.m2</code>:</div>
-<div class="content">
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">kind: ConfigMap
-apiVersion: v1
-metadata:
-  name: che-user-configmap
-  namespace: eclipse-che
-  labels:
-    app.kubernetes.io/part-of: che.eclipse.org
-    app.kubernetes.io/component: workspaces-config
-  annotations:
-    controller.devfile.io/mount-as: subpath
-    controller.devfile.io/mount-path: /home/user/.m2
-data:
-  settings.xml: |
-    &lt;settings xmlns="http://maven.apache.org/SETTINGS/1.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.0.0 https://maven.apache.org/xsd/settings-1.0.0.xsd"&gt;
-      &lt;localRepository&gt;/home/user/.m2/repository&lt;/localRepository&gt;
-      &lt;interactiveMode&gt;true&lt;/interactiveMode&gt;
-      &lt;offline&gt;false&lt;/offline&gt;
-    &lt;/settings&gt;</code></pre>
-</div>
-</div>
-</div>
 </div>
 </li>
 <li>
-<p>Create the <code>Secret</code> below to replicate into every user namespace.
-To enhance the configurability, you can customize the <code>Secret</code> by adding additional labels and annotations.
-By default, the Secret is automatically mounted into user workspaces.
-If you do not want the Secret to be mounted, explicitly add the following labels to override the behavior:</p>
+<p>Create the <code>Secret</code> below to create and mount it into every workspace.</p>
+<div class="exampleblock">
+<div class="content">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">kind: Secret
+apiVersion: v1
+metadata:
+  name: che-user-secret
+  namespace: eclipse-che
+  labels:
+    app.kubernetes.io/part-of: che.eclipse.org
+    app.kubernetes.io/component: workspaces-config
+stringData:
+    ...</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>To enhance the configurability, you can customize the <code>Secret</code> by adding additional labels and annotations.</p>
+</div>
+<div class="paragraph">
+<p>Add the labels if you do not want the Secret to be mounted automatically:</p>
+</div>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">controller.devfile.io/watch-secret: "false"
@@ -931,88 +940,21 @@ controller.devfile.io/mount-to-devworkspace: "false"</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>See the <a href="https://github.com/devfile/devworkspace-operator/blob/main/docs/additional-configuration.adoc#automatically-mounting-volumes-configmaps-and-secrets">Automatically mounting volumes, configmaps, and secrets</a>
+<p>Add the annotation below if you want the Secret to be retained in a user namespace
+after being deleted from eclipse-che namespace:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">che.eclipse.org/sync-retain-on-delete: "true"</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>See the <a href="https://github.com/devfile/devworkspace-operator/blob/main/docs/additional-configuration.adoc#automatically-mounting-volumes-configmaps-and-secrets">mounting volumes, configmaps, and secrets</a>
 for other possible labels and annotations.</p>
-</div>
-<div class="exampleblock">
-<div class="title">Example 3. Replicate a Secret into every user namespace:</div>
-<div class="content">
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">kind: Secret
-apiVersion: v1
-metadata:
-  name: che-user-secret
-  namespace: eclipse-che
-  labels:
-    app.kubernetes.io/part-of: che.eclipse.org
-    app.kubernetes.io/component: workspaces-config
-    controller.devfile.io/watch-secret: "false"
-    controller.devfile.io/mount-to-devworkspace: "false"
-  annotations:
-    controller.devfile.io/mount-as: env
-stringData:
-  ...</code></pre>
-</div>
-</div>
-</div>
-</div>
-<div class="exampleblock">
-<div class="title">Example 4. Replicate a Secret into every user namespace and automatically mount a <code>secret.data</code> file into every user container by path <code>/home/user/secrets</code>:</div>
-<div class="content">
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">kind: Secret
-apiVersion: v1
-metadata:
-  name: che-user-secret
-  namespace: eclipse-che
-  labels:
-    app.kubernetes.io/part-of: che.eclipse.org
-    app.kubernetes.io/component: workspaces-config
-  annotations:
-    controller.devfile.io/mount-as: subpath
-    controller.devfile.io/mount-path: /home/user/secrets
-stringData:
-  secret.data: |
-    ...</code></pre>
-</div>
-</div>
-</div>
-</div>
-<div class="exampleblock">
-<div class="title">Example 5. Replicate a Secret into every user namespace and automatically mount as environment variables into every user container:</div>
-<div class="content">
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">kind: Secret
-apiVersion: v1
-metadata:
-  name: che-user-secret
-  namespace: eclipse-che
-  labels:
-    app.kubernetes.io/part-of: che.eclipse.org
-    app.kubernetes.io/component: workspaces-config
-  annotations:
-    controller.devfile.io/mount-as: env
-stringData:
-  ENV_VAR_1: value_1
-  ENV_VAR_2: value_2</code></pre>
-</div>
-</div>
-</div>
 </div>
 </li>
 <li>
-<p>Create the <code>PersistentVolumeClaim</code> below to replicate it to every user namespace.</p>
-<div class="paragraph">
-<p>To enhance the configurability, you can customize the <code>PersistentVolumeClaim</code> by adding additional labels and annotations.
-See the <a href="https://github.com/devfile/devworkspace-operator/blob/main/docs/additional-configuration.adoc#automatically-mounting-volumes-configmaps-and-secrets">Automatically mounting volumes, configmaps, and secrets</a>
-for other possible labels and annotations.</p>
-</div>
-<div class="paragraph">
-<p>To modify the <code>PersistentVolumeClaim</code>, delete it and create a new one in eclipse-che namespace.</p>
-</div>
+<p>Create the <code>PersistentVolumeClaim</code> below to create it to every user namespace.</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">apiVersion: v1
@@ -1027,33 +969,21 @@ spec:
   ...</code></pre>
 </div>
 </div>
-<div class="exampleblock">
-<div class="title">Example 6. Mounting a <code>PersistentVolumeClaim</code> to a user workspace:</div>
-<div class="content">
+<div class="paragraph">
+<p>To enhance the configurability, you can customize the <code>PersistentVolumeClaim</code> by adding additional labels and annotations.</p>
+</div>
+<div class="paragraph">
+<p>The <code>PersistentVolumeClaim</code> is not deleted in a user namespace by default, if the one from eclipse-che is deleted.
+Add the annotation below if you want the <code>PersistentVolumeClaim</code> to be deleted in a user namespace as well:</p>
+</div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">apiVersion: v1
-kind: PersistentVolumeClaim
-metadata:
-  name: che-user-pvc
-  namespace: eclipse-che
-  labels:
-    app.kubernetes.io/part-of: che.eclipse.org
-    app.kubernetes.io/component: workspaces-config
-    controller.devfile.io/mount-to-devworkspace: 'true'
-  annotations:
-    controller.devfile.io/mount-path: /home/user/data
-    controller.devfile.io/read-only: 'true'
-spec:
-  accessModes:
-    - ReadWriteOnce
-  resources:
-    requests:
-      storage: 5Gi
-  volumeMode: Filesystem</code></pre>
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">che.eclipse.org/sync-retain-on-delete: "false"</code></pre>
 </div>
 </div>
-</div>
+<div class="paragraph">
+<p>See the <a href="https://github.com/devfile/devworkspace-operator/blob/main/docs/additional-configuration.adoc#automatically-mounting-volumes-configmaps-and-secrets">mounting volumes, configmaps, and secrets</a>
+for other possible labels and annotations.</p>
 </div>
 </li>
 <li>
@@ -1101,7 +1031,7 @@ parameters:
 <p>The namespace name in objects will be replaced with the user&#8217;s namespace name during synchronization.</p>
 </div>
 <div class="exampleblock">
-<div class="title">Example 7. Replicating Kubernetes resources to a user namespace:</div>
+<div class="title">Example 1. Replicating Kubernetes resources to a user namespace:</div>
 <div class="content">
 <div class="listingblock">
 <div class="content">
