@@ -45,7 +45,7 @@
   </nav>
 </header>
 <div class="body">
-<div class="nav-container" data-component="docs" data-version="7.111.x">
+<div class="nav-container" data-component="docs" data-version="7.112.x">
   <aside class="nav">
     <div class="panels">
 <div class="nav-panel-menu is-active" data-panel="menu">
@@ -798,7 +798,7 @@
 <div class="nav-panel-explore" data-panel="explore">
   <div class="context">
     <span class="title">Documentation</span>
-    <span class="version">7.111.x</span>
+    <span class="version">7.112.x</span>
   </div>
   <ul class="components">
     <li class="component is-current">
@@ -808,7 +808,7 @@
           <a href="../../../next/overview/introduction-to-eclipse-che/">next</a>
         </li>
         <li class="version is-current is-latest">
-          <a href="../../overview/introduction-to-eclipse-che/">7.111.x</a>
+          <a href="../../overview/introduction-to-eclipse-che/">7.112.x</a>
         </li>
       </ul>
     </li>
@@ -831,13 +831,13 @@
   </ul>
 </nav>
 <div class="page-versions">
-  <button class="version-menu-toggle" title="Show other versions of page">7.111.x</button>
+  <button class="version-menu-toggle" title="Show other versions of page">7.112.x</button>
   <div class="version-menu">
     <a class="version" href="../../../next/administration-guide/checluster-custom-resource-fields-reference/">next</a>
-    <a class="version is-current" href="./">7.111.x</a>
+    <a class="version is-current" href="./">7.112.x</a>
   </div>
 </div>
-<div class="edit-this-page"><a href="https://github.com/eclipse-che/che-docs/edit/7.111.x/modules/administration-guide/pages/checluster-custom-resource-fields-reference.adoc">Edit this Page</a></div>
+<div class="edit-this-page"><a href="https://github.com/eclipse-che/che-docs/edit/7.112.x/modules/administration-guide/pages/checluster-custom-resource-fields-reference.adoc">Edit this Page</a></div>
 </div>
   <div class="content">
 <aside class="toc sidebar" data-title="Contents" data-levels="2">
@@ -858,13 +858,44 @@
 <div class="ulist">
 <ul>
 <li>
+<p><a href="#checluster-custom-resource-devEnvironments-allowedSources-settings"><code>allowedSources</code> options.</a></p>
+</li>
+<li>
+<p><a href="#checluster-custom-resource-devEnvironments-containerBuildConfiguration-settings"><code>containerBuildConfiguration</code> options.</a></p>
+</li>
+<li>
+<p><a href="#checluster-custom-resource-devEnvironments-containerRunConfiguration-settings"><code>containerRunConfiguration</code> options.</a></p>
+</li>
+<li>
 <p><a href="#checluster-custom-resource-devEnvironments-defaultNamespace-settings"><code>defaultNamespace</code> options.</a></p>
 </li>
 <li>
 <p><a href="#checluster-custom-resource-devEnvironments-defaultPlugins-settings"><code>defaultPlugins</code> options.</a></p>
 </li>
 <li>
+<p><a href="#checluster-custom-resource-devEnvironments-editorsDownloadUrls-settings"><code>editorsDownloadUrls</code> options.</a></p>
+</li>
+<li>
 <p><a href="#checluster-custom-resource-devEnvironments-gatewayContainer-settings"><code>gatewayContainer</code> options.</a></p>
+</li>
+<li>
+<p><a href="#checluster-custom-resource-devEnvironments-networking-settings"><code>networking</code> options.</a></p>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="#checluster-custom-resource-devEnvironments-networking-externalTLSConfig-settings"><code>externalTLSConfig</code> options.</a></p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><a href="#checluster-custom-resource-devEnvironments-persistUserHome-settings"><code>persistUserHome</code> options.</a></p>
+</li>
+<li>
+<p><a href="#checluster-custom-resource-devEnvironments-projectCloneContainer-settings"><code>projectCloneContainer</code> options.</a></p>
+</li>
+<li>
+<p><a href="#checluster-custom-resource-devEnvironments-security-settings"><code>security</code> options.</a></p>
 </li>
 <li>
 <p><a href="#checluster-custom-resource-devEnvironments-storage-settings"><code>storage</code> options.</a></p>
@@ -883,7 +914,7 @@
 <p><a href="#checluster-custom-resource-devEnvironments-trustedCerts-settings"><code>trustedCerts</code> options.</a></p>
 </li>
 <li>
-<p><a href="#checluster-custom-resource-devEnvironments-containerBuildConfiguration-settings"><code>containerBuildConfiguration</code> options.</a></p>
+<p><a href="#checluster-custom-resource-devEnvironments-user-settings"><code>user</code> options.</a></p>
 </li>
 </ul>
 </div>
@@ -1020,6 +1051,9 @@
 <p><a href="#checluster-custom-resource-components-dashboard-headerMessage-settings"><code>headerMessage</code> options.</a></p>
 </li>
 <li>
+<p><a href="#checluster-custom-resource-components-dashboard-branding-settings"><code>branding</code> options.</a></p>
+</li>
+<li>
 <p><a href="#checluster-custom-resource-components-common-deployment-settings"><code>deployment</code> options.</a></p>
 <div class="ulist">
 <ul>
@@ -1090,6 +1124,9 @@
 <ul>
 <li>
 <p><a href="#checluster-custom-resource-networking-auth-gateway-settings"><code>gateway</code> options.</a></p>
+</li>
+<li>
+<p><a href="#checluster-custom-resource-networking-auth-advancedAuthorization-settings"><code>advancedAuthorization</code> options.</a></p>
 <div class="ulist">
 <ul>
 <li>
@@ -1349,8 +1386,84 @@ spec:
 </tr>
 </tbody>
 </table>
+<table id="checluster-custom-resource-devEnvironments-allowedSources-settings" class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 2. <code>allowedSources</code> options.</caption>
+<colgroup>
+<col style="width: 20%;">
+<col style="width: 50%;">
+<col style="width: 30%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Property</th>
+<th class="tableblock halign-left valign-top">Description</th>
+<th class="tableblock halign-left valign-top">Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">urls</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The list of approved URLs for starting Cloud Development Environments (CDEs). CDEs can only be initiated from these URLs. Wildcards <code><strong></code> are supported in URLs, allowing flexible matching for specific URL patterns. For instance, <code><a href="https://example.com/" class="bare">https://example.com/</a></strong></code> would allow CDEs to be initiated from any path within 'example.com'.</p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+</tbody>
+</table>
+<table id="checluster-custom-resource-devEnvironments-containerBuildConfiguration-settings" class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 3. <code>containerBuildConfiguration</code> options.</caption>
+<colgroup>
+<col style="width: 20%;">
+<col style="width: 50%;">
+<col style="width: 30%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Property</th>
+<th class="tableblock halign-left valign-top">Description</th>
+<th class="tableblock halign-left valign-top">Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">openShiftSecurityContextConstraint</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">OpenShift security context constraint to build containers.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">"container-build"</p></td>
+</tr>
+</tbody>
+</table>
+<table id="checluster-custom-resource-devEnvironments-containerRunConfiguration-settings" class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 4. <code>containerRunConfiguration</code> options.</caption>
+<colgroup>
+<col style="width: 20%;">
+<col style="width: 50%;">
+<col style="width: 30%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Property</th>
+<th class="tableblock halign-left valign-top">Description</th>
+<th class="tableblock halign-left valign-top">Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">containerSecurityContext</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">SecurityContext applied to all workspace containers when run capabilities are enabled. The default <code>procMount: "Unmasked"</code> is set because the pod runs in a user namespace, which safely isolates the container&#8217;s <code>/proc</code> from the host. This allows the container to modify its own sysctl settings for configuring networking for nested containers.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">{  "allowPrivilegeEscalation": true,  "capabilities": {    "add": [      "SETGID",      "SETUID"    ]  },  "procMount": "Unmasked"}</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">openShiftSecurityContextConstraint</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Specifies the OpenShift SecurityContextConstraint used to run containers.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">"container-run"</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">workspacesPodAnnotations</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Extra annotations applied to all workspace pods, in addition to those defined in <code>devEnvironments.workspacePodAnnotations</code>. Enables <code>/dev/fuse</code> for access to the fuse driver and <code>/dev/net/tun</code> for safe network access.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">{  "io.kubernetes.cri-o.Devices": "/dev/fuse,/dev/net/tun"}</p></td>
+</tr>
+</tbody>
+</table>
 <table id="checluster-custom-resource-devEnvironments-defaultNamespace-settings" class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 2. <code>defaultNamespace</code> options.</caption>
+<caption class="title">Table 5. <code>defaultNamespace</code> options.</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 50%;">
@@ -1377,7 +1490,7 @@ spec:
 </tbody>
 </table>
 <table id="checluster-custom-resource-devEnvironments-defaultPlugins-settings" class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 3. <code>defaultPlugins</code> options.</caption>
+<caption class="title">Table 6. <code>defaultPlugins</code> options.</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 50%;">
@@ -1403,8 +1516,35 @@ spec:
 </tr>
 </tbody>
 </table>
+<table id="checluster-custom-resource-devEnvironments-editorsDownloadUrls-settings" class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 7. <code>editorsDownloadUrls</code> options.</caption>
+<colgroup>
+<col style="width: 20%;">
+<col style="width: 50%;">
+<col style="width: 30%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Property</th>
+<th class="tableblock halign-left valign-top">Description</th>
+<th class="tableblock halign-left valign-top">Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">editor</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The editor ID must have <code>publisher/name/version</code> format.</p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">url</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">ul</p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+</tbody>
+</table>
 <table id="checluster-custom-resource-devEnvironments-gatewayContainer-settings" class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 4. <code>gatewayContainer</code> options.</caption>
+<caption class="title">Table 8. <code>gatewayContainer</code> options.</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 50%;">
@@ -1445,8 +1585,158 @@ spec:
 </tr>
 </tbody>
 </table>
+<table id="checluster-custom-resource-devEnvironments-networking-settings" class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 9. <code>networking</code> options.</caption>
+<colgroup>
+<col style="width: 20%;">
+<col style="width: 50%;">
+<col style="width: 30%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Property</th>
+<th class="tableblock halign-left valign-top">Description</th>
+<th class="tableblock halign-left valign-top">Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">externalTLSConfig</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">External TLS configuration.</p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+</tbody>
+</table>
+<table id="checluster-custom-resource-devEnvironments-networking-externalTLSConfig-settings" class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 10. <code>externalTLSConfig</code> options.</caption>
+<colgroup>
+<col style="width: 20%;">
+<col style="width: 50%;">
+<col style="width: 30%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Property</th>
+<th class="tableblock halign-left valign-top">Description</th>
+<th class="tableblock halign-left valign-top">Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">annotations</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Annotations to be applied to ingress/route objects when external TLS is enabled.</p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">enabled</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Enabled determines whether external TLS configuration is used. If set to true, the operator will not set TLS config for ingress/route objects. Instead, it ensures that any custom TLS configuration will not be reverted on synchronization.</p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">labels</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Labels to be applied to ingress/route objects when external TLS is enabled.</p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+</tbody>
+</table>
+<table id="checluster-custom-resource-devEnvironments-persistUserHome-settings" class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 11. <code>persistUserHome</code> options.</caption>
+<colgroup>
+<col style="width: 20%;">
+<col style="width: 50%;">
+<col style="width: 30%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Property</th>
+<th class="tableblock halign-left valign-top">Description</th>
+<th class="tableblock halign-left valign-top">Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">disableInitContainer</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Determines whether the init container that initializes the persistent home directory should be disabled. When the <code>/home/user</code> directory is persisted, the init container is used to initialize the directory before the workspace starts. If set to true, the init container will not be created. Disabling the init container allows home persistence to be initialized by the entrypoint present in the workspace&#8217;s first container component. This field is not used if the <code>devEnvironments.persistUserHome.enabled</code> field is set to false. The init container is enabled by default.</p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">enabled</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Determines whether the user home directory in workspaces should persist between workspace shutdown and startup. Must be used with the 'per-user' or 'per-workspace' PVC strategy in order to take effect. Disabled by default.</p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+</tbody>
+</table>
+<table id="checluster-custom-resource-devEnvironments-projectCloneContainer-settings" class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 12. <code>projectCloneContainer</code> options.</caption>
+<colgroup>
+<col style="width: 20%;">
+<col style="width: 50%;">
+<col style="width: 30%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Property</th>
+<th class="tableblock halign-left valign-top">Description</th>
+<th class="tableblock halign-left valign-top">Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">env</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">List of environment variables to set in the container.</p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">image</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Container image. Omit it or leave it empty to use the default container image provided by the Operator.</p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">imagePullPolicy</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Image pull policy. Default value is <code>Always</code> for <code>nightly</code>, <code>next</code> or <code>latest</code> images, and <code>IfNotPresent</code> in other cases.</p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">name</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Container name.</p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">resources</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Compute resources required by this container.</p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+</tbody>
+</table>
+<table id="checluster-custom-resource-devEnvironments-security-settings" class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 13. <code>security</code> options.</caption>
+<colgroup>
+<col style="width: 20%;">
+<col style="width: 50%;">
+<col style="width: 30%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Property</th>
+<th class="tableblock halign-left valign-top">Description</th>
+<th class="tableblock halign-left valign-top">Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">containerSecurityContext</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Defines the SecurityContext applied to all workspace-related containers. When set, the specified values are merged with the default SecurityContext configuration. This setting takes effect only if both <code>devEnvironments.disableContainerBuildCapabilities</code> and <code>devEnvironments.disableContainerRunCapabilities</code> are set to <code>true</code>.</p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">podSecurityContext</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">PodSecurityContext used by all workspace-related pods. If set, defined values are merged into the default PodSecurityContext configuration.</p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+</tbody>
+</table>
 <table id="checluster-custom-resource-devEnvironments-storage-settings" class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 5. <code>storage</code> options.</caption>
+<caption class="title">Table 14. <code>storage</code> options.</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 50%;">
@@ -1478,7 +1768,7 @@ spec:
 </tbody>
 </table>
 <table id="checluster-custom-resource-devEnvironments-storage-perUserStrategyPvcConfig-settings" class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 6. <code>per-user</code> PVC strategy options.</caption>
+<caption class="title">Table 15. <code>per-user</code> PVC strategy options.</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 50%;">
@@ -1510,7 +1800,7 @@ spec:
 </tbody>
 </table>
 <table id="checluster-custom-resource-devEnvironments-storage-perWorkspaceStrategyPvcConfig-settings" class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 7. <code>per-workspace</code> PVC strategy options.</caption>
+<caption class="title">Table 16. <code>per-workspace</code> PVC strategy options.</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 50%;">
@@ -1542,7 +1832,7 @@ spec:
 </tbody>
 </table>
 <table id="checluster-custom-resource-devEnvironments-trustedCerts-settings" class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 8. <code>trustedCerts</code> options.</caption>
+<caption class="title">Table 17. <code>trustedCerts</code> options.</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 50%;">
@@ -1568,8 +1858,8 @@ spec:
 </tr>
 </tbody>
 </table>
-<table id="checluster-custom-resource-devEnvironments-containerBuildConfiguration-settings" class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 9. <code>containerBuildConfiguration</code> options.</caption>
+<table id="checluster-custom-resource-devEnvironments-user-settings" class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 18. <code>user</code> options.</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 50%;">
@@ -1584,14 +1874,14 @@ spec:
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">openShiftSecurityContextConstraint</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">OpenShift security context constraint to build containers.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">"container-build"</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">clusterRoles</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Additional ClusterRoles assigned to the user. The role must have <code>app.kubernetes.io/part-of=che.eclipse.org</code> label.</p></td>
+<td class="tableblock halign-left valign-top"></td>
 </tr>
 </tbody>
 </table>
 <table id="checluster-custom-resource-components-settings" class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 10. Che components configuration.</caption>
+<caption class="title">Table 19. Che components configuration.</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 50%;">
@@ -1643,7 +1933,7 @@ spec:
 </tbody>
 </table>
 <table id="checluster-custom-resource-components-cheServer-settings" class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 11. General configuration settings related to the Che server component.</caption>
+<caption class="title">Table 20. General configuration settings related to the Che server component.</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 50%;">
@@ -1690,7 +1980,7 @@ spec:
 </tbody>
 </table>
 <table id="checluster-custom-resource-components-cheServer-proxy-settings" class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 12. <code>proxy</code> options.</caption>
+<caption class="title">Table 21. <code>proxy</code> options.</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 50%;">
@@ -1727,7 +2017,7 @@ spec:
 </tbody>
 </table>
 <table id="checluster-custom-resource-components-pluginRegistry-settings" class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 13. Configuration settings related to the Plug-in registry component used by the Che installation.</caption>
+<caption class="title">Table 22. Configuration settings related to the Plug-in registry component used by the Che installation.</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 50%;">
@@ -1764,7 +2054,7 @@ spec:
 </tbody>
 </table>
 <table id="checluster-custom-resource-components-pluginRegistry-externalPluginRegistries-settings" class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 14. <code>externalPluginRegistries</code> options.</caption>
+<caption class="title">Table 23. <code>externalPluginRegistries</code> options.</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 50%;">
@@ -1786,7 +2076,7 @@ spec:
 </tbody>
 </table>
 <table id="checluster-custom-resource-components-devfileRegistry-settings" class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 15. Configuration settings related to the Devfile registry component used by the Che installation.</caption>
+<caption class="title">Table 24. Configuration settings related to the Devfile registry component used by the Che installation.</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 50%;">
@@ -1818,7 +2108,7 @@ spec:
 </tbody>
 </table>
 <table id="checluster-custom-resource-components-devfileRegistry-externalDevfileRegistries-settings" class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 16. <code>externalDevfileRegistries</code> options.</caption>
+<caption class="title">Table 25. <code>externalDevfileRegistries</code> options.</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 50%;">
@@ -1840,7 +2130,7 @@ spec:
 </tbody>
 </table>
 <table id="checluster-custom-resource-components-dashboard-settings" class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 17. Configuration settings related to the Dashboard component used by the Che installation.</caption>
+<caption class="title">Table 26. Configuration settings related to the Dashboard component used by the Che installation.</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 50%;">
@@ -1877,7 +2167,7 @@ spec:
 </tbody>
 </table>
 <table id="checluster-custom-resource-components-dashboard-headerMessage-settings" class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 18. <code>headerMessage</code> options.</caption>
+<caption class="title">Table 27. <code>headerMessage</code> options.</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 50%;">
@@ -1903,8 +2193,30 @@ spec:
 </tr>
 </tbody>
 </table>
+<table id="checluster-custom-resource-components-dashboard-branding-settings" class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 28. <code>branding</code> options.</caption>
+<colgroup>
+<col style="width: 20%;">
+<col style="width: 50%;">
+<col style="width: 30%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Property</th>
+<th class="tableblock halign-left valign-top">Description</th>
+<th class="tableblock halign-left valign-top">Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">logo</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Dashboard logo.</p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+</tbody>
+</table>
 <table id="checluster-custom-resource-components-imagePuller-settings" class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 19. Kubernetes Image Puller component configuration.</caption>
+<caption class="title">Table 29. Kubernetes Image Puller component configuration.</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 50%;">
@@ -1931,7 +2243,7 @@ spec:
 </tbody>
 </table>
 <table id="checluster-custom-resource-components-metrics-settings" class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 20. Che server metrics component configuration.</caption>
+<caption class="title">Table 30. Che server metrics component configuration.</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 50%;">
@@ -1953,7 +2265,7 @@ spec:
 </tbody>
 </table>
 <table id="checluster-custom-resource-gitServices-settings" class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 21. Configuration settings that allows users to work with remote Git repositories.</caption>
+<caption class="title">Table 31. Configuration settings that allows users to work with remote Git repositories.</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 50%;">
@@ -1990,7 +2302,7 @@ spec:
 </tbody>
 </table>
 <table id="checluster-custom-resource-gitServices-github-settings" class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 22. <code>github</code> options.</caption>
+<caption class="title">Table 32. <code>github</code> options.</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 50%;">
@@ -2022,7 +2334,7 @@ spec:
 </tbody>
 </table>
 <table id="checluster-custom-resource-gitServices-gitlab-settings" class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 23. <code>gitlab</code> options.</caption>
+<caption class="title">Table 33. <code>gitlab</code> options.</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 50%;">
@@ -2049,7 +2361,7 @@ spec:
 </tbody>
 </table>
 <table id="checluster-custom-resource-gitServices-bitbucket-settings" class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 24. <code>bitbucket</code> options.</caption>
+<caption class="title">Table 34. <code>bitbucket</code> options.</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 50%;">
@@ -2076,7 +2388,7 @@ spec:
 </tbody>
 </table>
 <table id="checluster-custom-resource-gitServices-azure-settings" class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 25. <code>azure</code> options.</caption>
+<caption class="title">Table 35. <code>azure</code> options.</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 50%;">
@@ -2098,7 +2410,7 @@ spec:
 </tbody>
 </table>
 <table id="checluster-custom-resource-networking-settings" class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 26. Networking, Che authentication and TLS configuration.</caption>
+<caption class="title">Table 36. Networking, Che authentication and TLS configuration.</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 50%;">
@@ -2150,7 +2462,7 @@ spec:
 </tbody>
 </table>
 <table id="checluster-custom-resource-networking-auth-settings" class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 27. <code>auth</code> options.</caption>
+<caption class="title">Table 37. <code>auth</code> options.</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 50%;">
@@ -2212,7 +2524,7 @@ spec:
 </tbody>
 </table>
 <table id="checluster-custom-resource-networking-auth-gateway-settings" class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 28. <code>gateway</code> options.</caption>
+<caption class="title">Table 38. <code>gateway</code> options.</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 50%;">
@@ -2253,8 +2565,45 @@ spec:
 </tr>
 </tbody>
 </table>
+<table id="checluster-custom-resource-networking-auth-advancedAuthorization-settings" class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 39. <code>advancedAuthorization</code> options.</caption>
+<colgroup>
+<col style="width: 20%;">
+<col style="width: 50%;">
+<col style="width: 30%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Property</th>
+<th class="tableblock halign-left valign-top">Description</th>
+<th class="tableblock halign-left valign-top">Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">allowGroups</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">List of groups allowed to access Che (currently supported in OpenShift only).</p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">allowUsers</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">List of users allowed to access Che.</p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">denyGroups</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">List of groups denied to access Che (currently supported in OpenShift only).</p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">denyUsers</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">List of users denied to access Che.</p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+</tbody>
+</table>
 <table id="checluster-custom-resource-containerRegistry-settings" class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 29. Configuration of an alternative registry that stores Che images.</caption>
+<caption class="title">Table 40. Configuration of an alternative registry that stores Che images.</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 50%;">
@@ -2281,7 +2630,7 @@ spec:
 </tbody>
 </table>
 <table id="checluster-custom-resource-components-common-deployment-settings" class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 30. <code>deployment</code> options.</caption>
+<caption class="title">Table 41. <code>deployment</code> options.</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 50%;">
@@ -2318,7 +2667,7 @@ spec:
 </tbody>
 </table>
 <table id="checluster-custom-resource-components-common-deployment-containers-settings" class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 31. <code>containers</code> options.</caption>
+<caption class="title">Table 42. <code>containers</code> options.</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 50%;">
@@ -2360,7 +2709,7 @@ spec:
 </tbody>
 </table>
 <table id="checluster-custom-resource-components-common-deployment-containers-resources-settings" class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 32. <code>containers</code> options.</caption>
+<caption class="title">Table 43. <code>containers</code> options.</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 50%;">
@@ -2387,7 +2736,7 @@ spec:
 </tbody>
 </table>
 <table id="checluster-custom-resource-components-common-deployment-containers-resources-request-settings" class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 33. <code>request</code> options.</caption>
+<caption class="title">Table 44. <code>request</code> options.</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 50%;">
@@ -2414,7 +2763,7 @@ spec:
 </tbody>
 </table>
 <table id="checluster-custom-resource-components-common-deployment-containers-resources-limits-settings" class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 34. <code>limits</code> options.</caption>
+<caption class="title">Table 45. <code>limits</code> options.</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 50%;">
@@ -2441,7 +2790,7 @@ spec:
 </tbody>
 </table>
 <table id="checluster-custom-resource-components-common-deployment-securityContext-settings" class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 35. <code>securityContext</code> options.</caption>
+<caption class="title">Table 46. <code>securityContext</code> options.</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 50%;">
@@ -2468,7 +2817,7 @@ spec:
 </tbody>
 </table>
 <table id="checluster-custom-resource-status-settings" class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 36. <code>CheCluster</code> Custom Resource <code>status</code> defines the observed state of Che installation</caption>
+<caption class="title">Table 47. <code>CheCluster</code> Custom Resource <code>status</code> defines the observed state of Che installation</caption>
 <colgroup>
 <col style="width: 20%;">
 <col style="width: 50%;">
