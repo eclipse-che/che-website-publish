@@ -16,7 +16,10 @@ jobs:
     steps:
       - name: Checkout local code
         uses: actions/checkout@v4
-        
+        with:
+          repository: eclipse-che/che-website-publish
+          ref: main
+          path: che-website-publish
       - name: Checkout che-website main branch
         uses: actions/checkout@v4
         with:
@@ -37,7 +40,7 @@ jobs:
         run: |
           rm -rf che-docs/.git
           cp -R che-docs/* che-website/build/che
-          cp -R static/* che-website/build/che
+          cp -R che-website-publish/static/* che-website/build/che
           
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v4
