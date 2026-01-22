@@ -3,10 +3,9 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Configuring proxy :: Eclipse Che Documentation</title>
-    <link rel="canonical" href="https://www.eclipse.org/che/docs/stable/administration-guide/configuring-proxy/">
-    <meta name="description" content="Configuring proxy">
-    <meta name="keywords" content="administration guide, proxy, networking">
+    <title>Manage extension installation with ConfigMap :: Eclipse Che Documentation</title>
+    <meta name="description" content="Manage extension installation with ConfigMap">
+    <meta name="keywords" content="extensions, workspace">
     <meta name="generator" content="Antora 3.1.14">
     <link rel="stylesheet" href="../../../../docs/_/css/site.css">
 <link rel="stylesheet" href="../../../../docs/_/css/extra.css">
@@ -584,8 +583,8 @@
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="../configuring-workspaces-endpoints-base-domain/">Configuring workspace endpoints base domain</a>
   </li>
-  <li class="nav-item is-current-page" data-depth="3">
-    <a class="nav-link" href="./">Configuring proxy</a>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../configuring-proxy/">Configuring proxy</a>
   </li>
 </ul>
   </li>
@@ -715,8 +714,8 @@
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../default-extensions-for-microsoft-visual-studio-code/">Configure default extensions</a>
   </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../manage-extension-installation/">Manage extension installation with ConfigMap</a>
+  <li class="nav-item is-current-page" data-depth="2">
+    <a class="nav-link" href="./">Manage extension installation with ConfigMap</a>
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../editor-configurations-for-microsoft-visual-studio-code/">Applying editor configurations</a>
@@ -826,142 +825,294 @@
   <ul>
     <li><a href="../../overview/introduction-to-eclipse-che/">Documentation</a></li>
     <li>Administration Guide</li>
-    <li><a href="../configuring-che/">Configuring Che</a></li>
-    <li><a href="../configuring-networking/">Configuring networking</a></li>
-    <li><a href="./">Configuring proxy</a></li>
+    <li><a href="../configuring-visual-studio-code/">Configuring Visual Studio Code - Open Source ("Code - OSS")</a></li>
+    <li><a href="./">Manage extension installation with ConfigMap</a></li>
   </ul>
 </nav>
 <div class="page-versions">
   <button class="version-menu-toggle" title="Show other versions of page">next</button>
   <div class="version-menu">
     <a class="version is-current" href="./">next</a>
-    <a class="version" href="../../../stable/administration-guide/configuring-proxy/">7.113.x</a>
+    <a class="version is-missing" href="../../../stable/overview/introduction-to-eclipse-che/">7.113.x</a>
   </div>
 </div>
-<div class="edit-this-page"><a href="https://github.com/eclipse-che/che-docs/edit/main/modules/administration-guide/pages/configuring-proxy.adoc">Edit this Page</a></div>
+<div class="edit-this-page"><a href="https://github.com/eclipse-che/che-docs/edit/main/modules/administration-guide/pages/manage-extension-installation.adoc">Edit this Page</a></div>
 </div>
   <div class="content">
 <aside class="toc sidebar" data-title="Contents" data-levels="2">
   <div class="toc-menu"></div>
 </aside>
 <article class="doc">
-<h1 class="page">Configuring proxy</h1>
+<h1 class="page">Manage extension installation with ConfigMap</h1>
 <div class="paragraph">
-<p>Learn how to configure a proxy for Eclipse&#160;Che. The steps include creating a Kubernetes Secret for proxy credentials and configuring the necessary proxy settings in the CheCluster custom resource. The proxy settings are propagated to the operands and workspaces through environment variables.</p>
+<p>This page describes how Code - OSS manages extension installation using a ConfigMap.
+With these controls, you can enforce a fine-grained allow/deny list using the <code>AllowedExtensions</code> policy and block installs via the CLI, default extensions, and the <code>workbench.extensions.command.installFromVSIX</code> API command.
+The sections below show how to enable and enforce these controls in Code - OSS.</p>
 </div>
 <div class="paragraph">
-<p>On OpenShift cluster, you do not need to configure proxy settings. Che Operator automatically uses OpenShift cluster-wide proxy configuration. However, you can override the proxy settings by specifying them  in the CheCluster custom resource.</p>
+<p>The following items are currently supported:</p>
 </div>
-<div class="olist arabic">
-<div class="title">Procedure</div>
-<ol class="arabic">
+<div class="ulist">
+<ul>
 <li>
-<p>(OPTIONAL) Create a Secret in the eclipse-che namespace that contains a user and password for a proxy server. The secret must have the <code>app.kubernetes.io/part-of=che.eclipse.org</code> label. Skip this step if the proxy server does not require authentication.</p>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-none hljs">kubectl apply -f - &lt;&lt;EOF
-kind: Secret
-apiVersion: v1
-metadata:
-  name: che-proxy-credentials
-  namespace: eclipse-che
-  labels:
-    app.kubernetes.io/part-of: che.eclipse.org
-type: Opaque
-stringData:
-  user: <em>&lt;user&gt;</em>          <i class="conum" data-value="1"></i><b>(1)</b>
-  password: <em>&lt;password&gt;</em>  <i class="conum" data-value="2"></i><b>(2)</b>
-EOF</code></pre>
-</div>
-</div>
-<div class="colist arabic">
-<table>
-<tr>
-<td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>The username for the proxy server.</td>
-</tr>
-<tr>
-<td><i class="conum" data-value="2"></i><b>2</b></td>
-<td>The password for the proxy server.</td>
-</tr>
-</table>
-</div>
+<p>BlockCliExtensionsInstallation property - when enabled, blocks installation of extensions via CLI</p>
 </li>
 <li>
-<p>Configure the proxy or override the cluster-wide proxy configuration for an OpenShift cluster by setting the following properties in the CheCluster custom resource:</p>
+<p>BlockDefaultExtensionsInstallation property - when enabled, blocks installation of default extensions, see <a href="../default-extensions-for-microsoft-visual-studio-code/" class="xref page">Configuring default extensions</a></p>
+</li>
+<li>
+<p>BlockInstallFromVSIXCommandExtensionsInstallation property - when enabled, blocks installation of extensions via the workbench.extensions.command.installFromVSIX API command</p>
+</li>
+<li>
+<p>AllowedExtensions section - provides fine-grained control over Code - OSS extension installation; when this policy is applied, already installed extensions that are not allowed are disabled and show the warning <code>Some extensions are disabled because they are not allowed by your system administrator</code>. For conceptual background, see <a href="https://code.visualstudio.com/docs/setup/enterprise#_configure-allowed-extensions/">Configure allowed extensions</a>.</p>
+</li>
+</ul>
+</div>
+<div class="ulist">
+<div class="title">Procedure</div>
+<ul>
+<li>
+<p>Add a new ConfigMap to the eclipse-che namespace and specify the properties you want to add.</p>
+<div class="exampleblock">
+<div class="content">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-none hljs">kubectl patch checluster/eclipse-che \
-    --namespace eclipse-che \
-    --type='merge' -p \
-'{"spec":
-    {"components":
-        {"cheServer":
-            {"proxy":
-                {"credentialsSecretName" : "<em>&lt;secretName&gt;</em>",                      <i class="conum" data-value="1"></i><b>(1)</b>
-                 "nonProxyHosts"         : ["<em>&lt;host_1&gt;</em>"],                        <i class="conum" data-value="2"></i><b>(2)</b>
-                 "port"                  : "<em>&lt;port&gt;</em>",                            <i class="conum" data-value="3"></i><b>(3)</b>
-                 "url"                   : "<em>&lt;protocol&gt;</em>://<em>&lt;domain&gt;</em>"}}}}}'    <i class="conum" data-value="4"></i><b>(4)</b></code></pre>
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">kind: ConfigMap
+apiVersion: v1
+metadata:
+  name: vscode-editor-configurations
+  namespace: eclipse-che
+
+  labels:
+    app.kubernetes.io/component: workspaces-config
+    app.kubernetes.io/part-of: che.eclipse.org
+  annotations:
+    controller.devfile.io/mount-as: subpath
+    controller.devfile.io/mount-path: /checode-config
+    controller.devfile.io/read-only: 'true'
+
+data:
+  policy.json: |
+    {
+      "BlockCliExtensionsInstallation": true,
+      "BlockDefaultExtensionsInstallation": true,
+      "BlockInstallFromVSIXCommandExtensionsInstallation": true,
+      "AllowedExtensions": {
+          "*": true,
+          "dbaeumer.vscode-eslint": false,
+          "ms-python.python": false,
+          "redhat": false
+       }
+    }</code></pre>
 </div>
 </div>
-<div class="colist arabic">
-<table>
-<tr>
-<td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>The credentials secret name created in the previous step.</td>
-</tr>
-<tr>
-<td><i class="conum" data-value="2"></i><b>2</b></td>
-<td>The list of hosts that can be reached directly, without using the proxy. Use the following form <code>.&lt;DOMAIN&gt;</code> to specify a wildcard domain. Che Operator automatically adds .svc and Kubernetes service host to the list of non-proxy hosts. In OpenShift, Che Operator combines the non-proxy host list from the cluster-wide proxy configuration with the custom resource.
-<div class="admonitionblock important">
+</div>
+</div>
+</li>
+</ul>
+</div>
+<div class="admonitionblock note">
 <table>
 <tr>
 <td class="icon">
-<i class="fa icon-important" title="Important"></i>
+<i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
 <div class="paragraph">
-<p>In some proxy configurations, <code>localhost</code> may not translate to <code>127.0.0.1</code>. Both <code>localhost</code> and <code>127.0.0.1</code> should be specified in this situation.</p>
+<p>Make sure that the Configmap contains data in a valid JSON format.</p>
 </div>
 </td>
 </tr>
 </table>
-</div></td>
-</tr>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Start or restart your workspace</p>
+</li>
+</ul>
+</div>
+<div class="admonitionblock tip">
+<table>
 <tr>
-<td><i class="conum" data-value="3"></i><b>3</b></td>
-<td>The port of the proxy server.</td>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+To completely disable extension installation, set all extensions to disallowed:
+</td>
 </tr>
+</table>
+</div>
+<div class="exampleblock">
+<div class="content">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">kind: ConfigMap
+apiVersion: v1
+metadata:
+  name: vscode-editor-configurations
+  namespace: eclipse-che
+
+  labels:
+    app.kubernetes.io/component: workspaces-config
+    app.kubernetes.io/part-of: che.eclipse.org
+  annotations:
+    controller.devfile.io/mount-as: subpath
+    controller.devfile.io/mount-path: /checode-config
+    controller.devfile.io/read-only: 'true'
+
+data:
+  policy.json: |
+    {
+      "AllowedExtensions": {
+        "*": false
+      }
+    }</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Optional: To add the ConfigMap in the user&#8217;s namespace, use the following example:</p>
+<div class="exampleblock">
+<div class="content">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">kind: ConfigMap
+apiVersion: v1
+metadata:
+  name: vscode-editor-configurations
+  labels:
+    controller.devfile.io/mount-to-devworkspace: 'true'
+    controller.devfile.io/watch-configmap: 'true'
+  annotations:
+    controller.devfile.io/mount-as: subpath
+    controller.devfile.io/mount-path: /checode-config
+    controller.devfile.io/read-only: 'true'
+data:
+  policy.json: |
+    {
+      "AllowedExtensions": {
+          "*": false
+       }
+    }</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="admonitionblock warning">
+<table>
 <tr>
-<td><i class="conum" data-value="4"></i><b>4</b></td>
-<td>Protocol and domain of the proxy server.</td>
+<td class="icon">
+<i class="fa icon-warning" title="Warning"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>When the ConfigMap is stored in the user&#8217;s namespace, the user can edit its values.</p>
+</div>
+</td>
 </tr>
 </table>
 </div>
 </li>
-</ol>
+</ul>
 </div>
 <div class="olist arabic">
-<div class="title">Verification steps</div>
+<div class="title">Verification</div>
 <ol class="arabic">
 <li>
-<p>Start a workspace</p>
-</li>
-<li>
-<p>Verify that the workspace pod contains <code>HTTP_PROXY</code>, <code>HTTPS_PROXY</code>, <code>http_proxy</code> and <code>https_proxy</code> environment variables, each set to <code><em>&lt;protocol&gt;</em>://&lt;user&gt;:&lt;password@&lt;domain&gt;:&lt;port&gt;</code>.</p>
-</li>
-<li>
-<p>Verify that the workspace pod contains <code>NO_PROXY</code> and <code>no_proxy</code> environment variables, each set to comma-separated list of non-proxy hosts.</p>
-</li>
-</ol>
-</div>
+<p>Verify that the <code>BlockCliExtensionsInstallation</code> property is applied:</p>
 <div class="ulist">
-<div class="title">Additional resources</div>
 <ul>
 <li>
-<p><a href="https://docs.openshift.com/container-platform/latest/networking/enable-cluster-wide-proxy.html">Configuring the cluster-wide proxy on OpenShift</a></p>
+<p>Press <code>F1</code> → <code>Preferences: Open Settings (UI)</code>, and enter <code>BlockCliExtensionsInstallation</code> in the search field &#8658; The setting from the ConfigMap should appear in Settings.</p>
+</li>
+<li>
+<p>Provide a file with the <code>.vsix</code> extension (for example, <code>redhat.java-1.43.1.vsix</code>) in your workspace.</p>
+</li>
+<li>
+<p>Open a terminal and use the CLI to install the extension, for example: <code>/checode/checode-linux-libc/ubi9/bin/remote-cli/code-oss --install-extension /projects/web-nodejs-sample/redhat.java-1.43.1.vsix</code></p>
+</li>
+<li>
+<p>The extension should not install; the terminal shows: <code>Installation of extensions via CLI has been blocked by an administrator</code>.</p>
 </li>
 </ul>
+</div>
+</li>
+<li>
+<p>Verify that the <code>BlockDefaultExtensionsInstallation</code> property is applied:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Press <code>F1</code> → <code>Preferences: Open Settings (UI)</code>, and enter <code>BlockDefaultExtensionsInstallation</code> in the search field &#8658; The setting from the ConfigMap should appear in Settings.</p>
+</li>
+<li>
+<p>Configure default extensions: see <a href="../default-extensions-for-microsoft-visual-studio-code/" class="xref page">Configuring default extensions</a>.</p>
+</li>
+<li>
+<p>Open the Extensions view.</p>
+</li>
+<li>
+<p>Verify that default extensions are not installed when the workspace started/restarted.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Verify that the <code>BlockInstallFromVSIXCommandExtensionsInstallation</code> property is applied:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Press <code>F1</code> → <code>Preferences: Open Settings (UI)</code>, and enter <code>BlockInstallFromVSIXCommandExtensionsInstallation</code> in the search field &#8658; The setting from the ConfigMap should appear in Settings.</p>
+</li>
+<li>
+<p>This property blocks installing extensions via the <code>workbench.extensions.command.installFromVSIX</code> API command.</p>
+</li>
+<li>
+<p>For example, an extension might call: <code>vscode.commands.executeCommand('workbench.extensions.command.installFromVSIX', URL);</code></p>
+</li>
+<li>
+<p>It is not possible to install an extension from a <code>.vsix</code> when this property is set to <code>true</code>.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Verify that rules defined in the <code>AllowedExtensions</code> section are applied:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Press <code>F1</code> → <code>Preferences: Open Settings (UI)</code>, and enter <code>extensions.allowed</code> in the search field.</p>
+</li>
+<li>
+<p>All settings from the <code>AllowedExtensions</code> section of the ConfigMap should be present in Settings.</p>
+</li>
+<li>
+<p>Use <code>F1 → Open View → Extensions</code> to open the Extensions view, disallowed extensions has <code>This extension cannot be installed because it is not in the allowed list</code> warning</p>
+</li>
+<li>
+<p>Try to install allowed and disallowed extensions to verify that the ConfigMap rules are enforced.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Verify that rules defined in the <code>AllowedExtensions</code> section are applied:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Press <code>F1</code> → <code>Preferences: Open Settings (UI)</code>, and enter <code>extensions.allowed</code> in the search field.</p>
+</li>
+<li>
+<p>All settings from the <code>AllowedExtensions</code> section of the ConfigMap should be present in Settings.</p>
+</li>
+</ul>
+</div>
+</li>
+</ol>
 </div>
 </article>
   </div>
