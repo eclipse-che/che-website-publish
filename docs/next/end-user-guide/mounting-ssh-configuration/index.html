@@ -3,10 +3,9 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Optional parameters for the URLs for starting a new workspace :: Eclipse Che Documentation</title>
-    <link rel="canonical" href="https://www.eclipse.org/che/docs/stable/end-user-guide/optional-parameters-for-the-urls-for-starting-a-new-workspace/">
-    <meta name="description" content="Optional parameters for the URLs for starting a new workspace">
-    <meta name="keywords" content="url, urls, parameter, parameters, starting, start, workspace, workspaces, url-parameter, url-parameters">
+    <title>Mounting SSH configuration :: Eclipse Che Documentation</title>
+    <meta name="description" content="Mounting SSH configuration">
+    <meta name="keywords" content="SSH, config">
     <meta name="generator" content="Antora 3.1.14">
     <link rel="stylesheet" href="../../../../docs/_/css/site.css">
 <link rel="stylesheet" href="../../../../docs/_/css/extra.css">
@@ -80,9 +79,9 @@
     <button class="nav-item-toggle"></button>
     <a class="nav-link" href="../starting-a-workspace-from-a-git-repository-url/">Starting a workspace from a Git repository URL</a>
 <ul class="nav-list">
-  <li class="nav-item is-current-page" data-depth="3">
+  <li class="nav-item" data-depth="3">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="./">Optional parameters for the URLs for starting a new workspace</a>
+    <a class="nav-link" href="../optional-parameters-for-the-urls-for-starting-a-new-workspace/">Optional parameters for the URLs for starting a new workspace</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="4">
     <a class="nav-link" href="../url-parameter-concatenation/">URL parameter concatenation</a>
@@ -209,8 +208,8 @@
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="../mounting-git-configuration/">Mounting Git configuration</a>
   </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../mounting-ssh-configuration/">Mounting SSH configuration</a>
+  <li class="nav-item is-current-page" data-depth="3">
+    <a class="nav-link" href="./">Mounting SSH configuration</a>
   </li>
 </ul>
   </li>
@@ -829,68 +828,100 @@
   <ul>
     <li><a href="../../overview/introduction-to-eclipse-che/">Documentation</a></li>
     <li>User Guide</li>
-    <li><a href="../getting-started-with-che/">Getting started with Che</a></li>
-    <li><a href="../starting-a-workspace-from-a-git-repository-url/">Starting a workspace from a Git repository URL</a></li>
-    <li><a href="./">Optional parameters for the URLs for starting a new workspace</a></li>
+    <li><a href="../using-credentials-and-configurations-in-workspaces/">Using credentials and configurations in workspaces</a></li>
+    <li><a href="../mounting-configmaps/">Mounting ConfigMaps</a></li>
+    <li><a href="./">Mounting SSH configuration</a></li>
   </ul>
 </nav>
 <div class="page-versions">
   <button class="version-menu-toggle" title="Show other versions of page">next</button>
   <div class="version-menu">
     <a class="version is-current" href="./">next</a>
-    <a class="version" href="../../../stable/end-user-guide/optional-parameters-for-the-urls-for-starting-a-new-workspace/">7.114.x</a>
+    <a class="version is-missing" href="../../../stable/overview/introduction-to-eclipse-che/">7.114.x</a>
   </div>
 </div>
-<div class="edit-this-page"><a href="https://github.com/eclipse-che/che-docs/edit/main/modules/end-user-guide/pages/optional-parameters-for-the-urls-for-starting-a-new-workspace.adoc">Edit this Page</a></div>
+<div class="edit-this-page"><a href="https://github.com/eclipse-che/che-docs/edit/main/modules/end-user-guide/pages/mounting-ssh-configuration.adoc">Edit this Page</a></div>
 </div>
   <div class="content">
 <aside class="toc sidebar" data-title="Contents" data-levels="2">
   <div class="toc-menu"></div>
 </aside>
 <article class="doc">
-<h1 class="page">Optional parameters for the URLs for starting a new workspace</h1>
+<h1 class="page">Mounting SSH configuration</h1>
+<div class="paragraph _abstract">
+<p>This procedure describes how to mount custom SSH configurations into your workspaces. By creating and applying a <strong>ConfigMap</strong>, you can extend the default SSH settings with additional parameters or host-specific configurations. This ensures that your development environment maintains consistent connectivity to remote repositories and servers. Use this method to automate the propagation of SSH credentials and settings across multiple workspaces within your cluster.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
 <div class="paragraph">
-<p>When you start a new workspace, Che configures the workspace according to the instructions in the devfile. When you use a URL to start a new workspace, you can append optional parameters to the URL that further configure the workspace. You can use these parameters to specify a workspace IDE, start duplicate workspaces, and specify a devfile file name or path.</p>
+<p>The system sets the default SSH configuration automatically based on the <code>ssh_config</code> content from the SSH secret added in the <strong>User Preferences</strong> menu. You can extend this configuration by mounting an additional SSH configuration file with a <code>.conf</code> extension to the <code>/etc/ssh/ssh_config.d/</code> directory.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>To mount an SSH configuration file in a workspace, complete the following steps.</p>
 </div>
 <div class="ulist">
+<div class="title">Prerequisites</div>
 <ul>
 <li>
-<p><a href="../url-parameter-concatenation/" class="xref page">URL parameter concatenation</a></p>
-</li>
-<li>
-<p><a href="../url-parameter-for-the-ide/" class="xref page">URL parameter for the IDE</a></p>
-</li>
-<li>
-<p><a href="../url-parameter-for-the-ide-image/" class="xref page">URL parameter for the IDE image</a></p>
-</li>
-<li>
-<p><a href="../url-parameter-for-starting-duplicate-workspaces/" class="xref page">URL parameter for starting duplicate workspaces</a></p>
-</li>
-<li>
-<p><a href="../url-parameter-for-the-devfile-file-name/" class="xref page">URL parameter for the devfile file name</a></p>
-</li>
-<li>
-<p><a href="../url-parameter-for-the-devfile-file-path/" class="xref page">URL parameter for the devfile file path</a></p>
-</li>
-<li>
-<p><a href="../url-parameter-for-the-workspace-storage/" class="xref page">URL parameter for the workspace storage</a></p>
-</li>
-<li>
-<p><a href="../url-parameter-for-additional-remotes/" class="xref page">URL parameter for additional remotes</a></p>
-</li>
-<li>
-<p><a href="../url-parameter-for-container-image/" class="xref page">URL parameter for a container image</a></p>
-</li>
-<li>
-<p><a href="../url-parameter-for-memory-limit/" class="xref page">URL parameter for a memory limit</a></p>
-</li>
-<li>
-<p><a href="../url-parameter-for-cpu-limit/" class="xref page">URL parameter for a CPU limit</a></p>
-</li>
-<li>
-<p><a href="../url-parameter-for-the-existing-workspace-name/" class="xref page">URL parameter for the existing workspace name</a></p>
+<p>You are logged in to the cluster.</p>
 </li>
 </ul>
+</div>
+<div class="olist arabic">
+<div class="title">Procedure</div>
+<ol class="arabic">
+<li>
+<p>Create a new Kubernetes <strong>ConfigMap</strong>.</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">kind: ConfigMap
+apiVersion: v1
+metadata:
+  name: workspace-userdata-sshconfig-configmap
+  namespace: <em>&lt;user_namespace&gt;</em> <i class="conum" data-value="1"></i><b>(1)</b>
+  labels:
+    controller.devfile.io/mount-to-devworkspace: 'true'
+    controller.devfile.io/watch-configmap: 'true'
+  annotations:
+    controller.devfile.io/mount-as: subpath
+    controller.devfile.io/mount-path: /etc/ssh/ssh_config.d/
+data:
+  ssh-config.conf: &lt;ssh config content&gt; <i class="conum" data-value="2"></i><b>(2)</b></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>A user namespace. Visit <code>https://<em>&lt;che_fqdn&gt;</em>/api/kubernetes/namespace</code> to retrieve your Che user namespace <code>name</code>.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>The content of your SSH configuration file.</td>
+</tr>
+</table>
+</div>
+</li>
+<li>
+<p>Apply the <strong>ConfigMap</strong>.</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-none hljs">$ kubectl apply -f - &lt;&lt;EOF
+<em>&lt;ConfigMap_prepared_in_step_1&gt;</em>
+EOF</code></pre>
+</div>
+</div>
+</li>
+</ol>
 </div>
 </article>
   </div>

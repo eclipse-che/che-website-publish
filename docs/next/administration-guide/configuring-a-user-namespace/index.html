@@ -209,6 +209,9 @@
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="../../end-user-guide/mounting-git-configuration/">Mounting Git configuration</a>
   </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../../end-user-guide/mounting-ssh-configuration/">Mounting SSH configuration</a>
+  </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="2">
@@ -904,8 +907,34 @@ after being deleted from eclipse-che namespace:</p>
 </div>
 </div>
 <div class="paragraph">
-<p>See the <a href="https://github.com/devfile/devworkspace-operator/blob/main/docs/additional-configuration.adoc#automatically-mounting-volumes-configmaps-and-secrets">mounting volumes, configmaps, and secrets</a>
-for other possible labels and annotations.</p>
+<p>For example, to mount a default SSH configuration into every workspace, you must create a ConfigMap:</p>
+</div>
+<div class="exampleblock">
+<div class="content">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">kind: ConfigMap
+apiVersion: v1
+metadata:
+  name: ssh-config-configmap
+  namespace: eclipse-che
+  labels:
+    app.kubernetes.io/component: workspaces-config
+    app.kubernetes.io/part-of: che.eclipse.org
+  annotations:
+    controller.devfile.io/mount-as: subpath
+    controller.devfile.io/mount-path: /etc/ssh/ssh_config.d/
+data:
+  ssh.conf: &lt;ssh config content&gt;</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>This <strong>ConfigMap</strong> propagates the SSH configuration as an extension to the existing default SSH configuration by using the <code>Include /etc/ssh/ssh_config.d/*.conf</code> argument. For more information, review the <a href="https://man.openbsd.org/ssh_config#Include">Include</a> definition.</p>
+</div>
+<div class="paragraph">
+<p>For other labels and annotations, see <a href="https://github.com/devfile/devworkspace-operator/blob/main/docs/additional-configuration.adoc#automatically-mounting-volumes-configmaps-and-secrets">Mounting volumes, configmaps, and secrets</a>.</p>
 </div>
 </li>
 <li>

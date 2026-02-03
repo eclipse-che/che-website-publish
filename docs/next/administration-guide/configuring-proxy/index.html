@@ -209,6 +209,9 @@
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="../../end-user-guide/mounting-git-configuration/">Mounting Git configuration</a>
   </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../../end-user-guide/mounting-ssh-configuration/">Mounting SSH configuration</a>
+  </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="2">
@@ -912,21 +915,7 @@ EOF</code></pre>
 </tr>
 <tr>
 <td><i class="conum" data-value="2"></i><b>2</b></td>
-<td>The list of hosts that can be reached directly, without using the proxy. Use the following form <code>.&lt;DOMAIN&gt;</code> to specify a wildcard domain. Che Operator automatically adds .svc and Kubernetes service host to the list of non-proxy hosts. In OpenShift, Che Operator combines the non-proxy host list from the cluster-wide proxy configuration with the custom resource.
-<div class="admonitionblock important">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-important" title="Important"></i>
-</td>
-<td class="content">
-<div class="paragraph">
-<p>In some proxy configurations, <code>localhost</code> may not translate to <code>127.0.0.1</code>. Both <code>localhost</code> and <code>127.0.0.1</code> should be specified in this situation.</p>
-</div>
-</td>
-</tr>
-</table>
-</div></td>
+<td>The list of hosts that can be reached directly, without using the proxy. Use the following form <code>.&lt;DOMAIN&gt;</code> to specify a wildcard domain. Che Operator automatically adds .svc and Kubernetes service host to the list of non-proxy hosts. In OpenShift, Che Operator combines the non-proxy host list from the cluster-wide proxy configuration with the custom resource. In some proxy configurations, <code>localhost</code> may not translate to <code>127.0.0.1</code>. Both <code>localhost</code> and <code>127.0.0.1</code> should be specified in this situation.</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="3"></i><b>3</b></td>
@@ -948,7 +937,7 @@ EOF</code></pre>
 <p>Start a workspace</p>
 </li>
 <li>
-<p>Verify that the workspace pod contains <code>HTTP_PROXY</code>, <code>HTTPS_PROXY</code>, <code>http_proxy</code> and <code>https_proxy</code> environment variables, each set to <code><em>&lt;protocol&gt;</em>://&lt;user&gt;:&lt;password@&lt;domain&gt;:&lt;port&gt;</code>.</p>
+<p>Verify that the workspace pod contains <code>HTTP_PROXY</code>, <code>HTTPS_PROXY</code>, <code>http_proxy</code> and <code>https_proxy</code> environment variables, each set to <code>&lt;protocol&gt;://&lt;user&gt;:&lt;password&gt;@&lt;domain&gt;:&lt;port&gt;</code>.</p>
 </li>
 <li>
 <p>Verify that the workspace pod contains <code>NO_PROXY</code> and <code>no_proxy</code> environment variables, each set to comma-separated list of non-proxy hosts.</p>
