@@ -45,7 +45,7 @@
   </nav>
 </header>
 <div class="body">
-<div class="nav-container" data-component="docs" data-version="7.114.x">
+<div class="nav-container" data-component="docs" data-version="7.115.x">
   <aside class="nav">
     <div class="panels">
 <div class="nav-panel-menu is-active" data-panel="menu">
@@ -207,6 +207,9 @@
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="../../end-user-guide/mounting-git-configuration/">Mounting Git configuration</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../../end-user-guide/mounting-ssh-configuration/">Mounting SSH configuration</a>
   </li>
 </ul>
   </li>
@@ -684,6 +687,18 @@
   </li>
 </ul>
   </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../devworkspace-backup/">DevWorkspace backup</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../devworkspace-backup-integrated-openshift-registry/">Integrated OpenShift container registry</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../devworkspace-backup-regular-oci-registry/">Regular OCI-compatible registry</a>
+  </li>
+</ul>
+  </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="1">
@@ -695,6 +710,9 @@
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../running-the-open-vsx-on-premises/">Running Open VSX On-Premises</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../deleting-extension-from-the-open-vsx-on-premises/">Deleting Extensions from Open VSX On-Premises</a>
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../configuring-the-open-vsx-registry-url/">Open VSX registry URL</a>
@@ -798,7 +816,7 @@
 <div class="nav-panel-explore" data-panel="explore">
   <div class="context">
     <span class="title">Documentation</span>
-    <span class="version">7.114.x</span>
+    <span class="version">7.115.x</span>
   </div>
   <ul class="components">
     <li class="component is-current">
@@ -808,7 +826,7 @@
           <a href="../../../next/overview/introduction-to-eclipse-che/">next</a>
         </li>
         <li class="version is-current is-latest">
-          <a href="../../overview/introduction-to-eclipse-che/">7.114.x</a>
+          <a href="../../overview/introduction-to-eclipse-che/">7.115.x</a>
         </li>
       </ul>
     </li>
@@ -829,13 +847,13 @@
   </ul>
 </nav>
 <div class="page-versions">
-  <button class="version-menu-toggle" title="Show other versions of page">7.114.x</button>
+  <button class="version-menu-toggle" title="Show other versions of page">7.115.x</button>
   <div class="version-menu">
     <a class="version" href="../../../next/administration-guide/running-at-scale/">next</a>
-    <a class="version is-current" href="./">7.114.x</a>
+    <a class="version is-current" href="./">7.115.x</a>
   </div>
 </div>
-<div class="edit-this-page"><a href="https://github.com/eclipse-che/che-docs/edit/7.114.x/modules/administration-guide/pages/running-at-scale.adoc">Edit this Page</a></div>
+<div class="edit-this-page"><a href="https://github.com/eclipse-che/che-docs/edit/7.115.x/modules/administration-guide/pages/running-at-scale.adoc">Edit this Page</a></div>
 </div>
   <div class="content">
 <aside class="toc sidebar" data-title="Contents" data-levels="2">
@@ -1149,14 +1167,9 @@ This approach can help
 improve performance and reliability by distributing the workload across multiple clusters
 and providing redundancy in case of cluster failures.</p>
 </div>
-<div class="imageblock">
-<div class="content">
-<img src="../_images/running-at-scale/snip_che-multi-cluster.png" alt="Scheme of a multi-cluster environment">
-</div>
-<div class="title">Figure 1. Scheme of a multi-cluster environment</div>
-</div>
 <div class="paragraph">
-<p>You can test running Che in a multi-cluster by using the <a href="https://developers.redhat.com/developer-sandbox">Developer Sandbox</a>,
+<div class="title">Developer Sandbox example</div>
+<p>You can test running Che in a multi-cluster environment by using the <a href="https://developers.redhat.com/developer-sandbox">Developer Sandbox</a>,
 a free trial environment by Red Hat with pre-configured tools and services.
 From an infrastructure perspective,
 the Developer Sandbox consists of multiple <a href="https://www.redhat.com/en/technologies/cloud-computing/openshift/aws">ROSA</a> clusters.
@@ -1164,8 +1177,15 @@ On each cluster,
 the productized version of Eclipse&#160;Che is installed
 and configured using <a href="https://argo-cd.readthedocs.io/en/stable/">Argo CD</a>.
 Since the user base is spread across multiple clusters,
-<a href="https://workspaces.openshift.com/">workspaces.openshift.com</a> is used as a single entry point to the productized Eclipse&#160;Che instances.
-You can find implementation details about the multicluster redirector in the following <a href="https://github.com/codeready-toolchain/crw-multicluster-redirector">GitHub repository</a>.</p>
+<a href="https://workspaces.openshift.com/">workspaces.openshift.com</a> is used as a single entry point to the productized Eclipse&#160;Che instances.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../_images/running-at-scale/snip_che-multi-cluster.png" alt="Scheme of a multi-cluster environment">
+</div>
+</div>
+<div class="paragraph">
+<p>You can find implementation details about the multicluster redirector in the following <a href="https://github.com/codeready-toolchain/crw-multicluster-redirector">GitHub repository</a>.</p>
 </div>
 <div class="admonitionblock important">
 <table>
@@ -1176,13 +1196,60 @@ You can find implementation details about the multicluster redirector in the fol
 <td class="content">
 <div class="paragraph">
 <p>The multi-cluster architecture of <a href="https://workspaces.openshift.com/">workspaces.openshift.com</a> is part of the <a href="https://developers.redhat.com/developer-sandbox">Developer Sandbox</a>.
-It is a Developer Sandbox-specific solution
-that cannot be reused as-is in other environments.
-However, you can use it as a reference for implementing a similar solution well-tailored to your specific multicluster needs.</p>
+It is a Developer Sandbox-specific solution that cannot be reused as-is in other environments. However, you can use it as a reference for implementing a similar solution well-tailored to your specific multicluster needs.</p>
 </div>
 </td>
 </tr>
 </table>
+</div>
+<div class="paragraph">
+<div class="title">The multicluster redirector solution for Red Hat OpenShift</div>
+<p>Red Hat offers an open-source, Quarkus-based service that acts as a single gateway for developers. This service automatically redirects users to the correct Eclipse&#160;Che instance on the appropriate cluster based on their Red Hat OpenShift group membership. The community-supported version is available in the <a href="https://github.com/redhat-developer/devspaces-multicluster-redirector">GitHub repository</a>.</p>
+</div>
+<div class="paragraph">
+<div class="title">Architecture and requirements</div>
+<p>A critical requirement for the multicluster redirector is that all users must be provisioned to the host cluster where the redirector is deployed. Users authenticate through the OAuth flow of this cluster, even if they never run workloads there. The host cluster&#8217;s Red Hat OpenShift groups determine the routing logic. See the <a href="https://github.com/redhat-developer/devspaces-multicluster-redirector?tab=readme-ov-file#-deploying-to-openshift">Deploying to Red Hat OpenShift</a> section for deployment instructions.</p>
+</div>
+<div class="paragraph">
+<div class="title">Configuration</div>
+<p>The routing configuration uses a <code>ConfigMap</code> that contains JSON to map Red Hat OpenShift groups to Eclipse&#160;Che URLs. The redirector uses this file to update routing tables in real-time without requiring restarts.</p>
+</div>
+<div class="paragraph">
+<div class="title">Operational flow</div>
+<p>The routing process follows these steps:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Authenticate via OAuth by using a proxy sidecar.</p>
+</li>
+<li>
+<p>Pass identity and group information through HTTP headers.</p>
+</li>
+<li>
+<p>Verify group memberships by using Red Hat OpenShift API queries.</p>
+</li>
+<li>
+<p>Determine the appropriate Eclipse&#160;Che URL by using a mapping lookup.</p>
+</li>
+<li>
+<p>Redirect the user to the designated cluster instance.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>If users belong to multiple Red Hat OpenShift groups, they can choose their desired Eclipse&#160;Che instance from a selection dashboard.</p>
+</div>
+<div class="ulist">
+<div class="title">Additional resources</div>
+<ul>
+<li>
+<p><a href="https://che.eclipseprojects.io/2025/04/29/@ilya.buziuk-running-at-scale.html">Running at scale</a></p>
+</li>
+<li>
+<p><a href="https://developers.redhat.com/articles/2026/01/23/enterprise-multi-cluster-scalability-openshift-dev-spaces">Enterprise multi-cluster scalability</a></p>
+</li>
+</ul>
 </div>
 </article>
   </div>

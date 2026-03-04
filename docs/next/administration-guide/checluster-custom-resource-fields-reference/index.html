@@ -827,7 +827,7 @@
           <a href="../../overview/introduction-to-eclipse-che/">next</a>
         </li>
         <li class="version is-latest">
-          <a href="../../../stable/overview/introduction-to-eclipse-che/">7.114.x</a>
+          <a href="../../../stable/overview/introduction-to-eclipse-che/">7.115.x</a>
         </li>
       </ul>
     </li>
@@ -853,7 +853,7 @@
   <button class="version-menu-toggle" title="Show other versions of page">next</button>
   <div class="version-menu">
     <a class="version is-current" href="./">next</a>
-    <a class="version" href="../../../stable/administration-guide/checluster-custom-resource-fields-reference/">7.114.x</a>
+    <a class="version" href="../../../stable/administration-guide/checluster-custom-resource-fields-reference/">7.115.x</a>
   </div>
 </div>
 <div class="edit-this-page"><a href="https://github.com/eclipse-che/che-docs/edit/main/modules/administration-guide/pages/checluster-custom-resource-fields-reference.adoc">Edit this Page</a></div>
@@ -1306,6 +1306,11 @@ spec:
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">imagePullPolicy</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">ImagePullPolicy defines the imagePullPolicy used for containers in a DevWorkspace.</p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">initContainers</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">InitContainers defines a list of Kubernetes init containers that are automatically injected into all workspace pods. Typical uses cases include injecting organization tools/configs, initializing persistent home, etc.</p></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
