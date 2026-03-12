@@ -866,12 +866,12 @@
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>To manage extensions, <a href="https://github.com/microsoft/vscode">this IDE</a> uses one of these <a href="https://open-vsx.org/about">Open VSX</a> registry instances:</p>
+<p>To manage extensions, Che uses one of the following Open VSX registry instances:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>The embedded instance of the Open VSX registry that runs in the <code>plugin-registry</code> pod of Che to support air-gapped, offline, and proxy-restricted environments. The embedded Open VSX registry contains only a subset of the extensions published on <a href="https://open-vsx.org">open-vsx.org</a>. This subset is <a href="#adding-or-removing-extensions-in-the-embedded-open-vsx-registry-instance">customizable</a>.</p>
+<p>The embedded instance of the Open VSX registry that runs in the <code>plugin-registry</code> pod of Che to support air-gapped, offline, and proxy-restricted environments. The embedded Open VSX registry contains only a subset of the extensions published on <a href="https://open-vsx.org">open-vsx.org</a>. You can customize this subset <a href="#adding-or-removing-extensions-in-a-workspace_che">using a workspace</a> or <a href="#adding-or-removing-extensions-on-linux_che">using a Linux operating system</a>.</p>
 </li>
 <li>
 <p>The public <a href="https://open-vsx.org">open-vsx.org</a> registry that is accessed over the internet.</p>
@@ -887,18 +887,18 @@
 </div>
 </div>
 <div class="sect1">
-<h2 id="selecting-an-open-vsx-registry-instance"><a class="anchor" href="#selecting-an-open-vsx-registry-instance"></a>Selecting an Open VSX registry instance</h2>
+<h2 id="selecting-an-open-vsx-registry-instance_che"><a class="anchor" href="#selecting-an-open-vsx-registry-instance_che"></a>Selecting an Open VSX registry instance</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>The default is the Open VSX registry at <code>https://open-vsx.org</code>.</p>
 </div>
 <div class="paragraph">
-<p>If the default Open VSX registry instance is not what you need, you can select one of the following instances:</p>
+<p>If the default Open VSX registry instance does not meet your requirements, you can select one of the following instances:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>The embedded instance of the Open VSX registry that runs in the <code>plugin-registry</code> pod of Che to support air-gapped, offline, and proxy-restricted environments. The embedded Open VSX registry contains only a subset of the extensions published on <a href="https://open-vsx.org">open-vsx.org</a>. This subset is <a href="#adding-or-removing-extensions-in-the-embedded-open-vsx-registry-instance">customizable</a>.</p>
+<p>The embedded instance of the Open VSX registry that runs in the <code>plugin-registry</code> pod of Che to support air-gapped, offline, and proxy-restricted environments. The embedded Open VSX registry contains only a subset of the extensions published on <a href="https://open-vsx.org">open-vsx.org</a>. You can customize this subset <a href="#adding-or-removing-extensions-in-a-workspace_che">using a workspace</a> or <a href="#adding-or-removing-extensions-on-linux_che">using a Linux operating system</a>.</p>
 </li>
 <li>
 <p>A standalone Open VSX registry instance that is deployed on a network accessible from Che workspace pods.</p>
@@ -906,10 +906,24 @@
 </ul>
 </div>
 <div class="ulist">
-<div class="title">Procedure</div>
+<div class="title">Prerequisites</div>
 <ul>
 <li>
-<p>Edit the <code>openVSXURL</code> value in the <code>CheCluster</code> custom resource:</p>
+<p>You have administrator access to the cluster where Che is deployed.</p>
+</li>
+<li>
+<p>You have the <code>oc</code> CLI tool installed if you are using the command line.</p>
+</li>
+</ul>
+</div>
+<div class="olist arabic">
+<div class="title">Procedure</div>
+<ol class="arabic">
+<li>
+<p>Log in to the cluster as an administrator.</p>
+</li>
+<li>
+<p>Edit the <code>CheCluster</code> custom resource to update the <code>openVSXURL</code> value:</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">spec:
@@ -922,20 +936,12 @@
 <table>
 <tr>
 <td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>For example: <code>openVSXURL: "https://open-vsx.org"</code>.
-<div class="admonitionblock warning">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-warning" title="Warning"></i>
-</td>
-<td class="content">
-<div class="paragraph">
-<p>To ensure the stability and performance of the community-supported Open VSX Registry, API usage is organized into defined tiers. The Eclipse Foundation implements these limits to protect infrastructure from high-frequency automated traffic and to provide consistent service quality for all users. For more information, see <a href="https://github.com/EclipseFdn/open-vsx.org/wiki/rate-limiting">Rate Limits and Usage Tiers</a> and the <a href="https://github.com/EclipseFdn/open-vsx.org/wiki">open-vsx.org wiki</a>.</p>
-</div>
-</td>
+<td>For example: <code>openVSXURL: "https://open-vsx.org"</code>.</td>
 </tr>
 </table>
+</div>
+</li>
+</ol>
 </div>
 <div class="admonitionblock important">
 <table>
@@ -944,34 +950,43 @@
 <i class="fa icon-important" title="Important"></i>
 </td>
 <td class="content">
+<div class="title">Save the changes to the custom resource.</div>
 <div class="ulist">
 <ul>
 <li>
-<p>Using <a href="https://open-vsx.org">https://open-vsx.org</a> is not recommended in an air-gapped environment, isolated from the internet. In order to reduce the risk of malware infections and unauthorized access to your code use the embedded or self-hosted Open VSX registry with a curated set of extensions.</p>
+<p>Do not use <a href="https://open-vsx.org">https://open-vsx.org</a> in an air-gapped environment or an environment that is isolated from the internet. To reduce the risk of malware infections and unauthorized access to your code, use the embedded or a self-hosted Open VSX registry with a curated set of extensions.</p>
 </li>
 <li>
-<p>To select the embedded Open VSX registry instance in the <code>plugin-registry</code> pod, use <code>openVSXURL: ''</code>. You can <a href="#adding-or-removing-extensions-in-the-embedded-open-vsx-registry-instance">customize the list of included extensions</a>.</p>
+<p>To select the embedded Open VSX registry instance in the <code>plugin-registry</code> pod, use <code>openVSXURL: ''</code>. You can customize the list of included extensions <a href="#adding-or-removing-extensions-in-a-workspace_che">using a workspace</a> or <a href="#adding-or-removing-extensions-on-linux_che">using a Linux operating system</a>.</p>
 </li>
 <li>
-<p>You can also point <code>openVSXURL</code> at the URL of a standalone Open VSX registry instance if its URL is accessible from within your organization&#8217;s cluster and not blocked by a proxy.</p>
+<p>You can point <code>openVSXURL</code> to the URL of a standalone Open VSX registry instance if the URL is accessible from within the organization&#8217;s cluster and not blocked by a proxy.</p>
 </li>
 </ul>
 </div>
 </td>
 </tr>
 </table>
-</div></td>
-</tr>
-</table>
 </div>
+<div class="olist arabic">
+<div class="title">Verification</div>
+<ol class="arabic">
+<li>
+<p>Confirm that the <code>plugin-registry</code> pod has restarted.</p>
 </li>
-</ul>
+<li>
+<p>Open a workspace and verify that extensions are available from the selected registry instance in the <strong>Extensions</strong> view.</p>
+</li>
+</ol>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="adding-or-removing-extensions-in-the-embedded-open-vsx-registry-instance"><a class="anchor" href="#adding-or-removing-extensions-in-the-embedded-open-vsx-registry-instance"></a>Adding or removing extensions in the embedded Open VSX registry instance</h2>
+<h2 id="adding-or-removing-extensions-in-a-workspace_che"><a class="anchor" href="#adding-or-removing-extensions-in-a-workspace_che"></a>Adding or removing extensions by using a Che workspace</h2>
 <div class="sectionbody">
+<div class="paragraph _abstract">
+<p>You can add or remove extensions in the embedded Open VSX registry instance directly within a Che workspace to create a custom build for your organization.</p>
+</div>
 <div class="admonitionblock important">
 <table>
 <tr>
@@ -980,45 +995,50 @@
 </td>
 <td class="content">
 <div class="paragraph">
-<p>You can manage Visual Studio Code extensions by setting up an internal, on-premises Open VSX Registry. This approach provides full control over the extension lifecycle, enables offline use, and improves compliance. The embedded plugin registry is deprecated; the Open VSX Registry is its successor. See <a href="../running-the-open-vsx-on-premises/" class="xref page">Running the Open VSX Registry on premises</a> for detailed setup instructions.</p>
+<p>The embedded plugin registry is deprecated. Setting up an internal, on-premises Open VSX registry provides full control over the extension lifecycle, enables offline use, and improves compliance. Refer to the <a href="../running-the-open-vsx-on-premises/" class="xref page">Running the Open VSX On-Premises</a> procedure for detailed setup instructions.</p>
 </div>
 </td>
 </tr>
 </table>
 </div>
-<div class="paragraph">
-<p>You can add or remove extensions in the embedded Open VSX registry instance. This results in a custom build of the Open VSX registry that can be used in your organization’s workspaces.</p>
-</div>
-<div class="paragraph">
-<p><!-- vale RedHat.TermsErrors = NO --></p>
-</div>
-<div class="admonitionblock tip">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-tip" title="Tip"></i>
-</td>
-<td class="content">
-To get the latest security fixes after a Che update, rebuild your container based on the latest tag or SHA.
-</td>
-</tr>
-</table>
-</div>
-<div class="paragraph">
-<p><!-- vale RedHat.TermsErrors = YES --></p>
+<div class="ulist">
+<div class="title">Prerequisites</div>
+<ul>
+<li>
+<p>You are logged in to your Che instance as an administrator.</p>
+</li>
+<li>
+<p>You have started a workspace using the <a href="https://github.com/redhat-developer/che-plugin-registry">plugin registry repository</a>.</p>
+</li>
+<li>
+<p>You have created a <a href="https://access.redhat.com/terms-based-registry/">Red Hat Registry Service Account</a> and have the username and token available.</p>
+</li>
+<li>
+<p>For IBM Power (<code>ppc64le</code>) and IBM Z (<code>s390x</code>) architectures, you must build the custom plugin registry locally on the corresponding hardware.</p>
+</li>
+<li>
+<p>(Optional) You can rebuild the container based on the latest tag or SHA to get the latest security fixes after a Che update.</p>
+</li>
+</ul>
 </div>
 <div class="olist arabic">
 <div class="title">Procedure</div>
 <ol class="arabic">
 <li>
-<p>Get the publisher and extension name of each chosen extension:</p>
+<p>Open a terminal in your workspace.</p>
+</li>
+<li>
+<p>Identify the publisher and extension name for each extension you want to add:</p>
 <div class="olist loweralpha">
 <ol class="loweralpha" type="a">
 <li>
-<p>Find the extension on the <a href="https://open-vsx.org/">Open VSX registry website</a> and copy the URL of the extension&#8217;s listing page and extension&#8217;s version.</p>
+<p>Find the extension on the <a href="https://open-vsx.org/">Open VSX registry website</a>.</p>
 </li>
 <li>
-<p>Extract the <em>&lt;publisher&gt;</em> and <em>&lt;extension&gt;</em> name from the copied URL:</p>
+<p>Copy the URL of the extension&#8217;s listing page.</p>
+</li>
+<li>
+<p>Extract the <code>&lt;publisher&gt;</code> and <code>&lt;name&gt;</code> from the URL:</p>
 <div class="listingblock">
 <div class="content">
 <pre>https://open-vsx.org/extension/<em>&lt;publisher&gt;</em>/<em>&lt;name&gt;</em></pre>
@@ -1032,7 +1052,7 @@ To get the latest security fixes after a Che update, rebuild your container base
 </td>
 <td class="content">
 <div class="paragraph">
-<p>If the extension is only available from <a href="https://marketplace.visualstudio.com/VSCode">Microsoft Visual Studio Marketplace</a>, but not <a href="https://open-vsx.org">Open VSX</a>, you can ask the extension publisher to also publish it on <a href="https://open-vsx.org">open-vsx.org</a> according to these <a href="https://github.com/eclipse/openvsx/wiki/Publishing-Extensions#how-to-publish-an-extension">instructions</a>, potentially using this <a href="https://github.com/marketplace/actions/publish-vs-code-extension">GitHub action</a>.</p>
+<p>If the extension is only available from <a href="https://marketplace.visualstudio.com/VSCode">Microsoft Visual Studio Marketplace</a>, but not <a href="https://open-vsx.org">Open VSX</a>, you can ask the extension publisher to publish it on <a href="https://open-vsx.org">open-vsx.org</a> according to these <a href="https://github.com/eclipse/openvsx/wiki/Publishing-Extensions#how-to-publish-an-extension">instructions</a>, potentially using this <a href="https://github.com/marketplace/actions/publish-vs-code-extension">GitHub action</a>.</p>
 </div>
 <div class="paragraph">
 <p>If the extension publisher is unavailable or unwilling to publish the extension to <a href="https://open-vsx.org">open-vsx.org</a>, and if there is no Open VSX equivalent of the extension, consider <a href="https://github.com/open-vsx/publish-extensions/issues">reporting an issue</a> to the Open VSX team.</p>
@@ -1046,189 +1066,97 @@ To get the latest security fixes after a Che update, rebuild your container base
 </div>
 </li>
 <li>
-<p>Build the custom plugin registry image and update CheCluster custom resource:</p>
+<p>Open the <code>openvsx-sync.json</code> file in the repository.</p>
+</li>
+<li>
+<p>Add or remove extensions using the following JSON syntax:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json">{
+    "id": "<em>&lt;publisher&gt;</em>.<em>&lt;name&gt;</em>",
+    "version": "<em>&lt;extension_version&gt;</em>"
+}</code></pre>
+</div>
+</div>
 <div class="admonitionblock tip">
 <table>
 <tr>
 <td class="icon">
 <i class="fa icon-tip" title="Tip"></i>
-</td>
-<td class="content">
-<div class="ulist">
-<ul>
-<li>
-<p>During the build process, each extension will be verified for compatibility with the version of Visual Studio Code used in Che.</p>
-</li>
-</ul>
-</div>
-</td>
-</tr>
-</table>
-</div>
-<div class="olist loweralpha">
-<ol class="loweralpha" type="a">
-<li>
-<p>Using Che instance:</p>
-<div class="admonitionblock important">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-important" title="Important"></i>
 </td>
 <td class="content">
 <div class="paragraph">
-<p>For IBM Power (<code>ppc64le</code>) and IBM Z (<code>s390x</code>), the custom plugin registry is expected to be built locally on the corresponding architecture.</p>
-</div>
-</td>
-</tr>
-</table>
-</div>
-<div class="olist lowerroman">
-<ol class="lowerroman" type="i">
-<li>
-<p>Log in to your Che instance as an administrator.</p>
-</li>
-<li>
-<p>Start a workspace using the <a href="https://github.com/eclipse-che/che-plugin-registry">plugin registry repository</a>.</p>
-</li>
-<li>
-<p>Open a terminal and check out the Git tag that corresponds to your Che version (for example, <code>7.87.0</code>):</p>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-none hljs">git checkout $PRODUCT_VERSION</code></pre>
-</div>
-</div>
-</li>
-<li>
-<p>Open the <code>che-plugin-registry/openvsx-sync.json</code> file and add or remove extensions.</p>
-</li>
-<li>
-<p>Execute <code>1. Build and Publish a Custom Plugin Registry</code> task in the workspace (Terminal &#8594; Run Task&#8230;&#8203; &#8594; devfile &#8594; 1. Build and Publish a Custom Plugin Registry).</p>
-</li>
-<li>
-<p>Execute <code>2. Configure Che to use the Custom Plugin Registry</code> task in the workspace (Terminal &#8594; Run Task&#8230;&#8203; &#8594; devfile &#8594; 2. Configure Che to use the Custom Plugin Registry).</p>
-</li>
-</ol>
-</div>
-</li>
-<li>
-<p>Using Linux operating system:</p>
-<div class="admonitionblock tip">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-tip" title="Tip"></i>
-</td>
-<td class="content">
-<div class="ulist">
-<ul>
-<li>
-<p>Podman and NodeJS version 18.20.3 or higher should be installed in the system.</p>
-</li>
-</ul>
-</div>
-</td>
-</tr>
-</table>
-</div>
-<div class="olist lowerroman">
-<ol class="lowerroman" type="i">
-<li>
-<p>Download or fork and clone the <a href="https://github.com/eclipse-che/che-plugin-registry">plugin registry repository</a>.</p>
-</li>
-<li>
-<p>For each extension that you need to add or remove, edit <a href="https://github.com/eclipse-che/che-plugin-registry/blob/main/openvsx-sync.json">the <code>openvsx-sync.json</code> file</a>:</p>
-<div class="ulist">
-<ul>
-<li>
-<p>To add extensions, add the publisher, name and extension version to the <code>openvsx-sync.json</code> file.</p>
-</li>
-<li>
-<p>To remove extensions, remove the publisher, name and extension version from the <code>openvsx-sync.json</code> file.</p>
-</li>
-<li>
-<p>Use the following JSON syntax:</p>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json">    {
-        "id": "<em>&lt;publisher&gt;</em>.<em>&lt;name&gt;</em>",
-        "version": "<em>&lt;extension_version&gt;</em>"
-    }</code></pre>
-</div>
-</div>
-<div class="admonitionblock tip">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-tip" title="Tip"></i>
-</td>
-<td class="content">
-<div class="ulist">
-<ul>
-<li>
 <p>If you have a closed-source extension or an extension developed only for internal use in your organization, you can add the extension directly from a <code>.vsix</code> file by using a URL accessible to your custom plugin registry container:</p>
+</div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json">    {
-        "id": "<em>&lt;publisher&gt;</em>.<em>&lt;name&gt;</em>",
-        "download": "<em>&lt;url_to_download_vsix_file&gt;</em>",
-        "version": "<em>&lt;extension_version&gt;</em>"
-    }</code></pre>
+<pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json">{
+    "id": "<em>&lt;publisher&gt;</em>.<em>&lt;name&gt;</em>",
+    "download": "<em>&lt;url_to_download_vsix_file&gt;</em>",
+    "version": "<em>&lt;extension_version&gt;</em>"
+}</code></pre>
 </div>
 </div>
-</li>
-<li>
+<div class="paragraph">
 <p>Read the <a href="https://aka.ms/vsmarketplace-ToU">Terms of Use</a> for the <a href="https://marketplace.visualstudio.com/VSCode">Microsoft Visual Studio Marketplace</a> before using its resources.</p>
-</li>
-</ul>
 </div>
 </td>
 </tr>
 </table>
 </div>
 </li>
-</ul>
+<li>
+<p>Log in to the Red Hat registry:</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Navigate to <strong>Terminal</strong> &#8594; <strong>Run Task&#8230;&#8203;</strong> &#8594; <strong>devfile</strong>.</p>
+</li>
+<li>
+<p>Run the <strong>1. Login to registry.redhat.io</strong> task.</p>
+</li>
+<li>
+<p>Enter your Red Hat Registry Service Account credentials when prompted.</p>
+</li>
+</ol>
 </div>
 </li>
 <li>
-<p>Build the plugin registry container image and publish it to a container registry such as <a href="https://quay.io/">quay.io</a>:</p>
-<div class="olist upperalpha">
-<ol class="upperalpha" type="A">
+<p>Build and publish the custom plugin registry:</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
 <li>
-<p></p>
-<div class="listingblock">
-<div class="content">
-<pre>$ ./build.sh -o <em>&lt;username&gt;</em> -r quay.io -t custom</pre>
-</div>
-</div>
+<p>Navigate to <strong>Terminal</strong> &#8594; <strong>Run Task&#8230;&#8203;</strong> &#8594; <strong>devfile</strong>.</p>
 </li>
 <li>
-<p></p>
-<div class="listingblock">
-<div class="content">
-<pre>$ docker push quay.io/<em>&lt;username/plugin_registry:custom&gt;</em></pre>
+<p>Run the <strong>2. Build and Publish a Custom Plugin Registry</strong> task.</p>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Verify that the <code>CHE_CODE_VERSION</code> in the <code>build-config.json</code> file matches the version of the editor currently used with Che. Update it if necessary.</p>
 </div>
+</td>
+</tr>
+</table>
 </div>
 </li>
 </ol>
 </div>
 </li>
 <li>
-<p>Edit the <code>CheCluster</code> custom resource in your organization&#8217;s cluster to point to the image (for example, on <a href="https://quay.io/">quay.io</a>) and save the changes:</p>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">spec:
-  components:
-    pluginRegistry:
-      deployment:
-        containers:
-          - image: quay.io/<em>&lt;username/plugin_registry:custom&gt;</em>
-      openVSXURL: ''</code></pre>
-</div>
-</div>
+<p>Configure Che to use the custom plugin registry:</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Navigate to <strong>Terminal</strong> &#8594; <strong>Run Task&#8230;&#8203;</strong> &#8594; <strong>devfile</strong>.</p>
 </li>
-</ol>
-</div>
+<li>
+<p>Run the <strong>3. Configure Che to use the Custom Plugin Registry</strong> task.</p>
 </li>
 </ol>
 </div>
@@ -1242,9 +1170,224 @@ To get the latest security fixes after a Che update, rebuild your container base
 <p>Check that the <code>plugin-registry</code> pod has restarted and is running.</p>
 </li>
 <li>
-<p>Restart the workspace and check the available extensions in the <strong>Extensions</strong> view of the workspace IDE.</p>
+<p>Restart your workspace.</p>
+</li>
+<li>
+<p>Open the <strong>Extensions</strong> view in the IDE and verify that your added extensions are available.</p>
 </li>
 </ol>
+</div>
+<div class="ulist">
+<div class="title">Additional resources</div>
+<ul>
+<li>
+<p><a href="https://github.com/redhat-developer/che-plugin-registry">Plugin registry repository</a></p>
+</li>
+<li>
+<p><a href="../running-the-open-vsx-on-premises/" class="xref page">Running the Open VSX On-Premises</a></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="adding-or-removing-extensions-on-linux_che"><a class="anchor" href="#adding-or-removing-extensions-on-linux_che"></a>Adding or removing extensions by using a Linux operating system</h2>
+<div class="sectionbody">
+<div class="paragraph _abstract">
+<p>You can build and publish a custom plugin registry using the Linux command line. This results in a custom build of the Open VSX registry that can be used in your organization&#8217;s workspaces.</p>
+</div>
+<div class="ulist">
+<div class="title">Prerequisites</div>
+<ul>
+<li>
+<p>Podman is installed.</p>
+</li>
+<li>
+<p>Node.js version 18.20.3 or higher is installed.</p>
+</li>
+<li>
+<p>You have created a <a href="https://access.redhat.com/terms-based-registry/">Red Hat Registry Service Account</a> and have the username and token available.</p>
+</li>
+<li>
+<p>You have read the <a href="https://aka.ms/vsmarketplace-ToU">Terms of Use</a> for the <a href="https://marketplace.visualstudio.com/VSCode">Microsoft Visual Studio Marketplace</a> before using its resources.</p>
+</li>
+<li>
+<p>(Optional) You can rebuild the container based on the latest tag or SHA to get the latest security fixes after a Che update.</p>
+</li>
+</ul>
+</div>
+<div class="olist arabic">
+<div class="title">Procedure</div>
+<ol class="arabic">
+<li>
+<p>Clone the plugin registry repository:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">$ git clone {plugin-registry-repo-url}.git</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Change to the plugin registry directory:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">$ cd che-plugin-registry</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Log in to the Red Hat registry:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">$ podman login registry.redhat.io</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Identify the publisher and extension name for each extension you want to add:</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Find the extension on the <a href="https://open-vsx.org/">Open VSX registry website</a>.</p>
+</li>
+<li>
+<p>Copy the URL of the extension&#8217;s listing page.</p>
+</li>
+<li>
+<p>Extract the <code>&lt;publisher&gt;</code> and <code>&lt;name&gt;</code> from the URL:</p>
+<div class="listingblock">
+<div class="content">
+<pre>https://open-vsx.org/extension/<em>&lt;publisher&gt;</em>/<em>&lt;name&gt;</em></pre>
+</div>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>If the extension is only available from <a href="https://marketplace.visualstudio.com/VSCode">Microsoft Visual Studio Marketplace</a>, but not <a href="https://open-vsx.org">Open VSX</a>, you can ask the extension publisher to publish it on <a href="https://open-vsx.org">open-vsx.org</a> according to these <a href="https://github.com/eclipse/openvsx/wiki/Publishing-Extensions#how-to-publish-an-extension">instructions</a>, potentially using this <a href="https://github.com/marketplace/actions/publish-vs-code-extension">GitHub action</a>.</p>
+</div>
+<div class="paragraph">
+<p>If the extension publisher is unavailable or unwilling to publish the extension to <a href="https://open-vsx.org">open-vsx.org</a>, and if there is no Open VSX equivalent of the extension, consider <a href="https://github.com/open-vsx/publish-extensions/issues">reporting an issue</a> to the Open VSX team.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Open the <code>openvsx-sync.json</code> file.</p>
+</li>
+<li>
+<p>Add or remove extensions using the following JSON syntax:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json">{
+    "id": "<em>&lt;publisher&gt;</em>.<em>&lt;name&gt;</em>",
+    "version": "<em>&lt;extension_version&gt;</em>"
+}</code></pre>
+</div>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>If you have a closed-source extension or an extension developed only for internal use in your organization, you can add the extension directly from a <code>.vsix</code> file by using a URL accessible to your custom plugin registry container:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json">{
+    "id": "<em>&lt;publisher&gt;</em>.<em>&lt;name&gt;</em>",
+    "download": "<em>&lt;url_to_download_vsix_file&gt;</em>",
+    "version": "<em>&lt;extension_version&gt;</em>"
+}</code></pre>
+</div>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</li>
+<li>
+<p>Build the plugin registry container image:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">$ ./build.sh -o <em>&lt;username&gt;</em> -r quay.io -t custom</code></pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Verify that the <code>CHE_CODE_VERSION</code> in the <code>build-config.json</code> file matches the version of the editor currently used with Che. Update it if necessary.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</li>
+<li>
+<p>Push the image to a container registry such as <a href="https://quay.io/">quay.io</a>:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">$ podman push quay.io/<em>&lt;username&gt;</em>/plugin_registry:custom</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Edit the <code>CheCluster</code> custom resource in your organization&#8217;s cluster to point to the image and save the changes:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">spec:
+  components:
+    pluginRegistry:
+      deployment:
+        containers:
+          - image: quay.io/<em>&lt;username&gt;</em>/plugin_registry:custom
+      openVSXURL: ''</code></pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+<div class="olist arabic">
+<div class="title">Verification</div>
+<ol class="arabic">
+<li>
+<p>Check that the <code>plugin-registry</code> pod has restarted and is running.</p>
+</li>
+<li>
+<p>Restart your workspace.</p>
+</li>
+<li>
+<p>Open the <strong>Extensions</strong> view in the IDE and verify that your added extensions are available.</p>
+</li>
+</ol>
+</div>
+<div class="ulist">
+<div class="title">Additional resources</div>
+<ul>
+<li>
+<p><a href="https://github.com/redhat-developer/che-plugin-registry">Plugin registry repository</a></p>
+</li>
+<li>
+<p><a href="../running-the-open-vsx-on-premises/" class="xref page">Running the Open VSX On-Premises</a></p>
+</li>
+</ul>
 </div>
 </div>
 </div>
