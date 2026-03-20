@@ -988,6 +988,58 @@ See <a href="https://docs.openshift.com/container-platform/4.18/operators/user/o
 </li>
 </ol>
 </div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>On ARM64 (AArch64) OpenShift clusters, you must override the gateway sidecar images after installing the Eclipse&#160;Che Operator, because the default images are not available for ARM64.</p>
+</div>
+<div class="paragraph">
+<p>To patch the Eclipse&#160;Che Operator subscription, run the following commands:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">ECLIPSE_CHE_SUBSCRIPTION=$(
+  kubectl get subscription -A -o jsonpath='{.items[?(@.spec.name=="eclipse-che")]}'
+)
+
+ECLIPSE_CHE_SUBSCRIPTION_NAME=$(
+  echo "$ECLIPSE_CHE_SUBSCRIPTION" | jq -r '.metadata.name'
+)
+
+ECLIPSE_CHE_SUBSCRIPTION_NAMESPACE=$(
+  echo "$ECLIPSE_CHE_SUBSCRIPTION" | jq -r '.metadata.namespace'
+)
+
+kubectl patch subscription "$ECLIPSE_CHE_SUBSCRIPTION_NAME" \
+  -n "$ECLIPSE_CHE_SUBSCRIPTION_NAMESPACE" \
+  --type=merge \
+  -p '{
+    "spec": {
+      "config": {
+        "env": [
+          {
+            "name": "RELATED_IMAGE_gateway_authentication_sidecar",
+            "value": "quay.io/openshift/origin-oauth-proxy:4.9"
+          },
+          {
+            "name": "RELATED_IMAGE_gateway_authorization_sidecar",
+            "value": "quay.io/openshift/origin-kube-rbac-proxy:4.9"
+          }
+        ]
+      }
+    }
+  }'</code></pre>
+</div>
+</div>
+</td>
+</tr>
+</table>
+</div>
 <div class="ulist">
 <div class="title">Additional resources</div>
 <ul>
