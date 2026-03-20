@@ -876,7 +876,7 @@ granular access control.</p>
 apiVersion: controller.devfile.io/v1alpha1
 metadata:
   name: devworkspace-operator-config
-  namespace: $OPERATOR_INSTALL_NAMESPACE
+  namespace: $OPERATOR_INSTALL_NAMESPACE <i class="conum" data-value="1"></i><b>(1)</b>
 config:
   routing:
     defaultRoutingClass: basic
@@ -889,6 +889,14 @@ config:
       schedule: '0 */4 * * *'
     imagePullPolicy: Always</code></pre>
 </div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>For Red Hat OpenShift, the default installation namespace for the DevWorkspace operator is <code>openshift-operators</code>. See the <a href="../devworkspace-operator/" class="xref page">DevWorkspace operator overview</a>.</td>
+</tr>
+</table>
 </div>
 <div class="paragraph">
 <p>The <code>authSecret</code> must point to a real Kubernetes Secret of type <code>kubernetes.io/dockerconfigjson</code> containing credentials to access the registry.</p>

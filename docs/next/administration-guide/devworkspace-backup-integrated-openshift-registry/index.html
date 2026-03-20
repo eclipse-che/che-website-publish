@@ -876,7 +876,7 @@
 kind: DevWorkspaceOperatorConfig
 metadata:
   name: devworkspace-operator-config
-  namespace: $OPERATOR_INSTALL_NAMESPACE
+  namespace: $OPERATOR_INSTALL_NAMESPACE <i class="conum" data-value="1"></i><b>(1)</b>
 config:
   routing:
     defaultRoutingClass: basic
@@ -888,6 +888,14 @@ config:
       schedule: '0 */4 * * *' # cron expression with backup frequency
     imagePullPolicy: Always</code></pre>
 </div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>For Red Hat OpenShift, the default installation namespace for the DevWorkspace operator is <code>openshift-operators</code>. See the <a href="../devworkspace-operator/" class="xref page">DevWorkspace operator overview</a>.</td>
+</tr>
+</table>
 </div>
 <div class="paragraph">
 <p><strong>Note:</strong> The <code>path</code> field must contain the URL to your OpenShift integrated registry given by the cluster.</p>
