@@ -839,7 +839,7 @@
           <a href="../../overview/introduction-to-eclipse-che/">next</a>
         </li>
         <li class="version is-latest">
-          <a href="../../../stable/overview/introduction-to-eclipse-che/">7.115.x</a>
+          <a href="../../../stable/overview/introduction-to-eclipse-che/">7.116.x</a>
         </li>
       </ul>
     </li>
@@ -865,7 +865,7 @@
   <button class="version-menu-toggle" title="Show other versions of page">next</button>
   <div class="version-menu">
     <a class="version is-current" href="./">next</a>
-    <a class="version" href="../../../stable/administration-guide/checluster-custom-resource-fields-reference/">7.115.x</a>
+    <a class="version" href="../../../stable/administration-guide/checluster-custom-resource-fields-reference/">7.116.x</a>
   </div>
 </div>
 <div class="edit-this-page"><a href="https://github.com/eclipse-che/che-docs/edit/main/modules/administration-guide/pages/checluster-custom-resource-fields-reference.adoc">Edit this Page</a></div>
@@ -1489,7 +1489,7 @@ spec:
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">containerSecurityContext</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">SecurityContext applied to all workspace containers when run capabilities are enabled. The default <code>procMount: "Unmasked"</code> is set because the pod runs in a user namespace, which safely isolates the container&#8217;s <code>/proc</code> from the host. This allows the container to modify its own sysctl settings for configuring networking for nested containers.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">{  "allowPrivilegeEscalation": true,  "capabilities": {    "add": [      "SETGID",      "SETUID"    ]  },  "procMount": "Unmasked"}</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">{  "allowPrivilegeEscalation": true,  "capabilities": {    "add": [      "SETGID",      "SETUID",      "CHOWN"    ]  },  "procMount": "Unmasked"}</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">openShiftSecurityContextConstraint</p></td>
@@ -2894,7 +2894,7 @@ spec:
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">gatewayPhase</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Specifies the current phase of the gateway deployment.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Deprecated. Specifies the current phase of the gateway deployment.</p></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
