@@ -911,14 +911,15 @@ config:
 </table>
 </div>
 <div class="paragraph">
-<p>The <code>authSecret</code> must point to a real Kubernetes Secret of type <code>kubernetes.io/dockerconfigjson</code> containing credentials to access the registry.</p>
+<p>The <code>authSecret</code> must point to a real Kubernetes Secret of type <code>kubernetes.io/dockerconfigjson</code> containing credentials to access the registry.
+The secret should be created in the installation namespace for the DevWorkspace operator.</p>
 </div>
 <div class="paragraph">
 <p>To create one, you can use the following command:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">kubectl create secret docker-registry my-secret --from-file=config.json -n devworkspace-controller</code></pre>
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">kubectl create secret docker-registry my-secret --from-file=config.json</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -926,7 +927,7 @@ config:
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">kubectl label secret my-secret controller.devfile.io/watch-secret=true -n devworkspace-controller</code></pre>
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">kubectl label secret my-secret controller.devfile.io/watch-secret=true</code></pre>
 </div>
 </div>
 </article>

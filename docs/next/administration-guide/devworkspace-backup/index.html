@@ -911,6 +911,9 @@ By default, the DevWorkspace backup job is disabled.
 <p><code>schedule</code>: A Cron expression that defines the backup frequency. The default value is <code>"0 1 * * *"</code>.</p>
 </li>
 <li>
+<p><code>backoffLimit</code>: The value of the backup job&#8217;s <code>spec.backoffLimit</code>, which specifies the number of retries before marking this job failed. The default value for the backups jobs is <code>1</code>.</p>
+</li>
+<li>
 <p><code>registry.path</code>: The base registry location for backup archives.</p>
 <div class="paragraph">
 <p>The value for <code>registry.path</code> is the first segment of the final location. The full path is assembled dynamically by using the workspace name and the <code>:latest</code> tag in the following pattern:</p>
