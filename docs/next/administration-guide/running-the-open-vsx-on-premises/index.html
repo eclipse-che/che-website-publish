@@ -384,6 +384,9 @@
     <a class="nav-link" href="../installing-che-on-openshift-using-the-web-console/">Installing Che on OpenShift using the web console</a>
   </li>
   <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../installing-che-on-openshift-with-keycloak-as-oidc/">Installing Che on OpenShift with Keycloak as external identity provider</a>
+  </li>
+  <li class="nav-item" data-depth="3">
     <a class="nav-link" href="../installing-che-in-a-restricted-environment/">Installing Che in a restricted environment</a>
   </li>
   <li class="nav-item" data-depth="3">
@@ -1108,7 +1111,7 @@ To publish your extensions to Open VSX, update the <code>extensions.txt</code> f
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="nowrap">git clone https://github.com/eclipse/openvsx.git &amp;&amp;
+<pre class="nowrap">git clone https://github.com/eclipse-openvsx/openvsx &amp;&amp;
 cd openvsx/deploy/openshift</pre>
 </div>
 </div>
@@ -1123,7 +1126,7 @@ cd openvsx/deploy/openshift</pre>
 <pre class="nowrap">export REGISTRY=quay.io &amp;&amp;
 export NAMESPACE=myuser &amp;&amp;
 export OPENVSX_SERVER_IMAGE_NAME=openvsx-server &amp;&amp;
-export OPENVSX_VERSION=v0.27.0 &amp;&amp;
+export OPENVSX_VERSION=v0.33.0 &amp;&amp;
 export OPENVSX_SERVER_IMAGE=${REGISTRY}/${NAMESPACE}/${OPENVSX_SERVER_IMAGE_NAME}:${OPENVSX_VERSION} &amp;&amp;
 podman build -t "${OPENVSX_SERVER_IMAGE}" --build-arg "OPENVSX_VERSION=${OPENVSX_VERSION}" -f openvsx.Dockerfile . &amp;&amp;
 podman login "${REGISTRY}" &amp;&amp;
@@ -1220,7 +1223,7 @@ podman push "${OPENVSX_CLI_IMAGE}"</pre>
 <div class="listingblock">
 <div class="content">
 <pre class="nowrap">oc exec -n openvsx "$POSTGRESQL_POD_NAME" -- bash -c \
-   "psql -d openvsx -c \"INSERT INTO personal_access_token (id, user_data, value, active, created_timestamp, accessed_timestamp, description) VALUES (1001, 1001, 'eclipse_che_token', true, current_timestamp, current_timestamp, 'extensions publisher');\""</pre>
+   "psql -d openvsx -c \"INSERT INTO personal_access_token (id, user_data, value, active, created_timestamp, accessed_timestamp, description, notified) VALUES (1001, 1001, 'eclipse_che_token', true, current_timestamp, current_timestamp, 'extensions publisher', false);\""</pre>
 </div>
 </div>
 </li>

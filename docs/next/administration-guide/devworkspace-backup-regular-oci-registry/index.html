@@ -384,6 +384,9 @@
     <a class="nav-link" href="../installing-che-on-openshift-using-the-web-console/">Installing Che on OpenShift using the web console</a>
   </li>
   <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../installing-che-on-openshift-with-keycloak-as-oidc/">Installing Che on OpenShift with Keycloak as external identity provider</a>
+  </li>
+  <li class="nav-item" data-depth="3">
     <a class="nav-link" href="../installing-che-in-a-restricted-environment/">Installing Che in a restricted environment</a>
   </li>
   <li class="nav-item" data-depth="3">
@@ -896,7 +899,7 @@ config:
     backupCronJob:
       enable: true
       registry:
-        authSecret: my-secret
+        authSecret: devworkspace-backup-registry-auth
         path: quay.io/my-company-org
       schedule: '0 */4 * * *'
     imagePullPolicy: Always</code></pre>
@@ -911,7 +914,7 @@ config:
 </table>
 </div>
 <div class="paragraph">
-<p>The <code>authSecret</code> must point to a real Kubernetes Secret of type <code>kubernetes.io/dockerconfigjson</code> containing credentials to access the registry.
+<p>The <code>authSecret</code> must be named <code>devworkspace-backup-registry-auth</code>. It must reference a Kubernetes Secret of type <code>kubernetes.io/dockerconfigjson</code> that contains credentials to access the registry.
 The secret should be created in the installation namespace for the DevWorkspace operator.</p>
 </div>
 <div class="paragraph">
@@ -919,7 +922,7 @@ The secret should be created in the installation namespace for the DevWorkspace 
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">kubectl create secret docker-registry my-secret --from-file=config.json</code></pre>
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">kubectl create secret docker-registry devworkspace-backup-registry-auth --from-file=config.json</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -927,8 +930,22 @@ The secret should be created in the installation namespace for the DevWorkspace 
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">kubectl label secret my-secret controller.devfile.io/watch-secret=true</code></pre>
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">kubectl label secret devworkspace-backup-registry-auth controller.devfile.io/watch-secret=true</code></pre>
 </div>
+</div>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-warning" title="Warning"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>The DevWorkspace Operator copies the <code>devworkspace-backup-registry-auth</code> secret to each DevWorkspace namespace so that backups from user workspaces can be pushed to the registry. If you do not want that secret copied automatically, create a <code>devworkspace-backup-registry-auth</code> secret with user-specific credentials in each DevWorkspace namespace instead.</p>
+</div>
+</td>
+</tr>
+</table>
 </div>
 </article>
   </div>
