@@ -933,6 +933,43 @@ config:
 <p>Once the backup job is finished, the backup archives will be available in the DevWorkspace namespace under a repository
 with a matching DevWorkspace name.</p>
 </div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>If the installation namespace for the DevWorkspace operator is not <code>openshift-operators</code>, you must define it as an environment variable for the Eclipse&#160;Che dashboard in the <code>CheCluster</code> Custom Resource.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">apiVersion: org.eclipse.che/v2
+kind: CheCluster
+spec:
+  components:
+    dashboard:
+      deployment:
+        containers:
+          - env:
+              - name: DWO_NAMESPACE
+                value: $OPERATOR_INSTALL_NAMESPACE <i class="conum" data-value="1"></i><b>(1)</b>
+            name: che-dashboard</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>For Red Hat OpenShift, the default installation namespace for the DevWorkspace operator is <code>openshift-operators</code>. See the <a href="../devworkspace-operator/" class="xref page">DevWorkspace operator overview</a>.</td>
+</tr>
+</table>
+</div>
+</td>
+</tr>
+</table>
+</div>
 </article>
   </div>
 </main>
