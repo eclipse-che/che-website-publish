@@ -899,14 +899,11 @@
 <p>Define the environment variables:</p>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell"># The Keycloak namespace:
-KEYCLOAK_NAMESPACE=<em>&lt;KEYCLOAK_NAMESPACE&gt;</em>
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell"># The Keycloak realm used for OpenShift authentication:
+OPENSHIFT_REALM=<em>&lt;REALM&gt;</em>
 
-# The Keycloak realm used for OpenShift authentication:
-OPENSHIFT_REALM=&lt;REALM&gt;
-
-# The Keycloak URL
-KEYCLOAK_URL=https://$(kubectl get route keycloak -n $KEYCLOAK_NAMESPACE --template='{{ .spec.host }}')</code></pre>
+# The Keycloak URL:
+KEYCLOAK_URL=<em>&lt;KEYCLOAK_URL&gt;</em></code></pre>
 </div>
 </div>
 </li>
@@ -994,7 +991,7 @@ KEYCLOAK_URL=https://$(kubectl get route keycloak -n $KEYCLOAK_NAMESPACE --templ
 </div>
 </li>
 <li>
-<p>Wait for the <code>kube-apiserver</code> cluster operator to roll out the configuration changes:</p>
+<p>Wait for the <code>kube-apiserver</code> cluster Operator to roll out the configuration changes:</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">watch kubectl get co kube-apiserver</code></pre>
@@ -1105,7 +1102,7 @@ EOF</code></pre>
 </tr>
 <tr>
 <td><i class="conum" data-value="4"></i><b>4</b></td>
-<td>The prefix to add to usernames from the external authentication system.
+<td>The prefix to add to usernames. Empty string means no prefix.
 <div class="admonitionblock note">
 <table>
 <tr>
@@ -1140,68 +1137,31 @@ EOF</code></pre>
 </div>
 </li>
 <li>
-<p>Update a <code>eclipse-che</code> client to set Che callback URL:</p>
+<p>Update the <code>eclipse-che</code> client to set the Che redirect URI and web origin:</p>
+<div class="paragraph">
+<p>Obtain the Eclipse&#160;Che URL with the following command:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">echo "$(kubectl get checluster eclipse-che -n eclipse-che -o jsonpath='{.status.cheURL}')"</code></pre>
+</div>
+</div>
 <div class="openblock">
 <div class="content">
-<div class="olist loweralpha">
-<ol class="loweralpha" type="a">
-<li>
-<p>Open the Keycloak Admin Console.</p>
-</li>
-<li>
-<p>Within the realm used for OpenShift authentication, click the <code>eclipse-che</code> client.</p>
 <div class="olist lowerroman">
 <ol class="lowerroman" type="i">
 <li>
-<p>In the <strong>Valid redirect URIs</strong> field, enter the redirect URI for your Che installation. To obtain the redirect URI, run the following command:</p>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">echo "$(kubectl get checluster eclipse-che -n eclipse-che -o jsonpath='{.status.cheURL}')/oauth/callback"</code></pre>
-</div>
-</div>
+<p>In the <strong>Valid redirect URIs</strong> field, entry the URL above with <code>/oauth/callback</code> appended</p>
+</li>
+<li>
+<p>In the <strong>Web origins</strong> field, entry the URL above.</p>
 </li>
 <li>
 <p>Click <strong>Save</strong>.</p>
 </li>
 </ol>
 </div>
-</li>
-</ol>
 </div>
-</div>
-</div>
-</li>
-<li>
-<p>Create a <code>ClusterRoleBinding</code> to grant users access to Che:</p>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">kubectl apply -f - &lt;&lt;EOF
-apiVersion: rbac.authorization.k8s.io/v1
-kind: ClusterRoleBinding
-metadata:
-  name: openshift-developers
-roleRef:
-  apiGroup: rbac.authorization.k8s.io
-  kind: ClusterRole
-  name: self-provisioner <i class="conum" data-value="1"></i><b>(1)</b>
-subjects:
-- apiGroup: rbac.authorization.k8s.io
-  kind: Group
-  name: <em>&lt;GROUP_NAME&gt;</em> <i class="conum" data-value="2"></i><b>(2)</b>
-EOF</code></pre>
-</div>
-</div>
-<div class="colist arabic">
-<table>
-<tr>
-<td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>Users must have at least the <code>self-provisioner</code> role to access Che.</td>
-</tr>
-<tr>
-<td><i class="conum" data-value="2"></i><b>2</b></td>
-<td>The name of the user group from Keycloak that should be granted access to Che.</td>
-</tr>
-</table>
 </div>
 </li>
 </ol>
