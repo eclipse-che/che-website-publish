@@ -3,10 +3,10 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Permissions to install Che :: Eclipse Che Documentation</title>
-    <link rel="canonical" href="https://www.eclipse.org/che/docs/stable/administration-guide/permissions-to-install-che/">
-    <meta name="description" content="Permissions to install Eclipse&#160;Che">
-    <meta name="keywords" content="administration-guide, installing, permissions">
+    <title>Customizing OpenShift&#160;Container&#160;Platform Eclipse&#160;Che branding images :: Eclipse Che Documentation</title>
+    <link rel="canonical" href="https://www.eclipse.org/che/docs/stable/administration-guide/customizing-openshift-che-consolelink-icon/">
+    <meta name="description" content="Customizing OpenShift Eclipse Che branding images">
+    <meta name="keywords" content="administration guide, customizing, branding, images">
     <meta name="generator" content="Antora 3.1.14">
     <link rel="stylesheet" href="../../../../docs/_/css/site.css">
 <link rel="stylesheet" href="../../../../docs/_/css/extra.css">
@@ -418,9 +418,9 @@
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../finding-the-fully-qualified-domain-name-fqdn/">Finding the fully qualified domain name (FQDN)</a>
   </li>
-  <li class="nav-item is-current-page" data-depth="2">
+  <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="./">Permissions to install Che</a>
+    <a class="nav-link" href="../permissions-to-install-che/">Permissions to install Che</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="../permissions-to-install-che-on-openshift-using-cli/">Permissions to install Che on OpenShift using CLI</a>
@@ -650,8 +650,8 @@
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="../configuring-editors-download-urls/">Configuring editors download urls</a>
   </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../customizing-openshift-che-branding-images/">Customizing OpenShift Eclipse Che branding images</a>
+  <li class="nav-item is-current-page" data-depth="3">
+    <a class="nav-link" href="./">Customizing OpenShift Eclipse Che branding images</a>
   </li>
 </ul>
   </li>
@@ -862,35 +862,129 @@
   <ul>
     <li><a href="../../overview/introduction-to-eclipse-che/">Documentation</a></li>
     <li>Administration Guide</li>
-    <li><a href="../installing-che/">Installing Che</a></li>
-    <li><a href="./">Permissions to install Che</a></li>
+    <li><a href="../configuring-che/">Configuring Che</a></li>
+    <li><a href="../configuring-dashboard/">Configuring dashboard</a></li>
+    <li><a href="./">Customizing OpenShift Eclipse Che branding images</a></li>
   </ul>
 </nav>
 <div class="page-versions">
   <button class="version-menu-toggle" title="Show other versions of page">next</button>
   <div class="version-menu">
     <a class="version is-current" href="./">next</a>
-    <a class="version" href="../../../stable/administration-guide/permissions-to-install-che/">7.116.x</a>
+    <a class="version" href="../../../stable/administration-guide/customizing-openshift-che-consolelink-icon/">7.116.x</a>
   </div>
 </div>
-<div class="edit-this-page"><a href="https://github.com/eclipse-che/che-docs/edit/main/modules/administration-guide/pages/permissions-to-install-che.adoc">Edit this Page</a></div>
+<div class="edit-this-page"><a href="https://github.com/eclipse-che/che-docs/edit/main/modules/administration-guide/pages/customizing-openshift-che-branding-images.adoc">Edit this Page</a></div>
 </div>
   <div class="content">
 <aside class="toc sidebar" data-title="Contents" data-levels="2">
   <div class="toc-menu"></div>
 </aside>
 <article class="doc">
-<h1 class="page">Permissions to install Che</h1>
+<h1 class="page">Customizing OpenShift&#160;Container&#160;Platform Eclipse&#160;Che branding images</h1>
 <div class="paragraph">
-<p>Learn about the permissions required to install Eclipse&#160;Che on different Kubernetes clusters.</p>
+<p>Customize the branding images for the Eclipse&#160;Che dashboard by overriding the default images in the <code>assets/branding</code> directory. The following images can be customized:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p><a href="../permissions-to-install-che-on-openshift-using-cli/" class="xref page">Permissions to install Che on OpenShift using CLI</a></p>
+<p><code>che-logo.svg</code> — the logo displayed in the dashboard header.</p>
 </li>
 <li>
-<p><a href="../permissions-to-install-che-on-openshift-using-the-web-console/" class="xref page">Permissions to install Che on OpenShift using the web console</a></p>
+<p><code>loader.svg</code> — the loader icon displayed during dashboard loading. The loader image supports the following formats, in priority order: <code>jpg</code>, <code>jpeg</code>, <code>png</code>, <code>gif</code>, <code>webp</code>, <code>svg</code>. The <code>svg</code> format is used as the default fallback.</p>
+</li>
+<li>
+<p><code>favicon.ico</code> — the browser tab icon.</p>
+</li>
+</ul>
+</div>
+<div class="ulist">
+<div class="title">Prerequisites</div>
+<ul>
+<li>
+<p>An active <code>kubectl</code> session with administrative permissions to the Kubernetes cluster. See <a href="https://kubernetes.io/docs/reference/kubectl/overview/">Overview of kubectl</a>.</p>
+</li>
+</ul>
+</div>
+<div class="olist arabic">
+<div class="title">Procedure</div>
+<ol class="arabic">
+<li>
+<p>Create a Secret that mounts custom branding images into the dashboard:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">kubectl apply -f - &lt;&lt;EOF
+apiVersion: v1
+kind: Secret
+metadata:
+  name: che-dashboard-customization
+  namespace: eclipse-che
+  annotations:
+    che.eclipse.org/mount-as: subpath
+    che.eclipse.org/mount-path: /public/dashboard/assets/branding
+  labels:
+    app.kubernetes.io/component: che-dashboard-secret
+    app.kubernetes.io/part-of: che.eclipse.org
+data:
+  che-logo.svg: <em>&lt;Base64_encoded_content_of_the_image&gt;</em> <i class="conum" data-value="1"></i><b>(1)</b>
+  loader.svg: <em>&lt;Base64_encoded_content_of_the_image&gt;</em> <i class="conum" data-value="2"></i><b>(2)</b>
+  favicon.ico: <em>&lt;Base64_encoded_content_of_the_image&gt;</em> <i class="conum" data-value="3"></i><b>(3)</b>
+type: Opaque
+EOF</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>The dashboard logo. Replace <code>che-logo.svg</code> with the Base64-encoded content of your custom logo with disabled line wrapping.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>The loader icon. Replace <code>loader.svg</code> with the filename matching your image format (for example, <code>loader.png</code>, <code>loader.webp</code>). The value is the Base64-encoded content of the image with disabled line wrapping.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>The favicon. The value is the Base64-encoded content of the <code>.ico</code> file with disabled line wrapping.
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+You can override one or all images from the <code>/public/dashboard/assets/branding</code> directory in the dashboard pod. Only the images specified in the Secret <code>data</code> section are overridden; unspecified images remain unchanged.
+</td>
+</tr>
+</table>
+</div></td>
+</tr>
+</table>
+</div>
+</li>
+<li>
+<p>Verify that the rollout completes:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">kubectl rollout status deployment/che-dashboard -n eclipse-che</code></pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+<div class="ulist">
+<div class="title">Verification</div>
+<ul>
+<li>
+<p>Open the Eclipse&#160;Che dashboard in a browser and confirm that the custom branding images are displayed.</p>
+</li>
+</ul>
+</div>
+<div class="ulist">
+<div class="title">Additional resources</div>
+<ul>
+<li>
+<p><a href="https://docs.openshift.com/container-platform/4.18/web_console/customizing-the-web-console.html#creating-custom-links_customizing-web-console">Creating custom links in the web console</a></p>
 </li>
 </ul>
 </div>
