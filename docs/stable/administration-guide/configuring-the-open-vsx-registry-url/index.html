@@ -3,10 +3,10 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Configuring the Open VSX registry URL :: Eclipse Che Documentation</title>
+    <title>Configure the Open VSX registry URL :: Eclipse Che Documentation</title>
     <link rel="canonical" href="https://www.eclipse.org/che/docs/stable/administration-guide/configuring-the-open-vsx-registry-url/">
-    <meta name="description" content="Configuring the Open VSX registry URL for all Eclipse&#160;Che workspaces">
-    <meta name="keywords" content="administration guide, configuring, openvsx, registry">
+    <meta name="description" content="Configure the Open VSX registry URL for Eclipse&#160;Che workspaces">
+    <meta name="keywords" content="administration guide, configuring, openvsx, registry, extensions">
     <meta name="generator" content="Antora 3.1.14">
     <link rel="stylesheet" href="../../../../docs/_/css/site.css">
 <link rel="stylesheet" href="../../../../docs/_/css/extra.css">
@@ -45,7 +45,7 @@
   </nav>
 </header>
 <div class="body">
-<div class="nav-container" data-component="docs" data-version="7.116.x">
+<div class="nav-container" data-component="docs" data-version="7.117.x">
   <aside class="nav">
     <div class="panels">
 <div class="nav-panel-menu is-active" data-panel="menu">
@@ -130,6 +130,18 @@
     <a class="nav-link" href="../../end-user-guide/basic-actions-you-can-perform-on-a-workspace/">Basic actions you can perform on a workspace</a>
   </li>
   <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../../end-user-guide/restoring-workspaces-from-backups/">Restoring workspaces from backups</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../../end-user-guide/proc-restoring-a-workspace-from-backup/">Restoring a workspace from a backup</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../../end-user-guide/proc-viewing-backups-in-the-dashboard/">Viewing backups in the dashboard</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../../end-user-guide/authenticating-to-a-git-server-from-a-workspace/">Authenticating to a Git server from a workspace</a>
   </li>
   <li class="nav-item" data-depth="2">
@@ -146,6 +158,9 @@
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../../end-user-guide/running-containers-with-kubedock/">Running containers with kubedock</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../end-user-guide/proc_preventing-workspace-idling-for-long-running-commands/">Prevent workspace idling for long-running commands</a>
   </li>
 </ul>
   </li>
@@ -371,6 +386,9 @@
     <a class="nav-link" href="../installing-che-on-openshift-using-the-web-console/">Installing Che on OpenShift using the web console</a>
   </li>
   <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../installing-che-on-openshift-with-keycloak-as-oidc/">Installing Che on OpenShift with Keycloak as external identity provider</a>
+  </li>
+  <li class="nav-item" data-depth="3">
     <a class="nav-link" href="../installing-che-in-a-restricted-environment/">Installing Che in a restricted environment</a>
   </li>
   <li class="nav-item" data-depth="3">
@@ -444,6 +462,9 @@
   </li>
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="../configuring-a-user-namespace/">Configuring a user namespace</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../configuring-direct-namespace-creation-on-openshift/">Configuring direct namespace creation on OpenShift</a>
   </li>
 </ul>
   </li>
@@ -605,7 +626,7 @@
     <a class="nav-link" href="../configuring-storage-sizes/">Configuring storage sizes</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../about-persistent-user-home/">Persistent user home</a>
+    <a class="nav-link" href="../con_persistent-user-home/">Persistent user home</a>
   </li>
 </ul>
   </li>
@@ -632,7 +653,7 @@
     <a class="nav-link" href="../configuring-editors-download-urls/">Configuring editors download urls</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../customizing-openshift-che-consolelink-icon/">Customizing OpenShift Eclipse Che ConsoleLink icon</a>
+    <a class="nav-link" href="../customizing-openshift-che-branding-images/">Customizing OpenShift Eclipse Che branding images</a>
   </li>
 </ul>
   </li>
@@ -708,14 +729,23 @@
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../extensions-for-microsoft-visual-studio-code-open-source/">Extensions for Microsoft Visual Studio Code - Open Source</a>
   </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../running-the-open-vsx-on-premises/">Running Open VSX On-Premises</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../deleting-extension-from-the-open-vsx-on-premises/">Deleting Extensions from Open VSX On-Premises</a>
-  </li>
   <li class="nav-item is-current-page" data-depth="2">
-    <a class="nav-link" href="./">Open VSX registry URL</a>
+    <a class="nav-link" href="./">Configure the Open VSX registry URL</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../proc_deploy-open-vsx-from-source/">Deploy Open VSX from source</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../proc_deploy-open-vsx-from-workspace/">Deploy Open VSX from a workspace</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../proc_configure-internal-open-vsx-access/">Configure internal Open VSX access</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../proc_deleting-extension-using-openvsx-admin-api/">Delete an extension using the Open VSX API</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../proc_deleting-extension-from-postgresql-database/">Delete an extension from the PostgreSQL database</a>
   </li>
 </ul>
   </li>
@@ -816,7 +846,7 @@
 <div class="nav-panel-explore" data-panel="explore">
   <div class="context">
     <span class="title">Documentation</span>
-    <span class="version">7.116.x</span>
+    <span class="version">7.117.x</span>
   </div>
   <ul class="components">
     <li class="component is-current">
@@ -826,7 +856,7 @@
           <a href="../../../next/overview/introduction-to-eclipse-che/">next</a>
         </li>
         <li class="version is-current is-latest">
-          <a href="../../overview/introduction-to-eclipse-che/">7.116.x</a>
+          <a href="../../overview/introduction-to-eclipse-che/">7.117.x</a>
         </li>
       </ul>
     </li>
@@ -844,42 +874,116 @@
     <li><a href="../../overview/introduction-to-eclipse-che/">Documentation</a></li>
     <li>Administration Guide</li>
     <li><a href="../managing-ide-extensions/">Managing IDE extensions</a></li>
-    <li><a href="./">Open VSX registry URL</a></li>
+    <li><a href="./">Configure the Open VSX registry URL</a></li>
   </ul>
 </nav>
 <div class="page-versions">
-  <button class="version-menu-toggle" title="Show other versions of page">7.116.x</button>
+  <button class="version-menu-toggle" title="Show other versions of page">7.117.x</button>
   <div class="version-menu">
     <a class="version" href="../../../next/administration-guide/configuring-the-open-vsx-registry-url/">next</a>
-    <a class="version is-current" href="./">7.116.x</a>
+    <a class="version is-current" href="./">7.117.x</a>
   </div>
 </div>
-<div class="edit-this-page"><a href="https://github.com/eclipse-che/che-docs/edit/7.116.x/modules/administration-guide/pages/configuring-the-open-vsx-registry-url.adoc">Edit this Page</a></div>
+<div class="edit-this-page"><a href="https://github.com/eclipse-che/che-docs/edit/7.117.x/modules/administration-guide/pages/configuring-the-open-vsx-registry-url.adoc">Edit this Page</a></div>
 </div>
   <div class="content">
 <aside class="toc sidebar" data-title="Contents" data-levels="2">
   <div class="toc-menu"></div>
 </aside>
 <article class="doc">
-<h1 class="page">Configuring the Open VSX registry URL</h1>
+<h1 class="page">Configure the Open VSX registry URL</h1>
+<div class="paragraph _abstract">
+<p>Configure Che to use an alternative Open VSX registry instance instead of the default embedded registry. Switch to the public open-vsx.org registry for internet-connected environments, or to a standalone on-premises instance for full control over available extensions.</p>
+</div>
 <div class="paragraph">
-<p>To search and install extensions, the Microsoft Visual Studio Code - Open Source editor uses an embedded Open VSX registry instance.
-You can also configure Che to use another Open VSX registry instance rather than the embedded one.</p>
+<p>The default is the embedded instance of the Open VSX registry.</p>
+</div>
+<div class="paragraph">
+<p>If the default Open VSX registry instance does not meet your requirements, you can select one of the following instances:</p>
 </div>
 <div class="ulist">
-<div class="title">Procedure</div>
 <ul>
 <li>
-<p>Set the URL of your Open VSX registry instance in the CheCluster Custom Resource <code>spec.components.pluginRegistry.openVSXURL</code> field.</p>
+<p>The Open VSX registry instance at <code>https://open-vsx.org</code> that requires access to the internet.</p>
+</li>
+<li>
+<p>A standalone Open VSX registry instance that is deployed on a network accessible from Che workspace pods.</p>
+</li>
+</ul>
+</div>
+<div class="ulist">
+<div class="title">Prerequisites</div>
+<ul>
+<li>
+<p>You have administrator access to the cluster where Che is deployed.</p>
+</li>
+<li>
+<p>You have an active <code>kubectl</code> session with administrative permissions. See <a href="https://kubernetes.io/docs/reference/kubectl/overview/">Overview of kubectl</a>.</p>
+</li>
+</ul>
+</div>
+<div class="olist arabic">
+<div class="title">Procedure</div>
+<ol class="arabic">
+<li>
+<p>Edit the <code>CheCluster</code> custom resource to update the <code>openVSXURL</code> value:</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">spec:
-   components:
-# [...]
-     pluginRegistry:
-       openVSXURL: <em>&lt;your_open_vsx_registy&gt;</em>
-# [...]</code></pre>
+  components:
+    pluginRegistry:
+      openVSXURL: "<em>&lt;url_of_an_open_vsx_registry_instance&gt;</em>"</code></pre>
 </div>
+</div>
+<div class="paragraph">
+<p>where:</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1"><code><em>&lt;url_of_an_open_vsx_registry_instance&gt;</em></code></dt>
+<dd>
+<p>The URL of the Open VSX registry instance. For example: <code>openVSXURL: "https://open-vsx.org"</code>.</p>
+<div class="openblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>To select the embedded Open VSX registry instance in the <code>plugin-registry</code> pod, use <code>openVSXURL: ''</code>. You can customize the list of included extensions. See <a href="../extensions-for-microsoft-visual-studio-code-open-source/" class="xref page">Extensions for Microsoft Visual Studio Code - Open Source</a>.</p>
+</li>
+<li>
+<p>You can also point <code>openVSXURL</code> at the URL of a standalone Open VSX registry instance. The URL must be accessible from within your organization&#8217;s cluster and not blocked by a proxy.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>To ensure the stability and performance of the community-supported Open VSX Registry, API usage is organized into defined tiers. The Eclipse Foundation implements these limits to protect infrastructure from high-frequency automated traffic and to provide consistent service quality for all users. For more information, see <a href="https://github.com/EclipseFdn/open-vsx.org/wiki/rate-limiting">Rate Limits and Usage Tiers</a> and the <a href="https://github.com/EclipseFdn/open-vsx.org/wiki">open-vsx.org wiki</a>.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Using <a href="https://open-vsx.org">https://open-vsx.org</a> is not recommended in an air-gapped environment, isolated from the internet. To reduce the risk of malware infections and unauthorized access to your code, use the embedded or self-hosted Open VSX registry with a curated set of extensions.</p>
+</div>
+</td>
+</tr>
+</table>
 </div>
 <div class="admonitionblock warning">
 <table>
@@ -895,10 +999,24 @@ You can also configure Che to use another Open VSX registry instance rather than
 </tr>
 </table>
 </div>
+</dd>
+</dl>
+</div>
+</li>
+</ol>
+</div>
+<div class="ulist">
+<div class="title">Verification</div>
+<ul>
+<li>
+<p>Confirm that the <code>plugin-registry</code> pod has restarted and is running.</p>
+</li>
+<li>
+<p>Open a workspace and verify that extensions are available from the selected registry instance in the <strong>Extensions</strong> view.</p>
 </li>
 </ul>
 </div>
-<div class="ulist">
+<div class="ulist _additional-resources">
 <div class="title">Additional resources</div>
 <ul>
 <li>

@@ -464,6 +464,9 @@
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="../configuring-a-user-namespace/">Configuring a user namespace</a>
   </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../configuring-kubernetes-namespace-creation-on-openshift/">Configuring direct namespace creation on OpenShift</a>
+  </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="2">
@@ -624,7 +627,7 @@
     <a class="nav-link" href="../configuring-storage-sizes/">Configuring storage sizes</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../about-persistent-user-home/">Persistent user home</a>
+    <a class="nav-link" href="../con_persistent-user-home/">Persistent user home</a>
   </li>
 </ul>
   </li>
@@ -728,13 +731,22 @@
     <a class="nav-link" href="../extensions-for-microsoft-visual-studio-code-open-source/">Extensions for Microsoft Visual Studio Code - Open Source</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../running-the-open-vsx-on-premises/">Running Open VSX On-Premises</a>
+    <a class="nav-link" href="../configuring-the-open-vsx-registry-url/">Configure the Open VSX registry URL</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../deleting-extension-from-the-open-vsx-on-premises/">Deleting Extensions from Open VSX On-Premises</a>
+    <a class="nav-link" href="../proc_deploy-open-vsx-from-source/">Deploy Open VSX from source</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../configuring-the-open-vsx-registry-url/">Open VSX registry URL</a>
+    <a class="nav-link" href="../proc_deploy-open-vsx-from-workspace/">Deploy Open VSX from a workspace</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../proc_configure-internal-open-vsx-access/">Configure internal Open VSX access</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../proc_deleting-extension-using-openvsx-admin-api/">Delete an extension using the Open VSX API</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../proc_deleting-extension-from-postgresql-database/">Delete an extension from the PostgreSQL database</a>
   </li>
 </ul>
   </li>
@@ -845,7 +857,7 @@
           <a href="../../overview/introduction-to-eclipse-che/">next</a>
         </li>
         <li class="version is-latest">
-          <a href="../../../stable/overview/introduction-to-eclipse-che/">7.116.x</a>
+          <a href="../../../stable/overview/introduction-to-eclipse-che/">7.117.x</a>
         </li>
       </ul>
     </li>
@@ -872,7 +884,7 @@
   <button class="version-menu-toggle" title="Show other versions of page">next</button>
   <div class="version-menu">
     <a class="version is-current" href="./">next</a>
-    <a class="version" href="../../../stable/administration-guide/configuring-oauth-2-for-github/">7.116.x</a>
+    <a class="version" href="../../../stable/administration-guide/configuring-oauth-2-for-github/">7.117.x</a>
   </div>
 </div>
 <div class="edit-this-page"><a href="https://github.com/eclipse-che/che-docs/edit/main/modules/administration-guide/pages/configuring-oauth-2-for-github.adoc">Edit this Page</a></div>
@@ -891,10 +903,10 @@
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Set up the GitHub OAuth App (OAuth 2.0).</p>
+<p>Set up a <a href="https://docs.github.com/en/apps/creating-github-apps/about-creating-github-apps/about-creating-github-apps#about-github-apps">GitHub App</a> or a <a href="https://docs.github.com/en/apps/oauth-apps/using-oauth-apps">OAuth App</a>.</p>
 </li>
 <li>
-<p>Apply the GitHub OAuth App Secret.</p>
+<p>Apply the GitHub App or OAuth App Secret.</p>
 </li>
 </ol>
 </div>
@@ -955,6 +967,75 @@
 <ul>
 <li>
 <p><a href="https://docs.github.com/en/developers/apps/building-oauth-apps/creating-an-oauth-app">GitHub Docs: Creating an OAuth App</a></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="setting-up-the-github-app"><a class="anchor" href="#setting-up-the-github-app"></a>Setting up the GitHub App</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Set up a GitHub App to enable users to work with GitHub repositories.</p>
+</div>
+<div class="ulist">
+<div class="title">Prerequisites</div>
+<ul>
+<li>
+<p>You are logged in to GitHub.</p>
+</li>
+</ul>
+</div>
+<div class="olist arabic">
+<div class="title">Procedure</div>
+<ol class="arabic">
+<li>
+<p>Register a GitHub app, see: <a href="https://docs.github.com/en/apps/creating-github-apps/registering-a-github-app/registering-a-github-app#registering-a-github-app">Registering a GitHub App</a>.</p>
+</li>
+<li>
+<p>Enter the following values:</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p><strong>GitHub App name</strong>: <code>&lt;<em>application name</em>&gt;</code></p>
+</li>
+<li>
+<p><strong>Homepage URL</strong>: <code>https://<em>&lt;che_fqdn&gt;</em>/</code></p>
+</li>
+<li>
+<p><strong>Callback URL</strong>: <code>https://<em>&lt;che_fqdn&gt;</em>/api/oauth/callback</code></p>
+</li>
+<li>
+<p>Deselect the <code>Active</code> check-box in the <code>Webhook</code> section.</p>
+</li>
+<li>
+<p>Under <strong>Permissions &amp; events</strong>, set the <strong>Contents</strong> repository permission to <strong>Read and Write</strong>.</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Click <strong>Create GitHub App</strong>.</p>
+</li>
+<li>
+<p>Click <strong>Generate a new client secret</strong>.</p>
+</li>
+<li>
+<p>Copy and save the <strong>GitHub App Client Secret</strong> for use when applying the GitHub App Secret.</p>
+</li>
+<li>
+<p>Copy and save the <strong>GitHub App Client ID</strong> for use when applying the GitHub App Secret.</p>
+</li>
+<li>
+<p>Install the GitHub App, see: <a href="https://docs.github.com/en/apps/using-github-apps/installing-your-own-github-app#installing-your-own-github-app">Installing your own GitHub App</a></p>
+</li>
+</ol>
+</div>
+<div class="ulist">
+<div class="title">Additional resources</div>
+<ul>
+<li>
+<p><a href="https://docs.github.com/en/apps/creating-github-apps/registering-a-github-app/registering-a-github-app">GitHub Docs: Registering a GitHub App</a></p>
 </li>
 </ul>
 </div>

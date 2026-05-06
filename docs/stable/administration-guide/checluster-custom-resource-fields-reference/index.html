@@ -45,7 +45,7 @@
   </nav>
 </header>
 <div class="body">
-<div class="nav-container" data-component="docs" data-version="7.116.x">
+<div class="nav-container" data-component="docs" data-version="7.117.x">
   <aside class="nav">
     <div class="panels">
 <div class="nav-panel-menu is-active" data-panel="menu">
@@ -130,6 +130,18 @@
     <a class="nav-link" href="../../end-user-guide/basic-actions-you-can-perform-on-a-workspace/">Basic actions you can perform on a workspace</a>
   </li>
   <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../../end-user-guide/restoring-workspaces-from-backups/">Restoring workspaces from backups</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../../end-user-guide/proc-restoring-a-workspace-from-backup/">Restoring a workspace from a backup</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../../end-user-guide/proc-viewing-backups-in-the-dashboard/">Viewing backups in the dashboard</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../../end-user-guide/authenticating-to-a-git-server-from-a-workspace/">Authenticating to a Git server from a workspace</a>
   </li>
   <li class="nav-item" data-depth="2">
@@ -146,6 +158,9 @@
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../../end-user-guide/running-containers-with-kubedock/">Running containers with kubedock</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../end-user-guide/proc_preventing-workspace-idling-for-long-running-commands/">Prevent workspace idling for long-running commands</a>
   </li>
 </ul>
   </li>
@@ -371,6 +386,9 @@
     <a class="nav-link" href="../installing-che-on-openshift-using-the-web-console/">Installing Che on OpenShift using the web console</a>
   </li>
   <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../installing-che-on-openshift-with-keycloak-as-oidc/">Installing Che on OpenShift with Keycloak as external identity provider</a>
+  </li>
+  <li class="nav-item" data-depth="3">
     <a class="nav-link" href="../installing-che-in-a-restricted-environment/">Installing Che in a restricted environment</a>
   </li>
   <li class="nav-item" data-depth="3">
@@ -444,6 +462,9 @@
   </li>
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="../configuring-a-user-namespace/">Configuring a user namespace</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../configuring-direct-namespace-creation-on-openshift/">Configuring direct namespace creation on OpenShift</a>
   </li>
 </ul>
   </li>
@@ -605,7 +626,7 @@
     <a class="nav-link" href="../configuring-storage-sizes/">Configuring storage sizes</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../about-persistent-user-home/">Persistent user home</a>
+    <a class="nav-link" href="../con_persistent-user-home/">Persistent user home</a>
   </li>
 </ul>
   </li>
@@ -632,7 +653,7 @@
     <a class="nav-link" href="../configuring-editors-download-urls/">Configuring editors download urls</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../customizing-openshift-che-consolelink-icon/">Customizing OpenShift Eclipse Che ConsoleLink icon</a>
+    <a class="nav-link" href="../customizing-openshift-che-branding-images/">Customizing OpenShift Eclipse Che branding images</a>
   </li>
 </ul>
   </li>
@@ -709,13 +730,22 @@
     <a class="nav-link" href="../extensions-for-microsoft-visual-studio-code-open-source/">Extensions for Microsoft Visual Studio Code - Open Source</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../running-the-open-vsx-on-premises/">Running Open VSX On-Premises</a>
+    <a class="nav-link" href="../configuring-the-open-vsx-registry-url/">Configure the Open VSX registry URL</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../deleting-extension-from-the-open-vsx-on-premises/">Deleting Extensions from Open VSX On-Premises</a>
+    <a class="nav-link" href="../proc_deploy-open-vsx-from-source/">Deploy Open VSX from source</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../configuring-the-open-vsx-registry-url/">Open VSX registry URL</a>
+    <a class="nav-link" href="../proc_deploy-open-vsx-from-workspace/">Deploy Open VSX from a workspace</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../proc_configure-internal-open-vsx-access/">Configure internal Open VSX access</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../proc_deleting-extension-using-openvsx-admin-api/">Delete an extension using the Open VSX API</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../proc_deleting-extension-from-postgresql-database/">Delete an extension from the PostgreSQL database</a>
   </li>
 </ul>
   </li>
@@ -816,7 +846,7 @@
 <div class="nav-panel-explore" data-panel="explore">
   <div class="context">
     <span class="title">Documentation</span>
-    <span class="version">7.116.x</span>
+    <span class="version">7.117.x</span>
   </div>
   <ul class="components">
     <li class="component is-current">
@@ -826,7 +856,7 @@
           <a href="../../../next/overview/introduction-to-eclipse-che/">next</a>
         </li>
         <li class="version is-current is-latest">
-          <a href="../../overview/introduction-to-eclipse-che/">7.116.x</a>
+          <a href="../../overview/introduction-to-eclipse-che/">7.117.x</a>
         </li>
       </ul>
     </li>
@@ -849,13 +879,13 @@
   </ul>
 </nav>
 <div class="page-versions">
-  <button class="version-menu-toggle" title="Show other versions of page">7.116.x</button>
+  <button class="version-menu-toggle" title="Show other versions of page">7.117.x</button>
   <div class="version-menu">
     <a class="version" href="../../../next/administration-guide/checluster-custom-resource-fields-reference/">next</a>
-    <a class="version is-current" href="./">7.116.x</a>
+    <a class="version is-current" href="./">7.117.x</a>
   </div>
 </div>
-<div class="edit-this-page"><a href="https://github.com/eclipse-che/che-docs/edit/7.116.x/modules/administration-guide/pages/checluster-custom-resource-fields-reference.adoc">Edit this Page</a></div>
+<div class="edit-this-page"><a href="https://github.com/eclipse-che/che-docs/edit/7.117.x/modules/administration-guide/pages/checluster-custom-resource-fields-reference.adoc">Edit this Page</a></div>
 </div>
   <div class="content">
 <aside class="toc sidebar" data-title="Contents" data-levels="2">
@@ -1254,7 +1284,7 @@ spec:
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">defaultContainerResources</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">DefaultContainerResources defines the resource requirements (memory/cpu limit/request) used for container components that do not define limits or requests.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">DefaultContainerResources defines the resource requirements (memory/cpu limit/request) used for container components that do not define limits or requests. Note: The actual pod container resource values exactly match the sum of: - The resource requirements configured via this field, plus - The used Editor overhead (varies from editor to editor).  For more details, see: <a href="https://eclipse.dev/che/docs/stable/administration-guide/calculating-che-resource-requirements/" class="bare">https://eclipse.dev/che/docs/stable/administration-guide/calculating-che-resource-requirements/</a></p></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
@@ -1340,7 +1370,7 @@ spec:
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">persistUserHome</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">PersistUserHome defines configuration options for persisting the user home directory in workspaces.</p></td>
-<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">{  "enabled": true}</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">podSchedulerName</p></td>
@@ -1511,6 +1541,11 @@ spec:
 <td class="tableblock halign-left valign-top"><p class="tableblock">true</p></td>
 </tr>
 <tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">createKubernetesNamespaces</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">For OpenShift clusters only, setting this to <code>true</code> creates a standard Kubernetes Namespace. When false (default), the OpenShift ProjectRequest API is used instead to trigger cluster-specific Project Templates.</p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">template</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">If you don&#8217;t create the user namespaces in advance, this field defines the Kubernetes namespace created when you start your first workspace. You can use <code>&lt;username&gt;</code> and <code>&lt;userid&gt;</code> placeholders, such as che-workspace-&lt;username&gt;.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">"&lt;username&gt;-che"</p></td>
@@ -1611,6 +1646,16 @@ spec:
 <td class="tableblock halign-left valign-top"><p class="tableblock">Compute resources required by this container.</p></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">securityContext</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Security options the container should run with. When set, fields are merged into the container security context (same semantics as resources).</p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">volumeMounts</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Pod volumes to mount into the container&#8217;s filesystem. Entries are merged by volume mount name (same semantics as env).</p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
 </tbody>
 </table>
 <table id="checluster-custom-resource-devEnvironments-networking-settings" class="tableblock frame-all grid-all stretch">
@@ -1689,8 +1734,8 @@ spec:
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">enabled</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Determines whether the user home directory in workspaces should persist between workspace shutdown and startup. Must be used with the 'per-user' or 'per-workspace' PVC strategy in order to take effect. Disabled by default.</p></td>
-<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Determines whether the user home directory in workspaces should persist between workspace shutdown and startup. Must be used with the 'per-user' or 'per-workspace' PVC strategy in order to take effect.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">true</p></td>
 </tr>
 </tbody>
 </table>
@@ -1732,6 +1777,16 @@ spec:
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">resources</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Compute resources required by this container.</p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">securityContext</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Security options the container should run with. When set, fields are merged into the container security context (same semantics as resources).</p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">volumeMounts</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Pod volumes to mount into the container&#8217;s filesystem. Entries are merged by volume mount name (same semantics as env).</p></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 </tbody>
@@ -2506,7 +2561,7 @@ spec:
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">advancedAuthorization</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Advance authorization settings. Determines which users and groups are allowed to access Che. User is allowed to access Che if he/she is either in the <code>allowUsers</code> list or is member of group from <code>allowGroups</code> list and not in neither the <code>denyUsers</code> list nor is member of group from <code>denyGroups</code> list. If <code>allowUsers</code> and <code>allowGroups</code> are empty, then all users are allowed to access Che. if <code>denyUsers</code> and <code>denyGroups</code> are empty, then no users are denied to access Che.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Advanced authorization settings. Determines which users and groups are allowed to access Che. A user is allowed to access Che if the user is in the <code>allowUsers</code> list or is a member of a group in the <code>allowGroups</code> list, and is not in the <code>denyUsers</code> list nor a member of a group in the <code>denyGroups</code> list. If <code>allowUsers</code> and <code>allowGroups</code> are empty, then all users are allowed to access Che. If <code>denyUsers</code> and <code>denyGroups</code> are empty, then no users are denied access to Che. Note: group-based authorization (<code>allowGroups</code> and <code>denyGroups</code>) is currently supported on OpenShift only.</p></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
@@ -2516,37 +2571,37 @@ spec:
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">identityProviderURL</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Public URL of the Identity Provider server.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Public URL of the Identity Provider server. For OpenShift with built-in OAuth, this field is not used, as OpenShift provides its own OAuth server.</p></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">identityToken</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Identity token to be passed to upstream. There are two types of tokens supported: <code>id_token</code> and <code>access_token</code>. Default value is <code>id_token</code>. This field is specific to Che installations made for Kubernetes only and ignored for OpenShift.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Identity token type to be passed to upstream services. Defaults to <code>id_token</code>. For OpenShift with built-in OAuth, defaults to <code>access_token</code>.</p></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">oAuthAccessTokenInactivityTimeoutSeconds</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Inactivity timeout for tokens to set in the OpenShift <code>OAuthClient</code> resource used to set up identity federation on the OpenShift side. 0 means tokens for this client never time out.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Inactivity timeout for tokens in seconds. This field is specific to OpenShift with built-in OAuth. It is set on the <code>OAuthClient</code> resource. 0 means tokens for this client never time out.</p></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">oAuthAccessTokenMaxAgeSeconds</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Access token max age for tokens to set in the OpenShift <code>OAuthClient</code> resource used to set up identity federation on the OpenShift side. 0 means no expiration.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Access token max age in seconds. This field is specific to OpenShift with built-in OAuth. It is set on the <code>OAuthClient</code> resource. 0 means no expiration.</p></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">oAuthClientName</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Name of the OpenShift <code>OAuthClient</code> resource used to set up identity federation on the OpenShift side.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Defined the OIDC client id. For OpenShift with built-in OAuth, this is the name of the <code>OAuthClient</code> resource used to set up identity federation.</p></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">oAuthScope</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Access Token Scope. This field is specific to Che installations made for Kubernetes only and ignored for OpenShift.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Defines the scope requested from the OIDC provider. For OpenShift with built-in OAuth, the scope <code>user:full</code> is used by default.</p></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">oAuthSecret</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Name of the secret set in the OpenShift <code>OAuthClient</code> resource used to set up identity federation on the OpenShift side. For Kubernetes, this can either be the plain text oAuthSecret value, or the name of a kubernetes secret which contains a key <code>oAuthSecret</code> and the value is the secret. NOTE: this secret must exist in the same namespace as the <code>CheCluster</code> resource and contain the label <code>app.kubernetes.io/part-of=che.eclipse.org</code>.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Defines the OAuth client secret. It can either be a plain text secret value or the name of a Kubernetes secret containing a key <code>oAuthSecret</code> with the secret value. The Kubernetes secret must exist in the same namespace as the <code>CheCluster</code> resource and have the label <code>app.kubernetes.io/part-of=che.eclipse.org</code>. For OpenShift with built-in OAuth, this is the secret set in the <code>OAuthClient</code> resource used to set up identity federation.</p></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 </tbody>
@@ -2692,6 +2747,11 @@ spec:
 <td class="tableblock halign-left valign-top"><p class="tableblock">The pod tolerations of the component pod limit where the pod can run.</p></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">volumes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">List of volumes that can be mounted by containers belonging to the pod. Entries are merged by volume name (same semantics as container volumeMounts); unknown names are appended, matching names replace the default volume definition.</p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
 </tbody>
 </table>
 <table id="checluster-custom-resource-components-common-deployment-containers-settings" class="tableblock frame-all grid-all stretch">
@@ -2732,6 +2792,16 @@ spec:
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">resources</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Compute resources required by this container.</p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">securityContext</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Security options the container should run with. When set, fields are merged into the container security context (same semantics as resources).</p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">volumeMounts</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Pod volumes to mount into the container&#8217;s filesystem. Entries are merged by volume mount name (same semantics as env).</p></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 </tbody>

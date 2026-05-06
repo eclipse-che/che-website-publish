@@ -45,7 +45,7 @@
   </nav>
 </header>
 <div class="body">
-<div class="nav-container" data-component="docs" data-version="7.116.x">
+<div class="nav-container" data-component="docs" data-version="7.117.x">
   <aside class="nav">
     <div class="panels">
 <div class="nav-panel-menu is-active" data-panel="menu">
@@ -130,6 +130,18 @@
     <a class="nav-link" href="../../end-user-guide/basic-actions-you-can-perform-on-a-workspace/">Basic actions you can perform on a workspace</a>
   </li>
   <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../../end-user-guide/restoring-workspaces-from-backups/">Restoring workspaces from backups</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../../end-user-guide/proc-restoring-a-workspace-from-backup/">Restoring a workspace from a backup</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../../end-user-guide/proc-viewing-backups-in-the-dashboard/">Viewing backups in the dashboard</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../../end-user-guide/authenticating-to-a-git-server-from-a-workspace/">Authenticating to a Git server from a workspace</a>
   </li>
   <li class="nav-item" data-depth="2">
@@ -146,6 +158,9 @@
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../../end-user-guide/running-containers-with-kubedock/">Running containers with kubedock</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../end-user-guide/proc_preventing-workspace-idling-for-long-running-commands/">Prevent workspace idling for long-running commands</a>
   </li>
 </ul>
   </li>
@@ -371,6 +386,9 @@
     <a class="nav-link" href="../installing-che-on-openshift-using-the-web-console/">Installing Che on OpenShift using the web console</a>
   </li>
   <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../installing-che-on-openshift-with-keycloak-as-oidc/">Installing Che on OpenShift with Keycloak as external identity provider</a>
+  </li>
+  <li class="nav-item" data-depth="3">
     <a class="nav-link" href="../installing-che-in-a-restricted-environment/">Installing Che in a restricted environment</a>
   </li>
   <li class="nav-item" data-depth="3">
@@ -444,6 +462,9 @@
   </li>
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="../configuring-a-user-namespace/">Configuring a user namespace</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../configuring-direct-namespace-creation-on-openshift/">Configuring direct namespace creation on OpenShift</a>
   </li>
 </ul>
   </li>
@@ -605,7 +626,7 @@
     <a class="nav-link" href="../configuring-storage-sizes/">Configuring storage sizes</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../about-persistent-user-home/">Persistent user home</a>
+    <a class="nav-link" href="../con_persistent-user-home/">Persistent user home</a>
   </li>
 </ul>
   </li>
@@ -632,7 +653,7 @@
     <a class="nav-link" href="../configuring-editors-download-urls/">Configuring editors download urls</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../customizing-openshift-che-consolelink-icon/">Customizing OpenShift Eclipse Che ConsoleLink icon</a>
+    <a class="nav-link" href="../customizing-openshift-che-branding-images/">Customizing OpenShift Eclipse Che branding images</a>
   </li>
 </ul>
   </li>
@@ -709,13 +730,22 @@
     <a class="nav-link" href="../extensions-for-microsoft-visual-studio-code-open-source/">Extensions for Microsoft Visual Studio Code - Open Source</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../running-the-open-vsx-on-premises/">Running Open VSX On-Premises</a>
+    <a class="nav-link" href="../configuring-the-open-vsx-registry-url/">Configure the Open VSX registry URL</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../deleting-extension-from-the-open-vsx-on-premises/">Deleting Extensions from Open VSX On-Premises</a>
+    <a class="nav-link" href="../proc_deploy-open-vsx-from-source/">Deploy Open VSX from source</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../configuring-the-open-vsx-registry-url/">Open VSX registry URL</a>
+    <a class="nav-link" href="../proc_deploy-open-vsx-from-workspace/">Deploy Open VSX from a workspace</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../proc_configure-internal-open-vsx-access/">Configure internal Open VSX access</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../proc_deleting-extension-using-openvsx-admin-api/">Delete an extension using the Open VSX API</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../proc_deleting-extension-from-postgresql-database/">Delete an extension from the PostgreSQL database</a>
   </li>
 </ul>
   </li>
@@ -816,7 +846,7 @@
 <div class="nav-panel-explore" data-panel="explore">
   <div class="context">
     <span class="title">Documentation</span>
-    <span class="version">7.116.x</span>
+    <span class="version">7.117.x</span>
   </div>
   <ul class="components">
     <li class="component is-current">
@@ -826,7 +856,7 @@
           <a href="../../../next/overview/introduction-to-eclipse-che/">next</a>
         </li>
         <li class="version is-current is-latest">
-          <a href="../../overview/introduction-to-eclipse-che/">7.116.x</a>
+          <a href="../../overview/introduction-to-eclipse-che/">7.117.x</a>
         </li>
       </ul>
     </li>
@@ -850,13 +880,13 @@
   </ul>
 </nav>
 <div class="page-versions">
-  <button class="version-menu-toggle" title="Show other versions of page">7.116.x</button>
+  <button class="version-menu-toggle" title="Show other versions of page">7.117.x</button>
   <div class="version-menu">
     <a class="version" href="../../../next/administration-guide/configuring-oauth-2-for-microsoft-azure-devops-services/">next</a>
-    <a class="version is-current" href="./">7.116.x</a>
+    <a class="version is-current" href="./">7.117.x</a>
   </div>
 </div>
-<div class="edit-this-page"><a href="https://github.com/eclipse-che/che-docs/edit/7.116.x/modules/administration-guide/pages/configuring-oauth-2-for-microsoft-azure-devops-services.adoc">Edit this Page</a></div>
+<div class="edit-this-page"><a href="https://github.com/eclipse-che/che-docs/edit/7.117.x/modules/administration-guide/pages/configuring-oauth-2-for-microsoft-azure-devops-services.adoc">Edit this Page</a></div>
 </div>
   <div class="content">
 <aside class="toc sidebar" data-title="Contents" data-levels="2">
@@ -878,33 +908,23 @@
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Set up the Microsoft Azure DevOps Services OAuth App (OAuth 2.0).</p>
+<p>Set up an application in Microsoft Entra ID.</p>
 </li>
 <li>
-<p>Apply the Microsoft Azure DevOps Services OAuth App Secret.</p>
+<p>Apply the Microsoft Entra ID App Secret.</p>
 </li>
 </ol>
 </div>
-<div class="admonitionblock important">
+<div class="admonitionblock note">
 <table>
 <tr>
 <td class="icon">
-<i class="fa icon-important" title="Important"></i>
+<i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-OAuth 2.0 isn&#8217;t supported on Azure DevOps Server, see <a href="https://learn.microsoft.com/en-us/azure/devops/integrate/get-started/authentication/oauth?view=azure-devops">the documentation page</a>.
-</td>
-</tr>
-</table>
+<div class="paragraph">
+<p>Microsoft Entra ID replaces the deprecated Azure DevOps OAuth 2.0 application, which no longer accepts new registrations. If you have an existing Azure DevOps OAuth app, migrate to Microsoft Entra ID.</p>
 </div>
-<div class="admonitionblock important">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-important" title="Important"></i>
-</td>
-<td class="content">
-Azure DevOps OAuth 2.0 is deprecated and no longer accepts new registrations, with full deprecation planned for 2026. See <a href="https://learn.microsoft.com/en-us/azure/devops/integrate/get-started/authentication/oauth?view=azure-devops">the documentation page</a>.
 </td>
 </tr>
 </table>
@@ -915,10 +935,10 @@ Azure DevOps OAuth 2.0 is deprecated and no longer accepts new registrations, wi
 </div>
 </div>
 <div class="sect1">
-<h2 id="setting-up-the-microsoft-azure-devops-services-oauth-app"><a class="anchor" href="#setting-up-the-microsoft-azure-devops-services-oauth-app"></a>Setting up the Microsoft Azure DevOps Services OAuth App</h2>
+<h2 id="setting-up-the-microsoft-entra-id-oauth-app"><a class="anchor" href="#setting-up-the-microsoft-entra-id-oauth-app"></a>Setting up the Microsoft Entra ID OAuth App</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Set up a Microsoft Azure DevOps Services OAuth App using OAuth 2.0.</p>
+<p>Set up a Microsoft Entra ID OAuth App to enable Che users to interact with Azure DevOps Git repositories without re-entering credentials.</p>
 </div>
 <div class="ulist">
 <div class="title">Prerequisites</div>
@@ -943,41 +963,19 @@ Azure DevOps OAuth 2.0 is deprecated and no longer accepts new registrations, wi
 <div class="title">Procedure</div>
 <ol class="arabic">
 <li>
-<p>Visit <a href="https://app.vsaex.visualstudio.com/app/register/" class="bare">https://app.vsaex.visualstudio.com/app/register/</a>.</p>
+<p>Register an application in Microsoft Entra ID. See <a href="https://learn.microsoft.com/en-us/entra/identity-platform/quickstart-register-app">Register an application</a>.</p>
 </li>
 <li>
-<p>Enter the following values:</p>
-<div class="olist loweralpha">
-<ol class="loweralpha" type="a">
-<li>
-<p><strong>Company name</strong>: <code>Che</code></p>
+<p>Add the <strong>Authorization callback URL</strong> <code>https://<em>&lt;che_fqdn&gt;</em>/api/oauth/callback</code> to your application. See <a href="https://learn.microsoft.com/en-us/entra/identity-platform/how-to-add-redirect-uri">Add a redirect URI</a>.</p>
 </li>
 <li>
-<p><strong>Application name</strong>: <code>Che</code></p>
+<p>Add a client secret to your application. See <a href="https://learn.microsoft.com/en-us/entra/identity-platform/how-to-add-credentials?tabs=client-secret">Add credentials</a>.</p>
 </li>
 <li>
-<p><strong>Application website</strong>: <code>https://<em>&lt;che_fqdn&gt;</em>/</code></p>
+<p>Add the Azure DevOps <code>vso.code_write</code> permission to the client application. See <a href="https://learn.microsoft.com/en-us/entra/identity-platform/quickstart-configure-app-access-web-apis#add-permissions-to-access-your-web-api">Add permissions to access your web API</a>.</p>
 </li>
 <li>
-<p><strong>Authorization callback URL</strong>: <code>https://<em>&lt;che_fqdn&gt;</em>/api/oauth/callback</code></p>
-</li>
-</ol>
-</div>
-</li>
-<li>
-<p>In <strong>Select Authorized scopes</strong>, select <strong>Code (read and write)</strong>.</p>
-</li>
-<li>
-<p>Click <strong>Create application</strong>.</p>
-</li>
-<li>
-<p>Copy and save the <strong>App ID</strong> for use when applying the Microsoft Azure DevOps Services OAuth App Secret.</p>
-</li>
-<li>
-<p>Click <strong>Show</strong> to display the <strong>Client Secret</strong>.</p>
-</li>
-<li>
-<p>Copy and save the <strong>Client Secret</strong> for use when applying the Microsoft Azure DevOps Services OAuth App Secret.</p>
+<p>Connect your Azure DevOps organization to Microsoft Entra ID. See <a href="https://learn.microsoft.com/en-us/azure/devops/organizations/accounts/connect-organization-to-azure-ad?view=azure-devops#connect-your-organization-to-microsoft-entra-id-1">Connect your organization to Microsoft Entra ID</a>.</p>
 </li>
 </ol>
 </div>
@@ -1001,23 +999,26 @@ Azure DevOps OAuth 2.0 is deprecated and no longer accepts new registrations, wi
 </div>
 </div>
 <div class="sect1">
-<h2 id="applying-the-microsoft-azure-devops-services-oauth-app-secret"><a class="anchor" href="#applying-the-microsoft-azure-devops-services-oauth-app-secret"></a>Applying the Microsoft Azure DevOps Services OAuth App Secret</h2>
+<h2 id="applying-the-microsoft-entra-id-oauth-app-secret"><a class="anchor" href="#applying-the-microsoft-entra-id-oauth-app-secret"></a>Applying the Microsoft Entra ID OAuth App Secret</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Prepare and apply the Microsoft Azure DevOps Services Secret.</p>
+<p>Prepare and apply the Secret that enables Che to authenticate with Microsoft Entra ID for Azure DevOps repository access.</p>
 </div>
 <div class="ulist">
 <div class="title">Prerequisites</div>
 <ul>
 <li>
-<p>Setting up the Microsoft Azure DevOps Services OAuth App is completed.</p>
+<p>You have set up the Microsoft Entra ID OAuth App.</p>
 </li>
 <li>
-<p>The following values, which were generated when setting up the Microsoft Azure DevOps Services OAuth App, are prepared:</p>
+<p>The following values, which were generated when setting up the Microsoft Entra ID OAuth App, are prepared:</p>
 <div class="ulist">
 <ul>
 <li>
-<p><strong>App ID</strong></p>
+<p><strong>Application (client) ID</strong></p>
+</li>
+<li>
+<p><strong>Directory (tenant) ID</strong></p>
 </li>
 <li>
 <p><strong>Client Secret</strong></p>
@@ -1049,8 +1050,9 @@ metadata:
     che.eclipse.org/oauth-scm-server: azure-devops
 type: Opaque
 stringData:
-  id: <em>&lt;Microsoft_Azure_DevOps_Services_OAuth_App_ID&gt;</em><i class="conum" data-value="2"></i><b>(2)</b>
-  secret: <em>&lt;Microsoft_Azure_DevOps_Services_OAuth_Client_Secret&gt;</em><i class="conum" data-value="3"></i><b>(3)</b></code></pre>
+  tenant-id: <em>&lt;Microsoft_Entra_ID_Tenant_ID&gt;</em><i class="conum" data-value="2"></i><b>(2)</b>
+  id: <em>&lt;Microsoft_Entra_ID_App_ID&gt;</em><i class="conum" data-value="3"></i><b>(3)</b>
+  secret: <em>&lt;Microsoft_Entra_ID_Client_Secret&gt;</em><i class="conum" data-value="4"></i><b>(4)</b></code></pre>
 </div>
 </div>
 <div class="colist arabic">
@@ -1061,11 +1063,15 @@ stringData:
 </tr>
 <tr>
 <td><i class="conum" data-value="2"></i><b>2</b></td>
-<td>The Microsoft Azure DevOps Services OAuth <strong>App ID</strong>.</td>
+<td>The Microsoft Entra ID <strong>Directory (tenant) ID</strong>.</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="3"></i><b>3</b></td>
-<td>The Microsoft Azure DevOps Services OAuth <strong>Client Secret</strong>.</td>
+<td>The Microsoft Entra ID <strong>Application (client) ID</strong>.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="4"></i><b>4</b></td>
+<td>The Microsoft Entra ID <strong>Client Secret</strong>.</td>
 </tr>
 </table>
 </div>

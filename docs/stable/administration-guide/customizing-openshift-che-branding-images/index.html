@@ -3,16 +3,15 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Running the Open VSX On-Premises :: Eclipse Che Documentation</title>
-    <link rel="canonical" href="https://www.eclipse.org/che/docs/stable/administration-guide/running-the-open-vsx-on-premises/">
-    <meta name="description" content="Running Open VSX On-Premises">
-    <meta name="keywords" content="administration guide, configuring, openvsx, registry">
+    <title>Customizing OpenShift&#160;Container&#160;Platform Eclipse&#160;Che branding images :: Eclipse Che Documentation</title>
+    <link rel="canonical" href="https://www.eclipse.org/che/docs/stable/administration-guide/customizing-openshift-che-branding-images/">
+    <meta name="description" content="Customizing OpenShift Eclipse Che branding images">
+    <meta name="keywords" content="administration guide, customizing, branding, images">
     <meta name="generator" content="Antora 3.1.14">
     <link rel="stylesheet" href="../../../../docs/_/css/site.css">
 <link rel="stylesheet" href="../../../../docs/_/css/extra.css">
 <link rel="stylesheet" href="../../../../docs/_/font-awesome-4.7.0/css/font-awesome.min.css">
 <link rel="icon" href="../../../../docs/_/img/favicon.ico" type="image/x-icon">
-<meta name="robots" content="noindex">
 <script>var uiRootPath = '../../../../docs/_'</script>
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-37306001-2"></script>
     <script>function gtag(){dataLayer.push(arguments)};window.dataLayer=window.dataLayer||[];gtag('js',new Date());gtag('config','UA-37306001-2')</script>
@@ -46,7 +45,7 @@
   </nav>
 </header>
 <div class="body">
-<div class="nav-container" data-component="docs" data-version="next">
+<div class="nav-container" data-component="docs" data-version="7.117.x">
   <aside class="nav">
     <div class="panels">
 <div class="nav-panel-menu is-active" data-panel="menu">
@@ -464,6 +463,9 @@
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="../configuring-a-user-namespace/">Configuring a user namespace</a>
   </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../configuring-direct-namespace-creation-on-openshift/">Configuring direct namespace creation on OpenShift</a>
+  </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="2">
@@ -624,7 +626,7 @@
     <a class="nav-link" href="../configuring-storage-sizes/">Configuring storage sizes</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../about-persistent-user-home/">Persistent user home</a>
+    <a class="nav-link" href="../con_persistent-user-home/">Persistent user home</a>
   </li>
 </ul>
   </li>
@@ -650,8 +652,8 @@
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="../configuring-editors-download-urls/">Configuring editors download urls</a>
   </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../customizing-openshift-che-branding-images/">Customizing OpenShift Eclipse Che branding images</a>
+  <li class="nav-item is-current-page" data-depth="3">
+    <a class="nav-link" href="./">Customizing OpenShift Eclipse Che branding images</a>
   </li>
 </ul>
   </li>
@@ -727,14 +729,23 @@
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../extensions-for-microsoft-visual-studio-code-open-source/">Extensions for Microsoft Visual Studio Code - Open Source</a>
   </li>
-  <li class="nav-item is-current-page" data-depth="2">
-    <a class="nav-link" href="./">Running Open VSX On-Premises</a>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../configuring-the-open-vsx-registry-url/">Configure the Open VSX registry URL</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../deleting-extension-from-the-open-vsx-on-premises/">Deleting Extensions from Open VSX On-Premises</a>
+    <a class="nav-link" href="../proc_deploy-open-vsx-from-source/">Deploy Open VSX from source</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../configuring-the-open-vsx-registry-url/">Open VSX registry URL</a>
+    <a class="nav-link" href="../proc_deploy-open-vsx-from-workspace/">Deploy Open VSX from a workspace</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../proc_configure-internal-open-vsx-access/">Configure internal Open VSX access</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../proc_deleting-extension-using-openvsx-admin-api/">Delete an extension using the Open VSX API</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../proc_deleting-extension-from-postgresql-database/">Delete an extension from the PostgreSQL database</a>
   </li>
 </ul>
   </li>
@@ -835,17 +846,17 @@
 <div class="nav-panel-explore" data-panel="explore">
   <div class="context">
     <span class="title">Documentation</span>
-    <span class="version">next</span>
+    <span class="version">7.117.x</span>
   </div>
   <ul class="components">
     <li class="component is-current">
-      <div class="title"><a href="../../../stable/overview/introduction-to-eclipse-che/">Documentation</a></div>
+      <div class="title"><a href="../../overview/introduction-to-eclipse-che/">Documentation</a></div>
       <ul class="versions">
-        <li class="version is-current">
-          <a href="../../overview/introduction-to-eclipse-che/">next</a>
+        <li class="version">
+          <a href="../../../next/overview/introduction-to-eclipse-che/">next</a>
         </li>
-        <li class="version is-latest">
-          <a href="../../../stable/overview/introduction-to-eclipse-che/">7.116.x</a>
+        <li class="version is-current is-latest">
+          <a href="../../overview/introduction-to-eclipse-che/">7.117.x</a>
         </li>
       </ul>
     </li>
@@ -857,45 +868,52 @@
 <main class="article">
 <div class="toolbar" role="navigation">
 <button class="nav-toggle"></button>
-  <a href="../../../stable/overview/introduction-to-eclipse-che/" class="home-link"></a>
+  <a href="../../overview/introduction-to-eclipse-che/" class="home-link"></a>
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="../../overview/introduction-to-eclipse-che/">Documentation</a></li>
     <li>Administration Guide</li>
-    <li><a href="../managing-ide-extensions/">Managing IDE extensions</a></li>
-    <li><a href="./">Running Open VSX On-Premises</a></li>
+    <li><a href="../configuring-che/">Configuring Che</a></li>
+    <li><a href="../configuring-dashboard/">Configuring dashboard</a></li>
+    <li><a href="./">Customizing OpenShift Eclipse Che branding images</a></li>
   </ul>
 </nav>
 <div class="page-versions">
-  <button class="version-menu-toggle" title="Show other versions of page">next</button>
+  <button class="version-menu-toggle" title="Show other versions of page">7.117.x</button>
   <div class="version-menu">
-    <a class="version is-current" href="./">next</a>
-    <a class="version" href="../../../stable/administration-guide/running-the-open-vsx-on-premises/">7.116.x</a>
+    <a class="version" href="../../../next/administration-guide/customizing-openshift-che-branding-images/">next</a>
+    <a class="version is-current" href="./">7.117.x</a>
   </div>
 </div>
-<div class="edit-this-page"><a href="https://github.com/eclipse-che/che-docs/edit/main/modules/administration-guide/pages/running-the-open-vsx-on-premises.adoc">Edit this Page</a></div>
+<div class="edit-this-page"><a href="https://github.com/eclipse-che/che-docs/edit/7.117.x/modules/administration-guide/pages/customizing-openshift-che-branding-images.adoc">Edit this Page</a></div>
 </div>
   <div class="content">
 <aside class="toc sidebar" data-title="Contents" data-levels="2">
   <div class="toc-menu"></div>
 </aside>
 <article class="doc">
-<h1 class="page">Running the Open VSX On-Premises</h1>
-<div id="preamble">
-<div class="sectionbody">
+<h1 class="page">Customizing OpenShift&#160;Container&#160;Platform Eclipse&#160;Che branding images</h1>
 <div class="paragraph">
-<p>Follow the instructions below to deploy and configure an on-premises Eclipse Open VSX extension registry, fully integrated with Che and OpenShift environments. Choose one of the two setup paths: using a Che workspace or the OpenShift CLI (<code>oc</code>), to help you set up a secure, internal Open VSX instance. This includes creating necessary OpenShift project, deploying Open VSX components, publishing extensions and integrating the registry with Che.</p>
+<p>Customize the branding images for the Eclipse&#160;Che dashboard by overriding the default images in the <code>assets/branding</code> directory. The following images can be customized:</p>
 </div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>che-logo.svg</code> — the logo displayed in the dashboard header.</p>
+</li>
+<li>
+<p><code>loader.svg</code> — the loader icon displayed during dashboard loading. The loader image supports the following formats, in priority order: <code>jpg</code>, <code>jpeg</code>, <code>png</code>, <code>gif</code>, <code>webp</code>, <code>svg</code>. The <code>svg</code> format is used as the default fallback.</p>
+</li>
+<li>
+<p><code>favicon.ico</code> — the browser tab icon.</p>
+</li>
+</ul>
 </div>
-</div>
-<div class="sect1">
-<h2 id="_using_che_instance"><a class="anchor" href="#_using_che_instance"></a>Using Che instance</h2>
-<div class="sectionbody">
 <div class="ulist">
 <div class="title">Prerequisites</div>
 <ul>
 <li>
-<p>Be logged in as a cluster administrator.</p>
+<p>An active <code>kubectl</code> session with administrative permissions to the Kubernetes cluster. See <a href="https://kubernetes.io/docs/reference/kubectl/overview/">Overview of kubectl</a>.</p>
 </li>
 </ul>
 </div>
@@ -903,361 +921,42 @@
 <div class="title">Procedure</div>
 <ol class="arabic">
 <li>
-<p>Start a workspace using the Open VSX repository.</p>
-<div class="paragraph">
-<p>Create a workspace by using the following <a href="https://github.com/eclipse/openvsx">Eclipse Open VSX repository</a>.</p>
-</div>
-<div class="admonitionblock warning">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-warning" title="Warning"></i>
-</td>
-<td class="content">
-<div class="paragraph">
-<p>The <a href="https://github.com/eclipse/openvsx/blob/master/.devfile.yaml">.devfile.yaml</a> includes an <code>elasticsearch</code> component that does not support IBM Power (ppc64le) or IBM Z (s390x) architectures. To successfully start the workspace on these architectures, the only option is to remove this component from the devfile. Alternatively, you can refer to  <a href="#using-oc-tool">Using OpenShift CLI tool</a> documentation, which describes how to run Open VSX separately without starting a workspace.</p>
-</div>
-</td>
-</tr>
-</table>
-</div>
-<div class="admonitionblock tip">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-tip" title="Tip"></i>
-</td>
-<td class="content">
-<div class="paragraph">
-<p>The environment, including all necessary commands, is defined in the <code>.devfile.yaml</code> file.</p>
-</div>
-</td>
-</tr>
-</table>
-</div>
-</li>
-<li>
-<p>Create a new OpenShift project for Open VSX.</p>
-<div class="paragraph">
-<p>Run <code>2.1. Create Namespace for OpenVSX</code> task in the workspace (<code>Terminal → Run Task… → devfile → 2.1. Create Namespace for OpenVSX</code>). A new project with the name <code>openvsx</code> should be created on the cluster.</p>
-</div>
-</li>
-<li>
-<p>Build and Publish Open VSX image.</p>
-<div class="paragraph">
-<p>To build and deploy the Open VSX server container image to the OpenShift internal image registry, run the <code>2.2. Build and Publish Open VSX Image</code> task in the workspace: (<code>Terminal → Run Task… → devfile → 2.2. Build and Publish OpenVSX Image</code>). During execution, you will be prompted to enter the Open VSX server version. If left blank, the task will default to using v0.27.0.</p>
-</div>
-<div class="admonitionblock tip">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-tip" title="Tip"></i>
-</td>
-<td class="content">
-<div class="paragraph">
-<p>Open VSX server versions could be found on the OpenVSX GitHub release page: <a href="https://github.com/eclipse/openvsx/releases" class="bare">https://github.com/eclipse/openvsx/releases</a></p>
-</div>
-</td>
-</tr>
-</table>
-</div>
-</li>
-<li>
-<p>Build and Publish Open VSX CLI (<code>ovsx</code>) Image.</p>
-<div class="paragraph">
-<p>Run <code>2.3. Build and Publish OpenVSX CLI Image</code> task in the workspace (<code>Terminal → Run Task… → devfile → 2.3. Build and Publish OpenVSX CLI Image</code>) to build the Open VSX CLI image and push it to OpenShift internal registry.</p>
-</div>
-</li>
-<li>
-<p>Deploy Open VSX.</p>
-<div class="paragraph">
-<p>Run <code>2.4. Deploy OpenVSX</code> task in the workspace (<code>Terminal → Run Task… → devfile → 2.4. Deploy OpenVSX</code>). This command deploys the Open VSX components to an OpenShift project by processing a template file (openvsx-deployment.yml). It creates all required resources defined in the template, which includes:</p>
-</div>
-<div class="olist loweralpha">
-<ol class="loweralpha" type="a">
-<li>
-<p>Deployments (PostgreSQL, Elasticsearch, Open VSX server, Open VSX CLI).</p>
-</li>
-<li>
-<p>Services and Routes for accessing components.</p>
-</li>
-<li>
-<p>Secrets for GitHub OAuth credentials and Open VSX personal access token.</p>
-</li>
-</ol>
-</div>
-<div class="admonitionblock tip">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-tip" title="Tip"></i>
-</td>
-<td class="content">
-<div class="paragraph">
-<p>All deployment information is described in the <code>deploy/openshift/openvsx-deployment.yml</code> file with some default values such as <code>OVSX_PAT_BASE64</code>.</p>
-</div>
-</td>
-</tr>
-</table>
-</div>
-</li>
-<li>
-<p>Add Open VSX user with PAT to the database.</p>
-<div class="paragraph">
-<p>Run the <code>2.5. Add OpenVSX user with PAT to the DB</code> task in the workspace (<code>Terminal → Run Task… → devfile → 2.5. Add OpenVSX user with PAT to the DB</code>). The command will ask for the Open VSX username and user PAT. You can just click enter to use the default values.</p>
-</div>
-<div class="admonitionblock important">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-important" title="Important"></i>
-</td>
-<td class="content">
-<div class="paragraph">
-<p>The user PAT must match the decoded value of <code>OVSX_PAT_BASE64</code> specified in the deployment file. If <code>OVSX_PAT_BASE64</code> has been updated, use the new token&#8217;s decoded value as the user PAT.</p>
-</div>
-</td>
-</tr>
-</table>
-</div>
-</li>
-<li>
-<p>Configure Che to use the internal Open VSX.</p>
-<div class="paragraph">
-<p>Run the <code>2.6. Configure Che to use the internal Open VSX registry</code> task in the workspace (<code>Terminal → Run Task… → devfile → 2.6. Configure Che to use the internal OpenVSX registry</code>). It applies the patch to the <code>CheCluster</code> custom resource, updating its configuration to use the specified Open VSX URL for the extension registry.</p>
-</div>
-</li>
-<li>
-<p>Publish an extension from a <code>.vsix</code> file.</p>
-<div class="paragraph">
-<p>At the beginning, the Open VSX registry does not provide any extension. Once the <code>openvsx-server</code> pod is running and in the Ready state, extensions can be published to the registry. The <code>2.8. Publish a Visual Studio Code Extension from a VSIX file</code> command publishes an extension to the local Open VSX registry directly from a <code>.vsix</code> file. It prompts you to provide the extension&#8217;s <code>namespace</code> name and the path to the <code>.vsix</code> file.</p>
-</div>
-</li>
-<li>
-<p>Publish list of extensions.</p>
-<div class="paragraph">
-<p>The <code>2.9. Publish list of Visual Studio Code Extensions</code> command automates the process of publishing a predefined list of Microsoft Visual Studio Code extensions based on download URLs to the internal Open VSX registry.</p>
-</div>
-<div class="admonitionblock tip">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-tip" title="Tip"></i>
-</td>
-<td class="content">
-<div class="paragraph">
-<p>The command reads from the <code>deploy/openshift/extensions.txt</code> file, which lists the URLs of <code>.vsix</code> files for each extension to be published.
-To publish your extensions to Open VSX, update the <code>extensions.txt</code> file as needed, then run the 2.9. Publish list of Visual Studio Code Extensions task from the workspace:
-<code>Terminal → Run Task… → devfile → 2.9. Publish list of Visual Studio Code Extensions</code>.</p>
-</div>
-</td>
-</tr>
-</table>
-</div>
-</li>
-<li>
-<p>Verify that Che uses internal Open VSX.</p>
-<div class="paragraph">
-<p>Start any workspace and check the available extensions in the Extensions view of the workspace IDE or by opening the <code>internal</code> route in the OpenVSX OpenShift project.</p>
-</div>
-</li>
-</ol>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="using-oc-tool"><a class="anchor" href="#using-oc-tool"></a>Using OpenShift CLI (<code>oc</code>) tool</h2>
-<div class="sectionbody">
-<div class="ulist">
-<div class="title">Prerequisites</div>
-<ul>
-<li>
-<p>Installed <code>oc</code> and git tools.</p>
-</li>
-<li>
-<p>Installed Podman.</p>
-</li>
-<li>
-<p>Log in to the OpenShift cluster where the Che is deployed as a cluster administrator.</p>
-<div class="admonitionblock tip">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-tip" title="Tip"></i>
-</td>
-<td class="content">
-<div class="paragraph">
-<p><code>$ oc login https://<em>&lt;che_fqdn&gt;</em> --username=<em>&lt;my_user&gt;</em></code></p>
-</div>
-</td>
-</tr>
-</table>
-</div>
-</li>
-</ul>
-</div>
-<div class="olist arabic">
-<div class="title">Procedure</div>
-<ol class="arabic">
-<li>
-<p>Create a new OpenShift project for Open VSX.</p>
+<p>Create a Secret that mounts custom branding images into the dashboard:</p>
 <div class="listingblock">
 <div class="content">
-<pre>oc new-project openvsx</pre>
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">kubectl apply -f - &lt;&lt;EOF
+apiVersion: v1
+kind: Secret
+metadata:
+  name: che-dashboard-customization
+  namespace: eclipse-che
+  annotations:
+    che.eclipse.org/mount-as: subpath
+    che.eclipse.org/mount-path: /public/dashboard/assets/branding
+  labels:
+    app.kubernetes.io/component: che-dashboard-secret
+    app.kubernetes.io/part-of: che.eclipse.org
+data:
+  che-logo.svg: <em>&lt;Base64_encoded_content_of_the_image&gt;</em> <i class="conum" data-value="1"></i><b>(1)</b>
+  loader.svg: <em>&lt;Base64_encoded_content_of_the_image&gt;</em> <i class="conum" data-value="2"></i><b>(2)</b>
+  favicon.ico: <em>&lt;Base64_encoded_content_of_the_image&gt;</em> <i class="conum" data-value="3"></i><b>(3)</b>
+type: Opaque
+EOF</code></pre>
 </div>
 </div>
-</li>
-<li>
-<p>Clone Open VSX sources.</p>
-<div class="paragraph">
-<p>Get Open VSX sources and navigate to the OpenShift deploy directory:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="nowrap">git clone https://github.com/eclipse-openvsx/openvsx &amp;&amp;
-cd openvsx/deploy/openshift</pre>
-</div>
-</div>
-</li>
-<li>
-<p>Prepare Open VSX server image.</p>
-<div class="paragraph">
-<p>The next step is to build and publish the Open VSX server image. To do this, run the following commands:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="nowrap">export REGISTRY=quay.io &amp;&amp;
-export NAMESPACE=myuser &amp;&amp;
-export OPENVSX_SERVER_IMAGE_NAME=openvsx-server &amp;&amp;
-export OPENVSX_VERSION=v0.33.0 &amp;&amp;
-export OPENVSX_SERVER_IMAGE=${REGISTRY}/${NAMESPACE}/${OPENVSX_SERVER_IMAGE_NAME}:${OPENVSX_VERSION} &amp;&amp;
-podman build -t "${OPENVSX_SERVER_IMAGE}" --build-arg "OPENVSX_VERSION=${OPENVSX_VERSION}" -f openvsx.Dockerfile . &amp;&amp;
-podman login "${REGISTRY}" &amp;&amp;
-podman push "${OPENVSX_SERVER_IMAGE}"</pre>
-</div>
-</div>
-<div class="admonitionblock important">
+<div class="colist arabic">
 <table>
 <tr>
-<td class="icon">
-<i class="fa icon-important" title="Important"></i>
-</td>
-<td class="content">
-<div class="paragraph">
-<p>Make sure to configure the correct container registry and namespace for your image. Additionally, ensure that the image is publicly accessible and can be pulled without authentication.</p>
-</div>
-</td>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>The dashboard logo. Replace <code>che-logo.svg</code> with the Base64-encoded content of your custom logo with disabled line wrapping.</td>
 </tr>
-</table>
-</div>
-</li>
-<li>
-<p>Prepare Open VSX CLI image.</p>
-<div class="paragraph">
-<p>Build and publish the Open VSX CLI image. To do this, run the following commands:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="nowrap">export OPENVSX_CLI_IMAGE_NAME=openvsx-cli &amp;&amp;
-export OPENVSX_CLI_VERSION=0.10.5 &amp;&amp;
-export OPENVSX_CLI_IMAGE=${REGISTRY}/${NAMESPACE}/${OPENVSX_CLI_IMAGE_NAME}:${OPENVSX_CLI_VERSION} &amp;&amp;
-podman build -t "${OPENVSX_CLI_IMAGE}" --build-arg "OVSX_VERSION=${OPENVSX_CLI_VERSION}" -f cli.Dockerfile . &amp;&amp;
-podman push "${OPENVSX_CLI_IMAGE}"</pre>
-</div>
-</div>
-<div class="admonitionblock important">
-<table>
 <tr>
-<td class="icon">
-<i class="fa icon-important" title="Important"></i>
-</td>
-<td class="content">
-<div class="paragraph">
-<p>Ensure that the image is publicly accessible and can be pulled without authentication.</p>
-</div>
-</td>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>The loader icon. Replace <code>loader.svg</code> with the filename matching your image format (for example, <code>loader.png</code>, <code>loader.webp</code>). The value is the Base64-encoded content of the image with disabled line wrapping.</td>
 </tr>
-</table>
-</div>
-</li>
-<li>
-<p>Deploy Open VSX.</p>
-<div class="listingblock">
-<div class="content">
-<pre class="nowrap">oc process -f openvsx-deployment.yml \
--p OPENVSX_SERVER_IMAGE="${OPENVSX_SERVER_IMAGE}" \
--p OPENVSX_CLI_IMAGE="${OPENVSX_CLI_IMAGE}" \
-| oc apply -f -</pre>
-</div>
-</div>
-</li>
-<li>
-<p>Verify that all pods in the <code>openvsx</code> namespace are running and ready. It might take a few minutes for all pods to become ready. Run the following command:</p>
-<div class="listingblock">
-<div class="content">
-<pre class="nowrap">oc get pods -n openvsx \
-  -o jsonpath='{range .items[*]}{@.metadata.name}{"\t"}{@.status.phase}{"\t"}{.status.containerStatuses[*].ready}{"\n"}{end}'</pre>
-</div>
-</div>
-</li>
-<li>
-<p>Add Open VSX user with PAT to the database.</p>
-<div class="paragraph">
-<p>Find PostgreSQL pod:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="nowrap">export POSTGRESQL_POD_NAME=$(oc get pods -n openvsx \
-   -o jsonpath="{.items[*].metadata.name}" | tr ' ' '\n' | grep '^postgresql' | head -n 1)</pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Insert username into OpenVSX database:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="nowrap">oc exec -n openvsx "$POSTGRESQL_POD_NAME" -- bash -c \
-   "psql -d openvsx -c \"INSERT INTO user_data (id, login_name, role) VALUES (1001, 'eclipse-che', 'privileged');\""</pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Insert user PAT into OpenVSX database:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="nowrap">oc exec -n openvsx "$POSTGRESQL_POD_NAME" -- bash -c \
-   "psql -d openvsx -c \"INSERT INTO personal_access_token (id, user_data, value, active, created_timestamp, accessed_timestamp, description, notified) VALUES (1001, 1001, 'eclipse_che_token', true, current_timestamp, current_timestamp, 'extensions publisher', false);\""</pre>
-</div>
-</div>
-</li>
-<li>
-<p>Configure Che to use the internal Open VSX.</p>
-<div class="listingblock">
-<div class="content">
-<pre class="nowrap">export CHECLUSTER_NAME="$(oc get checluster --all-namespaces -o json | jq -r '.items[0].metadata.name')" &amp;&amp;
-export CHECLUSTER_NAMESPACE="$(oc get checluster --all-namespaces -o json | jq -r '.items[0].metadata.namespace')" &amp;&amp;
-export OPENVSX_ROUTE_URL="$(oc get route internal -n openvsx -o jsonpath='{.spec.host}')" &amp;&amp;
-export PATCH='{"spec":{"components":{"pluginRegistry":{"openVSXURL":"https://'"$OPENVSX_ROUTE_URL"'"}}}}' &amp;&amp;
-oc patch checluster "${CHECLUSTER_NAME}" --type=merge --patch "${PATCH}" -n "${CHECLUSTER_NAMESPACE}"</pre>
-</div>
-</div>
-<div class="admonitionblock tip">
-<table>
 <tr>
-<td class="icon">
-<i class="fa icon-tip" title="Tip"></i>
-</td>
-<td class="content">
-<div class="paragraph">
-<p>Refer to the <a href="../configuring-the-open-vsx-registry-url/" class="xref page">Configuring the Open VSX registry URL</a> for detailed instructions on configuring the Open VSX registry URL in Che.</p>
-</div>
-</td>
-</tr>
-</table>
-</div>
-</li>
-<li>
-<p>Publish Visual Studio Code extensions with the <code>ovsx</code> command.</p>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>The favicon. The value is the Base64-encoded content of the <code>.ico</code> file with disabled line wrapping.
 <div class="admonitionblock note">
 <table>
 <tr>
@@ -1265,146 +964,40 @@ oc patch checluster "${CHECLUSTER_NAME}" --type=merge --patch "${PATCH}" -n "${C
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-<div class="paragraph">
-<p>At the beginning, the Open VSX registry does not provide any extension.</p>
-</div>
+You can override one or all images from the <code>/public/dashboard/assets/branding</code> directory in the dashboard pod. Only the images specified in the Secret <code>data</code> section are overridden; unspecified images remain unchanged.
 </td>
 </tr>
 </table>
-</div>
-<div class="paragraph">
-<p>With everything configured, the next step is to publish a Visual Studio Code extension from inside the ovsx-cli container.
-To do this, you need two pieces of information: the extension <code>namespace</code> name (used for publishing), the download URL of the .vsix extension package.
-Once you have this information, run the following commands to publish the extension:</p>
-</div>
-<div class="olist loweralpha">
-<ol class="loweralpha" type="a">
-<li>
-<p>Retrieve the name of the pod running the Open VSX server:</p>
-<div class="listingblock">
-<div class="content">
-<pre class="nowrap">export OVSX_POD_NAME=$(oc get pods -n openvsx -o jsonpath="{.items[*].metadata.name}" | tr ' ' '\n' | grep ^ovsx-cli)</pre>
-</div>
-</div>
-</li>
-<li>
-<p>Download the .vsix extension:</p>
-<div class="listingblock">
-<div class="content">
-<pre class="nowrap">oc exec -n openvsx "${OVSX_POD_NAME}" -- bash -c "wget -O /tmp/extension.vsix EXTENSION_DOWNLOAD_URL "</pre>
-</div>
-</div>
-</li>
-<li>
-<p>Create an extension namespace:</p>
-<div class="listingblock">
-<div class="content">
-<pre class="nowrap">oc exec -n openvsx "${OVSX_POD_NAME}" -- bash -c "ovsx create-namespace EXTENSION_NAMESPACE_NAME" || true</pre>
-</div>
-</div>
-</li>
-<li>
-<p>Publish the extension:</p>
-<div class="listingblock">
-<div class="content">
-<pre class="nowrap">oc exec -n openvsx "${OVSX_POD_NAME}" -- bash -c "ovsx publish /tmp/extension.vsix"</pre>
-</div>
-</div>
-</li>
-<li>
-<p>Delete the downloaded extension file:</p>
-<div class="listingblock">
-<div class="content">
-<pre class="nowrap">oc exec -n openvsx "${OVSX_POD_NAME}" -- bash -c "rm /tmp/extension.vsix"</pre>
-</div>
-</div>
-<div class="admonitionblock tip">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-tip" title="Tip"></i>
-</td>
-<td class="content">
-<div class="paragraph">
-<p>Example: Publish the <code>redhat.vscode-yaml</code> extension version 1.18.0:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="nowrap">oc exec -n openvsx "${OVSX_POD_NAME}" -- bash -c "wget -O /tmp/extension.vsix https://open-vsx.org/api/redhat/vscode-yaml/1.18.0/file/redhat.vscode-yaml-1.18.0.vsix " &amp;&amp;
-oc exec -n openvsx "${OVSX_POD_NAME}" -- bash -c "ovsx create-namespace redhat" || true &amp;&amp;
-oc exec -n openvsx "${OVSX_POD_NAME}" -- bash -c "ovsx publish /tmp/extension.vsix" &amp;&amp;
-oc exec -n openvsx "${OVSX_POD_NAME}" -- bash -c "rm /tmp/extension.vsix"</pre>
-</div>
-</div>
-</td>
+</div></td>
 </tr>
 </table>
 </div>
 </li>
-</ol>
-</div>
-</li>
 <li>
-<p>Verify Open VSX extension registry.</p>
-<div class="paragraph">
-<p>Check the list of published extensions by navigating to the URL defined in the OPENVSX_ROUTE_URL environment variable.</p>
-</div>
-</li>
-</ol>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_setting_up_internal_access_to_the_open_vsx_service"><a class="anchor" href="#_setting_up_internal_access_to_the_open_vsx_service"></a>Setting Up Internal Access to the Open VSX Service</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>In addition to using a public route to reference the Open VSX registry, you can also configure Che to set internal cluster service routing. This method provides enhanced security by keeping traffic confined within the cluster, avoiding public exposure.</p>
-</div>
-<div class="paragraph">
-<div class="title">Procedure</div>
-<p>Steps for Internal Service Routing:</p>
-</div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>Remove the Public Route.</p>
-<div class="paragraph">
-<p>Delete the public route associated with the Open VSX registry to restrict external access:</p>
-</div>
+<p>Verify that the rollout completes:</p>
 <div class="listingblock">
 <div class="content">
-<pre class="nowrap">oc delete route internal -n openvsx</pre>
-</div>
-</div>
-</li>
-<li>
-<p>Set the Internal Open VSX Service URL.</p>
-<div class="paragraph">
-<p>Update the CheCluster custom resource to use the internal cluster service DNS:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="nowrap">export CHECLUSTER_NAME="$(oc get checluster --all-namespaces -o json | jq -r '.items[0].metadata.name')" &amp;&amp;
-export CHECLUSTER_NAMESPACE="$(oc get checluster --all-namespaces -o json | jq -r '.items[0].metadata.namespace')" &amp;&amp;
-export PATCH='{"spec":{"components":{"pluginRegistry":{"openVSXURL":"http://openvsx-server.openvsx.svc:8080"}}}}' &amp;&amp;
-oc patch checluster "${CHECLUSTER_NAME}" --type=merge --patch "${PATCH}" -n "${CHECLUSTER_NAMESPACE}"</pre>
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">kubectl rollout status deployment/che-dashboard -n eclipse-che</code></pre>
 </div>
 </div>
 </li>
 </ol>
 </div>
 <div class="ulist">
-<div class="title">Additional resources</div>
+<div class="title">Verification</div>
 <ul>
 <li>
-<p><a href="https://github.com/eclipse/openvsx/">Eclipse Open VSX sources</a></p>
-</li>
-<li>
-<p><a href="https://github.com/eclipse/openvsx/wiki/">Eclipse Open VSX documentation</a></p>
+<p>Open the Eclipse&#160;Che dashboard in a browser and confirm that the custom branding images are displayed.</p>
 </li>
 </ul>
 </div>
-</div>
+<div class="ulist">
+<div class="title">Additional resources</div>
+<ul>
+<li>
+<p><a href="https://docs.openshift.com/container-platform/4.18/web_console/customizing-the-web-console.html#creating-custom-links_customizing-web-console">Creating custom links in the web console</a></p>
+</li>
+</ul>
 </div>
 </article>
   </div>

@@ -3,10 +3,10 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Deleting Extensions from the Open VSX registry :: Eclipse Che Documentation</title>
-    <link rel="canonical" href="https://www.eclipse.org/che/docs/stable/administration-guide/deleting-extension-from-the-open-vsx-on-premises/">
-    <meta name="description" content="Deleting Extensions from Open VSX On-Premises">
-    <meta name="keywords" content="administration guide, configuring, openvsx, registry">
+    <title>Delete an extension by using the Open VSX administrator API :: Eclipse Che Documentation</title>
+    <link rel="canonical" href="https://www.eclipse.org/che/docs/stable/administration-guide/proc_deleting-extension-using-openvsx-admin-api/">
+    <meta name="description" content="Delete an extension from the Open VSX registry using the administrator API">
+    <meta name="keywords" content="administration guide, openvsx, delete, extension, api">
     <meta name="generator" content="Antora 3.1.14">
     <link rel="stylesheet" href="../../../../docs/_/css/site.css">
 <link rel="stylesheet" href="../../../../docs/_/css/extra.css">
@@ -464,6 +464,9 @@
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="../configuring-a-user-namespace/">Configuring a user namespace</a>
   </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../configuring-kubernetes-namespace-creation-on-openshift/">Configuring direct namespace creation on OpenShift</a>
+  </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="2">
@@ -624,7 +627,7 @@
     <a class="nav-link" href="../configuring-storage-sizes/">Configuring storage sizes</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../about-persistent-user-home/">Persistent user home</a>
+    <a class="nav-link" href="../con_persistent-user-home/">Persistent user home</a>
   </li>
 </ul>
   </li>
@@ -728,13 +731,22 @@
     <a class="nav-link" href="../extensions-for-microsoft-visual-studio-code-open-source/">Extensions for Microsoft Visual Studio Code - Open Source</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../running-the-open-vsx-on-premises/">Running Open VSX On-Premises</a>
-  </li>
-  <li class="nav-item is-current-page" data-depth="2">
-    <a class="nav-link" href="./">Deleting Extensions from Open VSX On-Premises</a>
+    <a class="nav-link" href="../configuring-the-open-vsx-registry-url/">Configure the Open VSX registry URL</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../configuring-the-open-vsx-registry-url/">Open VSX registry URL</a>
+    <a class="nav-link" href="../proc_deploy-open-vsx-from-source/">Deploy Open VSX from source</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../proc_deploy-open-vsx-from-workspace/">Deploy Open VSX from a workspace</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../proc_configure-internal-open-vsx-access/">Configure internal Open VSX access</a>
+  </li>
+  <li class="nav-item is-current-page" data-depth="2">
+    <a class="nav-link" href="./">Delete an extension using the Open VSX API</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../proc_deleting-extension-from-postgresql-database/">Delete an extension from the PostgreSQL database</a>
   </li>
 </ul>
   </li>
@@ -845,7 +857,7 @@
           <a href="../../overview/introduction-to-eclipse-che/">next</a>
         </li>
         <li class="version is-latest">
-          <a href="../../../stable/overview/introduction-to-eclipse-che/">7.116.x</a>
+          <a href="../../../stable/overview/introduction-to-eclipse-che/">7.117.x</a>
         </li>
       </ul>
     </li>
@@ -863,52 +875,35 @@
     <li><a href="../../overview/introduction-to-eclipse-che/">Documentation</a></li>
     <li>Administration Guide</li>
     <li><a href="../managing-ide-extensions/">Managing IDE extensions</a></li>
-    <li><a href="./">Deleting Extensions from Open VSX On-Premises</a></li>
+    <li><a href="./">Delete an extension using the Open VSX API</a></li>
   </ul>
 </nav>
 <div class="page-versions">
   <button class="version-menu-toggle" title="Show other versions of page">next</button>
   <div class="version-menu">
     <a class="version is-current" href="./">next</a>
-    <a class="version" href="../../../stable/administration-guide/deleting-extension-from-the-open-vsx-on-premises/">7.116.x</a>
+    <a class="version" href="../../../stable/administration-guide/proc_deleting-extension-using-openvsx-admin-api/">7.117.x</a>
   </div>
 </div>
-<div class="edit-this-page"><a href="https://github.com/eclipse-che/che-docs/edit/main/modules/administration-guide/pages/deleting-extension-from-the-open-vsx-on-premises.adoc">Edit this Page</a></div>
+<div class="edit-this-page"><a href="https://github.com/eclipse-che/che-docs/edit/main/modules/administration-guide/pages/proc_deleting-extension-using-openvsx-admin-api.adoc">Edit this Page</a></div>
 </div>
   <div class="content">
 <aside class="toc sidebar" data-title="Contents" data-levels="2">
   <div class="toc-menu"></div>
 </aside>
 <article class="doc">
-<h1 class="page">Deleting Extensions from the Open VSX registry</h1>
-<div id="preamble">
-<div class="sectionbody">
-<div class="paragraph">
-<p>You can remove extensions from your private Open VSX registry by using one of the following methods:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>Use the Open VSX administrator API (recommended).</p>
-</li>
-<li>
-<p>Delete the extension data directly in the PostgreSQL database.</p>
-</li>
-</ul>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="proc_deleting-extension-using-openvsx-admin-api_che"><a class="anchor" href="#proc_deleting-extension-using-openvsx-admin-api_che"></a>Deleting an extension by using the Open VSX administrator API</h2>
-<div class="sectionbody">
+<h1 class="page">Delete an extension by using the Open VSX administrator API</h1>
 <div class="paragraph _abstract">
-<p>Delete an extension from your private Open VSX registry by calling the administrator API with an administrator user and a personal access token (PAT).</p>
+<p>Delete an extension from your private Open VSX registry by calling the administrator API with an administrator user and a Personal Access Token (PAT).</p>
 </div>
 <div class="ulist">
 <div class="title">Prerequisites</div>
 <ul>
 <li>
-<p>You have access to the OpenShift cluster where Open VSX is deployed (namespace <code>openvsx</code>).</p>
+<p>You have access to the cluster where the Open VSX registry is deployed in the <code>openvsx</code> namespace.</p>
+</li>
+<li>
+<p>You have the <code>kubectl</code> tool installed.</p>
 </li>
 </ul>
 </div>
@@ -917,31 +912,22 @@
 <ol class="arabic">
 <li>
 <p>Add the Open VSX administrator user and PAT to the database:</p>
-<div class="paragraph">
-<p>Get the PostgreSQL pod name:</p>
-</div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight nowrap"><code class="language-bash hljs" data-lang="bash">export POSTGRESQL_POD_NAME=$(oc get pods -n openvsx \
+<pre class="highlightjs highlight nowrap"><code class="language-bash hljs" data-lang="bash">export POSTGRESQL_POD_NAME=$(kubectl get pods -n openvsx \
    -o jsonpath="{.items[*].metadata.name}" | tr ' ' '\n' | grep '^postgresql' | head -n 1)</code></pre>
 </div>
 </div>
-<div class="paragraph">
-<p>Add the administrator user:</p>
-</div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight nowrap"><code class="language-bash hljs" data-lang="bash">oc exec -n openvsx "$POSTGRESQL_POD_NAME" -- bash -c \
+<pre class="highlightjs highlight nowrap"><code class="language-bash hljs" data-lang="bash">kubectl exec -n openvsx "$POSTGRESQL_POD_NAME" -- bash -c \
    "psql -d openvsx -c \"INSERT INTO user_data (id, login_name, role) VALUES (1002, 'openvsx-admin', 'admin');\""</code></pre>
 </div>
 </div>
-<div class="paragraph">
-<p>Add the administrator PAT:</p>
-</div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight nowrap"><code class="language-bash hljs" data-lang="bash">oc exec -n openvsx "$POSTGRESQL_POD_NAME" -- bash -c \
-   "psql -d openvsx -c \"INSERT INTO personal_access_token (id, user_data, value, active, created_timestamp, accessed_timestamp, description, notified) VALUES (1002, 1002, 'openvsx_admin_token', true, current_timestamp, current_timestamp, 'Admin API Token', false);\""</code></pre>
+<pre class="highlightjs highlight nowrap"><code class="language-bash hljs" data-lang="bash">kubectl exec -n openvsx "$POSTGRESQL_POD_NAME" -- bash -c \
+   "psql -d openvsx -c \"INSERT INTO personal_access_token (id, user_data, value, active, created_timestamp, accessed_timestamp, description, notified) VALUES (1002, 1002, '<em>&lt;your_admin_token&gt;</em>', true, current_timestamp, current_timestamp, 'Admin API Token', false);\""</code></pre>
 </div>
 </div>
 <div class="admonitionblock note">
@@ -952,7 +938,7 @@
 </td>
 <td class="content">
 <div class="paragraph">
-<p>Use a strong, unique value instead of <code>openvsx_admin_token</code> for production. The system passes the PAT in the API request URL.</p>
+<p>Use a strong, unique value for <code><em>&lt;your_admin_token&gt;</em></code> in production environments.</p>
 </div>
 </td>
 </tr>
@@ -960,51 +946,49 @@
 </div>
 </li>
 <li>
-<p>To delete an extension and all of its published versions, use the <code>curl</code> command with the following endpoint:</p>
-<div class="paragraph">
-<p><code>POST /admin/api/extension/<em>&lt;publisher&gt;</em>/<em>&lt;extension&gt;</em>/delete</code></p>
-</div>
+<p>Delete an extension and all its versions:</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight nowrap"><code class="language-bash hljs" data-lang="bash">curl -X POST \
-  "https://<em>&lt;your-openvsx-server-url&gt;</em>/admin/api/extension/<em>&lt;publisher&gt;</em>/<em>&lt;extension&gt;</em>/delete?token=<em>&lt;your-admin-pat&gt;</em>"</code></pre>
+  "https://<em>&lt;your_openvsx_server_url&gt;</em>/admin/api/extension/<em>&lt;publisher&gt;</em>/<em>&lt;extension&gt;</em>/delete?token=<em>&lt;your_admin_token&gt;</em>"</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>Replace the following placeholders:</p>
+<p>where:</p>
 </div>
-<div class="ulist">
-<ul>
-<li>
-<p><code><em>&lt;your-openvsx-server-url&gt;</em></code>: The URL of your Open VSX registry.</p>
-</li>
-<li>
-<p><code><em>&lt;publisher&gt;</em></code>: The namespace of the extension (for example, <code>redhat</code>).</p>
-</li>
-<li>
-<p><code><em>&lt;extension&gt;</em></code>: The name of the extension (for example, <code>vscode-yaml</code>).</p>
-</li>
-<li>
-<p><code><em>&lt;your-admin-pat&gt;</em></code>: The PAT you created for the <code>openvsx-admin</code> user.</p>
-</li>
-</ul>
+<div class="dlist">
+<dl>
+<dt class="hdlist1"><code><em>&lt;your_openvsx_server_url&gt;</em></code></dt>
+<dd>
+<p>The URL of the Open VSX server.</p>
+</dd>
+<dt class="hdlist1"><code><em>&lt;publisher&gt;</em></code></dt>
+<dd>
+<p>The extension publisher name.</p>
+</dd>
+<dt class="hdlist1"><code><em>&lt;extension&gt;</em></code></dt>
+<dd>
+<p>The extension name.</p>
+</dd>
+<dt class="hdlist1"><code><em>&lt;your_admin_token&gt;</em></code></dt>
+<dd>
+<p>The PAT value created in step 1.</p>
+</dd>
+</dl>
 </div>
 </li>
 <li>
-<p>To delete a specific version of an extension, send a JSON body in the same <code>POST</code> request:</p>
-<div class="paragraph">
-<p>To remove only certain versions and target platforms instead of the entire extension, include an array that specifies a <code>version</code> and <code>targetPlatform</code> (for example, <code>linux-x64</code>, <code>darwin-arm64</code>, or <code>win32-x64</code>).</p>
-</div>
+<p>Optional: Delete a specific version of an extension:</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight nowrap"><code class="language-bash hljs" data-lang="bash">curl -X POST \
   -H "Content-Type: application/json" \
-  -d '[{"version": "1.3.0", "targetPlatform": "linux-x64"}]' \
-  "https://<em>&lt;your-openvsx-server-url&gt;</em>/admin/api/extension/<em>&lt;publisher&gt;</em>/<em>&lt;extension&gt;</em>/delete?token=<em>&lt;your-admin-pat&gt;</em>"</code></pre>
+  -d '[{"version": "<em>&lt;version&gt;</em>", "targetPlatform": "<em>&lt;platform&gt;</em>"}]' \
+  "https://<em>&lt;your_openvsx_server_url&gt;</em>/admin/api/extension/<em>&lt;publisher&gt;</em>/<em>&lt;extension&gt;</em>/delete?token=<em>&lt;your_admin_token&gt;</em>"</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>Use the same placeholders that are listed in the previous step. You can list multiple version and platform pairs in the JSON array to delete several targets in one request.</p>
+<p>You can list multiple version and platform pairs in the JSON array.</p>
 </div>
 </li>
 </ol>
@@ -1013,172 +997,20 @@
 <div class="title">Verification</div>
 <ul>
 <li>
-<p>Refresh your Open VSX registry and verify that the extension no longer appears in the gallery.</p>
+<p>Refresh the Open VSX registry and verify that the extension no longer appears.</p>
 </li>
 </ul>
 </div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="proc_deleting-extension-from-postgresql-database_che"><a class="anchor" href="#proc_deleting-extension-from-postgresql-database_che"></a>Deleting an extension from the PostgreSQL database directly</h2>
-<div class="sectionbody">
-<div class="paragraph _abstract">
-<p>Remove extension records and related data directly in the PostgreSQL database when the administrator API is not available or when you must clean up specific data. If the extension uses local storage, you must also remove its files from the Open VSX server pod.</p>
-</div>
-<div class="ulist">
-<div class="title">Prerequisites</div>
+<div class="ulist _additional-resources">
+<div class="title">Additional resources</div>
 <ul>
 <li>
-<p>You have access to the OpenShift cluster where Open VSX is deployed (namespace <code>openvsx</code>).</p>
+<p><a href="../proc_deleting-extension-from-postgresql-database/" class="xref page">Delete an extension from the PostgreSQL database</a></p>
 </li>
 <li>
-<p>You know the namespace name and extension name that you want to delete.</p>
+<p><a href="../proc_deploy-open-vsx-from-source/" class="xref page">Deploy Open VSX from source</a></p>
 </li>
 </ul>
-</div>
-<div class="olist arabic">
-<div class="title">Procedure</div>
-<ol class="arabic">
-<li>
-<p>Open a command prompt in the PostgreSQL pod and connect to the database:</p>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight nowrap"><code class="language-bash hljs" data-lang="bash">export POSTGRESQL_POD_NAME=$(oc get pods -n openvsx \
-   -o jsonpath="{.items[*].metadata.name}" | tr ' ' '\n' | grep '^postgresql' | head -n 1)
-oc exec -it $POSTGRESQL_POD_NAME -n openvsx -- /bin/bash</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Inside the pod, run <code>psql</code>:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight nowrap"><code class="language-terminal hljs" data-lang="terminal">psql</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>At the <code>postgres=#</code> prompt, connect to the database:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight nowrap"><code class="language-terminal hljs" data-lang="terminal">\c openvsx</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>You are now connected to the <code>openvsx</code> database as the <code>postgres</code> user.</p>
-</div>
-</li>
-<li>
-<p>Find the namespace ID and extension ID:</p>
-<div class="paragraph">
-<p>Identify the <code>namespace</code> ID. Replace <code><em>&lt;namespace_name&gt;</em></code> with the actual <code>namespace</code>:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight nowrap"><code class="language-sql hljs" data-lang="sql">SELECT id, name FROM namespace WHERE name = '<em>&lt;namespace_name&gt;</em>';</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Identify the extension ID. Replace <code><em>&lt;namespace_id&gt;</em></code> and <code><em>&lt;extension_name&gt;</em></code> with the values from the previous query:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight nowrap"><code class="language-sql hljs" data-lang="sql">SELECT id, name, namespace_id FROM extension WHERE namespace_id = <em>&lt;namespace_id&gt;</em> AND name = '<em>&lt;extension_name&gt;</em>';</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Note the ID of the extension to use as <code><em>&lt;extension_id&gt;</em></code> in the next steps.</p>
-</div>
-</li>
-<li>
-<p>Optional: Preview extension versions and file resources:</p>
-<div class="paragraph">
-<p>Preview the versions:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight nowrap"><code class="language-sql hljs" data-lang="sql">SELECT id, version, pre_release, semver_pre_release, semver_is_pre_release FROM extension_version WHERE extension_id = <em>&lt;extension_id&gt;</em> ORDER BY timestamp DESC;</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Preview the file resources:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight nowrap"><code class="language-sql hljs" data-lang="sql">SELECT id, name, type, storage_type FROM file_resource WHERE extension_id = <em>&lt;extension_id&gt;</em> ORDER BY id;</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>If the <code>storage_type</code> value is <code>local</code>, you must also remove the extension files from the file system on the Open VSX server pod.</p>
-</div>
-</li>
-<li>
-<p>Delete the extension from the database:</p>
-<div class="paragraph">
-<p>Run the following commands in a single transaction. Replace <code><em>&lt;extension_id&gt;</em></code> with the extension ID from step 2.</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight nowrap"><code class="language-sql hljs" data-lang="sql">BEGIN;
--- 1. Delete all file resources for the extension
-DELETE FROM file_resource WHERE extension_id = <em>&lt;extension_id&gt;</em>;
--- 2. Delete all extension reviews
-DELETE FROM extension_review WHERE extension_id = <em>&lt;extension_id&gt;</em>;
--- 3. Delete all versions of the extension
-DELETE FROM extension_version WHERE extension_id = <em>&lt;extension_id&gt;</em>;
--- 4. Delete the extension entry itself
-DELETE FROM extension WHERE id = <em>&lt;extension_id&gt;</em>;
-COMMIT;</code></pre>
-</div>
-</div>
-<div class="admonitionblock important">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-important" title="Important"></i>
-</td>
-<td class="content">
-<div class="paragraph">
-<p>Run these commands in order within one transaction. Do not skip the <code>COMMIT</code> command, or the system does not apply the changes.</p>
-</div>
-</td>
-</tr>
-</table>
-</div>
-</li>
-<li>
-<p>If applicable, remove the extension files from local storage:</p>
-<div class="paragraph">
-<p>If the extension used local storage, remove its files from the Open VSX server pod.</p>
-</div>
-<div class="paragraph">
-<p>Get the Open VSX server pod name:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight nowrap"><code class="language-bash hljs" data-lang="bash">export OPENVSX_POD_NAME=$(oc get pods -n openvsx -o jsonpath="{.items[*].metadata.name}" | tr ' ' '\n' | grep '^openvsx-server' | head -n 1)</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Access the pod and delete the extension folder for the publisher and extension you removed:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight nowrap"><code class="language-bash hljs" data-lang="bash">oc exec -it $OPENVSX_POD_NAME -n openvsx -- /bin/bash -c "rm -rf /tmp/extensions/<em>&lt;publisher&gt;</em>/<em>&lt;extension&gt;</em>"</code></pre>
-</div>
-</div>
-</li>
-</ol>
-</div>
-<div class="ulist">
-<div class="title">Verification</div>
-<ul>
-<li>
-<p>Refresh your Open VSX registry and verify that the extension no longer appears in the gallery.</p>
-</li>
-</ul>
-</div>
-</div>
 </div>
 </article>
   </div>

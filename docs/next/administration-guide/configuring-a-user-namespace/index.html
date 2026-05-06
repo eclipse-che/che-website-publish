@@ -464,6 +464,9 @@
   <li class="nav-item is-current-page" data-depth="3">
     <a class="nav-link" href="./">Configuring a user namespace</a>
   </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../configuring-kubernetes-namespace-creation-on-openshift/">Configuring direct namespace creation on OpenShift</a>
+  </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="2">
@@ -624,7 +627,7 @@
     <a class="nav-link" href="../configuring-storage-sizes/">Configuring storage sizes</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../about-persistent-user-home/">Persistent user home</a>
+    <a class="nav-link" href="../con_persistent-user-home/">Persistent user home</a>
   </li>
 </ul>
   </li>
@@ -728,13 +731,22 @@
     <a class="nav-link" href="../extensions-for-microsoft-visual-studio-code-open-source/">Extensions for Microsoft Visual Studio Code - Open Source</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../running-the-open-vsx-on-premises/">Running Open VSX On-Premises</a>
+    <a class="nav-link" href="../configuring-the-open-vsx-registry-url/">Configure the Open VSX registry URL</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../deleting-extension-from-the-open-vsx-on-premises/">Deleting Extensions from Open VSX On-Premises</a>
+    <a class="nav-link" href="../proc_deploy-open-vsx-from-source/">Deploy Open VSX from source</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../configuring-the-open-vsx-registry-url/">Open VSX registry URL</a>
+    <a class="nav-link" href="../proc_deploy-open-vsx-from-workspace/">Deploy Open VSX from a workspace</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../proc_configure-internal-open-vsx-access/">Configure internal Open VSX access</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../proc_deleting-extension-using-openvsx-admin-api/">Delete an extension using the Open VSX API</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../proc_deleting-extension-from-postgresql-database/">Delete an extension from the PostgreSQL database</a>
   </li>
 </ul>
   </li>
@@ -845,7 +857,7 @@
           <a href="../../overview/introduction-to-eclipse-che/">next</a>
         </li>
         <li class="version is-latest">
-          <a href="../../../stable/overview/introduction-to-eclipse-che/">7.116.x</a>
+          <a href="../../../stable/overview/introduction-to-eclipse-che/">7.117.x</a>
         </li>
       </ul>
     </li>
@@ -871,7 +883,7 @@
   <button class="version-menu-toggle" title="Show other versions of page">next</button>
   <div class="version-menu">
     <a class="version is-current" href="./">next</a>
-    <a class="version" href="../../../stable/administration-guide/configuring-a-user-namespace/">7.116.x</a>
+    <a class="version" href="../../../stable/administration-guide/configuring-a-user-namespace/">7.117.x</a>
   </div>
 </div>
 <div class="edit-this-page"><a href="https://github.com/eclipse-che/che-docs/edit/main/modules/administration-guide/pages/configuring-a-user-namespace.adoc">Edit this Page</a></div>
@@ -903,7 +915,10 @@ Che will immediately revert the changes.</p>
 </td>
 <td class="content">
 <div class="paragraph">
-<p>Applying or modifying a <code>Secret</code> or <code>ConfigMap</code> with the <code>controller.devfile.io/mount-to-devworkspace: 'true'</code> label restarts all running workspaces in the namespace. Ensure that users save their work before you apply these changes.</p>
+<p>Applying or modifying a <code>Secret</code> or <code>ConfigMap</code> with the <code>controller.devfile.io/mount-to-devworkspace: 'true'</code> label restarts all running workspaces in the namespace.</p>
+</div>
+<div class="paragraph">
+<p>To mount the <code>Secret</code> or <code>ConfigMap</code> only at workspace start and prevent automatic restarts, add the <code>controller.devfile.io/mount-on-start: 'true'</code> annotation.</p>
 </div>
 </td>
 </tr>
@@ -936,15 +951,6 @@ data:
 <p>To enhance the configurability, you can customize the <code>ConfigMap</code> by adding additional labels and annotations.</p>
 </div>
 <div class="paragraph">
-<p>Add the following labels if you do not want the ConfigMap to be mounted automatically:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">controller.devfile.io/watch-configmap: "false"
-controller.devfile.io/mount-to-devworkspace: "false"</code></pre>
-</div>
-</div>
-<div class="paragraph">
 <p>Add the annotation below if you want the ConfigMap to be retained in a user namespace
 after being deleted from eclipse-che namespace:</p>
 </div>
@@ -952,6 +958,17 @@ after being deleted from eclipse-che namespace:</p>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">che.eclipse.org/sync-retain-on-delete: "true"</code></pre>
 </div>
+</div>
+<div class="paragraph">
+<p>Add the following annotation to prevent workspace restarts when the ConfigMap is created:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">controller.devfile.io/mount-on-start: "true"</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>With this annotation, the ConfigMap is mounted only at workspace start.</p>
 </div>
 <div class="paragraph">
 <p>For example, to mount a default SSH configuration into every workspace, you must create a ConfigMap:</p>
@@ -1008,15 +1025,6 @@ stringData:
 <p>To enhance the configurability, you can customize the <code>Secret</code> by adding additional labels and annotations.</p>
 </div>
 <div class="paragraph">
-<p>Add the labels if you do not want the Secret to be mounted automatically:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">controller.devfile.io/watch-secret: "false"
-controller.devfile.io/mount-to-devworkspace: "false"</code></pre>
-</div>
-</div>
-<div class="paragraph">
 <p>Add the annotation below if you want the Secret to be retained in a user namespace
 after being deleted from eclipse-che namespace:</p>
 </div>
@@ -1024,6 +1032,17 @@ after being deleted from eclipse-che namespace:</p>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">che.eclipse.org/sync-retain-on-delete: "true"</code></pre>
 </div>
+</div>
+<div class="paragraph">
+<p>Add the following annotation to prevent workspace restarts when the Secret is created:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">controller.devfile.io/mount-on-start: "true"</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>With this annotation, the Secret is mounted only at workspace start.</p>
 </div>
 <div class="paragraph">
 <p>See the <a href="https://github.com/devfile/devworkspace-operator/blob/main/docs/additional-configuration.adoc#automatically-mounting-volumes-configmaps-and-secrets">mounting volumes, configmaps, and secrets</a>
@@ -1057,6 +1076,17 @@ Add the annotation below if you want the <code>PersistentVolumeClaim</code> to b
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">che.eclipse.org/sync-retain-on-delete: "false"</code></pre>
 </div>
+</div>
+<div class="paragraph">
+<p>Add the following annotation to prevent workspace restarts when the <code>PersistentVolumeClaim</code> is created:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">controller.devfile.io/mount-on-start: "true"</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>With this annotation, the <code>PersistentVolumeClaim</code> is mounted only at workspace start.</p>
 </div>
 <div class="paragraph">
 <p>See the <a href="https://github.com/devfile/devworkspace-operator/blob/main/docs/additional-configuration.adoc#automatically-mounting-volumes-configmaps-and-secrets">mounting volumes, configmaps, and secrets</a>

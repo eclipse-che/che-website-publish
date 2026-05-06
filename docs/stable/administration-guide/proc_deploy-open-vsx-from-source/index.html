@@ -3,10 +3,10 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Deleting Extensions from the Open VSX registry :: Eclipse Che Documentation</title>
-    <link rel="canonical" href="https://www.eclipse.org/che/docs/stable/administration-guide/deleting-extension-from-the-open-vsx-on-premises/">
-    <meta name="description" content="Deleting Extensions from Open VSX On-Premises">
-    <meta name="keywords" content="administration guide, configuring, openvsx, registry">
+    <title>Deploy Open VSX from source :: Eclipse Che Documentation</title>
+    <link rel="canonical" href="https://www.eclipse.org/che/docs/stable/administration-guide/proc_deploy-open-vsx-from-source/">
+    <meta name="description" content="Build Open VSX from source and deploy a customized instance">
+    <meta name="keywords" content="administration guide, openvsx, build, deploy, registry, extensions">
     <meta name="generator" content="Antora 3.1.14">
     <link rel="stylesheet" href="../../../../docs/_/css/site.css">
 <link rel="stylesheet" href="../../../../docs/_/css/extra.css">
@@ -45,7 +45,7 @@
   </nav>
 </header>
 <div class="body">
-<div class="nav-container" data-component="docs" data-version="7.116.x">
+<div class="nav-container" data-component="docs" data-version="7.117.x">
   <aside class="nav">
     <div class="panels">
 <div class="nav-panel-menu is-active" data-panel="menu">
@@ -130,6 +130,18 @@
     <a class="nav-link" href="../../end-user-guide/basic-actions-you-can-perform-on-a-workspace/">Basic actions you can perform on a workspace</a>
   </li>
   <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../../end-user-guide/restoring-workspaces-from-backups/">Restoring workspaces from backups</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../../end-user-guide/proc-restoring-a-workspace-from-backup/">Restoring a workspace from a backup</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../../end-user-guide/proc-viewing-backups-in-the-dashboard/">Viewing backups in the dashboard</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../../end-user-guide/authenticating-to-a-git-server-from-a-workspace/">Authenticating to a Git server from a workspace</a>
   </li>
   <li class="nav-item" data-depth="2">
@@ -146,6 +158,9 @@
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../../end-user-guide/running-containers-with-kubedock/">Running containers with kubedock</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../end-user-guide/proc_preventing-workspace-idling-for-long-running-commands/">Prevent workspace idling for long-running commands</a>
   </li>
 </ul>
   </li>
@@ -371,6 +386,9 @@
     <a class="nav-link" href="../installing-che-on-openshift-using-the-web-console/">Installing Che on OpenShift using the web console</a>
   </li>
   <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../installing-che-on-openshift-with-keycloak-as-oidc/">Installing Che on OpenShift with Keycloak as external identity provider</a>
+  </li>
+  <li class="nav-item" data-depth="3">
     <a class="nav-link" href="../installing-che-in-a-restricted-environment/">Installing Che in a restricted environment</a>
   </li>
   <li class="nav-item" data-depth="3">
@@ -444,6 +462,9 @@
   </li>
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="../configuring-a-user-namespace/">Configuring a user namespace</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../configuring-direct-namespace-creation-on-openshift/">Configuring direct namespace creation on OpenShift</a>
   </li>
 </ul>
   </li>
@@ -605,7 +626,7 @@
     <a class="nav-link" href="../configuring-storage-sizes/">Configuring storage sizes</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../about-persistent-user-home/">Persistent user home</a>
+    <a class="nav-link" href="../con_persistent-user-home/">Persistent user home</a>
   </li>
 </ul>
   </li>
@@ -632,7 +653,7 @@
     <a class="nav-link" href="../configuring-editors-download-urls/">Configuring editors download urls</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../customizing-openshift-che-consolelink-icon/">Customizing OpenShift Eclipse Che ConsoleLink icon</a>
+    <a class="nav-link" href="../customizing-openshift-che-branding-images/">Customizing OpenShift Eclipse Che branding images</a>
   </li>
 </ul>
   </li>
@@ -709,13 +730,22 @@
     <a class="nav-link" href="../extensions-for-microsoft-visual-studio-code-open-source/">Extensions for Microsoft Visual Studio Code - Open Source</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../running-the-open-vsx-on-premises/">Running Open VSX On-Premises</a>
+    <a class="nav-link" href="../configuring-the-open-vsx-registry-url/">Configure the Open VSX registry URL</a>
   </li>
   <li class="nav-item is-current-page" data-depth="2">
-    <a class="nav-link" href="./">Deleting Extensions from Open VSX On-Premises</a>
+    <a class="nav-link" href="./">Deploy Open VSX from source</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../configuring-the-open-vsx-registry-url/">Open VSX registry URL</a>
+    <a class="nav-link" href="../proc_deploy-open-vsx-from-workspace/">Deploy Open VSX from a workspace</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../proc_configure-internal-open-vsx-access/">Configure internal Open VSX access</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../proc_deleting-extension-using-openvsx-admin-api/">Delete an extension using the Open VSX API</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../proc_deleting-extension-from-postgresql-database/">Delete an extension from the PostgreSQL database</a>
   </li>
 </ul>
   </li>
@@ -816,7 +846,7 @@
 <div class="nav-panel-explore" data-panel="explore">
   <div class="context">
     <span class="title">Documentation</span>
-    <span class="version">7.116.x</span>
+    <span class="version">7.117.x</span>
   </div>
   <ul class="components">
     <li class="component is-current">
@@ -826,7 +856,7 @@
           <a href="../../../next/overview/introduction-to-eclipse-che/">next</a>
         </li>
         <li class="version is-current is-latest">
-          <a href="../../overview/introduction-to-eclipse-che/">7.116.x</a>
+          <a href="../../overview/introduction-to-eclipse-che/">7.117.x</a>
         </li>
       </ul>
     </li>
@@ -844,96 +874,44 @@
     <li><a href="../../overview/introduction-to-eclipse-che/">Documentation</a></li>
     <li>Administration Guide</li>
     <li><a href="../managing-ide-extensions/">Managing IDE extensions</a></li>
-    <li><a href="./">Deleting Extensions from Open VSX On-Premises</a></li>
+    <li><a href="./">Deploy Open VSX from source</a></li>
   </ul>
 </nav>
 <div class="page-versions">
-  <button class="version-menu-toggle" title="Show other versions of page">7.116.x</button>
+  <button class="version-menu-toggle" title="Show other versions of page">7.117.x</button>
   <div class="version-menu">
-    <a class="version" href="../../../next/administration-guide/deleting-extension-from-the-open-vsx-on-premises/">next</a>
-    <a class="version is-current" href="./">7.116.x</a>
+    <a class="version" href="../../../next/administration-guide/proc_deploy-open-vsx-from-source/">next</a>
+    <a class="version is-current" href="./">7.117.x</a>
   </div>
 </div>
-<div class="edit-this-page"><a href="https://github.com/eclipse-che/che-docs/edit/7.116.x/modules/administration-guide/pages/deleting-extension-from-the-open-vsx-on-premises.adoc">Edit this Page</a></div>
+<div class="edit-this-page"><a href="https://github.com/eclipse-che/che-docs/edit/7.117.x/modules/administration-guide/pages/proc_deploy-open-vsx-from-source.adoc">Edit this Page</a></div>
 </div>
   <div class="content">
 <aside class="toc sidebar" data-title="Contents" data-levels="2">
   <div class="toc-menu"></div>
 </aside>
 <article class="doc">
-<h1 class="page">Deleting Extensions from the Open VSX registry</h1>
-<div id="preamble">
-<div class="sectionbody">
-<div class="paragraph">
-<p>You can remove extensions from your private Open VSX registry by using one of the following methods:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>Use the Open VSX administrator API (recommended).</p>
-</li>
-<li>
-<p>Delete the extension data directly in the PostgreSQL database.</p>
-</li>
-</ul>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="proc_deleting-extension-using-openvsx-admin-api_che"><a class="anchor" href="#proc_deleting-extension-using-openvsx-admin-api_che"></a>Deleting an extension by using the Open VSX administrator API</h2>
-<div class="sectionbody">
+<h1 class="page">Deploy Open VSX from source</h1>
 <div class="paragraph _abstract">
-<p>Delete an extension from your private Open VSX registry by calling the administrator API with an administrator user and a personal access token (PAT).</p>
+<p>Build custom Open VSX server and CLI images from source and deploy them to your cluster. Use this method when you need a specific Open VSX version or custom modifications to the registry.</p>
 </div>
 <div class="ulist">
 <div class="title">Prerequisites</div>
 <ul>
 <li>
-<p>You have access to the OpenShift cluster where Open VSX is deployed (namespace <code>openvsx</code>).</p>
+<p>You have the <code>kubectl</code> tool installed.</p>
 </li>
-</ul>
-</div>
-<div class="olist arabic">
-<div class="title">Procedure</div>
-<ol class="arabic">
 <li>
-<p>Add the Open VSX administrator user and PAT to the database:</p>
-<div class="paragraph">
-<p>Get the PostgreSQL pod name:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight nowrap"><code class="language-bash hljs" data-lang="bash">export POSTGRESQL_POD_NAME=$(oc get pods -n openvsx \
-   -o jsonpath="{.items[*].metadata.name}" | tr ' ' '\n' | grep '^postgresql' | head -n 1)</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Add the administrator user:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight nowrap"><code class="language-bash hljs" data-lang="bash">oc exec -n openvsx "$POSTGRESQL_POD_NAME" -- bash -c \
-   "psql -d openvsx -c \"INSERT INTO user_data (id, login_name, role) VALUES (1002, 'openvsx-admin', 'admin');\""</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Add the administrator PAT:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight nowrap"><code class="language-bash hljs" data-lang="bash">oc exec -n openvsx "$POSTGRESQL_POD_NAME" -- bash -c \
-   "psql -d openvsx -c \"INSERT INTO personal_access_token (id, user_data, value, active, created_timestamp, accessed_timestamp, description) VALUES (1002, 1002, 'openvsx_admin_token', true, current_timestamp, current_timestamp, 'Admin API Token');\""</code></pre>
-</div>
-</div>
-<div class="admonitionblock note">
+<p>You are logged in to the cluster where Che is deployed as a cluster administrator.</p>
+<div class="admonitionblock tip">
 <table>
 <tr>
 <td class="icon">
-<i class="fa icon-note" title="Note"></i>
+<i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
 <div class="paragraph">
-<p>Use a strong, unique value instead of <code>openvsx_admin_token</code> for production. The system passes the PAT in the API request URL.</p>
+<p><code>$ kubectl login https://<em>&lt;che_fqdn&gt;</em> --username=<em>&lt;my_user&gt;</em></code></p>
 </div>
 </td>
 </tr>
@@ -941,79 +919,13 @@
 </div>
 </li>
 <li>
-<p>To delete an extension and all of its published versions, use the <code>curl</code> command with the following endpoint:</p>
-<div class="paragraph">
-<p><code>POST /admin/api/extension/<em>&lt;publisher&gt;</em>/<em>&lt;extension&gt;</em>/delete</code></p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight nowrap"><code class="language-bash hljs" data-lang="bash">curl -X POST \
-  "https://<em>&lt;your-openvsx-server-url&gt;</em>/admin/api/extension/<em>&lt;publisher&gt;</em>/<em>&lt;extension&gt;</em>/delete?token=<em>&lt;your-admin-pat&gt;</em>"</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Replace the following placeholders:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><code><em>&lt;your-openvsx-server-url&gt;</em></code>: The URL of your Open VSX registry.</p>
+<p>You have Podman installed.</p>
 </li>
 <li>
-<p><code><em>&lt;publisher&gt;</em></code>: The namespace of the extension (for example, <code>redhat</code>).</p>
+<p>You have access to a container registry where you can push images.</p>
 </li>
 <li>
-<p><code><em>&lt;extension&gt;</em></code>: The name of the extension (for example, <code>vscode-yaml</code>).</p>
-</li>
-<li>
-<p><code><em>&lt;your-admin-pat&gt;</em></code>: The PAT you created for the <code>openvsx-admin</code> user.</p>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p>To delete a specific version of an extension, send a JSON body in the same <code>POST</code> request:</p>
-<div class="paragraph">
-<p>To remove only certain versions and target platforms instead of the entire extension, include an array that specifies a <code>version</code> and <code>targetPlatform</code> (for example, <code>linux-x64</code>, <code>darwin-arm64</code>, or <code>win32-x64</code>).</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight nowrap"><code class="language-bash hljs" data-lang="bash">curl -X POST \
-  -H "Content-Type: application/json" \
-  -d '[{"version": "1.3.0", "targetPlatform": "linux-x64"}]' \
-  "https://<em>&lt;your-openvsx-server-url&gt;</em>/admin/api/extension/<em>&lt;publisher&gt;</em>/<em>&lt;extension&gt;</em>/delete?token=<em>&lt;your-admin-pat&gt;</em>"</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Use the same placeholders that are listed in the previous step. You can list multiple version and platform pairs in the JSON array to delete several targets in one request.</p>
-</div>
-</li>
-</ol>
-</div>
-<div class="ulist">
-<div class="title">Verification</div>
-<ul>
-<li>
-<p>Refresh your Open VSX registry and verify that the extension no longer appears in the gallery.</p>
-</li>
-</ul>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="proc_deleting-extension-from-postgresql-database_che"><a class="anchor" href="#proc_deleting-extension-from-postgresql-database_che"></a>Deleting an extension from the PostgreSQL database directly</h2>
-<div class="sectionbody">
-<div class="paragraph _abstract">
-<p>Remove extension records and related data directly in the PostgreSQL database when the administrator API is not available or when you must clean up specific data. If the extension uses local storage, you must also remove its files from the Open VSX server pod.</p>
-</div>
-<div class="ulist">
-<div class="title">Prerequisites</div>
-<ul>
-<li>
-<p>You have access to the OpenShift cluster where Open VSX is deployed (namespace <code>openvsx</code>).</p>
-</li>
-<li>
-<p>You know the namespace name and extension name that you want to delete.</p>
+<p>You have <code>jq</code> installed.</p>
 </li>
 </ul>
 </div>
@@ -1021,95 +933,143 @@
 <div class="title">Procedure</div>
 <ol class="arabic">
 <li>
-<p>Open a command prompt in the PostgreSQL pod and connect to the database:</p>
+<p>Create a new namespace for Open VSX:</p>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight nowrap"><code class="language-bash hljs" data-lang="bash">export POSTGRESQL_POD_NAME=$(oc get pods -n openvsx \
-   -o jsonpath="{.items[*].metadata.name}" | tr ' ' '\n' | grep '^postgresql' | head -n 1)
-oc exec -it $POSTGRESQL_POD_NAME -n openvsx -- /bin/bash</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kubectl create namespace openvsx</code></pre>
 </div>
-</div>
-<div class="paragraph">
-<p>Inside the pod, run <code>psql</code>:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight nowrap"><code class="language-terminal hljs" data-lang="terminal">psql</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>At the <code>postgres=#</code> prompt, connect to the database:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight nowrap"><code class="language-terminal hljs" data-lang="terminal">\c openvsx</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>You are now connected to the <code>openvsx</code> database as the <code>postgres</code> user.</p>
 </div>
 </li>
 <li>
-<p>Find the namespace ID and extension ID:</p>
-<div class="paragraph">
-<p>Identify the <code>namespace</code> ID. Replace <code><em>&lt;namespace_name&gt;</em></code> with the actual <code>namespace</code>:</p>
-</div>
+<p>Clone the Open VSX repository and navigate to the deployment directory:</p>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight nowrap"><code class="language-sql hljs" data-lang="sql">SELECT id, name FROM namespace WHERE name = '<em>&lt;namespace_name&gt;</em>';</code></pre>
+<pre class="highlightjs highlight nowrap"><code class="language-bash hljs" data-lang="bash">git clone https://github.com/eclipse-openvsx/openvsx.git &amp;&amp;
+cd openvsx/deploy/openshift</code></pre>
 </div>
-</div>
-<div class="paragraph">
-<p>Identify the extension ID. Replace <code><em>&lt;namespace_id&gt;</em></code> and <code><em>&lt;extension_name&gt;</em></code> with the values from the previous query:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight nowrap"><code class="language-sql hljs" data-lang="sql">SELECT id, name, namespace_id FROM extension WHERE namespace_id = <em>&lt;namespace_id&gt;</em> AND name = '<em>&lt;extension_name&gt;</em>';</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Note the ID of the extension to use as <code><em>&lt;extension_id&gt;</em></code> in the next steps.</p>
 </div>
 </li>
 <li>
-<p>Optional: Preview extension versions and file resources:</p>
-<div class="paragraph">
-<p>Preview the versions:</p>
-</div>
+<p>Build and push the Open VSX server image:</p>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight nowrap"><code class="language-sql hljs" data-lang="sql">SELECT id, version, pre_release, semver_pre_release, semver_is_pre_release FROM extension_version WHERE extension_id = <em>&lt;extension_id&gt;</em> ORDER BY timestamp DESC;</code></pre>
+<pre class="highlightjs highlight nowrap"><code class="language-bash hljs" data-lang="bash">export REGISTRY=<em>&lt;registry_hostname&gt;</em>
+export NAMESPACE=<em>&lt;registry_namespace&gt;</em>
+export OPENVSX_VERSION=<em>&lt;openvsx_version&gt;</em>
+export OPENVSX_SERVER_IMAGE=${REGISTRY}/${NAMESPACE}/openvsx-server:${OPENVSX_VERSION}
+
+podman build -t "${OPENVSX_SERVER_IMAGE}" \
+  --build-arg "OPENVSX_VERSION=${OPENVSX_VERSION}" -f openvsx.Dockerfile . &amp;&amp;
+podman login "${REGISTRY}" &amp;&amp;
+podman push "${OPENVSX_SERVER_IMAGE}"</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>Preview the file resources:</p>
+<p>where:</p>
 </div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight nowrap"><code class="language-sql hljs" data-lang="sql">SELECT id, name, type, storage_type FROM file_resource WHERE extension_id = <em>&lt;extension_id&gt;</em> ORDER BY id;</code></pre>
-</div>
-</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1"><code><em>&lt;registry_hostname&gt;</em></code></dt>
+<dd>
+<p>The container registry hostname. For example: <code>quay.io</code>.</p>
+</dd>
+<dt class="hdlist1"><code><em>&lt;registry_namespace&gt;</em></code></dt>
+<dd>
+<p>Your organization or account in the registry. For example: <code>myuser</code>.</p>
+</dd>
+<dt class="hdlist1"><code><em>&lt;openvsx_version&gt;</em></code></dt>
+<dd>
+<p>The Open VSX version tag to build. For example: <code>v0.33.0</code>. Available versions are listed on the <a href="https://github.com/eclipse-openvsx/openvsx/releases">Open VSX releases page</a>.</p>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
 <div class="paragraph">
-<p>If the <code>storage_type</code> value is <code>local</code>, you must also remove the extension files from the file system on the Open VSX server pod.</p>
+<p>Ensure that the image is publicly accessible or that the cluster can pull from the registry with appropriate credentials.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</dd>
+</dl>
 </div>
 </li>
 <li>
-<p>Delete the extension from the database:</p>
-<div class="paragraph">
-<p>Run the following commands in a single transaction. Replace <code><em>&lt;extension_id&gt;</em></code> with the extension ID from step 2.</p>
-</div>
+<p>Build and push the Open VSX CLI image:</p>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight nowrap"><code class="language-sql hljs" data-lang="sql">BEGIN;
--- 1. Delete all file resources for the extension
-DELETE FROM file_resource WHERE extension_id = <em>&lt;extension_id&gt;</em>;
--- 2. Delete all extension reviews
-DELETE FROM extension_review WHERE extension_id = <em>&lt;extension_id&gt;</em>;
--- 3. Delete all versions of the extension
-DELETE FROM extension_version WHERE extension_id = <em>&lt;extension_id&gt;</em>;
--- 4. Delete the extension entry itself
-DELETE FROM extension WHERE id = <em>&lt;extension_id&gt;</em>;
-COMMIT;</code></pre>
+<pre class="highlightjs highlight nowrap"><code class="language-bash hljs" data-lang="bash">export OPENVSX_CLI_VERSION=<em>&lt;cli_version&gt;</em>
+export OPENVSX_CLI_IMAGE=${REGISTRY}/${NAMESPACE}/openvsx-cli:${OPENVSX_CLI_VERSION}
+
+podman build -t "${OPENVSX_CLI_IMAGE}" \
+  --build-arg "OVSX_VERSION=${OPENVSX_CLI_VERSION}" -f cli.Dockerfile . &amp;&amp;
+podman push "${OPENVSX_CLI_IMAGE}"</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>where:</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1"><code><em>&lt;cli_version&gt;</em></code></dt>
+<dd>
+<p>The Open VSX CLI version. For example: <code>0.10.9</code>.</p>
+</dd>
+</dl>
+</div>
+</li>
+<li>
+<p>Deploy Open VSX with the custom images:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight nowrap"><code class="language-bash hljs" data-lang="bash">kubectl process -f openvsx-deployment.yml \
+  -p OPENVSX_SERVER_IMAGE="${OPENVSX_SERVER_IMAGE}" \
+  -p OPENVSX_CLI_IMAGE="${OPENVSX_CLI_IMAGE}" \
+  | kubectl apply -f -</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Verify that all pods in the <code>openvsx</code> namespace are running and ready:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight nowrap"><code class="language-bash hljs" data-lang="bash">kubectl get pods -n openvsx \
+  -o jsonpath='{range .items[<strong>]}{@.metadata.name}{"\t"}{@.status.phase}{"\t"}{.status.containerStatuses[</strong>].ready}{"\n"}{end}'</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Add an Open VSX user with a Personal Access Token (PAT) to the database.</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Find the PostgreSQL pod:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight nowrap"><code class="language-bash hljs" data-lang="bash">export POSTGRESQL_POD_NAME=$(kubectl get pods -n openvsx \
+   -o jsonpath="{.items[*].metadata.name}" | tr ' ' '\n' | grep '^postgresql' | head -n 1)</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Insert the username into the Open VSX database:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight nowrap"><code class="language-bash hljs" data-lang="bash">kubectl exec -n openvsx "$POSTGRESQL_POD_NAME" -- bash -c \
+   "psql -d openvsx -c \"INSERT INTO user_data (id, login_name, role) VALUES (1001, 'eclipse-che', 'privileged');\""</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Insert the user PAT into the Open VSX database:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight nowrap"><code class="language-bash hljs" data-lang="bash">kubectl exec -n openvsx "$POSTGRESQL_POD_NAME" -- bash -c \
+   "psql -d openvsx -c \"INSERT INTO personal_access_token (id, user_data, value, active, created_timestamp, accessed_timestamp, description, notified) VALUES (1001, 1001, 'eclipse_che_token', true, current_timestamp, current_timestamp, 'extensions publisher', false);\""</code></pre>
 </div>
 </div>
 <div class="admonitionblock important">
@@ -1120,32 +1080,82 @@ COMMIT;</code></pre>
 </td>
 <td class="content">
 <div class="paragraph">
-<p>Run these commands in order within one transaction. Do not skip the <code>COMMIT</code> command, or the system does not apply the changes.</p>
+<p>The user PAT must match the decoded value of <code>OVSX_PAT_BASE64</code> specified in the deployment file. If you update <code>OVSX_PAT_BASE64</code>, use the new decoded value as the user PAT.</p>
 </div>
 </td>
 </tr>
 </table>
 </div>
 </li>
+</ol>
+</div>
+</li>
 <li>
-<p>If applicable, remove the extension files from local storage:</p>
-<div class="paragraph">
-<p>If the extension used local storage, remove its files from the Open VSX server pod.</p>
-</div>
-<div class="paragraph">
-<p>Get the Open VSX server pod name:</p>
-</div>
+<p>Configure Che to use the internal Open VSX registry:</p>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight nowrap"><code class="language-bash hljs" data-lang="bash">export OPENVSX_POD_NAME=$(oc get pods -n openvsx -o jsonpath="{.items[*].metadata.name}" | tr ' ' '\n' | grep '^openvsx-server' | head -n 1)</code></pre>
+<pre class="highlightjs highlight nowrap"><code class="language-bash hljs" data-lang="bash">export CHECLUSTER_NAME="$(kubectl get checluster --all-namespaces -o json | jq -r '.items[0].metadata.name')" &amp;&amp;
+export CHECLUSTER_NAMESPACE="$(kubectl get checluster --all-namespaces -o json | jq -r '.items[0].metadata.namespace')" &amp;&amp;
+export OPENVSX_ROUTE_URL="$(kubectl get route internal -n openvsx -o jsonpath='{.spec.host}')" &amp;&amp;
+export PATCH='{"spec":{"components":{"pluginRegistry":{"openVSXURL":"https://'"$OPENVSX_ROUTE_URL"'"}}}}' &amp;&amp;
+kubectl patch checluster "${CHECLUSTER_NAME}" --type=merge --patch "${PATCH}" -n "${CHECLUSTER_NAMESPACE}"</code></pre>
 </div>
 </div>
-<div class="paragraph">
-<p>Access the pod and delete the extension folder for the publisher and extension you removed:</p>
-</div>
+</li>
+<li>
+<p>Publish a Visual Studio Code extension from a <code>.vsix</code> file. The Open VSX registry does not provide any extension by default.</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Retrieve the name of the pod running the Open VSX server:</p>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight nowrap"><code class="language-bash hljs" data-lang="bash">oc exec -it $OPENVSX_POD_NAME -n openvsx -- /bin/bash -c "rm -rf /tmp/extensions/<em>&lt;publisher&gt;</em>/<em>&lt;extension&gt;</em>"</code></pre>
+<pre class="highlightjs highlight nowrap"><code class="language-bash hljs" data-lang="bash">export OVSX_POD_NAME=$(kubectl get pods -n openvsx -o jsonpath="\{.items[*].metadata.name}" | tr ' ' '\n' | grep ^openvsx-server)</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Download the <code>.vsix</code> extension:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight nowrap"><code class="language-bash hljs" data-lang="bash">kubectl exec -n openvsx "${OVSX_POD_NAME}" -- bash -c "wget -O /tmp/extension.vsix <em>&lt;EXTENSION_DOWNLOAD_URL&gt;</em>"</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Create an extension namespace:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight nowrap"><code class="language-bash hljs" data-lang="bash">kubectl exec -n openvsx "${OVSX_POD_NAME}" -- bash -c "ovsx create-namespace <em>&lt;EXTENSION_NAMESPACE_NAME&gt;</em>" || true</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Publish the extension:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight nowrap"><code class="language-bash hljs" data-lang="bash">kubectl exec -n openvsx "${OVSX_POD_NAME}" -- bash -c "ovsx publish /tmp/extension.vsix"</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Delete the downloaded extension file:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight nowrap"><code class="language-bash hljs" data-lang="bash">kubectl exec -n openvsx "${OVSX_POD_NAME}" -- bash -c "rm /tmp/extension.vsix"</code></pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Optional: Publish multiple extensions from a list. Update the <code>deploy/openshift/extensions.txt</code> file with the download URLs of each <code>.vsix</code> file, then publish all listed extensions:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight nowrap"><code class="language-bash hljs" data-lang="bash">while IFS= read -r url; do
+  kubectl exec -n openvsx "${OVSX_POD_NAME}" -- bash -c "wget -O /tmp/extension.vsix '$url' &amp;&amp; ovsx publish /tmp/extension.vsix &amp;&amp; rm /tmp/extension.vsix"
+done &lt; deploy/openshift/extensions.txt</code></pre>
 </div>
 </div>
 </li>
@@ -1155,11 +1165,43 @@ COMMIT;</code></pre>
 <div class="title">Verification</div>
 <ul>
 <li>
-<p>Refresh your Open VSX registry and verify that the extension no longer appears in the gallery.</p>
+<p>Start any workspace and verify the published extensions are available in the Extensions view of the workspace IDE.</p>
+</li>
+<li>
+<p>Navigate to the Open VSX route URL to verify the registry UI displays the published extensions.</p>
 </li>
 </ul>
 </div>
+<div class="ulist">
+<div class="title">Next steps</div>
+<ul>
+<li>
+<p>To restrict the registry to internal cluster traffic, see <a href="../proc_configure-internal-open-vsx-access/" class="xref page">Configure internal access to the Open VSX registry</a>.</p>
+</li>
+<li>
+<p>To remove a published extension, see <a href="../proc_deleting-extension-using-openvsx-admin-api/" class="xref page">Delete an extension by using the Open VSX administrator API</a>.</p>
+</li>
+</ul>
 </div>
+<div class="ulist _additional-resources">
+<div class="title">Additional resources</div>
+<ul>
+<li>
+<p><a href="https://github.com/eclipse-openvsx/openvsx/">Eclipse Open VSX sources</a></p>
+</li>
+<li>
+<p><a href="https://github.com/eclipse-openvsx/openvsx/releases">Eclipse Open VSX releases</a></p>
+</li>
+<li>
+<p><a href="https://github.com/eclipse-openvsx/openvsx/wiki/">Eclipse Open VSX documentation</a></p>
+</li>
+<li>
+<p><a href="../proc_deploy-open-vsx-from-workspace/" class="xref page">Deploy Open VSX from a Che workspace</a></p>
+</li>
+<li>
+<p><a href="../proc_configure-internal-open-vsx-access/" class="xref page">Configure internal access to the Open VSX registry</a></p>
+</li>
+</ul>
 </div>
 </article>
   </div>
