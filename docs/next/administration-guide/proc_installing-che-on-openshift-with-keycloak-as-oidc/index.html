@@ -3,10 +3,10 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Installing Che locally :: Eclipse Che Documentation</title>
-    <link rel="canonical" href="https://www.eclipse.org/che/docs/stable/administration-guide/installing-che-locally/">
-    <meta name="description" content="Installing Che locally">
-    <meta name="keywords" content="overview, running-che-locally, installing-che-locally">
+    <title>Install Che on OpenShift with Keycloak as external identity provider :: Eclipse Che Documentation</title>
+    <link rel="canonical" href="https://www.eclipse.org/che/docs/stable/administration-guide/installing-che-on-openshift-with-keycloak-as-oidc/">
+    <meta name="description" content="To manage user authentication through a centralized identity provider, deploy Che on OpenShift with Keycloak as the external OIDC provider.">
+    <meta name="keywords" content="install, openshift, keycloak, oidc, identity provider">
     <meta name="generator" content="Antora 3.1.14">
     <link rel="stylesheet" href="../../../../docs/_/css/site.css">
 <link rel="stylesheet" href="../../../../docs/_/css/extra.css">
@@ -371,62 +371,74 @@
   </li>
   <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../installing-che/">Installing Che</a>
+    <a class="nav-link" href="../installing-che/">Install Che</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../installing-che-on-the-virtual-kubernetes-cluster/">Installing Che on the virtual Kubernetes cluster</a>
-  </li>
-  <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../installing-che-in-the-cloud/">Installing Che in the cloud</a>
+    <span class="nav-text">Deploy on OpenShift</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../installing-che-on-openshift-using-cli/">Installing Che on OpenShift using CLI</a>
+    <a class="nav-link" href="../proc_installing-che-on-openshift-using-cli/">Install Che on OpenShift using CLI</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../installing-che-on-openshift-using-the-web-console/">Installing Che on OpenShift using the web console</a>
+    <a class="nav-link" href="../proc_installing-che-on-openshift-using-the-web-console/">Install Che on OpenShift using the web console</a>
   </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../installing-che-on-openshift-with-keycloak-as-oidc/">Installing Che on OpenShift with Keycloak as external identity provider</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../installing-che-in-a-restricted-environment/">Installing Che in a restricted environment</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../installing-che-on-microsoft-azure/">Installing Che on Microsoft Azure</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../installing-che-on-amazon-elastic-kubernetes-service/">Installing Che on Amazon Elastic Kubernetes Service</a>
-  </li>
-</ul>
-  </li>
-  <li class="nav-item is-current-page" data-depth="2">
-    <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="./">Installing Che locally</a>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../installing-che-on-red-hat-openshift-local/">Installing Che on Red Hat OpenShift Local</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../installing-che-on-minikube/">Installing Che on Minikube</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../installing-che-on-minikube-keycloak-oidc/">Installing Che on Minikube with Keycloak as the OIDC provider</a>
+  <li class="nav-item is-current-page" data-depth="3">
+    <a class="nav-link" href="./">Install Che on OpenShift with Keycloak as external identity provider</a>
   </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../finding-the-fully-qualified-domain-name-fqdn/">Finding the fully qualified domain name (FQDN)</a>
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Deploy on Kubernetes</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../installing-che-on-microsoft-azure/">Install Che on Microsoft Azure</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../installing-che-on-amazon-elastic-kubernetes-service/">Install Che on Amazon Elastic Kubernetes Service</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../proc_installing-che-on-the-virtual-kubernetes-cluster/">Install Che on the virtual Kubernetes cluster</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Deploy locally</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../proc_installing-che-on-red-hat-openshift-local/">Install Che on Red Hat OpenShift Local</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../proc_installing-che-on-minikube/">Install Che on Minikube</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../proc_installing-che-on-minikube-keycloak-oidc/">Install Che on Minikube with Keycloak as the OIDC provider</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Deploy in a restricted environment</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../proc_installing-che-in-a-restricted-environment/">Install Che in a restricted environment</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../proc_finding-the-fully-qualified-domain-name-fqdn/">Find the FQDN</a>
   </li>
   <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
     <a class="nav-link" href="../permissions-to-install-che/">Permissions to install Che</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../permissions-to-install-che-on-openshift-using-cli/">Permissions to install Che on OpenShift using CLI</a>
+    <a class="nav-link" href="../ref_permissions-to-install-che-on-openshift-using-cli/">Permissions for CLI installation</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../permissions-to-install-che-on-openshift-using-the-web-console/">Permissions to install Che on OpenShift using web console</a>
+    <a class="nav-link" href="../ref_permissions-to-install-che-on-openshift-using-the-web-console/">Permissions for web console installation</a>
   </li>
 </ul>
   </li>
@@ -799,7 +811,7 @@
 </ul>
   </li>
   <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="../uninstalling-che/">Uninstalling Che</a>
+    <a class="nav-link" href="../proc_uninstalling-che/">Uninstall Che</a>
   </li>
 </ul>
   </li>
@@ -874,63 +886,342 @@
   <ul>
     <li><a href="../../overview/introduction-to-eclipse-che/">Documentation</a></li>
     <li>Administration Guide</li>
-    <li><a href="../installing-che/">Installing Che</a></li>
-    <li><a href="./">Installing Che locally</a></li>
+    <li><a href="../installing-che/">Install Che</a></li>
+    <li>Deploy on OpenShift</li>
+    <li><a href="./">Install Che on OpenShift with Keycloak as external identity provider</a></li>
   </ul>
 </nav>
 <div class="page-versions">
   <button class="version-menu-toggle" title="Show other versions of page">next</button>
   <div class="version-menu">
     <a class="version is-current" href="./">next</a>
-    <a class="version" href="../../../stable/administration-guide/installing-che-locally/">7.117.x</a>
+    <a class="version" href="../../../stable/administration-guide/installing-che-on-openshift-with-keycloak-as-oidc/">7.117.x</a>
   </div>
 </div>
-<div class="edit-this-page"><a href="https://github.com/eclipse-che/che-docs/edit/main/modules/administration-guide/pages/installing-che-locally.adoc">Edit this Page</a></div>
+<div class="edit-this-page"><a href="https://github.com/eclipse-che/che-docs/edit/main/modules/administration-guide/pages/proc_installing-che-on-openshift-with-keycloak-as-oidc.adoc">Edit this Page</a></div>
 </div>
   <div class="content">
 <aside class="toc sidebar" data-title="Contents" data-levels="2">
   <div class="toc-menu"></div>
 </aside>
 <article class="doc">
-<h1 class="page">Installing Che locally</h1>
-<div id="preamble">
-<div class="sectionbody">
-<div class="paragraph">
-<p>This section contains instructions for deploying and running Eclipse&#160;Che locally, on a personal workstation.</p>
+<h1 class="page">Install Che on OpenShift with Keycloak as external identity provider</h1>
+<div class="paragraph _abstract">
+<p>To manage user authentication through a centralized identity provider, deploy Che on an Kubernetes cluster with Keycloak as the external OpenID Connect (OIDC) provider.</p>
 </div>
 <div class="ulist">
 <div class="title">Prerequisites</div>
 <ul>
 <li>
-<p>A Kubernetes or OpenShift cluster to deploy Che on.</p>
+<p>You have an active <code>kubectl</code> session with administrative permissions to the Kubernetes cluster. See <a href="https://kubernetes.io/docs/reference/kubectl/overview/">Overview of kubectl</a>.</p>
 </li>
 <li>
-<p><code>chectl</code>. See: <a href="../installing-the-chectl-management-tool/" class="xref page">Installing the chectl management tool</a>.</p>
+<p>You have Keycloak configured as an external identity provider for Kubernetes. See <a href="https://docs.redhat.com/en/documentation/openshift_container_platform/4.18/html/authentication_and_authorization/external-auth">Enabling direct authentication with an external OIDC identity provider</a>.</p>
 </li>
 </ul>
 </div>
+<div class="olist arabic">
+<div class="title">Procedure</div>
+<ol class="arabic">
+<li>
+<p>Define the environment variables:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash"># The Keycloak realm used for Kubernetes authentication:
+OPENSHIFT_REALM=<em>&lt;realm&gt;</em>
+
+# The Keycloak URL:
+KEYCLOAK_URL=<em>&lt;keycloak_url&gt;</em></code></pre>
 </div>
 </div>
-<div class="sect1">
-<h2 id="_deploying_che_locally_using_chectl"><a class="anchor" href="#_deploying_che_locally_using_chectl"></a>Deploying Che locally using chectl</h2>
-<div class="sectionbody">
+</li>
+<li>
+<p>Create a <code>che</code> client in the Keycloak Admin Console:</p>
+<div class="openblock">
+<div class="content">
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Within the realm used for Kubernetes authentication, select <strong>Clients</strong> on the left side of the navigation bar.</p>
+</li>
+<li>
+<p>Select the <strong>Create client</strong> button.</p>
+</li>
+<li>
+<p>On the <strong>General Settings</strong> page:</p>
+<div class="olist lowerroman">
+<ol class="lowerroman" type="i">
+<li>
+<p>Enter <code>che</code> in the <strong>Client ID</strong> field.</p>
+</li>
+<li>
+<p>Optional: Enter a <strong>Name</strong> and <strong>Description</strong> for the OAuth client.</p>
+</li>
+<li>
+<p>Click <strong>Next</strong>.</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>On the <strong>Capability config</strong> page:</p>
+<div class="olist lowerroman">
+<ol class="lowerroman" type="i">
+<li>
+<p>Toggle <strong>Client authentication</strong> to <strong>On</strong>.</p>
+</li>
+<li>
+<p>Click <strong>Next</strong>.</p>
+</li>
+<li>
+<p>Click <strong>Save</strong>.</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Navigate to the <strong>Credentials</strong> tab of the newly created client and copy the <strong>Client secret</strong> value for use when applying the OAuth client secret.</p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+</li>
+<li>
+<p>Add the <code>che</code> client to the audiences list in the Kubernetes authentication configuration:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kubectl patch authentication.config/cluster \
+  --type='json' \
+  -p='[
+    {
+      "op": "add",
+      "path": "/spec/oidcProviders/0/issuer/audiences/-",
+      "value": "che"
+    }
+  ]'</code></pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
 <div class="paragraph">
-<p>Choose one of the following procedures to deploy the Che using the <code>chectl</code> tool.</p>
+<p>If you have multiple OIDC providers configured, adjust the array index in the path (currently 0) to match your Keycloak provider&#8217;s position in the configuration.</p>
 </div>
-<div class="ulist">
-<ul>
-<li>
-<p><a href="../installing-che-on-red-hat-openshift-local/" class="xref page">Installing Che on Red Hat OpenShift Local</a></p>
+</td>
+</tr>
+</table>
+</div>
 </li>
 <li>
-<p><a href="../installing-che-on-minikube/" class="xref page">Installing Che on Minikube</a></p>
+<p>Wait for the <code>kube-apiserver</code> cluster Operator to roll out the configuration changes:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">watch kubectl get co kube-apiserver</code></pre>
+</div>
+</div>
 </li>
 <li>
-<p><a href="../installing-che-on-minikube-keycloak-oidc/" class="xref page">Installing Che on Minikube with Keycloak as the OIDC provider</a></p>
+<p>Create a namespace for Che:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kubectl create namespace eclipse-che</code></pre>
+</div>
+</div>
 </li>
-</ul>
+<li>
+<p>Create a secret for the OAuth client in the Che namespace:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">kubectl apply -f - &lt;&lt;EOF
+apiVersion: v1
+kind: Secret
+metadata:
+  name: oauth-secret
+  namespace: eclipse-che
+  labels:
+    app.kubernetes.io/part-of: che.eclipse.org
+stringData:
+  oAuthSecret: <em>&lt;client_secret&gt;</em>
+EOF</code></pre>
 </div>
 </div>
+<div class="paragraph">
+<p>where:</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1"><code><em>&lt;client_secret&gt;</em></code></dt>
+<dd>
+<p>The client secret value from the <code>che</code> client in Keycloak.</p>
+</dd>
+</dl>
+</div>
+</li>
+<li>
+<p>Optional: Create the <code>ConfigMap</code> with a Keycloak certificate in the <code>eclipse-che</code> namespace. If Keycloak uses a certificate that is already trusted by Kubernetes, skip this step.</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">openssl s_client \
+  -connect "$(echo "$KEYCLOAK_URL" | sed 's|https://||'):443" \
+  -showcerts &lt; /dev/null \
+| sed -n '/-----BEGIN CERTIFICATE-----/,/-----END CERTIFICATE-----/p' \
+&gt; keycloak-ca.crt
+
+kubectl create configmap keycloak-certs \
+    --from-file=keycloak-ca.crt=keycloak-ca.crt \
+    -n eclipse-che &amp;&amp; \
+kubectl label configmap keycloak-certs \
+    app.kubernetes.io/part-of=che.eclipse.org \
+    app.kubernetes.io/component=ca-bundle \
+    -n eclipse-che</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Prepare the <code>CheCluster</code> patch:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">cat &gt; che-patch.yaml &lt;&lt; EOF
+kind: CheCluster
+apiVersion: org.eclipse.che/v2
+spec:
+  networking:
+    auth:
+      oAuthClientName: che
+      oAuthSecret: oauth-secret
+      identityProviderURL: "$KEYCLOAK_URL/realms/$OPENSHIFT_REALM"
+      gateway:
+        oAuthProxy:
+          cookieExpireSeconds: 300
+        deployment:
+          containers:
+            - name: oauth-proxy
+              env:
+                - name: OAUTH2_PROXY_CODE_CHALLENGE_METHOD
+                  value: S256
+                - name: OAUTH2_PROXY_BACKEND_LOGOUT_URL
+                  value: "$KEYCLOAK_URL/realms/$OPENSHIFT_REALM/protocol/openid-connect/logout?id_token_hint={id_token}"
+  components:
+    cheServer:
+      extraProperties:
+        CHE_OIDC_GROUPS__CLAIM: '&lt;GROUPS_CLAIM&gt;'
+        CHE_OIDC_GROUPS__PREFIX: '&lt;GROUPS_PREFIX&gt;'
+        CHE_OIDC_USERNAME__CLAIM: '&lt;USERNAME_CLAIM&gt;'
+        CHE_OIDC_USERNAME__PREFIX: '&lt;USERNAME_PREFIX&gt;'
+EOF</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>where:</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1"><code>CHE_OIDC_GROUPS__CLAIM</code></dt>
+<dd>
+<p>The claim to use for extracting user groups.</p>
+</dd>
+<dt class="hdlist1"><code>CHE_OIDC_GROUPS__PREFIX</code></dt>
+<dd>
+<p>The prefix to add to group names. Empty string means no prefix.</p>
+</dd>
+<dt class="hdlist1"><code>CHE_OIDC_USERNAME__CLAIM</code></dt>
+<dd>
+<p>The claim to use for extracting the username.</p>
+</dd>
+<dt class="hdlist1"><code>CHE_OIDC_USERNAME__PREFIX</code></dt>
+<dd>
+<p>The prefix to add to usernames. Empty string means no prefix.</p>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>These values must match the corresponding claim and prefix settings configured in the <code>authentication.config/cluster</code> resource. To view the current cluster configuration, run:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kubectl get authentication.config/cluster -o yaml</code></pre>
+</div>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</dd>
+</dl>
+</div>
+</li>
+<li>
+<p>Create the Che instance with <code>chectl</code>:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">chectl server:deploy \
+  --platform openshift \
+  --che-operator-cr-patch-yaml che-patch.yaml</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Update the <code>che</code> client to set the Che redirect URI and web origin.</p>
+<div class="paragraph">
+<p>Obtain the Eclipse&#160;Che URL:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">echo "$(kubectl get checluster eclipse-che -n eclipse-che -o jsonpath='{.status.cheURL}')"</code></pre>
+</div>
+</div>
+<div class="openblock">
+<div class="content">
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>In the <strong>Valid redirect URIs</strong> field, enter the URL above with <code>/oauth/callback</code> appended.</p>
+</li>
+<li>
+<p>In the <strong>Web origins</strong> field, enter the URL above.</p>
+</li>
+<li>
+<p>Click <strong>Save</strong>.</p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+</li>
+</ol>
+</div>
+<div class="olist arabic">
+<div class="title">Verification</div>
+<ol class="arabic">
+<li>
+<p>Verify the Che instance status:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">chectl server:status</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Navigate to the Che cluster instance:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">chectl dashboard:open</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Log in to the Che instance.</p>
+</li>
+</ol>
 </div>
 </article>
   </div>
