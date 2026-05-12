@@ -985,6 +985,14 @@
 <td class="tableblock halign-left valign-top"><p class="tableblock">When set to <code>true</code>, the Secret is mounted only when a workspace starts, not while it is already running.</p>
 <p class="tableblock">This prevents workspace restarts when the Secret is created.</p></td>
 </tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>controller.devfile.io/mount-to-devworkspace-include:</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Specifies a comma-separated list of <code>DevWorkspace</code> name patterns. When set, the Secret is mounted only to workspaces whose names match at least one pattern.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>controller.devfile.io/mount-to-devworkspace-exclude:</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Specifies a comma-separated list of <code>DevWorkspace</code> name patterns. When set, the Secret is mounted to all workspaces except those whose names match a pattern.</p></td>
+</tr>
 </tbody>
 </table>
 </li>
@@ -1021,6 +1029,14 @@ For example:</p>
 </div>
 </div>
 </div>
+</div>
+<div class="ulist">
+<div class="title">Additional resources</div>
+<ul>
+<li>
+<p><a href="https://github.com/devfile/devworkspace-operator/blob/main/docs/additional-configuration.adoc#automatically-mounting-volumes-configmaps-and-secrets">Automatically mounting volumes, configmaps, and secrets</a></p>
+</li>
+</ul>
 </div>
 </article>
   </div>

@@ -960,27 +960,57 @@ data:
 </div>
 </div>
 <div class="paragraph">
-<p>To enhance the configurability, you can customize the <code>ConfigMap</code> by adding additional labels and annotations.</p>
+<p>Optional: Use annotations to configure how the ConfigMap is mounted.</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 1. Optional annotations</caption>
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Annotation</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>che.eclipse.org/sync-retain-on-delete:</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">When set to <code>"true"</code>, the ConfigMap is retained in a user namespace after being deleted from eclipse-che namespace.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>controller.devfile.io/mount-on-start:</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">When set to <code>"true"</code>, the ConfigMap is mounted only at workspace start. This prevents workspace restarts when the ConfigMap is created.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>controller.devfile.io/mount-to-devworkspace-include:</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Specifies a comma-separated list of <code>DevWorkspace</code> name patterns. When set, the ConfigMap is mounted only to workspaces whose names match at least one pattern.
+Patterns support exact match, prefix (name*), suffix (*name), contains (*name*).</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>controller.devfile.io/mount-to-devworkspace-exclude:</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Specifies a comma-separated list of <code>DevWorkspace</code> name patterns. When set, the ConfigMap is mounted to all workspaces except those whose names at least one pattern.
+Patterns support exact match, prefix (name*), suffix (*name), contains (*name*).</p></td>
+</tr>
+</tbody>
+</table>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+When both annotations <code>controller.devfile.io/mount-to-devworkspace-include</code>
+and <code>controller.devfile.io/mount-to-devworkspace-exclude</code> are set, the resource is
+mounted only to workspaces that match the include pattern and do not match the exclude pattern.
+</td>
+</tr>
+</table>
 </div>
 <div class="paragraph">
-<p>Add the annotation below if you want the ConfigMap to be retained in a user namespace
-after being deleted from eclipse-che namespace:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">che.eclipse.org/sync-retain-on-delete: "true"</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Add the following annotation to prevent workspace restarts when the ConfigMap is created:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">controller.devfile.io/mount-on-start: "true"</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>With this annotation, the ConfigMap is mounted only at workspace start.</p>
+<p>For other labels and annotations, see <a href="https://github.com/devfile/devworkspace-operator/blob/main/docs/additional-configuration.adoc#automatically-mounting-volumes-configmaps-and-secrets">Mounting volumes, configmaps, and secrets</a>.</p>
 </div>
 <div class="paragraph">
 <p>For example, to mount a default SSH configuration into every workspace, you must create a ConfigMap:</p>
@@ -1009,9 +1039,6 @@ data:
 <div class="paragraph">
 <p>This <strong>ConfigMap</strong> propagates the SSH configuration as an extension to the existing default SSH configuration by using the <code>Include /etc/ssh/ssh_config.d/*.conf</code> argument. For more information, review the <a href="https://man.openbsd.org/ssh_config#Include">Include</a> definition.</p>
 </div>
-<div class="paragraph">
-<p>For other labels and annotations, see <a href="https://github.com/devfile/devworkspace-operator/blob/main/docs/additional-configuration.adoc#automatically-mounting-volumes-configmaps-and-secrets">Mounting volumes, configmaps, and secrets</a>.</p>
-</div>
 </li>
 <li>
 <p>Create the <code>Secret</code> below to create and mount it into every workspace.</p>
@@ -1034,31 +1061,57 @@ stringData:
 </div>
 </div>
 <div class="paragraph">
-<p>To enhance the configurability, you can customize the <code>Secret</code> by adding additional labels and annotations.</p>
+<p>Optional: Use annotations to configure how the Secret is mounted.</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 2. Optional annotations</caption>
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Annotation</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>che.eclipse.org/sync-retain-on-delete:</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">When set to <code>"true"</code>, the Secret is retained in a user namespace after being deleted from eclipse-che namespace.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>controller.devfile.io/mount-on-start:</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">When set to <code>"true"</code>, the Secret is mounted only at workspace start. This prevents workspace restarts when the Secret is created.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>controller.devfile.io/mount-to-devworkspace-include:</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Specifies a comma-separated list of <code>DevWorkspace</code> name patterns. When set, the ConfigMap is mounted only to workspaces whose names match at least one pattern.
+Patterns support exact match, prefix (name*), suffix (*name), contains (*name*).</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>controller.devfile.io/mount-to-devworkspace-exclude:</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Specifies a comma-separated list of <code>DevWorkspace</code> name patterns. When set, the ConfigMap is mounted to all workspaces except those whose names at least one pattern.
+Patterns support exact match, prefix (name*), suffix (*name), contains (*name*).</p></td>
+</tr>
+</tbody>
+</table>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+When both annotations <code>controller.devfile.io/mount-to-devworkspace-include</code>
+and <code>controller.devfile.io/mount-to-devworkspace-exclude</code> are set, the resource is
+mounted only to workspaces that match the include pattern and do not match the exclude pattern.
+</td>
+</tr>
+</table>
 </div>
 <div class="paragraph">
-<p>Add the annotation below if you want the Secret to be retained in a user namespace
-after being deleted from eclipse-che namespace:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">che.eclipse.org/sync-retain-on-delete: "true"</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Add the following annotation to prevent workspace restarts when the Secret is created:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">controller.devfile.io/mount-on-start: "true"</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>With this annotation, the Secret is mounted only at workspace start.</p>
-</div>
-<div class="paragraph">
-<p>See the <a href="https://github.com/devfile/devworkspace-operator/blob/main/docs/additional-configuration.adoc#automatically-mounting-volumes-configmaps-and-secrets">mounting volumes, configmaps, and secrets</a>
-for other possible labels and annotations.</p>
+<p>For other labels and annotations, see <a href="https://github.com/devfile/devworkspace-operator/blob/main/docs/additional-configuration.adoc#automatically-mounting-volumes-configmaps-and-secrets">Mounting volumes, configmaps, and secrets</a>.</p>
 </div>
 </li>
 <li>
@@ -1078,31 +1131,69 @@ spec:
 </div>
 </div>
 <div class="paragraph">
-<p>To enhance the configurability, you can customize the <code>PersistentVolumeClaim</code> by adding additional labels and annotations.</p>
+<p>Optional: Use annotations to configure how the <code>PersistentVolumeClaim</code> is mounted.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+The <code>PersistentVolumeClaim</code> is not deleted in a user namespace by default, if the one from eclipse-che is deleted.
+</td>
+</tr>
+</table>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 3. Optional annotations</caption>
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Annotation</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>che.eclipse.org/sync-retain-on-delete:</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">When set to <code>"false"</code>, the <code>PersistentVolumeClaim</code> is deleted in a user namespace when it is deleted from eclipse-che namespace.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>controller.devfile.io/mount-on-start:</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">When set to <code>"true"</code>, the <code>PersistentVolumeClaim</code> is mounted only at workspace start. This prevents workspace restarts when the <code>PersistentVolumeClaim</code> is created.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>controller.devfile.io/mount-to-devworkspace-include:</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Specifies a comma-separated list of <code>DevWorkspace</code> name patterns. When set, the ConfigMap is mounted only to workspaces whose names match at least one pattern.
+Patterns support exact match, prefix (name*), suffix (*name), contains (*name*).</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>controller.devfile.io/mount-to-devworkspace-exclude:</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Specifies a comma-separated list of <code>DevWorkspace</code> name patterns. When set, the ConfigMap is mounted to all workspaces except those whose names at least one pattern.
+Patterns support exact match, prefix (name*), suffix (*name), contains (*name*).</p></td>
+</tr>
+</tbody>
+</table>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+When both annotations <code>controller.devfile.io/mount-to-devworkspace-include</code>
+and <code>controller.devfile.io/mount-to-devworkspace-exclude</code> are set, the resource is
+mounted only to workspaces that match the include pattern and do not match the exclude pattern.
+</td>
+</tr>
+</table>
 </div>
 <div class="paragraph">
-<p>The <code>PersistentVolumeClaim</code> is not deleted in a user namespace by default, if the one from eclipse-che is deleted.
-Add the annotation below if you want the <code>PersistentVolumeClaim</code> to be deleted in a user namespace as well:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">che.eclipse.org/sync-retain-on-delete: "false"</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Add the following annotation to prevent workspace restarts when the <code>PersistentVolumeClaim</code> is created:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">controller.devfile.io/mount-on-start: "true"</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>With this annotation, the <code>PersistentVolumeClaim</code> is mounted only at workspace start.</p>
-</div>
-<div class="paragraph">
-<p>See the <a href="https://github.com/devfile/devworkspace-operator/blob/main/docs/additional-configuration.adoc#automatically-mounting-volumes-configmaps-and-secrets">mounting volumes, configmaps, and secrets</a>
-for other possible labels and annotations.</p>
+<p>For other labels and annotations, see <a href="https://github.com/devfile/devworkspace-operator/blob/main/docs/additional-configuration.adoc#automatically-mounting-volumes-configmaps-and-secrets">Mounting volumes, configmaps, and secrets</a>.</p>
 </div>
 </li>
 <li>
