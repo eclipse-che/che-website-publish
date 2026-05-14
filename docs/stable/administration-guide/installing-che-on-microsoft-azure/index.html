@@ -3,9 +3,9 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Installing Che on Microsoft Azure :: Eclipse Che Documentation</title>
+    <title>Install Che on Microsoft Azure :: Eclipse Che Documentation</title>
     <link rel="canonical" href="https://www.eclipse.org/che/docs/stable/administration-guide/installing-che-on-microsoft-azure/">
-    <meta name="description" content="Installing Che on Microsoft Azure">
+    <meta name="description" content="To provide cloud development environments on Microsoft Azure, deploy Che on an AKS cluster with DNS, TLS certificates, and Keycloak as the OIDC identity provider.">
     <meta name="keywords" content="overview, installing-che-on-microsoft-azure">
     <meta name="generator" content="Antora 3.1.14">
     <link rel="stylesheet" href="../../../../docs/_/css/site.css">
@@ -370,62 +370,74 @@
   </li>
   <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../installing-che/">Installing Che</a>
+    <a class="nav-link" href="../installing-che/">Install Che</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../installing-che-on-the-virtual-kubernetes-cluster/">Installing Che on the virtual Kubernetes cluster</a>
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Deploy on OpenShift</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../proc_installing-che-on-openshift-using-cli/">Install Che on OpenShift using CLI</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../proc_installing-che-on-openshift-using-the-web-console/">Install Che on OpenShift using the web console</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../proc_installing-che-on-openshift-with-keycloak-as-oidc/">Install Che on OpenShift with Keycloak as external identity provider</a>
+  </li>
+</ul>
   </li>
   <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../installing-che-in-the-cloud/">Installing Che in the cloud</a>
+    <span class="nav-text">Deploy on Kubernetes</span>
 <ul class="nav-list">
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../installing-che-on-openshift-using-cli/">Installing Che on OpenShift using CLI</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../installing-che-on-openshift-using-the-web-console/">Installing Che on OpenShift using the web console</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../installing-che-on-openshift-with-keycloak-as-oidc/">Installing Che on OpenShift with Keycloak as external identity provider</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../installing-che-in-a-restricted-environment/">Installing Che in a restricted environment</a>
-  </li>
   <li class="nav-item is-current-page" data-depth="3">
-    <a class="nav-link" href="./">Installing Che on Microsoft Azure</a>
+    <a class="nav-link" href="./">Install Che on Microsoft Azure</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../installing-che-on-amazon-elastic-kubernetes-service/">Installing Che on Amazon Elastic Kubernetes Service</a>
+    <a class="nav-link" href="../installing-che-on-amazon-elastic-kubernetes-service/">Install Che on Amazon Elastic Kubernetes Service</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../proc_installing-che-on-the-virtual-kubernetes-cluster/">Install Che on the virtual Kubernetes cluster</a>
   </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../installing-che-locally/">Installing Che locally</a>
+    <span class="nav-text">Deploy locally</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../installing-che-on-red-hat-openshift-local/">Installing Che on Red Hat OpenShift Local</a>
+    <a class="nav-link" href="../proc_installing-che-on-red-hat-openshift-local/">Install Che on Red Hat OpenShift Local</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../installing-che-on-minikube/">Installing Che on Minikube</a>
+    <a class="nav-link" href="../proc_installing-che-on-minikube/">Install Che on Minikube</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../installing-che-on-minikube-keycloak-oidc/">Installing Che on Minikube with Keycloak as the OIDC provider</a>
+    <a class="nav-link" href="../proc_installing-che-on-minikube-keycloak-oidc/">Install Che on Minikube with Keycloak as the OIDC provider</a>
   </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../finding-the-fully-qualified-domain-name-fqdn/">Finding the fully qualified domain name (FQDN)</a>
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Deploy in a restricted environment</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../proc_installing-che-in-a-restricted-environment/">Install Che in a restricted environment</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../proc_finding-the-fully-qualified-domain-name-fqdn/">Find the FQDN</a>
   </li>
   <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
     <a class="nav-link" href="../permissions-to-install-che/">Permissions to install Che</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../permissions-to-install-che-on-openshift-using-cli/">Permissions to install Che on OpenShift using CLI</a>
+    <a class="nav-link" href="../ref_permissions-to-install-che-on-openshift-using-cli/">Permissions for CLI installation</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../permissions-to-install-che-on-openshift-using-the-web-console/">Permissions to install Che on OpenShift using web console</a>
+    <a class="nav-link" href="../ref_permissions-to-install-che-on-openshift-using-the-web-console/">Permissions for web console installation</a>
   </li>
 </ul>
   </li>
@@ -798,7 +810,7 @@
 </ul>
   </li>
   <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="../uninstalling-che/">Uninstalling Che</a>
+    <a class="nav-link" href="../proc_uninstalling-che/">Uninstall Che</a>
   </li>
 </ul>
   </li>
@@ -873,9 +885,9 @@
   <ul>
     <li><a href="../../overview/introduction-to-eclipse-che/">Documentation</a></li>
     <li>Administration Guide</li>
-    <li><a href="../installing-che/">Installing Che</a></li>
-    <li><a href="../installing-che-in-the-cloud/">Installing Che in the cloud</a></li>
-    <li><a href="./">Installing Che on Microsoft Azure</a></li>
+    <li><a href="../installing-che/">Install Che</a></li>
+    <li>Deploy on Kubernetes</li>
+    <li><a href="./">Install Che on Microsoft Azure</a></li>
   </ul>
 </nav>
 <div class="page-versions">
@@ -892,26 +904,23 @@
   <div class="toc-menu"></div>
 </aside>
 <article class="doc">
-<h1 class="page">Installing Che on Microsoft Azure</h1>
+<h1 class="page">Install Che on Microsoft Azure</h1>
 <div id="preamble">
 <div class="sectionbody">
-<div class="paragraph">
-<p>Microsoft Azure is a cloud computing service for building, testing, deploying, and managing applications and services through Microsoft-managed data centers.</p>
-</div>
-<div class="paragraph">
-<p>Follow the instructions below to install and enable Che on Microsoft Azure.</p>
+<div class="paragraph _abstract">
+<p>To provide cloud development environments on Microsoft Azure, deploy Che on an AKS cluster by configuring DNS, TLS certificates, and Keycloak as the OIDC identity provider.</p>
 </div>
 <div class="ulist">
 <div class="title">Prerequisites</div>
 <ul>
 <li>
-<p><code>helm</code>: The package manager for Kubernetes. See: <a href="https://helm.sh/docs/intro/install/">Installing Helm</a>.</p>
+<p>You have <code>helm</code> installed. See <a href="https://helm.sh/docs/intro/install/">Installing Helm</a>.</p>
 </li>
 <li>
-<p><code>az</code>:  The Microsoft Azure CLI command line tool. See: <a href="https://docs.microsoft.com/en-us/cli/azure/install-azure-cli?view=azure-cli-latest">How to install Microsoft Azure CLI</a>.</p>
+<p>You have the <code>az</code> CLI installed. See <a href="https://docs.microsoft.com/en-us/cli/azure/install-azure-cli?view=azure-cli-latest">How to install Microsoft Azure CLI</a>.</p>
 </li>
 <li>
-<p><code>kubelogin</code>: The credential plugin. See: <a href="https://learn.microsoft.com/en-us/cli/azure/aks?view=azure-cli-latest#az-aks-install-cli">How to install kubelogin</a>.</p>
+<p>You have <code>kubelogin</code> installed. See <a href="https://learn.microsoft.com/en-us/cli/azure/aks?view=azure-cli-latest#az-aks-install-cli">How to install kubelogin</a>.</p>
 </li>
 </ul>
 </div>

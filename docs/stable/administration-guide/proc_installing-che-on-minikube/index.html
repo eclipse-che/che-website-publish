@@ -3,10 +3,10 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Installing Che locally :: Eclipse Che Documentation</title>
-    <link rel="canonical" href="https://www.eclipse.org/che/docs/stable/administration-guide/installing-che-locally/">
-    <meta name="description" content="Installing Che locally">
-    <meta name="keywords" content="overview, running-che-locally, installing-che-locally">
+    <title>Install Che on Minikube :: Eclipse Che Documentation</title>
+    <link rel="canonical" href="https://www.eclipse.org/che/docs/stable/administration-guide/proc_installing-che-on-minikube/">
+    <meta name="description" content="To evaluate Che in a local development environment, create a single-node Kubernetes cluster with Minikube and deploy Che.">
+    <meta name="keywords" content="overview, installing-che-on-minikube">
     <meta name="generator" content="Antora 3.1.14">
     <link rel="stylesheet" href="../../../../docs/_/css/site.css">
 <link rel="stylesheet" href="../../../../docs/_/css/extra.css">
@@ -370,62 +370,74 @@
   </li>
   <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../installing-che/">Installing Che</a>
+    <a class="nav-link" href="../installing-che/">Install Che</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../installing-che-on-the-virtual-kubernetes-cluster/">Installing Che on the virtual Kubernetes cluster</a>
-  </li>
-  <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../installing-che-in-the-cloud/">Installing Che in the cloud</a>
+    <span class="nav-text">Deploy on OpenShift</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../installing-che-on-openshift-using-cli/">Installing Che on OpenShift using CLI</a>
+    <a class="nav-link" href="../proc_installing-che-on-openshift-using-cli/">Install Che on OpenShift using CLI</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../installing-che-on-openshift-using-the-web-console/">Installing Che on OpenShift using the web console</a>
+    <a class="nav-link" href="../proc_installing-che-on-openshift-using-the-web-console/">Install Che on OpenShift using the web console</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../installing-che-on-openshift-with-keycloak-as-oidc/">Installing Che on OpenShift with Keycloak as external identity provider</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../installing-che-in-a-restricted-environment/">Installing Che in a restricted environment</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../installing-che-on-microsoft-azure/">Installing Che on Microsoft Azure</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../installing-che-on-amazon-elastic-kubernetes-service/">Installing Che on Amazon Elastic Kubernetes Service</a>
-  </li>
-</ul>
-  </li>
-  <li class="nav-item is-current-page" data-depth="2">
-    <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="./">Installing Che locally</a>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../installing-che-on-red-hat-openshift-local/">Installing Che on Red Hat OpenShift Local</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../installing-che-on-minikube/">Installing Che on Minikube</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../installing-che-on-minikube-keycloak-oidc/">Installing Che on Minikube with Keycloak as the OIDC provider</a>
+    <a class="nav-link" href="../proc_installing-che-on-openshift-with-keycloak-as-oidc/">Install Che on OpenShift with Keycloak as external identity provider</a>
   </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../finding-the-fully-qualified-domain-name-fqdn/">Finding the fully qualified domain name (FQDN)</a>
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Deploy on Kubernetes</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../installing-che-on-microsoft-azure/">Install Che on Microsoft Azure</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../installing-che-on-amazon-elastic-kubernetes-service/">Install Che on Amazon Elastic Kubernetes Service</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../proc_installing-che-on-the-virtual-kubernetes-cluster/">Install Che on the virtual Kubernetes cluster</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Deploy locally</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../proc_installing-che-on-red-hat-openshift-local/">Install Che on Red Hat OpenShift Local</a>
+  </li>
+  <li class="nav-item is-current-page" data-depth="3">
+    <a class="nav-link" href="./">Install Che on Minikube</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../proc_installing-che-on-minikube-keycloak-oidc/">Install Che on Minikube with Keycloak as the OIDC provider</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Deploy in a restricted environment</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../proc_installing-che-in-a-restricted-environment/">Install Che in a restricted environment</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../proc_finding-the-fully-qualified-domain-name-fqdn/">Find the FQDN</a>
   </li>
   <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
     <a class="nav-link" href="../permissions-to-install-che/">Permissions to install Che</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../permissions-to-install-che-on-openshift-using-cli/">Permissions to install Che on OpenShift using CLI</a>
+    <a class="nav-link" href="../ref_permissions-to-install-che-on-openshift-using-cli/">Permissions for CLI installation</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../permissions-to-install-che-on-openshift-using-the-web-console/">Permissions to install Che on OpenShift using web console</a>
+    <a class="nav-link" href="../ref_permissions-to-install-che-on-openshift-using-the-web-console/">Permissions for web console installation</a>
   </li>
 </ul>
   </li>
@@ -798,7 +810,7 @@
 </ul>
   </li>
   <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="../uninstalling-che/">Uninstalling Che</a>
+    <a class="nav-link" href="../proc_uninstalling-che/">Uninstall Che</a>
   </li>
 </ul>
   </li>
@@ -873,63 +885,106 @@
   <ul>
     <li><a href="../../overview/introduction-to-eclipse-che/">Documentation</a></li>
     <li>Administration Guide</li>
-    <li><a href="../installing-che/">Installing Che</a></li>
-    <li><a href="./">Installing Che locally</a></li>
+    <li><a href="../installing-che/">Install Che</a></li>
+    <li>Deploy locally</li>
+    <li><a href="./">Install Che on Minikube</a></li>
   </ul>
 </nav>
 <div class="page-versions">
   <button class="version-menu-toggle" title="Show other versions of page">7.117.x</button>
   <div class="version-menu">
-    <a class="version is-missing" href="../../../next/overview/introduction-to-eclipse-che/">next</a>
+    <a class="version" href="../../../next/administration-guide/proc_installing-che-on-minikube/">next</a>
     <a class="version is-current" href="./">7.117.x</a>
   </div>
 </div>
-<div class="edit-this-page"><a href="https://github.com/eclipse-che/che-docs/edit/7.117.x/modules/administration-guide/pages/installing-che-locally.adoc">Edit this Page</a></div>
+<div class="edit-this-page"><a href="https://github.com/eclipse-che/che-docs/edit/7.117.x/modules/administration-guide/pages/proc_installing-che-on-minikube.adoc">Edit this Page</a></div>
 </div>
   <div class="content">
 <aside class="toc sidebar" data-title="Contents" data-levels="2">
   <div class="toc-menu"></div>
 </aside>
 <article class="doc">
-<h1 class="page">Installing Che locally</h1>
-<div id="preamble">
-<div class="sectionbody">
+<h1 class="page">Install Che on Minikube</h1>
+<div class="paragraph _abstract">
+<p>To evaluate Che in a local development environment, create a single-node Kubernetes cluster with Minikube and deploy Che.</p>
+</div>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-warning" title="Warning"></i>
+</td>
+<td class="content">
 <div class="paragraph">
-<p>This section contains instructions for deploying and running Eclipse&#160;Che locally, on a personal workstation.</p>
+<p>Single-node Kubernetes clusters are suited only for testing or development. Do not use such clusters to run Che for organizations or developer teams.</p>
+</div>
+</td>
+</tr>
+</table>
 </div>
 <div class="ulist">
 <div class="title">Prerequisites</div>
 <ul>
 <li>
-<p>A Kubernetes or OpenShift cluster to deploy Che on.</p>
+<p>You have Minikube installed. See <a href="https://kubernetes.io/docs/tasks/tools/install-minikube/">Installing Minikube</a>.</p>
 </li>
 <li>
-<p><code>chectl</code>. See: <a href="../installing-the-chectl-management-tool/" class="xref page">Installing the chectl management tool</a>.</p>
+<p>You have <code>kubectl</code> installed. See <a href="https://kubernetes.io/docs/tasks/tools/#kubectl">Installing <code>kubectl</code></a>.</p>
+</li>
+<li>
+<p>You have <code>chectl</code> installed. See <a href="../installing-the-chectl-management-tool/" class="xref page">Installing the chectl management tool</a>.</p>
 </li>
 </ul>
 </div>
+<div class="olist arabic">
+<div class="title">Procedure</div>
+<ol class="arabic">
+<li>
+<p>Start Minikube with required add-ons and sufficient resources:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">$ minikube start --addons=ingress,dashboard --vm=true --memory=10240 --cpus=4 --disk-size=50GB --kubernetes-version=v1.23.9</code></pre>
 </div>
 </div>
-<div class="sect1">
-<h2 id="_deploying_che_locally_using_chectl"><a class="anchor" href="#_deploying_che_locally_using_chectl"></a>Deploying Che locally using chectl</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>Choose one of the following procedures to deploy the Che using the <code>chectl</code> tool.</p>
+</li>
+<li>
+<p>Create the Che instance:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">$ chectl server:deploy --platform minikube</code></pre>
 </div>
-<div class="ulist">
+</div>
+</li>
+</ol>
+</div>
+<div class="olist arabic">
+<div class="title">Verification</div>
+<ol class="arabic">
+<li>
+<p>Verify the Che instance status:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">$ chectl server:status</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Navigate to the Che cluster instance:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">$ chectl dashboard:open</code></pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+<div class="ulist _additional-resources">
+<div class="title">Additional resources</div>
 <ul>
 <li>
-<p><a href="../installing-che-on-red-hat-openshift-local/" class="xref page">Installing Che on Red Hat OpenShift Local</a></p>
-</li>
-<li>
-<p><a href="../installing-che-on-minikube/" class="xref page">Installing Che on Minikube</a></p>
-</li>
-<li>
-<p><a href="../installing-che-on-minikube-keycloak-oidc/" class="xref page">Installing Che on Minikube with Keycloak as the OIDC provider</a></p>
+<p><a href="../configuring-che-with-self-signed-certificate/" class="xref page">Configuring Eclipse&#160;Che with self-signed certificate</a></p>
 </li>
 </ul>
-</div>
-</div>
 </div>
 </article>
   </div>
