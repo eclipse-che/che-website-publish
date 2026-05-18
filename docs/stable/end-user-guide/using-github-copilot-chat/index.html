@@ -3,8 +3,10 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Restoring a workspace from a backup :: Eclipse Che Documentation</title>
-    <link rel="canonical" href="https://www.eclipse.org/che/docs/stable/end-user-guide/proc-restoring-a-workspace-from-backup/">
+    <title>Set up GitHub Copilot Chat :: Eclipse Che Documentation</title>
+    <link rel="canonical" href="https://www.eclipse.org/che/docs/stable/end-user-guide/using-github-copilot-chat/">
+    <meta name="description" content="Set up GitHub Copilot Chat in a Che workspace">
+    <meta name="keywords" content="copilot, github-copilot, copilot-chat, ai, extensions">
     <meta name="generator" content="Antora 3.1.14">
     <link rel="stylesheet" href="../../../../docs/_/css/site.css">
 <link rel="stylesheet" href="../../../../docs/_/css/extra.css">
@@ -131,8 +133,8 @@
     <button class="nav-item-toggle"></button>
     <a class="nav-link" href="../restoring-workspaces-from-backups/">Restoring workspaces from backups</a>
 <ul class="nav-list">
-  <li class="nav-item is-current-page" data-depth="3">
-    <a class="nav-link" href="./">Restoring a workspace from a backup</a>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../proc-restoring-a-workspace-from-backup/">Restoring a workspace from a backup</a>
   </li>
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="../proc-viewing-backups-in-the-dashboard/">Viewing backups in the dashboard</a>
@@ -191,8 +193,8 @@
     <button class="nav-item-toggle"></button>
     <a class="nav-link" href="../microsoft-visual-studio-code-open-source-ide/">Microsoft Visual Studio Code - Open Source</a>
 <ul class="nav-list">
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../using-github-copilot-chat/">Set up GitHub Copilot Chat</a>
+  <li class="nav-item is-current-page" data-depth="3">
+    <a class="nav-link" href="./">Set up GitHub Copilot Chat</a>
   </li>
 </ul>
   </li>
@@ -889,40 +891,57 @@
   <ul>
     <li><a href="../../overview/introduction-to-eclipse-che/">Documentation</a></li>
     <li>User Guide</li>
-    <li><a href="../getting-started-with-che/">Getting started with Che</a></li>
-    <li><a href="../restoring-workspaces-from-backups/">Restoring workspaces from backups</a></li>
-    <li><a href="./">Restoring a workspace from a backup</a></li>
+    <li><a href="../ides-in-workspaces/">IDEs in workspaces</a></li>
+    <li><a href="../microsoft-visual-studio-code-open-source-ide/">Microsoft Visual Studio Code - Open Source</a></li>
+    <li><a href="./">Set up GitHub Copilot Chat</a></li>
   </ul>
 </nav>
 <div class="page-versions">
   <button class="version-menu-toggle" title="Show other versions of page">7.117.x</button>
   <div class="version-menu">
-    <a class="version" href="../../../next/end-user-guide/proc-restoring-a-workspace-from-backup/">next</a>
+    <a class="version is-missing" href="../../../next/overview/introduction-to-eclipse-che/">next</a>
     <a class="version is-current" href="./">7.117.x</a>
   </div>
 </div>
-<div class="edit-this-page"><a href="https://github.com/eclipse-che/che-docs/edit/7.117.x/modules/end-user-guide/pages/proc-restoring-a-workspace-from-backup.adoc">Edit this Page</a></div>
+<div class="edit-this-page"><a href="https://github.com/eclipse-che/che-docs/edit/7.117.x/modules/end-user-guide/pages/using-github-copilot-chat.adoc">Edit this Page</a></div>
 </div>
   <div class="content">
 <aside class="toc sidebar" data-title="Contents" data-levels="2">
   <div class="toc-menu"></div>
 </aside>
 <article class="doc">
-<h1 class="page">Restoring a workspace from a backup</h1>
+<h1 class="page">Set up GitHub Copilot Chat</h1>
 <div class="paragraph">
-<p>Recover uncommitted changes or recreate a workspace environment by restoring from a backup snapshot through the Che dashboard. When the restoration is complete, the dashboard opens the new workspace in a browser tab.</p>
+<p>To get AI-assisted coding suggestions in your Che workspace, install the <a href="https://open-vsx.org/extension/redhat/devspaces-copilot-chat-integration/0.36.2">Dev Spaces Copilot Chat Integration</a> extension (version 0.36.2) and authenticate with your GitHub account.</p>
 </div>
 <div class="ulist">
 <div class="title">Prerequisites</div>
 <ul>
 <li>
-<p>Backups are enabled for your cluster.</p>
+<p>A GitHub account with an active <a href="https://github.com/features/copilot">GitHub Copilot</a> subscription.</p>
 </li>
 <li>
-<p>You know which default registry or external registry backup image to use.</p>
+<p>A running Che workspace with the Code - OSS editor.</p>
 </li>
 <li>
-<p>You have identified a default registry or external registry backup image to use.</p>
+<p>The following URLs must be accessible from the workspace (ensure they are added to the allowlist if you are in a restricted or air-gapped environment):</p>
+<div class="openblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p><code><a href="https://github.com" class="bare">https://github.com</a></code></p>
+</li>
+<li>
+<p><code><a href="https://api.github.com" class="bare">https://api.github.com</a></code></p>
+</li>
+<li>
+<p><code><a href="https://api.githubcopilot.com" class="bare">https://api.githubcopilot.com</a></code></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
 </li>
 </ul>
 </div>
@@ -930,38 +949,135 @@
 <div class="title">Procedure</div>
 <ol class="arabic">
 <li>
-<p>On the Restore page, select the backup source:</p>
+<p>Install version 0.36.2 of the <strong>Dev Spaces Copilot Chat Integration</strong> extension.</p>
+<div class="paragraph">
+<p>Choose one of the following options depending on your Open VSX registry configuration:</p>
+</div>
+<div class="openblock">
+<div class="content">
 <div class="ulist">
 <ul>
 <li>
-<p>Default registry: Select a backup from the list.</p>
+<p>If your Che instance is configured to use the <a href="https://open-vsx.org">public Open VSX registry</a> or a standalone Open VSX registry that contains the extension:</p>
+<div class="paragraph">
+<p>Open the Extensions view by pressing <span class="keyseq"><kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>X</kbd></span>, search for <code>Dev Spaces Copilot Chat Integration</code>, select version <strong>0.36.2</strong>, and click <strong>Install</strong>.</p>
+</div>
 </li>
 <li>
-<p>External registry: Provide a backup image URL.</p>
-<div class="imageblock">
-<div class="content">
-<a class="image" href="../_images/workspace-backup/restore_section_1.png"><img src="../_images/workspace-backup/restore_section_1.png" alt="Selecting the backup source during restoration"></a>
-</div>
-<div class="title">Figure 1. Restore mode and backup source selection</div>
+<p>If your Che instance uses the default embedded Open VSX registry or a registry that does not contain the extension, install it manually from a <code>.vsix</code> file:</p>
+<div class="paragraph">
+<p>Download the <code>.vsix</code> file from the <a href="https://open-vsx.org/extension/redhat/devspaces-copilot-chat-integration/0.36.2">Open VSX registry</a>, then press <kbd>F1</kbd> to open the Command Palette and run <code>Extensions: Install from VSIX&#8230;&#8203;</code>.</p>
 </div>
 </li>
 </ul>
 </div>
+</div>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Use version 0.36.2 of the extension. Other versions may not be compatible with the current Che editor.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
 </li>
 <li>
-<p>Enter a name for the restored workspace.</p>
+<p>Authenticate using Device Authentication.</p>
+<div class="paragraph">
+<p>Press <kbd>F1</kbd> to open the Command Palette, type <code>GitHub: Device Authentication</code>, and select the command.</p>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+You must complete Device Authentication <strong>before</strong> attempting to use AI features. Initiating "Sign in to use AI Features" without a valid device authentication token causes authentication errors that require signing out and re-authenticating.
+</td>
+</tr>
+</table>
+</div>
 </li>
 <li>
-<p>Optional: Configure the memory limits, CPU limits, and the editor.</p>
-<div class="imageblock">
+<p>Complete the device authentication flow.</p>
+<div class="paragraph">
+<p>A notification appears with a device code. Click the link to open the GitHub device activation page in your browser, paste the code, and authorize access.</p>
+</div>
+</li>
+<li>
+<p>Refresh the browser page.</p>
+<div class="paragraph">
+<p>After successful authentication, a notification prompts you to refresh the browser page. Refresh the page to apply the authentication token. Copilot Chat is authenticated automatically and ready to use.</p>
+</div>
+</li>
+</ol>
+</div>
+<div class="ulist">
+<div class="title">Verification</div>
+<ul>
+<li>
+<p>Open the Copilot Chat panel, type a prompt such as "Explain this file", and verify that a response appears.</p>
+</li>
+</ul>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Device Authentication is a one-time step. The credentials are saved as a Kubernetes object and persist across workspaces on the same cluster.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<div class="title">Troubleshooting</div>
+<p>If you attempted to use Copilot Chat before completing Device Authentication, the extension may enter an error state. Typical symptoms include:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Copilot Chat appears to be connected but does not respond to prompts.</p>
+</li>
+<li>
+<p>The Copilot Chat output log contains errors such as:</p>
+<div class="listingblock">
 <div class="content">
-<a class="image" href="../_images/workspace-backup/restore_section_2.png"><img src="../_images/workspace-backup/restore_section_2.png" alt="Configuring resources and editors for a restored workspace"></a>
+<pre class="highlightjs highlight"><code class="language-text hljs" data-lang="text">Failed to get copilot token. reason: NotAuthorized
+GitHub Copilot could not connect to server. Extension activation failed: "Failed to get copilot token. reason: NotAuthorized"</code></pre>
 </div>
-<div class="title">Figure 2. Resource limits and editor selection</div>
 </div>
 </li>
+</ul>
+</div>
+<div class="paragraph">
+<p>This happens when <strong>Sign in to use AI Features</strong> is triggered before a valid Device Authentication token exists.</p>
+</div>
+<div class="paragraph">
+<p>To recover:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
 <li>
-<p>Click <strong>Restore Workspace</strong> and wait for the workspace to start.</p>
+<p>Click the <strong>Accounts</strong> icon on the left activity bar, select your account, and click <strong>Sign Out</strong>. A confirmation dialog appears indicating the account has been used by the Dev Spaces Copilot Chat Integration. Click <strong>Sign Out</strong> to confirm.</p>
+</li>
+<li>
+<p>Press <kbd>F1</kbd> to open the Command Palette and run <code>GitHub: Device Authentication</code>. Complete the device authentication flow in the browser.</p>
+</li>
+<li>
+<p>Refresh the browser page when prompted. Copilot Chat is now ready to use.</p>
 </li>
 </ol>
 </div>
