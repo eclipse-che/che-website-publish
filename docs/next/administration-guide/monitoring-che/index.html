@@ -947,143 +947,11 @@ You can configure this behaviour.</p>
 </div>
 </div>
 <div class="sect1">
-<h2 id="collecting-che-metrics-with-prometheus"><a class="anchor" href="#collecting-che-metrics-with-prometheus"></a>Collecting Che Server metrics with Prometheus</h2>
+<h2 id="collecting-che-metrics-with-prometheus"><a class="anchor" href="#collecting-che-metrics-with-prometheus"></a>Verifying Che Server metrics collection with Prometheus</h2>
 <div class="sectionbody">
-<div class="paragraph">
-<p>To use the in-cluster Prometheus instance to collect, store, and query JVM metrics for Che Server:</p>
-</div>
-<div class="ulist">
-<div class="title">Prerequisites</div>
-<ul>
-<li>
-<p>Your organization&#8217;s instance of Che is installed and running in Red Hat OpenShift.</p>
-</li>
-<li>
-<p>An active <code>oc</code> session with administrative permissions to the destination OpenShift cluster. See <a href="https://docs.openshift.com/container-platform/4.18/cli_reference/openshift_cli/getting-started-cli.html">Getting started with the CLI</a>.</p>
-</li>
-<li>
-<p>Che is exposing metrics on port <code>8087</code>. See <a href="#enabling-and-exposing-che-metrics">Enabling and exposing Che server JVM metrics</a>.</p>
-</li>
-</ul>
-</div>
-<div class="olist arabic">
-<div class="title">Procedure</div>
-<ol class="arabic">
-<li>
-<p>Create the ServiceMonitor for detecting the Che JVM metrics Service.</p>
-<div class="exampleblock">
-<div class="title">Example 1. ServiceMonitor</div>
-<div class="content">
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">apiVersion: monitoring.coreos.com/v1
-kind: ServiceMonitor
-metadata:
-  name: che-host
-  namespace: eclipse-che <i class="conum" data-value="1"></i><b>(1)</b>
-spec:
-  endpoints:
-    - interval: 10s <i class="conum" data-value="2"></i><b>(2)</b>
-      port: metrics
-      scheme: http
-  namespaceSelector:
-    matchNames:
-      - eclipse-che <i class="conum" data-value="1"></i><b>(1)</b>
-  selector:
-    matchLabels:
-      app.kubernetes.io/name: che</code></pre>
-</div>
-</div>
-<div class="colist arabic">
-<table>
-<tr>
-<td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>The Che namespace. The default is <code>eclipse-che</code>.</td>
-</tr>
-<tr>
-<td><i class="conum" data-value="2"></i><b>2</b></td>
-<td>The rate at which a target is scraped.</td>
-</tr>
-</table>
-</div>
-</div>
-</div>
-</li>
-<li>
-<p>Create a Role and RoleBinding to allow Prometheus to view the metrics.</p>
-<div class="exampleblock">
-<div class="title">Example 2. Role</div>
-<div class="content">
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">kind: Role
-apiVersion: rbac.authorization.k8s.io/v1
-metadata:
-  name: prometheus-k8s
-  namespace: eclipse-che <i class="conum" data-value="1"></i><b>(1)</b>
-rules:
-  - verbs:
-      - get
-      - list
-      - watch
-    apiGroups:
-      - ''
-    resources:
-      - services
-      - endpoints
-      - pods</code></pre>
-</div>
-</div>
-<div class="colist arabic">
-<table>
-<tr>
-<td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>The Che namespace. The default is <code>eclipse-che</code>.</td>
-</tr>
-</table>
-</div>
-</div>
-</div>
-<div class="exampleblock">
-<div class="title">Example 3. RoleBinding</div>
-<div class="content">
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">kind: RoleBinding
-apiVersion: rbac.authorization.k8s.io/v1
-metadata:
-  name: view-che-openshift-monitoring-prometheus-k8s
-  namespace: eclipse-che <i class="conum" data-value="1"></i><b>(1)</b>
-subjects:
-  - kind: ServiceAccount
-    name: prometheus-k8s
-    namespace: openshift-monitoring
-roleRef:
-  apiGroup: rbac.authorization.k8s.io
-  kind: Role
-  name: prometheus-k8s</code></pre>
-</div>
-</div>
-<div class="colist arabic">
-<table>
-<tr>
-<td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>The Che namespace. The default is <code>eclipse-che</code>.</td>
-</tr>
-</table>
-</div>
-</div>
-</div>
-</li>
-<li>
-<p>Allow the in-cluster Prometheus instance to detect the ServiceMonitor in the Che namespace. The default Che namespace is <code>eclipse-che</code>.</p>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-terminal hljs" data-lang="terminal">$ oc label namespace eclipse-che openshift.io/cluster-monitoring=true</code></pre>
-</div>
-</div>
-</li>
-</ol>
+<div class="paragraph _abstract">
+<p>The che-operator automatically creates and reconciles the required Prometheus resources (ServiceMonitor, Role, and RoleBinding) and configures namespace labeling for monitoring Che Server JVM metrics.
+No manual configuration is required.</p>
 </div>
 <div class="olist arabic">
 <div class="title">Verification</div>
@@ -1112,7 +980,7 @@ roleRef:
 <p>Get the name of the Prometheus pod:</p>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">$ oc get pods -l app.kubernetes.io/name=prometheus -n openshift-monitoring -o=jsonpath='{.items[*].metadata.name}'</code></pre>
+<pre class="highlightjs highlight"><code class="language-terminal hljs" data-lang="terminal">$ oc get pods -l app.kubernetes.io/name=prometheus -n openshift-monitoring -o=jsonpath='{.items[*].metadata.name}'</code></pre>
 </div>
 </div>
 </li>
@@ -1120,7 +988,7 @@ roleRef:
 <p>Print the last 20 lines of the Prometheus container logs from the Prometheus pod from the previous step:</p>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">$ oc logs --tail=20 <em>&lt;prometheus_pod_name&gt;</em> -c prometheus -n openshift-monitoring</code></pre>
+<pre class="highlightjs highlight"><code class="language-terminal hljs" data-lang="terminal">$ oc logs --tail=20 <em>&lt;prometheus_pod_name&gt;</em> -c prometheus -n openshift-monitoring</code></pre>
 </div>
 </div>
 </li>
@@ -1159,7 +1027,7 @@ roleRef:
 <p>An active <code>oc</code> session with administrative permissions to the destination OpenShift cluster. See <a href="https://docs.openshift.com/container-platform/4.18/cli_reference/openshift_cli/getting-started-cli.html">Getting started with the CLI</a>.</p>
 </li>
 <li>
-<p>The in-cluster Prometheus instance is collecting metrics. See <a href="#collecting-che-metrics-with-prometheus">Collecting Che Server metrics with Prometheus</a>.</p>
+<p>The in-cluster Prometheus instance is collecting metrics. See <a href="#collecting-che-metrics-with-prometheus">Verifying Che Server metrics collection with Prometheus</a>.</p>
 </li>
 </ul>
 </div>
