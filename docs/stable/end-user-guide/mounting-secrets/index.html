@@ -45,7 +45,7 @@
   </nav>
 </header>
 <div class="body">
-<div class="nav-container" data-component="docs" data-version="7.117.x">
+<div class="nav-container" data-component="docs" data-version="7.118.x">
   <aside class="nav">
     <div class="panels">
 <div class="nav-panel-menu is-active" data-panel="menu">
@@ -190,13 +190,7 @@
     <a class="nav-link" href="../ides-in-workspaces/">IDEs in workspaces</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <button class="nav-item-toggle"></button>
     <a class="nav-link" href="../microsoft-visual-studio-code-open-source-ide/">Microsoft Visual Studio Code - Open Source</a>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../using-github-copilot-chat/">Set up GitHub Copilot Chat</a>
-  </li>
-</ul>
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../connect-visual-studio-code-to-che-workspace/">Connecting Visual Studio Code to a Che workspace</a>
@@ -482,7 +476,7 @@
     <a class="nav-link" href="../../administration-guide/configuring-a-user-namespace/">Configuring a user namespace</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../../administration-guide/configuring-direct-namespace-creation-on-openshift/">Configuring direct namespace creation on OpenShift</a>
+    <a class="nav-link" href="../../administration-guide/configuring-kubernetes-namespace-creation-on-openshift/">Configuring direct namespace creation on OpenShift</a>
   </li>
 </ul>
   </li>
@@ -864,7 +858,7 @@
 <div class="nav-panel-explore" data-panel="explore">
   <div class="context">
     <span class="title">Documentation</span>
-    <span class="version">7.117.x</span>
+    <span class="version">7.118.x</span>
   </div>
   <ul class="components">
     <li class="component is-current">
@@ -874,7 +868,7 @@
           <a href="../../../next/overview/introduction-to-eclipse-che/">next</a>
         </li>
         <li class="version is-current is-latest">
-          <a href="../../overview/introduction-to-eclipse-che/">7.117.x</a>
+          <a href="../../overview/introduction-to-eclipse-che/">7.118.x</a>
         </li>
       </ul>
     </li>
@@ -896,13 +890,13 @@
   </ul>
 </nav>
 <div class="page-versions">
-  <button class="version-menu-toggle" title="Show other versions of page">7.117.x</button>
+  <button class="version-menu-toggle" title="Show other versions of page">7.118.x</button>
   <div class="version-menu">
     <a class="version" href="../../../next/end-user-guide/mounting-secrets/">next</a>
-    <a class="version is-current" href="./">7.117.x</a>
+    <a class="version is-current" href="./">7.118.x</a>
   </div>
 </div>
-<div class="edit-this-page"><a href="https://github.com/eclipse-che/che-docs/edit/7.117.x/modules/end-user-guide/pages/mounting-secrets.adoc">Edit this Page</a></div>
+<div class="edit-this-page"><a href="https://github.com/eclipse-che/che-docs/edit/7.118.x/modules/end-user-guide/pages/mounting-secrets.adoc">Edit this Page</a></div>
 </div>
   <div class="content">
 <aside class="toc sidebar" data-title="Contents" data-levels="2">
@@ -938,7 +932,7 @@
 </td>
 <td class="content">
 <div class="paragraph">
-<p>Applying or modifying a <code>Secret</code> or <code>ConfigMap</code> with the <code>controller.devfile.io/mount-to-devworkspace: 'true'</code> label restarts all running workspaces in the namespace. Ensure that users save their work before you apply these changes.</p>
+<p>By default, applying a <code>Secret</code> with the <code>controller.devfile.io/mount-to-devworkspace: 'true'</code> label restarts all running workspaces in the namespace. To mount the Secret only at workspace start and prevent automatic restarts, add the <code>controller.devfile.io/mount-on-start: 'true'</code> annotation.</p>
 </div>
 </td>
 </tr>
@@ -985,6 +979,19 @@
 <p class="tableblock"><code>mount-as: subpath</code> mounts the keys and values within the mount path using subpath volume mounts.</p>
 <p class="tableblock"><code>mount-as: env</code> mounts the keys and values as environment variables in all <code>DevWorkspace</code> containers.</p></td>
 </tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>controller.devfile.io/mount-on-start:</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">When set to <code>true</code>, the Secret is mounted only when a workspace starts, not while it is already running.</p>
+<p class="tableblock">This prevents workspace restarts when the Secret is created.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>controller.devfile.io/mount-to-devworkspace-include:</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Specifies a comma-separated list of <code>DevWorkspace</code> name patterns. When set, the Secret is mounted only to workspaces whose names match at least one pattern.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>controller.devfile.io/mount-to-devworkspace-exclude:</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Specifies a comma-separated list of <code>DevWorkspace</code> name patterns. When set, the Secret is mounted to all workspaces except those whose names match a pattern.</p></td>
+</tr>
 </tbody>
 </table>
 </li>
@@ -1021,6 +1028,14 @@ For example:</p>
 </div>
 </div>
 </div>
+</div>
+<div class="ulist">
+<div class="title">Additional resources</div>
+<ul>
+<li>
+<p><a href="https://github.com/devfile/devworkspace-operator/blob/main/docs/additional-configuration.adoc#automatically-mounting-volumes-configmaps-and-secrets">Automatically mounting volumes, configmaps, and secrets</a></p>
+</li>
+</ul>
 </div>
 </article>
   </div>

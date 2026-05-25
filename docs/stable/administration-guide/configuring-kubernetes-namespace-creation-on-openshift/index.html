@@ -3,8 +3,8 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Configuring direct namespace creation on OpenShift :: Eclipse Che Documentation</title>
-    <link rel="canonical" href="https://www.eclipse.org/che/docs/stable/administration-guide/configuring-direct-namespace-creation-on-openshift/">
+    <title>Configuring Kubernetes namespace creation on OpenShift :: Eclipse Che Documentation</title>
+    <link rel="canonical" href="https://www.eclipse.org/che/docs/stable/administration-guide/configuring-kubernetes-namespace-creation-on-openshift/">
     <meta name="description" content="Configuring Che to create standard Kubernetes Namespaces directly on OpenShift&#160;Container&#160;Platform instead of using the ProjectRequest API">
     <meta name="keywords" content="administration guide, configuring, namespace, openshift, project, projectrequest">
     <meta name="generator" content="Antora 3.1.14">
@@ -45,7 +45,7 @@
   </nav>
 </header>
 <div class="body">
-<div class="nav-container" data-component="docs" data-version="7.117.x">
+<div class="nav-container" data-component="docs" data-version="7.118.x">
   <aside class="nav">
     <div class="panels">
 <div class="nav-panel-menu is-active" data-panel="menu">
@@ -190,13 +190,7 @@
     <a class="nav-link" href="../../end-user-guide/ides-in-workspaces/">IDEs in workspaces</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <button class="nav-item-toggle"></button>
     <a class="nav-link" href="../../end-user-guide/microsoft-visual-studio-code-open-source-ide/">Microsoft Visual Studio Code - Open Source</a>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../../end-user-guide/using-github-copilot-chat/">Set up GitHub Copilot Chat</a>
-  </li>
-</ul>
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../../end-user-guide/connect-visual-studio-code-to-che-workspace/">Connecting Visual Studio Code to a Che workspace</a>
@@ -864,7 +858,7 @@
 <div class="nav-panel-explore" data-panel="explore">
   <div class="context">
     <span class="title">Documentation</span>
-    <span class="version">7.117.x</span>
+    <span class="version">7.118.x</span>
   </div>
   <ul class="components">
     <li class="component is-current">
@@ -874,7 +868,7 @@
           <a href="../../../next/overview/introduction-to-eclipse-che/">next</a>
         </li>
         <li class="version is-current is-latest">
-          <a href="../../overview/introduction-to-eclipse-che/">7.117.x</a>
+          <a href="../../overview/introduction-to-eclipse-che/">7.118.x</a>
         </li>
       </ul>
     </li>
@@ -897,20 +891,20 @@
   </ul>
 </nav>
 <div class="page-versions">
-  <button class="version-menu-toggle" title="Show other versions of page">7.117.x</button>
+  <button class="version-menu-toggle" title="Show other versions of page">7.118.x</button>
   <div class="version-menu">
-    <a class="version is-missing" href="../../../next/overview/introduction-to-eclipse-che/">next</a>
-    <a class="version is-current" href="./">7.117.x</a>
+    <a class="version" href="../../../next/administration-guide/configuring-kubernetes-namespace-creation-on-openshift/">next</a>
+    <a class="version is-current" href="./">7.118.x</a>
   </div>
 </div>
-<div class="edit-this-page"><a href="https://github.com/eclipse-che/che-docs/edit/7.117.x/modules/administration-guide/pages/configuring-direct-namespace-creation-on-openshift.adoc">Edit this Page</a></div>
+<div class="edit-this-page"><a href="https://github.com/eclipse-che/che-docs/edit/7.118.x/modules/administration-guide/pages/configuring-kubernetes-namespace-creation-on-openshift.adoc">Edit this Page</a></div>
 </div>
   <div class="content">
 <aside class="toc sidebar" data-title="Contents" data-levels="2">
   <div class="toc-menu"></div>
 </aside>
 <article class="doc">
-<h1 class="page">Configuring direct namespace creation on OpenShift</h1>
+<h1 class="page">Configuring Kubernetes namespace creation on OpenShift</h1>
 <div class="paragraph">
 <p>By default, on OpenShift&#160;Container&#160;Platform clusters, Che uses the ProjectRequest API to create projects. This triggers cluster-specific <a href="https://docs.openshift.com/container-platform/latest/applications/projects/configuring-project-creation.html">Project Templates</a>, which can apply additional resources or policies.</p>
 </div>
@@ -929,7 +923,7 @@
 <div class="title">Procedure</div>
 <ol class="arabic">
 <li>
-<p>Set the <code>createNamespaceDirectly</code> field to <code>true</code>:</p>
+<p>Set the <code>createKubernetesNamespaces</code> field to <code>true</code>:</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">kubectl patch checluster eclipse-che \
@@ -939,7 +933,7 @@
     "spec": {
       "devEnvironments": {
         "defaultNamespace": {
-          "createNamespaceDirectly": true
+          "createKubernetesNamespaces": true
         }
       }
     }
