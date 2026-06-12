@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <title>Install Che on OpenShift with Keycloak as external identity provider :: Eclipse Che Documentation</title>
     <link rel="canonical" href="https://www.eclipse.org/che/docs/stable/administration-guide/proc_installing-che-on-openshift-with-keycloak-as-oidc/">
-    <meta name="description" content="To manage user authentication through a centralized identity provider, deploy Che on OpenShift with Keycloak as the external OIDC provider.">
+    <meta name="description" content="To enable centralized user authentication through an external identity provider, install Che on Kubernetes with Keycloak as the OIDC provider.">
     <meta name="keywords" content="install, openshift, keycloak, oidc, identity provider">
     <meta name="generator" content="Antora 3.1.15">
     <link rel="stylesheet" href="../../../../docs/_/css/site.css">
@@ -907,7 +907,7 @@
 <article class="doc">
 <h1 class="page">Install Che on OpenShift with Keycloak as external identity provider</h1>
 <div class="paragraph _abstract">
-<p>To manage user authentication through a centralized identity provider, deploy Che on an Kubernetes cluster with Keycloak as the external OpenID Connect (OIDC) provider.</p>
+<p>To enable centralized user authentication through an external identity provider, install Che on Kubernetes with Keycloak as the OIDC provider.</p>
 </div>
 <div class="ulist">
 <div class="title">Prerequisites</div>
@@ -916,25 +916,13 @@
 <p>You have an active <code>kubectl</code> session with administrative permissions to the Kubernetes cluster. See <a href="https://kubernetes.io/docs/reference/kubectl/overview/">Overview of kubectl</a>.</p>
 </li>
 <li>
-<p>You have Keycloak configured as an external identity provider for Kubernetes. See <a href="https://docs.redhat.com/en/documentation/openshift_container_platform/4.18/html/authentication_and_authorization/external-auth">Enabling direct authentication with an external OIDC identity provider</a>.</p>
+<p>You have Keycloak configured as an external identity provider for Kubernetes. See <a href="https://docs.redhat.com/en/documentation/openshift_container_platform/4.20/html/authentication_and_authorization/external-auth">Enabling direct authentication with an external OIDC identity provider</a>.</p>
 </li>
 </ul>
 </div>
 <div class="olist arabic">
 <div class="title">Procedure</div>
 <ol class="arabic">
-<li>
-<p>Define the environment variables:</p>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash"># The Keycloak realm used for Kubernetes authentication:
-OPENSHIFT_REALM=<em>&lt;realm&gt;</em>
-
-# The Keycloak URL:
-KEYCLOAK_URL=<em>&lt;keycloak_url&gt;</em></code></pre>
-</div>
-</div>
-</li>
 <li>
 <p>Create a <code>che</code> client in the Keycloak Admin Console:</p>
 <div class="openblock">
@@ -973,6 +961,37 @@ KEYCLOAK_URL=<em>&lt;keycloak_url&gt;</em></code></pre>
 <li>
 <p>Click <strong>Next</strong>.</p>
 </li>
+</ol>
+</div>
+</li>
+<li>
+<p>On the <strong>Login settings</strong> page:</p>
+<div class="olist lowerroman">
+<ol class="lowerroman" type="i">
+<li>
+<p>Enter <code>Che</code> redirect URL in the <strong>Valid redirect URIs</strong> field.</p>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Run the following command to obtain the <code>Eclipse&#160;Che</code> redirect URL:
+</td>
+</tr>
+</table>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">echo "$(
+  kubectl get checluster eclipse-che \
+    -n eclipse-che \
+    -o jsonpath='{.status.cheURL}'
+)/oauth/callback"</code></pre>
+</div>
+</div>
+</li>
 <li>
 <p>Click <strong>Save</strong>.</p>
 </li>
@@ -1010,7 +1029,8 @@ KEYCLOAK_URL=<em>&lt;keycloak_url&gt;</em></code></pre>
 </td>
 <td class="content">
 <div class="paragraph">
-<p>If you have multiple OIDC providers configured, adjust the array index in the path (currently 0) to match your Keycloak provider&#8217;s position in the configuration.</p>
+<p>If you have multiple OIDC providers configured, adjust the array index in the path (currently <code>0</code>)
+to match your Keycloak provider&#8217;s position in the configuration.</p>
 </div>
 </td>
 </tr>
@@ -1034,67 +1054,43 @@ KEYCLOAK_URL=<em>&lt;keycloak_url&gt;</em></code></pre>
 </div>
 </li>
 <li>
-<p>Create a secret for the OAuth client in the Che namespace:</p>
+<p>Create a Secret for OAuth authentication:</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">kubectl apply -f - &lt;&lt;EOF
 apiVersion: v1
 kind: Secret
 metadata:
-  name: oauth-secret
+  name: che-oidc-client-secret
   namespace: eclipse-che
   labels:
     app.kubernetes.io/part-of: che.eclipse.org
 stringData:
-  oAuthSecret: <em>&lt;client_secret&gt;</em>
+  oAuthSecret: <em>&lt;client_secret&gt;</em> <i class="conum" data-value="1"></i><b>(1)</b>
 EOF</code></pre>
 </div>
 </div>
-<div class="paragraph">
-<p>where:</p>
-</div>
-<div class="dlist">
-<dl>
-<dt class="hdlist1"><code><em>&lt;client_secret&gt;</em></code></dt>
-<dd>
-<p>The client secret value from the <code>che</code> client in Keycloak.</p>
-</dd>
-</dl>
-</div>
-</li>
-<li>
-<p>Optional: Create the <code>ConfigMap</code> with a Keycloak certificate in the <code>eclipse-che</code> namespace. If Keycloak uses a certificate that is already trusted by Kubernetes, skip this step.</p>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">openssl s_client \
-  -connect "$(echo "$KEYCLOAK_URL" | sed 's|https://||'):443" \
-  -showcerts &lt; /dev/null \
-| sed -n '/-----BEGIN CERTIFICATE-----/,/-----END CERTIFICATE-----/p' \
-&gt; keycloak-ca.crt
-
-kubectl create configmap keycloak-certs \
-    --from-file=keycloak-ca.crt=keycloak-ca.crt \
-    -n eclipse-che &amp;&amp; \
-kubectl label configmap keycloak-certs \
-    app.kubernetes.io/part-of=che.eclipse.org \
-    app.kubernetes.io/component=ca-bundle \
-    -n eclipse-che</code></pre>
-</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>The client secret value from the <code>che</code> client credentials tab in Keycloak.</td>
+</tr>
+</table>
 </div>
 </li>
 <li>
 <p>Prepare the <code>CheCluster</code> patch:</p>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">cat &gt; che-patch.yaml &lt;&lt; EOF
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">cat &gt; che-patch.yaml &lt;&lt;EOF
 kind: CheCluster
 apiVersion: org.eclipse.che/v2
 spec:
   networking:
     auth:
       oAuthClientName: che
-      oAuthSecret: oauth-secret
-      identityProviderURL: "$KEYCLOAK_URL/realms/$OPENSHIFT_REALM"
+      oAuthSecret: che-oidc-client-secret
       gateway:
         oAuthProxy:
           cookieExpireSeconds: 300
@@ -1102,61 +1098,18 @@ spec:
           containers:
             - name: oauth-proxy
               env:
-                - name: OAUTH2_PROXY_CODE_CHALLENGE_METHOD
-                  value: S256
                 - name: OAUTH2_PROXY_BACKEND_LOGOUT_URL
-                  value: "$KEYCLOAK_URL/realms/$OPENSHIFT_REALM/protocol/openid-connect/logout?id_token_hint={id_token}"
-  components:
-    cheServer:
-      extraProperties:
-        CHE_OIDC_GROUPS__CLAIM: '&lt;GROUPS_CLAIM&gt;'
-        CHE_OIDC_GROUPS__PREFIX: '&lt;GROUPS_PREFIX&gt;'
-        CHE_OIDC_USERNAME__CLAIM: '&lt;USERNAME_CLAIM&gt;'
-        CHE_OIDC_USERNAME__PREFIX: '&lt;USERNAME_PREFIX&gt;'
+                  value: "<em>&lt;issuer_url&gt;</em>/protocol/openid-connect/logout?id_token_hint={id_token}" <i class="conum" data-value="1"></i><b>(1)</b>
 EOF</code></pre>
 </div>
 </div>
-<div class="paragraph">
-<p>where:</p>
-</div>
-<div class="dlist">
-<dl>
-<dt class="hdlist1"><code>CHE_OIDC_GROUPS__CLAIM</code></dt>
-<dd>
-<p>The claim to use for extracting user groups.</p>
-</dd>
-<dt class="hdlist1"><code>CHE_OIDC_GROUPS__PREFIX</code></dt>
-<dd>
-<p>The prefix to add to group names. Empty string means no prefix.</p>
-</dd>
-<dt class="hdlist1"><code>CHE_OIDC_USERNAME__CLAIM</code></dt>
-<dd>
-<p>The claim to use for extracting the username.</p>
-</dd>
-<dt class="hdlist1"><code>CHE_OIDC_USERNAME__PREFIX</code></dt>
-<dd>
-<p>The prefix to add to usernames. Empty string means no prefix.</p>
-<div class="admonitionblock note">
+<div class="colist arabic">
 <table>
 <tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-<div class="paragraph">
-<p>These values must match the corresponding claim and prefix settings configured in the <code>authentication.config/cluster</code> resource. To view the current cluster configuration, run:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kubectl get authentication.config/cluster -o yaml</code></pre>
-</div>
-</div>
-</td>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>The Keycloak OIDC issuer URL.</td>
 </tr>
 </table>
-</div>
-</dd>
-</dl>
 </div>
 </li>
 <li>
@@ -1166,34 +1119,6 @@ EOF</code></pre>
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">chectl server:deploy \
   --platform openshift \
   --che-operator-cr-patch-yaml che-patch.yaml</code></pre>
-</div>
-</div>
-</li>
-<li>
-<p>Update the <code>che</code> client to set the Che redirect URI and web origin.</p>
-<div class="paragraph">
-<p>Obtain the Eclipse&#160;Che URL:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">echo "$(kubectl get checluster eclipse-che -n eclipse-che -o jsonpath='{.status.cheURL}')"</code></pre>
-</div>
-</div>
-<div class="openblock">
-<div class="content">
-<div class="olist loweralpha">
-<ol class="loweralpha" type="a">
-<li>
-<p>In the <strong>Valid redirect URIs</strong> field, enter the URL above with <code>/oauth/callback</code> appended.</p>
-</li>
-<li>
-<p>In the <strong>Web origins</strong> field, enter the URL above.</p>
-</li>
-<li>
-<p>Click <strong>Save</strong>.</p>
-</li>
-</ol>
-</div>
 </div>
 </div>
 </li>
@@ -1222,6 +1147,14 @@ EOF</code></pre>
 <p>Log in to the Che instance.</p>
 </li>
 </ol>
+</div>
+<div class="ulist _additional-resources">
+<div class="title">Additional resources</div>
+<ul>
+<li>
+<p><a href="https://docs.redhat.com/en/documentation/openshift_container_platform/4.18/html/authentication_and_authorization/external-auth">Enabling direct authentication with an external OIDC identity provider</a></p>
+</li>
+</ul>
 </div>
 </article>
   </div>
