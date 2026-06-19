@@ -912,7 +912,7 @@
           <a href="../../overview/introduction-to-eclipse-che/">next</a>
         </li>
         <li class="version is-latest">
-          <a href="../../../stable/overview/introduction-to-eclipse-che/">7.118.x</a>
+          <a href="../../../stable/overview/introduction-to-eclipse-che/">7.119.x</a>
         </li>
       </ul>
     </li>
@@ -938,7 +938,7 @@
   <button class="version-menu-toggle" title="Show other versions of page">next</button>
   <div class="version-menu">
     <a class="version is-current" href="./">next</a>
-    <a class="version" href="../../../stable/administration-guide/checluster-custom-resource-fields-reference/">7.118.x</a>
+    <a class="version" href="../../../stable/administration-guide/checluster-custom-resource-fields-reference/">7.119.x</a>
   </div>
 </div>
 <div class="edit-this-page"><a href="https://github.com/eclipse-che/che-docs/edit/main/modules/administration-guide/pages/checluster-custom-resource-fields-reference.adoc">Edit this Page</a></div>
@@ -2659,7 +2659,7 @@ spec:
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">oAuthSecret</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Defines the OAuth client secret. It can either be a plain text secret value or the name of a Kubernetes secret containing a key <code>oAuthSecret</code> with the secret value. The Kubernetes secret must exist in the same namespace as the <code>CheCluster</code> resource and have the label <code>app.kubernetes.io/part-of=che.eclipse.org</code>. For OpenShift with built-in OAuth, this is the secret set in the <code>OAuthClient</code> resource used to set up identity federation.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">For OIDC, this is the client secret issued by the Identity Provider for the configured OIDC client. For OpenShift with built-in OAuth, this is the secret configured in the OAuthClient for OpenShift OAuth integration. The value can either be a plain text secret value (deprecated) or the name of a Kubernetes secret that contains the secret value under the <code>oAuthSecret</code> key. The Kubernetes secret must exist in the same namespace as the <code>CheCluster</code> resource namespace and must have a <code>app.kubernetes.io/part-of=che.eclipse.org</code> label.</p></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 </tbody>
