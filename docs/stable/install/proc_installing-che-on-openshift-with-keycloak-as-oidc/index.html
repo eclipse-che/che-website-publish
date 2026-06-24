@@ -1027,9 +1027,8 @@ Run the following command to obtain the <code>Eclipse&#160;Che</code> redirect U
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">echo "$(
-  kubectl get checluster eclipse-che \
-    -n eclipse-che \
-    -o jsonpath='{.status.cheURL}'
+  oc whoami --show-console |
+  sed 's|console-openshift-console|eclipse-che|g'
 )/oauth/callback"</code></pre>
 </div>
 </div>
