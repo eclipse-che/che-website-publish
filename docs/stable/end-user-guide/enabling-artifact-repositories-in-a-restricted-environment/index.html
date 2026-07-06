@@ -45,23 +45,20 @@
   </nav>
 </header>
 <div class="body">
-<div class="nav-container" data-component="docs" data-version="7.119.x">
+<div class="nav-container" data-component="docs" data-version="7.120.x">
   <aside class="nav">
     <div class="panels">
 <div class="nav-panel-menu is-active" data-panel="menu">
   <nav class="nav-menu">
     <button class="nav-menu-toggle" aria-label="Toggle expand/collapse all" style="display: none"></button>
-    <h3 class="title"><a href="../../overview/introduction-to-eclipse-che/">Documentation</a></h3>
+    <h3 class="title"><a href="../../discover/what-is-che/">Documentation</a></h3>
 <ul class="nav-list">
   <li class="nav-item" data-depth="0">
     <button class="nav-item-toggle"></button>
     <span class="nav-text">Discover</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="../../overview/introduction-to-eclipse-che/">Introduction to Che</a>
-  </li>
-  <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="../../hosted-che/hosted-che/">Eclipse Che hosted by Red Hat</a>
+    <a class="nav-link" href="../../discover/what-is-che/">What is Che?</a>
   </li>
   <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
@@ -101,6 +98,9 @@
   </li>
   <li class="nav-item" data-depth="1">
     <a class="nav-link" href="../../discover/supported-platforms/">Supported platforms</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../../discover/roles-and-tasks/">Common user roles and tasks</a>
   </li>
 </ul>
   </li>
@@ -461,6 +461,9 @@
 </ul>
   </li>
   <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../debugging-a-workspace/">Debugging a workspace</a>
+  </li>
+  <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../troubleshooting-slow-workspaces/">Troubleshooting slow workspaces</a>
   </li>
   <li class="nav-item" data-depth="2">
@@ -475,11 +478,119 @@
   </li>
   <li class="nav-item" data-depth="0">
     <button class="nav-item-toggle"></button>
-    <span class="nav-text">Administration Guide</span>
+    <span class="nav-text">Upgrade</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="../../administration-guide/security-best-practices/">Security best practices</a>
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../../upgrade/upgrading-che/">Upgrade Che</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../upgrade/specifying-the-update-approval-strategy/">Choose how updates are applied</a>
   </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../upgrade/upgrading-che-using-the-web-console/">Approve a pending upgrade in the web console</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../upgrade/upgrading-che-using-the-cli-management-tool/">Upgrade Che from the command line</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../upgrade/upgrading-che-using-the-cli-management-tool-in-restricted-environment/">Upgrade in an air-gapped environment</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../upgrade/upgrading-the-chectl-management-tool/">Update the chectl management tool</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../upgrade/repairing-the-devworkspace-operator-on-openshift/">Fix a duplicate DevWorkspace Operator after a cluster upgrade</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Secure</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../../secure/security-best-practices/">Protect your deployment</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../../secure/managing-identities-and-authorizations/">Control who can access Che</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../secure/configuring-cluster-roles-for-users/">Grant additional permissions to users</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../secure/configuring-advanced-authorization/">Restrict access to specific users and groups</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../secure/removing-user-data-in-compliance-with-the-gdpr/">Remove user data for GDPR compliance</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Optimize performance</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../../optimize/caching-images-for-faster-workspace-start/">Caching images for faster workspace start</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../../optimize/installing-kubernetes-image-puller/">Installing Kubernetes Image Puller</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../../optimize/installing-image-puller-on-kubernetes-by-using-cli/">Installing the Kubernetes Image Puller operator on Kubernetes cluster by using CLI</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../../optimize/installing-image-puller-on-openshift-using-cli/">Installing Image Puller on OpenShift using CLI</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../../optimize/installing-image-puller-on-openshift-by-using-the-web-console/">Installing Image Puller on OpenShift by using the web console</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../../optimize/configuring-kubernetes-image-puller/">Configuring Kubernetes Image Puller</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../../optimize/configuring-image-puller-to-pre-pull-default-che-images/">Configuring Image Puller to pre-pull default Che images</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../../optimize/configuring-image-puller-to-pre-pull-custom-images/">Configuring Image Puller to pre-pull custom images</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../../optimize/configuring-image-puller-to-pre-pull-additional-images/">Configuring Image Puller to pre-pull additional images</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../optimize/retrieving-default-list-of-images-for-kubernetes-image-puller/">Retrieving the default list of images for Kubernetes Image Puller</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../../optimize/configuring-autoscaling/">Configuring autoscaling</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../optimize/configuring-number-of-replicas/">Configuring number of replicas for a Eclipse&#160;Che container</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../optimize/configuring-machine-autoscaling/">Configuring machine autoscaling</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Administration Guide</span>
+<ul class="nav-list">
   <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
     <a class="nav-link" href="../../administration-guide/configuring-che/">Configuring Che</a>
@@ -531,18 +642,6 @@
   </li>
   <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../../administration-guide/configuring-autoscaling/">Configuring autoscaling</a>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../../administration-guide/configuring-number-of-replicas/">Configuring number of replicas for a Eclipse&#160;Che container</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../../administration-guide/configuring-machine-autoscaling/">Configuring machine autoscaling</a>
-  </li>
-</ul>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <button class="nav-item-toggle"></button>
     <a class="nav-link" href="../../administration-guide/configuring-workspaces-globally/">Configuring workspaces globally</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
@@ -565,45 +664,6 @@
   </li>
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="../../administration-guide/enabling-container-run-capabilities/">Enabling container run capabilities</a>
-  </li>
-</ul>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../../administration-guide/caching-images-for-faster-workspace-start/">Caching images for faster workspace start</a>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="3">
-    <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../../administration-guide/installing-kubernetes-image-puller/">Installing Kubernetes Image Puller</a>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="4">
-    <a class="nav-link" href="../../administration-guide/installing-image-puller-on-kubernetes-by-using-cli/">Installing the Kubernetes Image Puller operator on Kubernetes cluster by using CLI</a>
-  </li>
-  <li class="nav-item" data-depth="4">
-    <a class="nav-link" href="../../administration-guide/installing-image-puller-on-openshift-using-cli/">Installing Image Puller on OpenShift using CLI</a>
-  </li>
-  <li class="nav-item" data-depth="4">
-    <a class="nav-link" href="../../administration-guide/installing-image-puller-on-openshift-by-using-the-web-console/">Installing Image Puller on OpenShift by using the web console</a>
-  </li>
-</ul>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../../administration-guide/configuring-kubernetes-image-puller/">Configuring Kubernetes Image Puller</a>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="4">
-    <a class="nav-link" href="../../administration-guide/configuring-image-puller-to-pre-pull-default-che-images/">Configuring Image Puller to pre-pull default Che images</a>
-  </li>
-  <li class="nav-item" data-depth="4">
-    <a class="nav-link" href="../../administration-guide/configuring-image-puller-to-pre-pull-custom-images/">Configuring Image Puller to pre-pull custom images</a>
-  </li>
-  <li class="nav-item" data-depth="4">
-    <a class="nav-link" href="../../administration-guide/configuring-image-puller-to-pre-pull-additional-images/">Configuring Image Puller to pre-pull additional images</a>
-  </li>
-</ul>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../../administration-guide/retrieving-default-list-of-images-for-kubernetes-image-puller/">Retrieving the default list of images for Kubernetes Image Puller</a>
   </li>
 </ul>
   </li>
@@ -717,40 +777,25 @@
   </li>
   <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../../administration-guide/managing-identities-and-authorizations/">Managing identities and authorizations</a>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="3">
-    <button class="nav-item-toggle"></button>
     <a class="nav-link" href="../../administration-guide/configuring-oauth-for-git-providers/">Configuring OAuth for Git providers</a>
 <ul class="nav-list">
-  <li class="nav-item" data-depth="4">
+  <li class="nav-item" data-depth="3">
     <a class="nav-link" href="../../administration-guide/configuring-oauth-2-for-github/">Configuring OAuth 2.0 for GitHub</a>
   </li>
-  <li class="nav-item" data-depth="4">
+  <li class="nav-item" data-depth="3">
     <a class="nav-link" href="../../administration-guide/configuring-oauth-2-for-gitlab/">Configuring OAuth 2.0 for GitLab</a>
   </li>
-  <li class="nav-item" data-depth="4">
+  <li class="nav-item" data-depth="3">
     <a class="nav-link" href="../../administration-guide/configuring-oauth-2-for-a-bitbucket-server/">Configuring OAuth 2.0 for a Bitbucket Server</a>
   </li>
-  <li class="nav-item" data-depth="4">
+  <li class="nav-item" data-depth="3">
     <a class="nav-link" href="../../administration-guide/configuring-oauth-2-for-the-bitbucket-cloud/">Configuring OAuth 2.0 for the Bitbucket Cloud</a>
   </li>
-  <li class="nav-item" data-depth="4">
+  <li class="nav-item" data-depth="3">
     <a class="nav-link" href="../../administration-guide/configuring-oauth-1-for-a-bitbucket-server/">Configuring OAuth 1.0 for a Bitbucket Server</a>
   </li>
-  <li class="nav-item" data-depth="4">
+  <li class="nav-item" data-depth="3">
     <a class="nav-link" href="../../administration-guide/configuring-oauth-2-for-microsoft-azure-devops-services/">Configuring OAuth 2.0 for Microsoft Azure DevOps Services</a>
-  </li>
-</ul>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../../administration-guide/configuring-cluster-roles-for-users/">Configuring cluster roles for Che users</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../../administration-guide/configuring-advanced-authorization/">Configuring advanced authorization</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../../administration-guide/removing-user-data-in-compliance-with-the-gdpr/">Removing user data in compliance with the GDPR</a>
   </li>
 </ul>
   </li>
@@ -831,30 +876,6 @@
   <li class="nav-item" data-depth="1">
     <a class="nav-link" href="../../administration-guide/managing-workloads-using-the-che-server-api/">Using the Che server API</a>
   </li>
-  <li class="nav-item" data-depth="1">
-    <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../../administration-guide/upgrading-che/">Upgrading Che</a>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../../administration-guide/upgrading-the-chectl-management-tool/">Upgrading the chectl management tool</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../../administration-guide/specifying-the-update-approval-strategy/">Specifying the update approval strategy</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../../administration-guide/upgrading-che-using-the-web-console/">Upgrading Che using the OpenShift web console</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../../administration-guide/upgrading-che-using-the-cli-management-tool/">Upgrading Che using the CLI management tool</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../../administration-guide/upgrading-che-using-the-cli-management-tool-in-restricted-environment/">Upgrading Che in a restricted environment</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../../administration-guide/repairing-the-devworkspace-operator-on-openshift/">Repairing the DevWorkspace Operator on OpenShift</a>
-  </li>
-</ul>
-  </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="0">
@@ -901,17 +922,17 @@
 <div class="nav-panel-explore" data-panel="explore">
   <div class="context">
     <span class="title">Documentation</span>
-    <span class="version">7.119.x</span>
+    <span class="version">7.120.x</span>
   </div>
   <ul class="components">
     <li class="component is-current">
-      <div class="title"><a href="../../overview/introduction-to-eclipse-che/">Documentation</a></div>
+      <div class="title"><a href="../../discover/what-is-che/">Documentation</a></div>
       <ul class="versions">
         <li class="version">
           <a href="../../../next/discover/what-is-che/">next</a>
         </li>
         <li class="version is-current is-latest">
-          <a href="../../overview/introduction-to-eclipse-che/">7.119.x</a>
+          <a href="../../discover/what-is-che/">7.120.x</a>
         </li>
       </ul>
     </li>
@@ -923,23 +944,23 @@
 <main class="article">
 <div class="toolbar" role="navigation">
 <button class="nav-toggle"></button>
-  <a href="../../overview/introduction-to-eclipse-che/" class="home-link"></a>
+  <a href="../../discover/what-is-che/" class="home-link"></a>
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
-    <li><a href="../../overview/introduction-to-eclipse-che/">Documentation</a></li>
+    <li><a href="../../discover/what-is-che/">Documentation</a></li>
     <li>User Guide</li>
     <li><a href="../using-credentials-and-configurations-in-workspaces/">Using credentials and configurations in workspaces</a></li>
     <li><a href="./">Enabling artifact repositories in a restricted environment</a></li>
   </ul>
 </nav>
 <div class="page-versions">
-  <button class="version-menu-toggle" title="Show other versions of page">7.119.x</button>
+  <button class="version-menu-toggle" title="Show other versions of page">7.120.x</button>
   <div class="version-menu">
     <a class="version" href="../../../next/end-user-guide/enabling-artifact-repositories-in-a-restricted-environment/">next</a>
-    <a class="version is-current" href="./">7.119.x</a>
+    <a class="version is-current" href="./">7.120.x</a>
   </div>
 </div>
-<div class="edit-this-page"><a href="https://github.com/eclipse-che/che-docs/edit/7.119.x/modules/end-user-guide/pages/enabling-artifact-repositories-in-a-restricted-environment.adoc">Edit this Page</a></div>
+<div class="edit-this-page"><a href="https://github.com/eclipse-che/che-docs/edit/7.120.x/modules/end-user-guide/pages/enabling-artifact-repositories-in-a-restricted-environment.adoc">Edit this Page</a></div>
 </div>
   <div class="content">
 <aside class="toc sidebar" data-title="Contents" data-levels="2">
