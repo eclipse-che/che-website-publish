@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>User dashboard :: Eclipse Che Documentation</title>
+    <title>Dashboard and workspace management :: Eclipse Che Documentation</title>
     <link rel="canonical" href="https://www.eclipse.org/che/docs/stable/discover/dashboard/">
     <meta name="description" content="The user dashboard is the landing page of Eclipse&#160;Che where users create, manage, and access their workspaces.">
     <meta name="keywords" content="dashboard, architecture, user interface, discover">
@@ -62,38 +62,47 @@
     <a class="nav-link" href="../what-is-che/">What is Che?</a>
   </li>
   <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../what-problems-che-solves/">What problems does Che solve?</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../who-is-che-for/">Who is Che for?</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../when-to-use-che/">When to use Che</a>
+  </li>
+  <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../architecture-overview/">Architecture overview</a>
+    <a class="nav-link" href="../architecture-overview/">Che architecture</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../server-components/">Server components</a>
+    <a class="nav-link" href="../what-runs-on-your-cluster/">What runs on your cluster</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../che-operator/">Che operator</a>
+    <a class="nav-link" href="../che-operator/">Operator and lifecycle management</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../devworkspace-operator/">DevWorkspace operator</a>
+    <a class="nav-link" href="../devworkspace-operator/">DevWorkspace Operator and workspace pods</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../gateway/">Gateway</a>
+    <a class="nav-link" href="../gateway/">Gateway and request routing</a>
   </li>
   <li class="nav-item is-current-page" data-depth="3">
-    <a class="nav-link" href="./">User dashboard</a>
+    <a class="nav-link" href="./">Dashboard and workspace management</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../che-server/">Che server</a>
+    <a class="nav-link" href="../che-server/">Server and namespace provisioning</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../che-devfile-registry/">Devfile registry</a>
+    <a class="nav-link" href="../che-devfile-registry/">Devfile registry and workspace templates</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../plugin-registry/">Plugin registry</a>
+    <a class="nav-link" href="../plugin-registry/">Plug-in registry</a>
   </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../user-workspaces/">User workspaces</a>
+    <a class="nav-link" href="../user-workspaces/">What developers get in a workspace</a>
   </li>
 </ul>
   </li>
@@ -110,7 +119,7 @@
     <span class="nav-text">Install</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="../../install/con_installation-overview/">Che installation overview</a>
+    <a class="nav-link" href="../../install/con_installation-overview/">How the installation works</a>
   </li>
   <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
@@ -120,13 +129,13 @@
     <a class="nav-link" href="../supported-platforms/">Supported platforms</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../../install/calculating-che-resource-requirements/">Calculate Che resource requirements</a>
+    <a class="nav-link" href="../../install/calculating-che-resource-requirements/">Size your cluster for Che</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../../install/running-at-scale/">Che scalability</a>
+    <a class="nav-link" href="../../install/running-at-scale/">Scalability limits and multi-cluster deployments</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../../install/installing-the-chectl-management-tool/">Install the chectl management tool</a>
+    <a class="nav-link" href="../../install/installing-the-chectl-management-tool/">Set up the chectl command-line tool</a>
   </li>
 </ul>
   </li>
@@ -139,13 +148,13 @@
     <span class="nav-text">Deploy on OpenShift</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../../install/proc_installing-che-on-openshift-using-cli/">Install Che on OpenShift using CLI</a>
+    <a class="nav-link" href="../../install/proc_installing-che-on-openshift-using-cli/">Deploy using the CLI</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../../install/proc_installing-che-on-openshift-using-the-web-console/">Install Che on OpenShift using the web console</a>
+    <a class="nav-link" href="../../install/proc_installing-che-on-openshift-using-the-web-console/">Deploy using the web console</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../../install/proc_installing-che-on-openshift-with-keycloak-as-oidc/">Install Che on OpenShift with Keycloak as external identity provider</a>
+    <a class="nav-link" href="../../install/proc_installing-che-on-openshift-with-keycloak-as-oidc/">Deploy using an external identity provider</a>
   </li>
 </ul>
   </li>
@@ -184,38 +193,38 @@
     <span class="nav-text">Deploy in a restricted environment</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../../install/proc_installing-che-in-a-restricted-environment/">Install Che in a restricted environment</a>
+    <a class="nav-link" href="../../install/proc_installing-che-in-a-restricted-environment/">Deploy in an air-gapped environment</a>
   </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../../install/using-chectl-to-configure-the-checluster-custom-resource-during-installation/">Using chectl to configure the <code>CheCluster</code> Custom Resource during installation</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../../install/proc_finding-the-fully-qualified-domain-name-fqdn/">Find the FQDN</a>
+    <a class="nav-link" href="../../install/using-chectl-to-configure-the-checluster-custom-resource-during-installation/">Customize settings during deployment</a>
   </li>
   <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
     <span class="nav-text">Permissions</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../../install/ref_permissions-to-install-che-on-openshift-using-cli/">Permissions for CLI installation</a>
+    <a class="nav-link" href="../../install/ref_permissions-to-install-che-on-openshift-using-cli/">Permissions required for CLI installation</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../../install/ref_permissions-to-install-che-on-openshift-using-the-web-console/">Permissions for web console installation</a>
+    <a class="nav-link" href="../../install/ref_permissions-to-install-che-on-openshift-using-the-web-console/">Permissions required for web console installation</a>
   </li>
 </ul>
   </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="../../install/proc_verifying-the-installation/">Verify the Che installation</a>
+    <a class="nav-link" href="../../install/proc_verifying-the-installation/">Confirm Che is running</a>
   </li>
   <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="../../install/con_next-steps-after-installation/">Next steps after installation</a>
+    <a class="nav-link" href="../../install/proc_finding-the-fully-qualified-domain-name-fqdn/">Get the dashboard URL to share with your team</a>
   </li>
   <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="../../install/proc_uninstalling-che/">Uninstall Che</a>
+    <a class="nav-link" href="../../install/con_next-steps-after-installation/">Prepare Che for your team</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../../install/proc_uninstalling-che/">Remove Che from your cluster</a>
   </li>
 </ul>
   </li>
@@ -607,7 +616,7 @@
     <a class="nav-link" href="../../administration-guide/understanding-the-checluster-custom-resource/">Understanding the <code>CheCluster</code> Custom Resource</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../../install/using-chectl-to-configure-the-checluster-custom-resource-during-installation/">Using chectl to configure the <code>CheCluster</code> Custom Resource during installation</a>
+    <a class="nav-link" href="../../install/using-chectl-to-configure-the-checluster-custom-resource-during-installation/">Customize settings during deployment</a>
   </li>
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="../../administration-guide/using-the-cli-to-configure-the-checluster-custom-resource/">Using the CLI to configure the CheCluster Custom Resource</a>
@@ -956,9 +965,9 @@
   <ul>
     <li><a href="../what-is-che/">Documentation</a></li>
     <li>Discover</li>
-    <li><a href="../architecture-overview/">Architecture overview</a></li>
-    <li><a href="../server-components/">Server components</a></li>
-    <li><a href="./">User dashboard</a></li>
+    <li><a href="../architecture-overview/">Che architecture</a></li>
+    <li><a href="../what-runs-on-your-cluster/">What runs on your cluster</a></li>
+    <li><a href="./">Dashboard and workspace management</a></li>
   </ul>
 </nav>
 <div class="page-versions">
@@ -975,34 +984,16 @@
   <div class="toc-menu"></div>
 </aside>
 <article class="doc">
-<h1 class="page">User dashboard</h1>
+<h1 class="page">Dashboard and workspace management</h1>
 <div class="paragraph _abstract">
-<p>The user dashboard is the landing page of Eclipse&#160;Che where users create, manage, and access their workspaces. It coordinates with the Che server, plug-in registry, and Kubernetes API to convert devfiles into running workspace pods.</p>
+<p>The user dashboard is the landing page of Eclipse&#160;Che where users create, manage, and access their workspaces. It coordinates with the Che server and Kubernetes API to convert devfiles into running workspace pods.</p>
 </div>
 <div class="paragraph">
-<p>This page is for platform administrators and developers evaluating Che as a cloud development platform. To learn more about common roles and example tasks referenced in Che documentation, see <a href="../roles-and-tasks/" class="xref page">Common user roles and tasks</a>.</p>
-</div>
-<div class="paragraph">
-<p>The user dashboard is the landing page of Eclipse&#160;Che.
-Che users browse the user dashboard to access and manage their workspaces.
-It is a React application.
+<p>It is a React application.
 The Che deployment starts it in the <code>che-dashboard</code> Deployment.</p>
 </div>
 <div class="paragraph">
-<p>It needs access to:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><a href="../che-server/" class="xref page">Che server</a></p>
-</li>
-<li>
-<p><a href="../plugin-registry/" class="xref page">Plugin registry</a></p>
-</li>
-<li>
-<p>Kubernetes API</p>
-</li>
-</ul>
+<p>It needs access to the Che server and the Kubernetes Application Programming Interface (API).</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -1016,13 +1007,10 @@ The Che deployment starts it in the <code>che-dashboard</code> Deployment.</p>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Sends the repository URL to <a href="../che-server/" class="xref page">Che server</a> and expects a devfile in return, when the user is creating a workspace from a remote devfile.</p>
+<p>Sends the repository URL to the Che server and expects a devfile in return, when the user is creating a workspace from a remote devfile.</p>
 </li>
 <li>
 <p>Reads the devfile describing the workspace.</p>
-</li>
-<li>
-<p>Collects the additional metadata from the <a href="../plugin-registry/" class="xref page">Plugin registry</a>.</p>
 </li>
 <li>
 <p>Converts the information into a DevWorkspace Custom Resource.</p>
@@ -1042,10 +1030,10 @@ The Che deployment starts it in the <code>che-dashboard</code> Deployment.</p>
 <div class="title">Additional resources</div>
 <ul>
 <li>
-<p><a href="https://quay.io/repository/eclipse/che-dashboard?tab=history"><code>quay.io/eclipse/che-dashboard</code> container image</a></p>
+<p><a href="../../administration-guide/configuring-dashboard/" class="xref page">Configuring dashboard</a></p>
 </li>
 <li>
-<p><a href="https://github.com/eclipse-che/che-dashboard">Che Dashboard repository</a></p>
+<p><a href="../che-server/" class="xref page">Server and namespace provisioning</a></p>
 </li>
 </ul>
 </div>
