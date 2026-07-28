@@ -3,9 +3,9 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Configuring cluster roles for Che users :: Eclipse Che Documentation</title>
+    <title>Grant additional permissions to users :: Eclipse Che Documentation</title>
     <link rel="canonical" href="https://www.eclipse.org/che/docs/stable/secure/configuring-cluster-roles-for-users/">
-    <meta name="description" content="Configuring cluster roles for Che users">
+    <meta name="description" content="Grant additional permissions to users">
     <meta name="keywords" content="administration-guide, user, roles, permissions">
     <meta name="generator" content="Antora 3.1.15">
     <link rel="stylesheet" href="../../../../docs/_/css/site.css">
@@ -230,28 +230,61 @@
   </li>
   <li class="nav-item" data-depth="0">
     <button class="nav-item-toggle"></button>
-    <span class="nav-text">Get Started</span>
+    <span class="nav-text">Get Started as an Administrator</span>
 <ul class="nav-list">
-  <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="../../get-started/your-first-workspace/">Your first-day experience</a>
-  </li>
-  <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="../../get-started/starting-a-workspace-from-a-git-repository-url/">Open your project in a Cloud Development Environment</a>
-  </li>
-  <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="../../get-started/basic-actions-you-can-perform-on-a-workspace/">Manage your Cloud Development Environments</a>
-  </li>
   <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../../get-started/authenticating-to-a-git-server-from-a-workspace/">How Git authentication works in Cloud Development Environments</a>
+    <span class="nav-text">Prepare the platform for developers</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../../get-started/using-a-git-provider-access-token/">Access private repositories with a personal access token</a>
+    <a class="nav-link" href="../../get-started-admin/your-first-week-as-administrator/">Your first week as a platform administrator</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../get-started-admin/verify-the-platform-end-to-end/">Verify the platform works end-to-end</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../get-started-admin/configure-github-oauth-for-your-team/">Configure GitHub OAuth for your team</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../get-started-admin/what-to-configure-next/">What to configure next</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Get Started as a Developer</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Create your first cloud workspace</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../get-started-user/your-first-workspace/">Your first-day experience</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../get-started-user/starting-a-workspace-from-a-git-repository-url/">Open your project in a cloud development environment</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../get-started-user/basic-actions-you-can-perform-on-a-workspace/">Manage your cloud development environments</a>
   </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="../../get-started/starting-a-workspace-from-a-raw-devfile-url/">Start a Cloud Development Environment from a raw devfile URL</a>
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Connect to your Git repositories</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../../get-started-user/authenticating-to-a-git-server-from-a-workspace/">How Git authentication works in cloud development environments</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../../get-started-user/using-a-git-provider-access-token/">Access private repositories with a personal access token</a>
+  </li>
+</ul>
+  </li>
+</ul>
   </li>
 </ul>
   </li>
@@ -319,6 +352,9 @@
     <button class="nav-item-toggle"></button>
     <span class="nav-text">User Guide</span>
 <ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../../end-user-guide/starting-a-workspace-from-a-raw-devfile-url/">Start a cloud development environment from a raw devfile URL</a>
+  </li>
   <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
     <a class="nav-link" href="../../end-user-guide/optional-parameters-for-the-urls-for-starting-a-new-workspace/">Optional parameters for the URLs for starting a new workspace</a>
@@ -454,7 +490,7 @@
     <a class="nav-link" href="../../end-user-guide/creating-image-pull-secrets/">Creating image pull Secrets</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../../get-started/using-a-git-provider-access-token/">Access private repositories with a personal access token</a>
+    <a class="nav-link" href="../../get-started-user/using-a-git-provider-access-token/">Access private repositories with a personal access token</a>
   </li>
 </ul>
   </li>
@@ -876,6 +912,9 @@
     <a class="nav-link" href="../../administration-guide/configuring-the-open-vsx-registry-url/">Configure the Open VSX registry URL</a>
   </li>
   <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../administration-guide/enabling-the-managed-open-vsx-registry/">Enable the managed Open VSX registry</a>
+  </li>
+  <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../../administration-guide/proc_deploy-open-vsx-from-source/">Deploy Open VSX from source</a>
   </li>
   <li class="nav-item" data-depth="2">
@@ -1007,9 +1046,9 @@
   <div class="toc-menu"></div>
 </aside>
 <article class="doc">
-<h1 class="page">Configuring cluster roles for Che users</h1>
+<h1 class="page">Grant additional permissions to users</h1>
 <div class="paragraph">
-<p>You can grant Che users more cluster permissions by adding cluster roles to those users.</p>
+<p>Grant your developers additional Kubernetes permissions by adding cluster roles so they can access resources beyond the default workspace operations.</p>
 </div>
 <div class="ulist">
 <div class="title">Prerequisites</div>
@@ -1026,7 +1065,7 @@
 <p>Define the user roles name:</p>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-none hljs">$ USER_ROLES=<em>&lt;name&gt;</em> <i class="conum" data-value="1"></i><b>(1)</b></code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">$ USER_ROLES=<em>&lt;name&gt;</em> <i class="conum" data-value="1"></i><b>(1)</b></code></pre>
 </div>
 </div>
 <div class="colist arabic">
@@ -1039,10 +1078,10 @@
 </div>
 </li>
 <li>
-<p>Find out the namespace where the Che Operator is deployed:</p>
+<p>Determine the namespace where the Che Operator is deployed:</p>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-none hljs">$ OPERATOR_NAMESPACE=$(kubectl get pods -l app.kubernetes.io/component=che-operator -o jsonpath={".items[0].metadata.namespace"} --all-namespaces)</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">$ OPERATOR_NAMESPACE=$(kubectl get pods -l app.kubernetes.io/component=che-operator -o jsonpath={".items[0].metadata.namespace"} --all-namespaces)</code></pre>
 </div>
 </div>
 </li>
@@ -1050,7 +1089,7 @@
 <p>Create needed roles:</p>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-none hljs">$ kubectl apply -f - &lt;&lt;EOF
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">$ kubectl apply -f - &lt;&lt;EOF
 kind: ClusterRole
 apiVersion: rbac.authorization.k8s.io/v1
 metadata:
@@ -1088,7 +1127,7 @@ EOF</code></pre>
 <p>Delegate the roles to the Che Operator:</p>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-none hljs">$ kubectl apply -f - &lt;&lt;EOF
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">$ kubectl apply -f - &lt;&lt;EOF
 kind: ClusterRoleBinding
 apiVersion: rbac.authorization.k8s.io/v1
 metadata:
@@ -1111,7 +1150,7 @@ EOF</code></pre>
 <p>Configure the Che Operator to delegate the roles to the <code>che</code> service account:</p>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-none hljs">$ kubectl patch checluster eclipse-che \
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">$ kubectl patch checluster eclipse-che \
   --patch '{"spec": {"components": {"cheServer": {"clusterRoles": ["'${USER_ROLES}'"]}}}}' \
   --type=merge -n eclipse-che</code></pre>
 </div>
@@ -1121,19 +1160,43 @@ EOF</code></pre>
 <p>Configure the Che server to delegate the roles to a user:</p>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-none hljs">$ kubectl patch checluster eclipse-che \
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">$ kubectl patch checluster eclipse-che \
   --patch '{"spec": {"devEnvironments": {"user": {"clusterRoles": ["'${USER_ROLES}'"]}}}}' \
   --type=merge -n eclipse-che</code></pre>
 </div>
 </div>
 </li>
 <li>
-<p>Wait for the rollout of the Che server components to be completed.</p>
+<p>Wait for the rollout of the Che server components to complete.</p>
 </li>
 <li>
 <p>Ask the user to log out and log in to have the new roles applied.</p>
 </li>
 </ol>
+</div>
+<div class="ulist">
+<div class="title">Verification</div>
+<ul>
+<li>
+<p>Verify that the ClusterRole exists:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">$ kubectl get clusterrole ${USER_ROLES}</code></pre>
+</div>
+</div>
+</li>
+</ul>
+</div>
+<div class="ulist _additional-resources">
+<div class="title">Additional resources</div>
+<ul>
+<li>
+<p><a href="../configuring-advanced-authorization/" class="xref page">Restrict access to specific users and groups</a></p>
+</li>
+<li>
+<p><a href="../removing-user-data-in-compliance-with-the-gdpr/" class="xref page">Remove user data for GDPR compliance</a></p>
+</li>
+</ul>
 </div>
 </article>
   </div>

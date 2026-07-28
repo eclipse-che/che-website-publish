@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <title>Restrict access to specific users and groups :: Eclipse Che Documentation</title>
     <link rel="canonical" href="https://www.eclipse.org/che/docs/stable/secure/configuring-advanced-authorization/">
-    <meta name="description" content="Configuring advanced authorization">
+    <meta name="description" content="Restrict access to specific users and groups">
     <meta name="keywords" content="authorization, user, group">
     <meta name="generator" content="Antora 3.1.15">
     <link rel="stylesheet" href="../../../../docs/_/css/site.css">
@@ -230,28 +230,61 @@
   </li>
   <li class="nav-item" data-depth="0">
     <button class="nav-item-toggle"></button>
-    <span class="nav-text">Get Started</span>
+    <span class="nav-text">Get Started as an Administrator</span>
 <ul class="nav-list">
-  <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="../../get-started/your-first-workspace/">Your first-day experience</a>
-  </li>
-  <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="../../get-started/starting-a-workspace-from-a-git-repository-url/">Open your project in a Cloud Development Environment</a>
-  </li>
-  <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="../../get-started/basic-actions-you-can-perform-on-a-workspace/">Manage your Cloud Development Environments</a>
-  </li>
   <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../../get-started/authenticating-to-a-git-server-from-a-workspace/">How Git authentication works in Cloud Development Environments</a>
+    <span class="nav-text">Prepare the platform for developers</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../../get-started/using-a-git-provider-access-token/">Access private repositories with a personal access token</a>
+    <a class="nav-link" href="../../get-started-admin/your-first-week-as-administrator/">Your first week as a platform administrator</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../get-started-admin/verify-the-platform-end-to-end/">Verify the platform works end-to-end</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../get-started-admin/configure-github-oauth-for-your-team/">Configure GitHub OAuth for your team</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../get-started-admin/what-to-configure-next/">What to configure next</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Get Started as a Developer</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Create your first cloud workspace</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../get-started-user/your-first-workspace/">Your first-day experience</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../get-started-user/starting-a-workspace-from-a-git-repository-url/">Open your project in a cloud development environment</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../get-started-user/basic-actions-you-can-perform-on-a-workspace/">Manage your cloud development environments</a>
   </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="../../get-started/starting-a-workspace-from-a-raw-devfile-url/">Start a Cloud Development Environment from a raw devfile URL</a>
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Connect to your Git repositories</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../../get-started-user/authenticating-to-a-git-server-from-a-workspace/">How Git authentication works in cloud development environments</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../../get-started-user/using-a-git-provider-access-token/">Access private repositories with a personal access token</a>
+  </li>
+</ul>
+  </li>
+</ul>
   </li>
 </ul>
   </li>
@@ -319,6 +352,9 @@
     <button class="nav-item-toggle"></button>
     <span class="nav-text">User Guide</span>
 <ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../../end-user-guide/starting-a-workspace-from-a-raw-devfile-url/">Start a cloud development environment from a raw devfile URL</a>
+  </li>
   <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
     <a class="nav-link" href="../../end-user-guide/optional-parameters-for-the-urls-for-starting-a-new-workspace/">Optional parameters for the URLs for starting a new workspace</a>
@@ -454,7 +490,7 @@
     <a class="nav-link" href="../../end-user-guide/creating-image-pull-secrets/">Creating image pull Secrets</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../../get-started/using-a-git-provider-access-token/">Access private repositories with a personal access token</a>
+    <a class="nav-link" href="../../get-started-user/using-a-git-provider-access-token/">Access private repositories with a personal access token</a>
   </li>
 </ul>
   </li>
@@ -876,6 +912,9 @@
     <a class="nav-link" href="../../administration-guide/configuring-the-open-vsx-registry-url/">Configure the Open VSX registry URL</a>
   </li>
   <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../administration-guide/enabling-the-managed-open-vsx-registry/">Enable the managed Open VSX registry</a>
+  </li>
+  <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../../administration-guide/proc_deploy-open-vsx-from-source/">Deploy Open VSX from source</a>
   </li>
   <li class="nav-item" data-depth="2">
@@ -1009,10 +1048,7 @@
 <article class="doc">
 <h1 class="page">Restrict access to specific users and groups</h1>
 <div class="paragraph">
-<p>You can determine which users and groups are allowed to access Che.</p>
-</div>
-<div class="paragraph">
-<p>This page is for platform administrators who install, configure, and manage Che on Kubernetes clusters. To learn more about common roles and example tasks referenced in Che documentation, see <a href="../../discover/roles-and-tasks/" class="xref page">Common user roles and tasks</a>.</p>
+<p>Restrict Che access to specific users and groups so that you can control which users are allowed or denied access to the platform.</p>
 </div>
 <div class="ulist">
 <div class="title">Prerequisites</div>
@@ -1059,38 +1095,45 @@
 </tr>
 <tr>
 <td><i class="conum" data-value="4"></i><b>4</b></td>
-<td>List of groups of users denied to access Eclipse&#160;Che (for OpenShift&#160;Container&#160;Platform only).</td>
+<td>List of groups of users denied access to Eclipse&#160;Che (for OpenShift&#160;Container&#160;Platform only).
+<div class="paragraph">
+<p>If a user is on both <code>allow</code> and <code>deny</code> lists, access is denied. If <code>allowUsers</code> and <code>allowGroups</code> are empty, all users are allowed except the ones on the <code>deny</code> lists. If <code>denyUsers</code> and <code>denyGroups</code> are empty, only the users from <code>allow</code> lists are allowed. If both <code>allow</code> and <code>deny</code> lists are empty, all users are allowed.</p>
+</div></td>
 </tr>
 </table>
 </div>
 </li>
 <li>
-<p>Wait for the rollout of the Che server components to be completed.</p>
+<p>Wait for the rollout of the Che server components to complete.</p>
 </li>
 </ol>
 </div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-<div class="paragraph">
-<p>To allow a user to access Che, add them to the <code>allowUsers</code> list. Alternatively, choose a group the user is a member of and add the group to the <code>allowGroups</code> list.
-To deny a user access to Che, add them to the <code>denyUsers</code> list. Alternatively, choose a group the user is a member of and add the group to the <code>denyGroups</code> list.
-If the user is on both <code>allow</code> and <code>deny</code> lists, they are denied access to Che.</p>
+<div class="ulist">
+<div class="title">Verification</div>
+<ul>
+<li>
+<p>Log in to the Che dashboard as a user on the <code>allowUsers</code> list and verify access to the dashboard.</p>
+</li>
+<li>
+<p>Log in as a user on the <code>denyUsers</code> list and verify that Che displays the following message:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-terminal hljs" data-lang="terminal">Advanced authorization is enabled. User might not be allowed. Please, contact the administrator.</code></pre>
 </div>
-<div class="paragraph">
-<p>If <code>allowUsers</code> and <code>allowGroups</code> are empty, all users are allowed to access Che except the ones on the <code>deny</code> lists.
-If <code>denyUsers</code> and <code>denyGroups</code> are empty, only the users from <code>allow</code> lists are allowed to access Che.</p>
 </div>
-<div class="paragraph">
-<p>If both <code>allow</code> and <code>deny</code> lists are empty, all users are allowed to access Che.</p>
+</li>
+</ul>
 </div>
-</td>
-</tr>
-</table>
+<div class="ulist _additional-resources">
+<div class="title">Additional resources</div>
+<ul>
+<li>
+<p><a href="../configuring-cluster-roles-for-users/" class="xref page">Grant additional permissions to users</a></p>
+</li>
+<li>
+<p><a href="../removing-user-data-in-compliance-with-the-gdpr/" class="xref page">Remove user data for GDPR compliance</a></p>
+</li>
+</ul>
 </div>
 </article>
   </div>
