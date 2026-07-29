@@ -1056,20 +1056,20 @@
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Set up an OAuth consumer (OAuth 2.0) in the Bitbucket Cloud.</p>
+<p>Set up an OAuth client (OAuth 2.0) in the Bitbucket Cloud.</p>
 </li>
 <li>
-<p>Apply an OAuth consumer Secret for the Bitbucket Cloud.</p>
+<p>Apply an OAuth client Secret for the Bitbucket Cloud.</p>
 </li>
 </ol>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="setting-up-an-oauth-consumer-in-the-bitbucket-cloud"><a class="anchor" href="#setting-up-an-oauth-consumer-in-the-bitbucket-cloud"></a>Setting up an OAuth consumer in the Bitbucket Cloud</h2>
+<h2 id="set-up-an-oauth-client-in-the-bitbucket-cloud"><a class="anchor" href="#set-up-an-oauth-client-in-the-bitbucket-cloud"></a>Set up an OAuth client in the Bitbucket Cloud</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Set up an OAuth consumer for OAuth 2.0 in the Bitbucket Cloud.</p>
+<p>Set up an OAuth client for OAuth 2.0 in the Bitbucket Cloud.</p>
 </div>
 <div class="ulist">
 <div class="title">Prerequisites</div>
@@ -1083,32 +1083,29 @@
 <div class="title">Procedure</div>
 <ol class="arabic">
 <li>
-<p>Click your avatar and go to the <strong>All workspaces</strong> page.</p>
+<p>Click the Gear(Settings) icon and go to the <strong>Workspace Settings</strong> page.</p>
 </li>
 <li>
-<p>Select a workspace and click it.</p>
+<p>Go to <span class="menuseq"><b class="menu">Apps and features</b>&#160;<i class="fa fa-angle-right caret"></i> <b class="submenu">OAuth clients</b>&#160;<i class="fa fa-angle-right caret"></i> <b class="menuitem">Create OAuth client</b></span>.</p>
 </li>
 <li>
-<p>Go to <span class="menuseq"><b class="menu">Settings</b>&#160;<i class="fa fa-angle-right caret"></i> <b class="submenu">OAuth consumers</b>&#160;<i class="fa fa-angle-right caret"></i> <b class="menuitem">Add consumer</b></span>.</p>
+<p>In the <strong>Details</strong> tab enter <strong>Che</strong> as the <strong>Name</strong>.</p>
 </li>
 <li>
-<p>Enter <strong>Che</strong> as the <strong>Name</strong>.</p>
+<p>In the <strong>Authorization</strong> tab click the <strong>Authorization code</strong> checkbox and enter <code>https://<em>&lt;che_fqdn&gt;</em>/api/oauth/callback</code> as the <strong>Callback URL</strong>.</p>
 </li>
 <li>
-<p>Enter <code>https://<em>&lt;che_fqdn&gt;</em>/api/oauth/callback</code> as the <strong>Callback URL</strong>.</p>
+<p>In the <strong>Scopes</strong> tab check all of the <strong>Account</strong> and <strong>Repositories</strong> checkboxes, and click <strong>Save</strong>.</p>
 </li>
 <li>
-<p>Under <strong>Permissions</strong>, check all of the <strong>Account</strong> and <strong>Repositories</strong> checkboxes, and click <strong>Save</strong>.</p>
+<p>Copy and save the <strong>Client ID</strong> value for use when applying the Bitbucket OAuth client Secret.</p>
 </li>
 <li>
-<p>Expand the added consumer and then copy and save the <strong>Key</strong> value for use when applying the Bitbucket OAuth consumer Secret:</p>
-</li>
-<li>
-<p>Copy and save the <strong>Secret</strong> value for use when applying the Bitbucket OAuth consumer Secret.</p>
+<p>Copy and save the <strong>Secret</strong> value for use when applying the Bitbucket OAuth client Secret.</p>
 </li>
 </ol>
 </div>
-<div class="ulist">
+<div class="ulist _additional-resources">
 <div class="title">Additional resources</div>
 <ul>
 <li>
@@ -1119,26 +1116,26 @@
 </div>
 </div>
 <div class="sect1">
-<h2 id="applying-an-oauth-consumer-secret-for-the-bitbucket-cloud"><a class="anchor" href="#applying-an-oauth-consumer-secret-for-the-bitbucket-cloud"></a>Applying an OAuth consumer Secret for the Bitbucket Cloud</h2>
+<h2 id="applying-an-oauth-client-secret-for-the-bitbucket-cloud"><a class="anchor" href="#applying-an-oauth-client-secret-for-the-bitbucket-cloud"></a>Apply an OAuth client Secret for the Bitbucket Cloud</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Prepare and apply an OAuth consumer Secret for the Bitbucket Cloud.</p>
+<p>Apply an OAuth client Secret for the Bitbucket Cloud.</p>
 </div>
 <div class="ulist">
 <div class="title">Prerequisites</div>
 <ul>
 <li>
-<p>The OAuth consumer is set up in the Bitbucket Cloud.</p>
+<p>The OAuth client is set up in the Bitbucket Cloud.</p>
 </li>
 <li>
-<p>The following values, which were generated when setting up the Bitbucket OAuth consumer, are prepared:</p>
+<p>The following values, which were generated when setting up the Bitbucket OAuth client, are prepared:</p>
 <div class="ulist">
 <ul>
 <li>
-<p>Bitbucket OAuth consumer Key</p>
+<p>Bitbucket OAuth client ID</p>
 </li>
 <li>
-<p>Bitbucket OAuth consumer Secret</p>
+<p>Bitbucket OAuth client Secret</p>
 </li>
 </ul>
 </div>
@@ -1167,8 +1164,8 @@ metadata:
     che.eclipse.org/oauth-scm-server: bitbucket
 type: Opaque
 stringData:
-  id: <em>&lt;Bitbucket_Oauth_Consumer_Key&gt;</em> <i class="conum" data-value="2"></i><b>(2)</b>
-  secret: <em>&lt;Bitbucket_Oauth_Consumer_Secret&gt;</em> <i class="conum" data-value="3"></i><b>(3)</b></code></pre>
+  id: <em>&lt;Bitbucket_OAuth_Client_ID&gt;</em> <i class="conum" data-value="2"></i><b>(2)</b>
+  secret: <em>&lt;Bitbucket_OAuth_Client_Secret&gt;</em> <i class="conum" data-value="3"></i><b>(3)</b></code></pre>
 </div>
 </div>
 <div class="colist arabic">
@@ -1179,11 +1176,11 @@ stringData:
 </tr>
 <tr>
 <td><i class="conum" data-value="2"></i><b>2</b></td>
-<td>The <strong>Bitbucket OAuth consumer Key</strong>.</td>
+<td>The <strong>Bitbucket OAuth client ID</strong>.</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="3"></i><b>3</b></td>
-<td>The <strong>Bitbucket OAuth consumer Secret</strong>.</td>
+<td>The <strong>Bitbucket OAuth client Secret</strong>.</td>
 </tr>
 </table>
 </div>
