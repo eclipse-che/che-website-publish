@@ -141,76 +141,82 @@
   </li>
   <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../installing-che/">Install Che</a>
+    <span class="nav-text">Deploy using GitOps</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../proc_deploying-che-using-gitops/">Deploy using GitOps and Argo CD</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../proc_deploying-che-using-gitops-in-a-restricted-environment/">Deploy in a restricted environment using GitOps</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
     <span class="nav-text">Deploy on OpenShift</span>
 <ul class="nav-list">
-  <li class="nav-item" data-depth="3">
+  <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../proc_installing-che-on-openshift-using-cli/">Deploy using the CLI</a>
   </li>
-  <li class="nav-item" data-depth="3">
+  <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../proc_installing-che-on-openshift-using-the-web-console/">Deploy using the web console</a>
   </li>
-  <li class="nav-item" data-depth="3">
+  <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../proc_installing-che-on-openshift-with-keycloak-as-oidc/">Deploy using an external identity provider</a>
   </li>
 </ul>
   </li>
-  <li class="nav-item" data-depth="2">
+  <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
     <span class="nav-text">Deploy on Kubernetes</span>
 <ul class="nav-list">
-  <li class="nav-item" data-depth="3">
+  <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../installing-che-on-microsoft-azure/">Install Che on Microsoft Azure</a>
   </li>
-  <li class="nav-item" data-depth="3">
+  <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../installing-che-on-amazon-elastic-kubernetes-service/">Install Che on Amazon Elastic Kubernetes Service</a>
   </li>
-  <li class="nav-item" data-depth="3">
+  <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../proc_installing-che-on-the-virtual-kubernetes-cluster/">Install Che on the virtual Kubernetes cluster</a>
   </li>
 </ul>
   </li>
-  <li class="nav-item" data-depth="2">
+  <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
     <span class="nav-text">Deploy locally</span>
 <ul class="nav-list">
-  <li class="nav-item" data-depth="3">
+  <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../proc_installing-che-on-red-hat-openshift-local/">Install Che on Red Hat OpenShift Local</a>
   </li>
-  <li class="nav-item" data-depth="3">
+  <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../proc_installing-che-on-minikube/">Install Che on Minikube</a>
   </li>
-  <li class="nav-item" data-depth="3">
+  <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../proc_installing-che-on-minikube-keycloak-oidc/">Install Che on Minikube with Keycloak as the OIDC provider</a>
   </li>
 </ul>
   </li>
-  <li class="nav-item" data-depth="2">
+  <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
     <span class="nav-text">Deploy in a restricted environment</span>
 <ul class="nav-list">
-  <li class="nav-item" data-depth="3">
+  <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../proc_installing-che-in-a-restricted-environment/">Deploy in an air-gapped environment</a>
   </li>
 </ul>
   </li>
-  <li class="nav-item" data-depth="2">
+  <li class="nav-item" data-depth="1">
     <a class="nav-link" href="../using-chectl-to-configure-the-checluster-custom-resource-during-installation/">Customize settings during deployment</a>
   </li>
-  <li class="nav-item" data-depth="2">
+  <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
     <span class="nav-text">Permissions</span>
 <ul class="nav-list">
-  <li class="nav-item" data-depth="3">
+  <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../ref_permissions-to-install-che-on-openshift-using-cli/">Permissions required for CLI installation</a>
   </li>
-  <li class="nav-item" data-depth="3">
+  <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../ref_permissions-to-install-che-on-openshift-using-the-web-console/">Permissions required for web console installation</a>
-  </li>
-</ul>
   </li>
 </ul>
   </li>
@@ -475,6 +481,27 @@
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../../end-user-guide/changing-the-ai-tool-on-a-workspace/">Changing the AI tool on a workspace</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../../end-user-guide/persist-claude-code-configuration/">Persist Claude Code configuration</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../../end-user-guide/share-claude-code-configuration-with-pvc-direct-mount/">Share configuration with PVC direct mount</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../../end-user-guide/share-claude-code-configuration-with-pvc-tmp-copy/">Share configuration with PVC tmp copy</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../../end-user-guide/share-claude-code-configuration-with-gitops/">Share configuration with GitOps</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../../end-user-guide/troubleshoot-claude-code-configuration-persistence/">Troubleshoot Claude Code configuration persistence</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../end-user-guide/distribute-claude-code-skills-with-lola/">Distribute AI skills with Lola</a>
   </li>
 </ul>
   </li>
@@ -1055,6 +1082,9 @@
 <p>Che deploys on Kubernetes as an Operator that manages a gateway, dashboard, server, and plug-in registry. The installation method you choose depends on your cluster environment and need for configuration control.</p>
 </div>
 <div class="paragraph">
+<p>This page is for platform administrators who install, configure, and manage Che on Kubernetes clusters. To learn more about common roles and example tasks referenced in Che documentation, see <a href="../../discover/roles-and-tasks/" class="xref page">Common user roles and tasks</a>.</p>
+</div>
+<div class="paragraph">
 <p>Che consists of an Operator, a user dashboard, a gateway, and a plug-in registry. The Operator manages the full lifecycle of all server components. You deploy Che by installing the Operator and creating a <code>CheCluster</code> custom resource.</p>
 </div>
 </div>
@@ -1064,6 +1094,10 @@
 <div class="sectionbody">
 <div class="dlist">
 <dl>
+<dt class="hdlist1">Argo CD (GitOps)</dt>
+<dd>
+<p>Store the Operator subscription and <code>CheCluster</code> configuration in a Git repository and let Argo CD reconcile the deployment. Choose this method for production deployments where every configuration change must be tracked in Git, auditable, and automatically reconciled.</p>
+</dd>
 <dt class="hdlist1"><code>chectl</code> command-line tool</dt>
 <dd>
 <p>Choose this method when you need to quickly deploy Che for evaluation, customize the <code>CheCluster</code> configuration during installation, or manage Che from scripts.</p>
@@ -1075,7 +1109,7 @@
 </dl>
 </div>
 <div class="paragraph">
-<p>Both methods produce the same result: an Operator subscription and a <code>CheCluster</code> custom resource. For step-by-step deployment instructions, see Additional resources.</p>
+<p>All methods produce the same result: an Operator subscription and a <code>CheCluster</code> custom resource. For step-by-step deployment instructions, see Additional resources.</p>
 </div>
 </div>
 </div>
@@ -1086,11 +1120,15 @@
 <dl>
 <dt class="hdlist1">Standard deployment</dt>
 <dd>
-<p>Your Kubernetes cluster has internet access. Both installation methods are available. The Operator pulls container images directly from <code>registry.redhat.io</code>.</p>
+<p>Your Kubernetes cluster has internet access. All installation methods are available. The Operator pulls container images directly from <code>registry.redhat.io</code>.</p>
+</dd>
+<dt class="hdlist1">GitOps deployment</dt>
+<dd>
+<p>Your organization manages cluster configuration declaratively through Argo CD. Store the Operator subscription and <code>CheCluster</code> configuration in a Git repository and let Argo CD reconcile the desired state. Available for both connected and air-gapped clusters.</p>
 </dd>
 <dt class="hdlist1">Air-gapped deployment</dt>
 <dd>
-<p>Your cluster has no internet access. Mirror the required container images and Operator catalogs to a private registry before installation.</p>
+<p>Your cluster has no internet access. Mirror the required container images and Operator catalogs to a private registry before installation. Both GitOps and CLI methods are available.</p>
 </dd>
 <dt class="hdlist1">External identity provider</dt>
 <dd>
@@ -1102,10 +1140,16 @@
 <div class="title">Additional resources</div>
 <ul>
 <li>
+<p><a href="../proc_deploying-che-using-gitops/" class="xref page">Deploy using GitOps and Argo CD</a></p>
+</li>
+<li>
 <p><a href="../proc_installing-che-on-openshift-using-cli/" class="xref page">Deploy using the CLI</a></p>
 </li>
 <li>
 <p><a href="../proc_installing-che-on-openshift-using-the-web-console/" class="xref page">Deploy using the web console</a></p>
+</li>
+<li>
+<p><a href="../proc_deploying-che-using-gitops-in-a-restricted-environment/" class="xref page">Deploy in a restricted environment using GitOps</a></p>
 </li>
 <li>
 <p><a href="../proc_installing-che-in-a-restricted-environment/" class="xref page">Deploy in an air-gapped environment</a></p>
