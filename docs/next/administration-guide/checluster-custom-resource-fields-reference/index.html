@@ -1041,7 +1041,7 @@
           <a href="../../discover/what-is-che/">next</a>
         </li>
         <li class="version is-latest">
-          <a href="../../../stable/discover/what-is-che/">7.120.x</a>
+          <a href="../../../stable/discover/what-is-che/">7.121.x</a>
         </li>
       </ul>
     </li>
@@ -1067,7 +1067,7 @@
   <button class="version-menu-toggle" title="Show other versions of page">next</button>
   <div class="version-menu">
     <a class="version is-current" href="./">next</a>
-    <a class="version" href="../../../stable/administration-guide/checluster-custom-resource-fields-reference/">7.120.x</a>
+    <a class="version" href="../../../stable/administration-guide/checluster-custom-resource-fields-reference/">7.121.x</a>
   </div>
 </div>
 <div class="edit-this-page"><a href="https://github.com/eclipse-che/che-docs/edit/main/modules/administration-guide/pages/checluster-custom-resource-fields-reference.adoc">Edit this Page</a></div>
@@ -2196,6 +2196,11 @@ spec:
 <td class="tableblock halign-left valign-top"><p class="tableblock">{  "enable": true}</p></td>
 </tr>
 <tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">openVSXRegistry</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">OpenVSX registry configuration.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">{  "enable": false}</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">pluginRegistry</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Configuration settings related to the plug-in registry used by the Che installation.</p></td>
 <td class="tableblock halign-left valign-top"></td>
@@ -2313,12 +2318,12 @@ spec:
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">externalPluginRegistries</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">External plugin registries.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Deprecated external plugin registries list.</p></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">openVSXURL</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Open VSX registry URL. If omitted an embedded instance will be used.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">OpenVSX external registry URL. When omitted, the default value from the <code>CHE_DEFAULT_SPEC_COMPONENTS_PLUGINREGISTRY_OPENVSXURL</code> environment variable is used. This field is ignored when the internal OpenVSX registry is enabled.</p></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 </tbody>
@@ -2722,6 +2727,11 @@ spec:
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">labels</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Defines labels which will be set for an Ingress (a route for OpenShift platform).</p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">networkPolicy</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">NetworkPolicy configures NetworkPolicy resources for the Che namespace and user workspace namespaces. For OpenShift clusters only. When enabled, the following policies are created: In the Che namespace:   - allow-from-same-namespace: allows ingress traffic between Che pods in the same namespace.   - allow-from-workspaces: allows ingress traffic from user workspace namespaces.   - allow-from-openshift-ingress: allows ingress traffic from the OpenShift ingress namespace.   - allow-from-openshift-monitoring: allows ingress traffic from the OpenShift monitoring namespace.   - allow-from-&lt;flavor&gt;-operator: allows ingress traffic from the operator pod to Che components.   - allow-all-egress: allows all egress traffic from Che pods. In each user workspace namespace:   - allow-from-&lt;che-namespace&gt;: allows ingress traffic from the Che namespace.   - allow-from-same-namespace: allows ingress traffic between pods in the same namespace.   - allow-from-devworkspace-operator: allows ingress traffic from the DevWorkspace operator.   - allow-from-openshift-monitoring: allows ingress traffic from the OpenShift monitoring namespace.   - allow-from-openshift-ingress: allows ingress traffic from the OpenShift ingress namespace.   - allow-all-egress: allows all egress traffic from workspace pods.</p></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
@@ -3144,6 +3154,11 @@ spec:
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">message</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">A human readable message indicating details about why the Che deployment is in the current phase.</p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">openVSXURL</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The public URL of the internal OpenVSX registry.</p></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>

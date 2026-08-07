@@ -1041,7 +1041,7 @@
           <a href="../../discover/what-is-che/">next</a>
         </li>
         <li class="version is-latest">
-          <a href="../../../stable/discover/what-is-che/">7.120.x</a>
+          <a href="../../../stable/discover/what-is-che/">7.121.x</a>
         </li>
       </ul>
     </li>
@@ -1066,7 +1066,7 @@
   <button class="version-menu-toggle" title="Show other versions of page">next</button>
   <div class="version-menu">
     <a class="version is-current" href="./">next</a>
-    <a class="version" href="../../../stable/install/proc_installing-che-in-a-restricted-environment/">7.120.x</a>
+    <a class="version" href="../../../stable/install/proc_installing-che-in-a-restricted-environment/">7.121.x</a>
   </div>
 </div>
 <div class="edit-this-page"><a href="https://github.com/eclipse-che/che-docs/edit/main/modules/install/pages/proc_installing-che-in-a-restricted-environment.adoc">Edit this Page</a></div>
@@ -1141,7 +1141,7 @@
 <p>An active <code>skopeo</code> session with administrative access to the private Docker registry. <a href="https://github.com/containers/skopeo#authenticating-to-a-registry">Authenticating to a registry</a>, and <a href="https://docs.redhat.com/en/documentation/openshift_container_platform/4.18/html/disconnected_environments/installing-mirroring-disconnected-about">Mirroring images for a disconnected installation</a>.</p>
 </li>
 <li>
-<p><code>chectl</code> for Che version 7.120. See <a href="../installing-the-chectl-management-tool/" class="xref page">Set up the chectl command-line tool</a>.</p>
+<p><code>chectl</code> for Che version 7.121. See <a href="../installing-the-chectl-management-tool/" class="xref page">Set up the chectl command-line tool</a>.</p>
 </li>
 </ul>
 </div>
@@ -1154,11 +1154,11 @@
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">$ bash prepare-restricted-environment.sh \
   --devworkspace_operator_index quay.io/devfile/devworkspace-operator-index:release-digest\
-  --devworkspace_operator_version "v0.42.0" \
+  --devworkspace_operator_version "v0.43.0" \
   --prod_operator_index "registry.access.redhat.com/redhat/community-operator-index:v4.18" \
   --prod_operator_package_name "eclipse-che" \
   --prod_operator_bundle_name "eclipse-che" \
-  --prod_operator_version "v7.120.0" \
+  --prod_operator_version "v7.121.0" \
   --my_registry "<em>&lt;my_registry&gt;</em>" <i class="conum" data-value="1"></i><b>(1)</b></code></pre>
 </div>
 </div>

@@ -45,7 +45,7 @@
   </nav>
 </header>
 <div class="body">
-<div class="nav-container" data-component="docs" data-version="7.120.x">
+<div class="nav-container" data-component="docs" data-version="7.121.x">
   <aside class="nav">
     <div class="panels">
 <div class="nav-panel-menu is-active" data-panel="menu">
@@ -61,38 +61,47 @@
     <a class="nav-link" href="../../discover/what-is-che/">What is Che?</a>
   </li>
   <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../../discover/what-problems-che-solves/">What problems does Che solve?</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../../discover/who-is-che-for/">Who is Che for?</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../../discover/when-to-use-che/">When to use Che</a>
+  </li>
+  <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../../discover/architecture-overview/">Architecture overview</a>
+    <a class="nav-link" href="../../discover/architecture-overview/">Che architecture</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../../discover/server-components/">Server components</a>
+    <a class="nav-link" href="../../discover/what-runs-on-your-cluster/">What runs on your cluster</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../../discover/che-operator/">Che operator</a>
+    <a class="nav-link" href="../../discover/che-operator/">Operator and lifecycle management</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../../discover/devworkspace-operator/">DevWorkspace operator</a>
+    <a class="nav-link" href="../../discover/devworkspace-operator/">DevWorkspace Operator and workspace pods</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../../discover/gateway/">Gateway</a>
+    <a class="nav-link" href="../../discover/gateway/">Gateway and request routing</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../../discover/dashboard/">User dashboard</a>
+    <a class="nav-link" href="../../discover/dashboard/">Dashboard and workspace management</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../../discover/che-server/">Che server</a>
+    <a class="nav-link" href="../../discover/che-server/">Server and namespace provisioning</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../../discover/che-devfile-registry/">Devfile registry</a>
+    <a class="nav-link" href="../../discover/che-devfile-registry/">Devfile registry and workspace templates</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../../discover/plugin-registry/">Plugin registry</a>
+    <a class="nav-link" href="../../discover/plugin-registry/">Plug-in registry</a>
   </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../../discover/user-workspaces/">User workspaces</a>
+    <a class="nav-link" href="../../discover/user-workspaces/">What developers get in a workspace</a>
   </li>
 </ul>
   </li>
@@ -109,7 +118,7 @@
     <span class="nav-text">Install</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="../../install/con_installation-overview/">Che installation overview</a>
+    <a class="nav-link" href="../../install/con_installation-overview/">How the installation works</a>
   </li>
   <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
@@ -119,102 +128,228 @@
     <a class="nav-link" href="../../discover/supported-platforms/">Supported platforms</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../../install/calculating-che-resource-requirements/">Calculate Che resource requirements</a>
+    <a class="nav-link" href="../../install/calculating-che-resource-requirements/">Size your cluster for Che</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../../install/running-at-scale/">Che scalability</a>
+    <a class="nav-link" href="../../install/running-at-scale/">Scalability limits and multi-cluster deployments</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../../install/installing-the-chectl-management-tool/">Install the chectl management tool</a>
+    <a class="nav-link" href="../../install/installing-the-chectl-management-tool/">Set up the chectl command-line tool</a>
   </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../../install/installing-che/">Install Che</a>
+    <span class="nav-text">Deploy using GitOps</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <button class="nav-item-toggle"></button>
-    <span class="nav-text">Deploy on OpenShift</span>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../../install/proc_installing-che-on-openshift-using-cli/">Install Che on OpenShift using CLI</a>
+    <a class="nav-link" href="../../install/proc_deploying-che-using-gitops/">Deploy using GitOps and Argo CD</a>
   </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../../install/proc_installing-che-on-openshift-using-the-web-console/">Install Che on OpenShift using the web console</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../../install/proc_installing-che-on-openshift-with-keycloak-as-oidc/">Install Che on OpenShift with Keycloak as external identity provider</a>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../install/proc_deploying-che-using-gitops-in-a-restricted-environment/">Deploy in a restricted environment using GitOps</a>
   </li>
 </ul>
   </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Deploy on OpenShift</span>
+<ul class="nav-list">
   <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../install/proc_installing-che-on-openshift-using-cli/">Deploy using the CLI</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../install/proc_installing-che-on-openshift-using-the-web-console/">Deploy using the web console</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../install/proc_installing-che-on-openshift-with-keycloak-as-oidc/">Deploy using an external identity provider</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
     <span class="nav-text">Deploy on Kubernetes</span>
 <ul class="nav-list">
-  <li class="nav-item" data-depth="3">
+  <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../../install/installing-che-on-microsoft-azure/">Install Che on Microsoft Azure</a>
   </li>
-  <li class="nav-item" data-depth="3">
+  <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../../install/installing-che-on-amazon-elastic-kubernetes-service/">Install Che on Amazon Elastic Kubernetes Service</a>
   </li>
-  <li class="nav-item" data-depth="3">
+  <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../../install/proc_installing-che-on-the-virtual-kubernetes-cluster/">Install Che on the virtual Kubernetes cluster</a>
   </li>
 </ul>
   </li>
-  <li class="nav-item" data-depth="2">
+  <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
     <span class="nav-text">Deploy locally</span>
 <ul class="nav-list">
-  <li class="nav-item" data-depth="3">
+  <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../../install/proc_installing-che-on-red-hat-openshift-local/">Install Che on Red Hat OpenShift Local</a>
   </li>
-  <li class="nav-item" data-depth="3">
+  <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../../install/proc_installing-che-on-minikube/">Install Che on Minikube</a>
   </li>
-  <li class="nav-item" data-depth="3">
+  <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../../install/proc_installing-che-on-minikube-keycloak-oidc/">Install Che on Minikube with Keycloak as the OIDC provider</a>
   </li>
 </ul>
   </li>
-  <li class="nav-item" data-depth="2">
+  <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
     <span class="nav-text">Deploy in a restricted environment</span>
 <ul class="nav-list">
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../../install/proc_installing-che-in-a-restricted-environment/">Install Che in a restricted environment</a>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../install/proc_installing-che-in-a-restricted-environment/">Deploy in an air-gapped environment</a>
   </li>
 </ul>
   </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../../install/using-chectl-to-configure-the-checluster-custom-resource-during-installation/">Using chectl to configure the <code>CheCluster</code> Custom Resource during installation</a>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../../install/using-chectl-to-configure-the-checluster-custom-resource-during-installation/">Customize settings during deployment</a>
   </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../../install/proc_finding-the-fully-qualified-domain-name-fqdn/">Find the FQDN</a>
-  </li>
-  <li class="nav-item" data-depth="2">
+  <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
     <span class="nav-text">Permissions</span>
 <ul class="nav-list">
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../../install/ref_permissions-to-install-che-on-openshift-using-cli/">Permissions for CLI installation</a>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../install/ref_permissions-to-install-che-on-openshift-using-cli/">Permissions required for CLI installation</a>
   </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../../install/ref_permissions-to-install-che-on-openshift-using-the-web-console/">Permissions for web console installation</a>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../install/ref_permissions-to-install-che-on-openshift-using-the-web-console/">Permissions required for web console installation</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../../install/proc_verifying-the-installation/">Confirm Che is running</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../../install/proc_finding-the-fully-qualified-domain-name-fqdn/">Get the dashboard URL to share with your team</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../../install/con_next-steps-after-installation/">Prepare Che for your team</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../../install/proc_uninstalling-che/">Remove Che from your cluster</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Get Started as an Administrator</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Prepare the platform for developers</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../get-started-admin/your-first-week-as-administrator/">Your first week as a platform administrator</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../get-started-admin/verify-the-platform-end-to-end/">Verify the platform works end-to-end</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../get-started-admin/configure-github-oauth-for-your-team/">Configure GitHub OAuth for your team</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../get-started-admin/what-to-configure-next/">What to configure next</a>
   </li>
 </ul>
   </li>
 </ul>
   </li>
+  <li class="nav-item" data-depth="0">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Get Started as a Developer</span>
+<ul class="nav-list">
   <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="../../install/proc_verifying-the-installation/">Verify the Che installation</a>
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Create your first cloud workspace</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../get-started-user/your-first-workspace/">Your first-day experience</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../get-started-user/starting-a-workspace-from-a-git-repository-url/">Open your project in a cloud development environment</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../get-started-user/basic-actions-you-can-perform-on-a-workspace/">Manage your cloud development environments</a>
+  </li>
+</ul>
   </li>
   <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="../../install/con_next-steps-after-installation/">Next steps after installation</a>
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Connect to your Git repositories</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../../get-started-user/authenticating-to-a-git-server-from-a-workspace/">How Git authentication works in cloud development environments</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../../get-started-user/using-a-git-provider-access-token/">Access private repositories with a personal access token</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Troubleshoot</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Troubleshoot workspaces</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../troubleshoot/troubleshooting-che/">When something goes wrong</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">View Cloud Development Environment logs</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../../troubleshoot/viewing-che-workspaces-logs/">Cloud Development Environment logs</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../../troubleshoot/viewing-workspace-logs-in-cli/">View workspace logs in CLI</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../../troubleshoot/viewing-language-servers-and-debug-adapters-logs-in-visual-studio-code/">View language server and debug adapter logs in the editor</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../troubleshoot/debugging-a-workspace/">Debug a failing workspace</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../troubleshoot/troubleshooting-slow-workspaces/">Diagnose slow Cloud Development Environments</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../troubleshoot/troubleshooting-webview-loading-error/">Fix webview loading errors in private browsing</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../troubleshoot/troubleshooting-devfile-issues/">Fix devfile errors</a>
+  </li>
+</ul>
   </li>
   <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="../../install/proc_uninstalling-che/">Uninstall Che</a>
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Troubleshoot the platform</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../troubleshoot/viewing-workspace-logs-in-the-openshift-console/">View workspace logs in Kubernetes console</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../troubleshoot/troubleshooting-workspace-startup-failures/">Diagnose workspace startup failures</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../troubleshoot/troubleshooting-network-problems/">Troubleshoot network problems</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../troubleshoot/troubleshooting-oauth-configuration/">Fix OAuth configuration errors</a>
+  </li>
+</ul>
   </li>
 </ul>
   </li>
@@ -223,100 +358,82 @@
     <span class="nav-text">User Guide</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="1">
-    <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../getting-started-with-che/">Getting started with Che</a>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="2">
-    <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../starting-a-workspace-from-a-git-repository-url/">Starting a workspace from a Git repository URL</a>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../starting-a-workspace-from-a-raw-devfile-url/">Start a cloud development environment from a raw devfile URL</a>
+  </li>
+  <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
     <a class="nav-link" href="../optional-parameters-for-the-urls-for-starting-a-new-workspace/">Optional parameters for the URLs for starting a new workspace</a>
 <ul class="nav-list">
-  <li class="nav-item" data-depth="4">
+  <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../url-parameter-concatenation/">URL parameter concatenation</a>
   </li>
-  <li class="nav-item" data-depth="4">
+  <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../url-parameter-for-the-ide/">URL parameter for the IDE</a>
   </li>
-  <li class="nav-item" data-depth="4">
+  <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../url-parameter-for-the-ide-image/">URL parameter for the IDE image</a>
   </li>
-  <li class="nav-item" data-depth="4">
+  <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../url-parameter-for-starting-duplicate-workspaces/">URL parameter for starting duplicate workspaces</a>
   </li>
-  <li class="nav-item" data-depth="4">
+  <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../url-parameter-for-the-devfile-file-name/">URL parameter for the devfile file name</a>
   </li>
-  <li class="nav-item" data-depth="4">
+  <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../url-parameter-for-the-devfile-file-path/">URL parameter for the devfile file path</a>
   </li>
-  <li class="nav-item" data-depth="4">
+  <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../url-parameter-for-the-workspace-storage/">URL parameter for the workspace storage</a>
   </li>
-  <li class="nav-item" data-depth="4">
+  <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../url-parameter-for-additional-remotes/">URL parameter for additional remotes</a>
   </li>
-  <li class="nav-item" data-depth="4">
+  <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../url-parameter-for-container-image/">URL parameter for a container image</a>
   </li>
-  <li class="nav-item" data-depth="4">
+  <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../url-parameter-for-memory-limit/">URL parameter for a memory limit</a>
   </li>
-  <li class="nav-item" data-depth="4">
+  <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../url-parameter-for-cpu-limit/">URL parameter for a CPU limit</a>
   </li>
-  <li class="nav-item" data-depth="4">
+  <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../url-parameter-for-the-existing-workspace-name/">URL parameter for the existing workspace name</a>
   </li>
-  <li class="nav-item" data-depth="4">
+  <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../url-parameter-for-the-ai-provider/">URL parameter for the AI provider</a>
   </li>
 </ul>
   </li>
-</ul>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../starting-a-workspace-from-a-raw-devfile-url/">Starting a workspace from a raw devfile URL</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../basic-actions-you-can-perform-on-a-workspace/">Basic actions you can perform on a workspace</a>
-  </li>
-  <li class="nav-item" data-depth="2">
+  <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
     <a class="nav-link" href="../restoring-workspaces-from-backups/">Restoring workspaces from backups</a>
 <ul class="nav-list">
-  <li class="nav-item" data-depth="3">
+  <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../proc-restoring-a-workspace-from-backup/">Restoring a workspace from a backup</a>
   </li>
-  <li class="nav-item" data-depth="3">
+  <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../proc-viewing-backups-in-the-dashboard/">Viewing backups in the dashboard</a>
   </li>
 </ul>
   </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../authenticating-to-a-git-server-from-a-workspace/">Authenticating to a Git server from a workspace</a>
-  </li>
-  <li class="nav-item" data-depth="2">
+  <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
     <a class="nav-link" href="../using-the-fuse-overlay-storage-driver/">Using the fuse-overlayfs storage driver for Podman and Buildah</a>
 <ul class="nav-list">
-  <li class="nav-item" data-depth="3">
+  <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../accessing-fuse/">Accessing /dev/fuse</a>
   </li>
-  <li class="nav-item" data-depth="3">
+  <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../enabling-overlay-with-a-configmap/">Enabling fuse-overlayfs with a ConfigMap</a>
   </li>
 </ul>
   </li>
-  <li class="nav-item" data-depth="2">
+  <li class="nav-item" data-depth="1">
     <a class="nav-link" href="../running-containers-with-kubedock/">Running containers with kubedock</a>
   </li>
-  <li class="nav-item" data-depth="2">
+  <li class="nav-item" data-depth="1">
     <a class="nav-link" href="../proc_preventing-workspace-idling-for-long-running-commands/">Prevent workspace idling for long-running commands</a>
-  </li>
-</ul>
   </li>
   <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
@@ -364,6 +481,27 @@
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../changing-the-ai-tool-on-a-workspace/">Changing the AI tool on a workspace</a>
   </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../persist-claude-code-configuration/">Persist Claude Code configuration</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../share-claude-code-configuration-with-pvc-direct-mount/">Share configuration with PVC direct mount</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../share-claude-code-configuration-with-pvc-tmp-copy/">Share configuration with PVC tmp copy</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../share-claude-code-configuration-with-gitops/">Share configuration with GitOps</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../troubleshoot-claude-code-configuration-persistence/">Troubleshoot Claude Code configuration persistence</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../distribute-claude-code-skills-with-lola/">Distribute AI skills with Lola</a>
+  </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="1">
@@ -378,7 +516,7 @@
     <a class="nav-link" href="../creating-image-pull-secrets/">Creating image pull Secrets</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../using-a-git-provider-access-token/">Using a Git-provider access token</a>
+    <a class="nav-link" href="../../get-started-user/using-a-git-provider-access-token/">Access private repositories with a personal access token</a>
   </li>
 </ul>
   </li>
@@ -438,39 +576,6 @@
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../navigating-openshift-web-console-from-che/">Navigating OpenShift web console from Che</a>
-  </li>
-</ul>
-  </li>
-  <li class="nav-item" data-depth="1">
-    <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../troubleshooting-che/">Troubleshooting Che</a>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="2">
-    <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../viewing-che-workspaces-logs/">Viewing Che workspaces logs</a>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../viewing-workspace-logs-in-cli/">Workspace logs in CLI</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../viewing-workspace-logs-in-the-openshift-console/">Workspace logs in OpenShift console</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../viewing-language-servers-and-debug-adapters-logs-in-visual-studio-code/">Language servers and debug adapters logs in the editor</a>
-  </li>
-</ul>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../debugging-a-workspace/">Debugging a workspace</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../troubleshooting-slow-workspaces/">Troubleshooting slow workspaces</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../troubleshooting-network-problems/">Troubleshooting network problems</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../troubleshooting-webview-loading-error/">Troubleshooting webview loading error</a>
   </li>
 </ul>
   </li>
@@ -535,55 +640,82 @@
     <span class="nav-text">Optimize performance</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../../optimize/what-you-can-optimize/">What you can optimize in Che</a>
+  </li>
+  <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../../optimize/caching-images-for-faster-workspace-start/">Caching images for faster workspace start</a>
+    <a class="nav-link" href="../../optimize/caching-images-for-faster-workspace-start/">Speed up workspace starts with image caching</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../../optimize/installing-kubernetes-image-puller/">Installing Kubernetes Image Puller</a>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../../optimize/installing-image-puller-on-kubernetes-by-using-cli/">Installing the Kubernetes Image Puller operator on Kubernetes cluster by using CLI</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../../optimize/installing-image-puller-on-openshift-using-cli/">Installing Image Puller on OpenShift using CLI</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../../optimize/installing-image-puller-on-openshift-by-using-the-web-console/">Installing Image Puller on OpenShift by using the web console</a>
-  </li>
-</ul>
+    <a class="nav-link" href="../../optimize/how-image-caching-speeds-up-workspace-starts/">How image caching speeds up workspace starts</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../../optimize/configuring-kubernetes-image-puller/">Configuring Kubernetes Image Puller</a>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../../optimize/configuring-image-puller-to-pre-pull-default-che-images/">Configuring Image Puller to pre-pull default Che images</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../../optimize/configuring-image-puller-to-pre-pull-custom-images/">Configuring Image Puller to pre-pull custom images</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../../optimize/configuring-image-puller-to-pre-pull-additional-images/">Configuring Image Puller to pre-pull additional images</a>
-  </li>
-</ul>
+    <a class="nav-link" href="../../optimize/installing-image-puller-on-kubernetes-by-using-cli/">Deploy Image Puller on a Kubernetes cluster</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../../optimize/retrieving-default-list-of-images-for-kubernetes-image-puller/">Retrieving the default list of images for Kubernetes Image Puller</a>
+    <a class="nav-link" href="../../optimize/installing-image-puller-on-openshift-using-cli/">Deploy Image Puller from the command line</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../optimize/installing-image-puller-on-openshift-by-using-the-web-console/">Deploy Image Puller from the web console</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../optimize/configuring-image-puller-to-pre-pull-default-che-images/">Cache default Che images on all nodes</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../optimize/configuring-image-puller-to-pre-pull-custom-images/">Cache your organization&#8217;s custom images</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../optimize/configuring-image-puller-to-pre-pull-additional-images/">Cache additional images for faster starts</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../optimize/retrieving-default-list-of-images-for-kubernetes-image-puller/">Review the default images cached by Image Puller</a>
   </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../../optimize/configuring-autoscaling/">Configuring autoscaling</a>
+    <a class="nav-link" href="../../optimize/configuring-autoscaling/">Scale the platform automatically</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../../optimize/configuring-number-of-replicas/">Configuring number of replicas for a Eclipse&#160;Che container</a>
+    <a class="nav-link" href="../../optimize/configuring-number-of-replicas/">Scale Che for high availability</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../../optimize/configuring-machine-autoscaling/">Configuring machine autoscaling</a>
+    <a class="nav-link" href="../../optimize/configuring-machine-autoscaling/">Prevent workspace failures during node scaling</a>
   </li>
 </ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../../optimize/verify-optimization-impact/">Verify workspace performance after optimization</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Platform monitoring and telemetry</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../../observe/configuring-observability/">What you can observe about Che</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../../observe/monitoring-che/">What Che server metrics reveal</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../../observe/monitoring-the-dev-workspace-operator/">What DevWorkspace Operator metrics reveal</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../../observe/the-woopra-telemetry-plugin/">Configure the Woopra telemetry plugin</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Server logging and diagnostics</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../../observe/configuring-server-logging/">How server logging works</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../../observe/collecting-logs-using-chectl/">Collect logs with chectl</a>
   </li>
 </ul>
   </li>
@@ -600,7 +732,7 @@
     <a class="nav-link" href="../../administration-guide/understanding-the-checluster-custom-resource/">Understanding the <code>CheCluster</code> Custom Resource</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../../install/using-chectl-to-configure-the-checluster-custom-resource-during-installation/">Using chectl to configure the <code>CheCluster</code> Custom Resource during installation</a>
+    <a class="nav-link" href="../../install/using-chectl-to-configure-the-checluster-custom-resource-during-installation/">Customize settings during deployment</a>
   </li>
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="../../administration-guide/using-the-cli-to-configure-the-checluster-custom-resource/">Using the CLI to configure the CheCluster Custom Resource</a>
@@ -632,9 +764,6 @@
     <button class="nav-item-toggle"></button>
     <a class="nav-link" href="../../administration-guide/configuring-server-components/">Configuring server components</a>
 <ul class="nav-list">
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../../administration-guide/mounting-a-secret-as-a-file-or-an-environment-variable-into-a-container/">Mounting a Secret or a ConfigMap as a file or an environment variable into a Eclipse&#160;Che container</a>
-  </li>
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="../../administration-guide/advanced-configuration-options-for-the-che-server-component/">Advanced configuration options for Che server</a>
   </li>
@@ -669,37 +798,10 @@
   </li>
   <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../../administration-guide/configuring-observability/">Configuring observability</a>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../../administration-guide/the-woopra-telemetry-plugin/">The Woopra telemetry plugin</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../../administration-guide/creating-a-telemetry-plugin/">Creating a telemetry plugin</a>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="4">
-    <a class="nav-link" href="../../administration-guide/configuring-server-logging/">Configuring server logging</a>
-  </li>
-  <li class="nav-item" data-depth="4">
-    <a class="nav-link" href="../../administration-guide/collecting-logs-using-chectl/">Collecting logs using chectl</a>
-  </li>
-</ul>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../../administration-guide/monitoring-the-dev-workspace-operator/">Monitoring the DevWorkspace Operator</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../../administration-guide/monitoring-che/">Monitoring Che Server</a>
-  </li>
-</ul>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <button class="nav-item-toggle"></button>
     <a class="nav-link" href="../../administration-guide/configuring-networking/">Configuring networking</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../../administration-guide/configuring-network-policies/">Configuring network policies</a>
+    <a class="nav-link" href="../../administration-guide/configuring-network-policies/">Configure network policies</a>
   </li>
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="../../administration-guide/configuring-che-hostname/">Configuring Che hostname</a>
@@ -836,6 +938,9 @@
     <a class="nav-link" href="../../administration-guide/configuring-the-open-vsx-registry-url/">Configure the Open VSX registry URL</a>
   </li>
   <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../administration-guide/enabling-the-managed-open-vsx-registry/">Enable the managed Open VSX registry</a>
+  </li>
+  <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../../administration-guide/proc_deploy-open-vsx-from-source/">Deploy Open VSX from source</a>
   </li>
   <li class="nav-item" data-depth="2">
@@ -907,6 +1012,9 @@
   </li>
 </ul>
   </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../../extensions/creating-a-telemetry-plugin/">Creating a telemetry plugin</a>
+  </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="0">
@@ -922,7 +1030,7 @@
 <div class="nav-panel-explore" data-panel="explore">
   <div class="context">
     <span class="title">Documentation</span>
-    <span class="version">7.120.x</span>
+    <span class="version">7.121.x</span>
   </div>
   <ul class="components">
     <li class="component is-current">
@@ -932,7 +1040,7 @@
           <a href="../../../next/discover/what-is-che/">next</a>
         </li>
         <li class="version is-current is-latest">
-          <a href="../../discover/what-is-che/">7.120.x</a>
+          <a href="../../discover/what-is-che/">7.121.x</a>
         </li>
       </ul>
     </li>
@@ -955,13 +1063,13 @@
   </ul>
 </nav>
 <div class="page-versions">
-  <button class="version-menu-toggle" title="Show other versions of page">7.120.x</button>
+  <button class="version-menu-toggle" title="Show other versions of page">7.121.x</button>
   <div class="version-menu">
     <a class="version" href="../../../next/end-user-guide/enabling-gradle-artifact-repositories/">next</a>
-    <a class="version is-current" href="./">7.120.x</a>
+    <a class="version is-current" href="./">7.121.x</a>
   </div>
 </div>
-<div class="edit-this-page"><a href="https://github.com/eclipse-che/che-docs/edit/7.120.x/modules/end-user-guide/pages/enabling-gradle-artifact-repositories.adoc">Edit this Page</a></div>
+<div class="edit-this-page"><a href="https://github.com/eclipse-che/che-docs/edit/7.121.x/modules/end-user-guide/pages/enabling-gradle-artifact-repositories.adoc">Edit this Page</a></div>
 </div>
   <div class="content">
 <aside class="toc sidebar" data-title="Contents" data-levels="2">

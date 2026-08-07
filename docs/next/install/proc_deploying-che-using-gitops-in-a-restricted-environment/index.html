@@ -4,6 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <title>Deploy in a restricted environment using GitOps :: Eclipse Che Documentation</title>
+    <link rel="canonical" href="https://www.eclipse.org/che/docs/stable/install/proc_deploying-che-using-gitops-in-a-restricted-environment/">
     <meta name="description" content="Deploy Che in a restricted network through Argo CD by mirroring the required container images to a private registry and storing the deployment manifests in an internal Git repository.">
     <meta name="keywords" content="install, gitops, argo cd, air-gapped, restricted, disconnected">
     <meta name="generator" content="Antora 3.1.15">
@@ -1040,7 +1041,7 @@
           <a href="../../discover/what-is-che/">next</a>
         </li>
         <li class="version is-latest">
-          <a href="../../../stable/discover/what-is-che/">7.120.x</a>
+          <a href="../../../stable/discover/what-is-che/">7.121.x</a>
         </li>
       </ul>
     </li>
@@ -1065,7 +1066,7 @@
   <button class="version-menu-toggle" title="Show other versions of page">next</button>
   <div class="version-menu">
     <a class="version is-current" href="./">next</a>
-    <a class="version is-missing" href="../../../stable/discover/what-is-che/">7.120.x</a>
+    <a class="version" href="../../../stable/install/proc_deploying-che-using-gitops-in-a-restricted-environment/">7.121.x</a>
   </div>
 </div>
 <div class="edit-this-page"><a href="https://github.com/eclipse-che/che-docs/edit/main/modules/install/pages/proc_deploying-che-using-gitops-in-a-restricted-environment.adoc">Edit this Page</a></div>
@@ -1117,11 +1118,11 @@
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">$ bash prepare-restricted-environment.sh \
   --devworkspace_operator_index quay.io/devfile/devworkspace-operator-index:release-digest\
-  --devworkspace_operator_version "v0.42.0" \
+  --devworkspace_operator_version "v0.43.0" \
   --prod_operator_index "registry.access.redhat.com/redhat/community-operator-index:v4.18" \
   --prod_operator_package_name "eclipse-che" \
   --prod_operator_bundle_name "eclipse-che" \
-  --prod_operator_version "v7.120.0" \
+  --prod_operator_version "v7.121.0" \
   --my_registry "<em>&lt;my_registry&gt;</em>" <i class="conum" data-value="1"></i><b>(1)</b></code></pre>
 </div>
 </div>
