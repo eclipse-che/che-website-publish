@@ -5,9 +5,9 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <title>Change the AI tool on a workspace :: Eclipse Che Documentation</title>
     <link rel="canonical" href="https://www.eclipse.org/che/docs/stable/end-user-guide/changing-the-ai-tool-on-a-workspace/">
-    <meta name="description" content="Switch or remove the AI coding assistant on a stopped workspace without recreating it.">
-    <meta name="keywords" content="user-guide, ai, ai tool, ai provider, workspace, change, update">
-    <meta name="generator" content="Antora 3.1.15">
+    <meta name="description" content="Switch or remove the AI coding assistant on a stopped workspace without recreating it, and optionally choose a specific version.">
+    <meta name="keywords" content="user-guide, ai, ai tool, ai provider, workspace, change, update, version">
+    <meta name="generator" content="Antora 3.2.0">
     <link rel="stylesheet" href="../../../../docs/_/css/site.css">
 <link rel="stylesheet" href="../../../../docs/_/css/extra.css">
 <link rel="stylesheet" href="../../../../docs/_/font-awesome-4.7.0/css/font-awesome.min.css">
@@ -518,6 +518,9 @@
   </li>
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="../../get-started-user/using-a-git-provider-access-token/">Access private repositories with a personal access token</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../connecting-to-github-using-device-authorization/">Connecting to GitHub using device authorization</a>
   </li>
 </ul>
   </li>
@@ -1078,7 +1081,7 @@
 <article class="doc">
 <h1 class="page">Change the AI tool on a workspace</h1>
 <div class="paragraph _abstract">
-<p>Switch or remove the AI coding assistant on a stopped workspace without recreating it.</p>
+<p>Switch or remove the AI coding assistant on a stopped workspace without recreating it, and optionally choose a specific image version.</p>
 </div>
 <div class="ulist">
 <div class="title">Prerequisites</div>
@@ -1098,7 +1101,23 @@
 <p>On the <strong>Overview</strong> tab, find the <strong>AI Tool</strong> section.</p>
 </li>
 <li>
-<p>Click the edit icon, select a different tool or <strong>None</strong>, and click <strong>Save</strong>.</p>
+<p>Click the edit icon.</p>
+</li>
+<li>
+<p>In the <strong>Change AI Tools</strong> dialog:</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Select a different tool or deselect all tools to remove the AI assistant.</p>
+</li>
+<li>
+<p>Optional: If the tool offers multiple versions, click the ellipsis menu (⋮) next to the tool name and select the version you want.</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Click <strong>Save</strong>.</p>
 </li>
 </ol>
 </div>

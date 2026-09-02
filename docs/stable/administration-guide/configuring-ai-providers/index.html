@@ -7,7 +7,7 @@
     <link rel="canonical" href="https://www.eclipse.org/che/docs/stable/administration-guide/configuring-ai-providers/">
     <meta name="description" content="Register AI providers in Eclipse Che so that developers can select and use AI coding assistants when creating workspaces.">
     <meta name="keywords" content="administration, ai, ai provider, opencode, configmap, ai-tool-registry, api key, injector image, dockerfile">
-    <meta name="generator" content="Antora 3.1.15">
+    <meta name="generator" content="Antora 3.2.0">
     <link rel="stylesheet" href="../../../../docs/_/css/site.css">
 <link rel="stylesheet" href="../../../../docs/_/css/extra.css">
 <link rel="stylesheet" href="../../../../docs/_/font-awesome-4.7.0/css/font-awesome.min.css">
@@ -1255,7 +1255,7 @@ LABEL org.opencontainers.image.description="OpenCode CLI tool for DevWorkspace i
 </div>
 </li>
 <li>
-<p>Create the <code>ConfigMap</code> in the <code>eclipse-che</code> namespace with the required labels:</p>
+<p>Create the <code>ConfigMap</code> in the <code>eclipse-che</code> with the required labels:</p>
 <div class="listingblock">
 <div class="content">
 <pre>$ kubectl create configmap ai-tool-registry \

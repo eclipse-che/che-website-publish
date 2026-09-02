@@ -7,7 +7,7 @@
     <link rel="canonical" href="https://www.eclipse.org/che/docs/stable/end-user-guide/using-ai-assistants-in-workspaces/">
     <meta name="description" content="Select and configure AI coding assistants for your workspaces to get AI-powered development help in the terminal.">
     <meta name="keywords" content="user-guide, ai, ai assistant, ai provider, ai selector">
-    <meta name="generator" content="Antora 3.1.15">
+    <meta name="generator" content="Antora 3.2.0">
     <link rel="stylesheet" href="../../../../docs/_/css/site.css">
 <link rel="stylesheet" href="../../../../docs/_/css/extra.css">
 <link rel="stylesheet" href="../../../../docs/_/font-awesome-4.7.0/css/font-awesome.min.css">
@@ -518,6 +518,9 @@
   </li>
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="../../get-started-user/using-a-git-provider-access-token/">Access private repositories with a personal access token</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../connecting-to-github-using-device-authorization/">Connecting to GitHub using device authorization</a>
   </li>
 </ul>
   </li>
@@ -1087,6 +1090,18 @@
 <div class="paragraph">
 <p>If no AI providers are configured, the <strong>AI Provider</strong> section is hidden.</p>
 </div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+The dashboard only shows tools that are compatible with the architecture of your cluster nodes. On IBM Z (s390x) or Power (ppc64le) clusters, tools that do not support those architectures are hidden automatically.
+</td>
+</tr>
+</table>
+</div>
 </div>
 </div>
 <div class="sect1">
@@ -1094,6 +1109,17 @@
 <div class="sectionbody">
 <div class="paragraph">
 <p>If your administrator has set a default AI provider, the <strong>Create Workspace</strong> page displays it automatically. To override, expand <strong>Choose an AI Provider</strong> and select a different provider.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_selecting_a_tool_version"><a class="anchor" href="#_selecting_a_tool_version"></a>Selecting a tool version</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>When an AI provider offers multiple image variants (for example, <code>next</code> and <code>insiders</code>), an ellipsis menu (⋮) is displayed on the provider card. Click the menu to choose the version you want injected into your workspace. The selected version is shown as a label on the card.</p>
+</div>
+<div class="paragraph">
+<p>The same version picker is available on the <strong>Overview</strong> tab of an existing workspace under <strong>AI Tool &gt; edit</strong>.</p>
 </div>
 </div>
 </div>

@@ -6,8 +6,8 @@
     <title>Configure AI providers :: Eclipse Che Documentation</title>
     <link rel="canonical" href="https://www.eclipse.org/che/docs/stable/administration-guide/configuring-ai-providers/">
     <meta name="description" content="Register AI providers in Eclipse Che so that developers can select and use AI coding assistants when creating workspaces.">
-    <meta name="keywords" content="administration, ai, ai provider, opencode, configmap, ai-tool-registry, api key, injector image, dockerfile">
-    <meta name="generator" content="Antora 3.1.15">
+    <meta name="keywords" content="administration, ai, ai provider, opencode, configmap, ai-tool-registry, api key, injector image, dockerfile, architecture, arch, version">
+    <meta name="generator" content="Antora 3.2.0">
     <link rel="stylesheet" href="../../../../docs/_/css/site.css">
 <link rel="stylesheet" href="../../../../docs/_/css/extra.css">
 <link rel="stylesheet" href="../../../../docs/_/font-awesome-4.7.0/css/font-awesome.min.css">
@@ -518,6 +518,9 @@
   </li>
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="../../get-started-user/using-a-git-provider-access-token/">Access private repositories with a personal access token</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../../end-user-guide/connecting-to-github-using-device-authorization/">Connecting to GitHub using device authorization</a>
   </li>
 </ul>
   </li>
@@ -1094,11 +1097,31 @@ These features provide early access to upcoming product features, enabling custo
 </tr>
 </table>
 </div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>OpenCode supports only <code>x86_64</code> and <code>arm64</code>. IBM Z (<code>s390x</code>) and IBM Power (<code>ppc64le</code>) builds are not available because the upstream OpenCode project does not publish releases for those architectures.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
 <div class="paragraph _abstract">
 <p>Register one or more AI providers in Che so that developers can select and use AI coding assistants when creating workspaces.</p>
 </div>
 <div class="paragraph">
 <p>The AI tool registry is stored in a Kubernetes <code>ConfigMap</code> with specific labels. When the ConfigMap exists and contains at least one provider with a matching tool, the AI Selector widget is displayed on the dashboard. When the ConfigMap is absent or empty, the widget is hidden.</p>
+</div>
+<div class="paragraph">
+<p>Che reads the node architectures present in the cluster and filters the tool list before sending it to the dashboard. A tool is shown if at least one cluster node matches an architecture in the tool&#8217;s <code>arch</code> list. Tools that omit the <code>arch</code> field are shown on all architectures.</p>
+</div>
+<div class="paragraph">
+<p>When a provider has multiple tool entries with different <code>tag</code> values, the AI Selector displays a version picker so developers can choose which image variant to inject.</p>
 </div>
 <div class="ulist">
 <div class="title">Prerequisites</div>
@@ -1169,7 +1192,7 @@ LABEL org.opencontainers.image.description="OpenCode CLI tool for DevWorkspace i
 <p><strong>Wrapper script</strong>: redirects <code>XDG_CONFIG_HOME</code>, <code>XDG_DATA_HOME</code>, and related variables to writable paths under <code>/tmp</code>, allowing the tool to run as an arbitrary UID on OpenShift.</p>
 </li>
 <li>
-<p><strong>Multi-arch</strong>: pass <code>--platform linux/amd64,linux/arm64</code> to <code>docker build</code> to produce a multi-arch image.</p>
+<p><strong>Multi-arch</strong>: pass <code>--platform</code> to <code>docker build</code> to produce a multi-arch image. OpenCode supports <code>linux/amd64</code> and <code>linux/arm64</code> only.</p>
 <div class="paragraph">
 <p>Build and push the image:</p>
 </div>
@@ -1211,10 +1234,11 @@ LABEL org.opencontainers.image.description="OpenCode CLI tool for DevWorkspace i
       "binary": "opencode",                 <i class="conum" data-value="4"></i><b>(4)</b>
       "pattern": "init",                    <i class="conum" data-value="5"></i><b>(5)</b>
       "injectorImage": "<em>&lt;your-registry&gt;</em>/<em>&lt;your-org&gt;</em>/opencode:next",  <i class="conum" data-value="6"></i><b>(6)</b>
-      "envVarName": "OPENAI_API_KEY"        <i class="conum" data-value="7"></i><b>(7)</b>
+      "envVarName": "OPENAI_API_KEY",       <i class="conum" data-value="7"></i><b>(7)</b>
+      "arch": ["x86_64", "arm64"]           <i class="conum" data-value="8"></i><b>(8)</b>
     }
   ],
-  "defaultAiProviders": ["opencodeai/opencode"]  <i class="conum" data-value="8"></i><b>(8)</b>
+  "defaultAiProviders": ["opencodeai/opencode"]  <i class="conum" data-value="9"></i><b>(9)</b>
 }</code></pre>
 </div>
 </div>
@@ -1230,7 +1254,7 @@ LABEL org.opencontainers.image.description="OpenCode CLI tool for DevWorkspace i
 </tr>
 <tr>
 <td><i class="conum" data-value="3"></i><b>3</b></td>
-<td>Version tag. When multiple tools share the same <code>providerId</code>, the dashboard selects by priority: <code>next</code> &gt; <code>latest</code> &gt; highest semver.</td>
+<td>Version tag. When multiple tools share the same <code>providerId</code>, the dashboard shows a version picker so developers can choose which image variant to inject.</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="4"></i><b>4</b></td>
@@ -1250,6 +1274,10 @@ LABEL org.opencontainers.image.description="OpenCode CLI tool for DevWorkspace i
 </tr>
 <tr>
 <td><i class="conum" data-value="8"></i><b>8</b></td>
+<td>Optional. List of node architectures on which this tool is available. Accepted values: <code>x86_64</code>, <code>arm64</code>. When omitted, the tool is shown on all architectures. The dashboard reads the cluster node architecture and hides tools whose <code>arch</code> list does not include the running architecture.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="9"></i><b>9</b></td>
 <td>Optional. Provider IDs pre-selected in the AI Selector widget for new workspaces.</td>
 </tr>
 </table>

@@ -7,7 +7,7 @@
     <link rel="canonical" href="https://www.eclipse.org/che/docs/stable/administration-guide/configuring-oauth-2-for-github/">
     <meta name="description" content="Configuring OAuth 2.0 for GitHub">
     <meta name="keywords" content="configuring-oauth, authorization, github, oauth-2, oauth-2.0">
-    <meta name="generator" content="Antora 3.1.15">
+    <meta name="generator" content="Antora 3.2.0">
     <link rel="stylesheet" href="../../../../docs/_/css/site.css">
 <link rel="stylesheet" href="../../../../docs/_/css/extra.css">
 <link rel="stylesheet" href="../../../../docs/_/font-awesome-4.7.0/css/font-awesome.min.css">
@@ -518,6 +518,9 @@
   </li>
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="../../get-started-user/using-a-git-provider-access-token/">Access private repositories with a personal access token</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../../end-user-guide/connecting-to-github-using-device-authorization/">Connecting to GitHub using device authorization</a>
   </li>
 </ul>
   </li>
@@ -1093,6 +1096,20 @@
 </li>
 </ol>
 </div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>If you previously configured a GitHub OAuth App and want to enable Device Auth Tokens for users, also enable Device Flow as described in <a href="#setting-up-the-github-oauth-app">Setting up the GitHub OAuth App</a>.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
 </div>
 </div>
 <div class="sect1">
@@ -1142,6 +1159,46 @@
 </li>
 <li>
 <p>Copy and save the <strong>GitHub OAuth Client Secret</strong> for use when applying the GitHub OAuth App Secret.</p>
+</li>
+<li>
+<p><strong>(Optional)</strong> Scroll to the <strong>Device flow</strong> section and select the <strong>Enable Device Flow</strong> checkbox.</p>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Enable this option to allow users to connect their GitHub accounts from the Che Dashboard using <strong>User Preferences &gt; Device Auth Tokens</strong>. See <a href="../../end-user-guide/connecting-to-github-using-device-authorization/" class="xref page">Connecting to GitHub using device authorization</a>.
+</td>
+</tr>
+</table>
+</div>
+</li>
+<li>
+<p>If you selected <strong>Enable Device Flow</strong>, click <strong>Update application</strong>.</p>
+</li>
+<li>
+<p>If you enabled Device Flow, apply the <code>device-auth-config</code> ConfigMap in the Che namespace to expose the OAuth App client ID to the Dashboard:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-terminal hljs" data-lang="terminal">$ kubectl create configmap device-auth-config \
+    --from-literal=github_client_id=<em>&lt;GitHub_OAuth_Client_ID&gt;</em> \
+    -n eclipse-che</code></pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+When this ConfigMap is present, the <strong>Connect to GitHub</strong> button appears in <strong>User Preferences &gt; Device Auth Tokens</strong>. Delete the ConfigMap to hide the button.
+</td>
+</tr>
+</table>
+</div>
 </li>
 </ol>
 </div>
