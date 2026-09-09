@@ -45,7 +45,7 @@
   </nav>
 </header>
 <div class="body">
-<div class="nav-container" data-component="docs" data-version="7.121.x">
+<div class="nav-container" data-component="docs" data-version="7.122.x">
   <aside class="nav">
     <div class="panels">
 <div class="nav-panel-menu is-active" data-panel="menu">
@@ -517,6 +517,9 @@
   </li>
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="../../get-started-user/using-a-git-provider-access-token/">Access private repositories with a personal access token</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../../end-user-guide/connecting-to-github-using-device-authorization/">Connecting to GitHub using device authorization</a>
   </li>
 </ul>
   </li>
@@ -1030,7 +1033,7 @@
 <div class="nav-panel-explore" data-panel="explore">
   <div class="context">
     <span class="title">Documentation</span>
-    <span class="version">7.121.x</span>
+    <span class="version">7.122.x</span>
   </div>
   <ul class="components">
     <li class="component is-current">
@@ -1040,7 +1043,7 @@
           <a href="../../../next/discover/what-is-che/">next</a>
         </li>
         <li class="version is-current is-latest">
-          <a href="../../discover/what-is-che/">7.121.x</a>
+          <a href="../../discover/what-is-che/">7.122.x</a>
         </li>
       </ul>
     </li>
@@ -1063,13 +1066,13 @@
   </ul>
 </nav>
 <div class="page-versions">
-  <button class="version-menu-toggle" title="Show other versions of page">7.121.x</button>
+  <button class="version-menu-toggle" title="Show other versions of page">7.122.x</button>
   <div class="version-menu">
     <a class="version" href="../../../next/administration-guide/configuring-oauth-2-for-github/">next</a>
-    <a class="version is-current" href="./">7.121.x</a>
+    <a class="version is-current" href="./">7.122.x</a>
   </div>
 </div>
-<div class="edit-this-page"><a href="https://github.com/eclipse-che/che-docs/edit/7.121.x/modules/administration-guide/pages/configuring-oauth-2-for-github.adoc">Edit this Page</a></div>
+<div class="edit-this-page"><a href="https://github.com/eclipse-che/che-docs/edit/7.122.x/modules/administration-guide/pages/configuring-oauth-2-for-github.adoc">Edit this Page</a></div>
 </div>
   <div class="content">
 <aside class="toc sidebar" data-title="Contents" data-levels="2">
@@ -1091,6 +1094,20 @@
 <p>Apply the GitHub App or OAuth App Secret.</p>
 </li>
 </ol>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>If you previously configured a GitHub OAuth App and want to enable Device Auth Tokens for users, also enable Device Flow as described in <a href="#setting-up-the-github-oauth-app">Setting up the GitHub OAuth App</a>.</p>
+</div>
+</td>
+</tr>
+</table>
 </div>
 </div>
 </div>
@@ -1141,6 +1158,46 @@
 </li>
 <li>
 <p>Copy and save the <strong>GitHub OAuth Client Secret</strong> for use when applying the GitHub OAuth App Secret.</p>
+</li>
+<li>
+<p><strong>(Optional)</strong> Scroll to the <strong>Device flow</strong> section and select the <strong>Enable Device Flow</strong> checkbox.</p>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Enable this option to allow users to connect their GitHub accounts from the Che Dashboard using <strong>User Preferences &gt; Device Auth Tokens</strong>. See <a href="../../end-user-guide/connecting-to-github-using-device-authorization/" class="xref page">Connecting to GitHub using device authorization</a>.
+</td>
+</tr>
+</table>
+</div>
+</li>
+<li>
+<p>If you selected <strong>Enable Device Flow</strong>, click <strong>Update application</strong>.</p>
+</li>
+<li>
+<p>If you enabled Device Flow, apply the <code>device-auth-config</code> ConfigMap in the Che namespace to expose the OAuth App client ID to the Dashboard:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-terminal hljs" data-lang="terminal">$ kubectl create configmap device-auth-config \
+    --from-literal=github_client_id=<em>&lt;GitHub_OAuth_Client_ID&gt;</em> \
+    -n eclipse-che</code></pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+When this ConfigMap is present, the <strong>Connect to GitHub</strong> button appears in <strong>User Preferences &gt; Device Auth Tokens</strong>. Delete the ConfigMap to hide the button.
+</td>
+</tr>
+</table>
+</div>
 </li>
 </ol>
 </div>

@@ -45,7 +45,7 @@
   </nav>
 </header>
 <div class="body">
-<div class="nav-container" data-component="docs" data-version="7.121.x">
+<div class="nav-container" data-component="docs" data-version="7.122.x">
   <aside class="nav">
     <div class="panels">
 <div class="nav-panel-menu is-active" data-panel="menu">
@@ -517,6 +517,9 @@
   </li>
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="../../get-started-user/using-a-git-provider-access-token/">Access private repositories with a personal access token</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../connecting-to-github-using-device-authorization/">Connecting to GitHub using device authorization</a>
   </li>
 </ul>
   </li>
@@ -1030,7 +1033,7 @@
 <div class="nav-panel-explore" data-panel="explore">
   <div class="context">
     <span class="title">Documentation</span>
-    <span class="version">7.121.x</span>
+    <span class="version">7.122.x</span>
   </div>
   <ul class="components">
     <li class="component is-current">
@@ -1040,7 +1043,7 @@
           <a href="../../../next/discover/what-is-che/">next</a>
         </li>
         <li class="version is-current is-latest">
-          <a href="../../discover/what-is-che/">7.121.x</a>
+          <a href="../../discover/what-is-che/">7.122.x</a>
         </li>
       </ul>
     </li>
@@ -1061,13 +1064,13 @@
   </ul>
 </nav>
 <div class="page-versions">
-  <button class="version-menu-toggle" title="Show other versions of page">7.121.x</button>
+  <button class="version-menu-toggle" title="Show other versions of page">7.122.x</button>
   <div class="version-menu">
     <a class="version" href="../../../next/end-user-guide/using-ai-assistants-in-workspaces/">next</a>
-    <a class="version is-current" href="./">7.121.x</a>
+    <a class="version is-current" href="./">7.122.x</a>
   </div>
 </div>
-<div class="edit-this-page"><a href="https://github.com/eclipse-che/che-docs/edit/7.121.x/modules/end-user-guide/pages/using-ai-assistants-in-workspaces.adoc">Edit this Page</a></div>
+<div class="edit-this-page"><a href="https://github.com/eclipse-che/che-docs/edit/7.122.x/modules/end-user-guide/pages/using-ai-assistants-in-workspaces.adoc">Edit this Page</a></div>
 </div>
   <div class="content">
 <aside class="toc sidebar" data-title="Contents" data-levels="2">
@@ -1086,6 +1089,18 @@
 <div class="paragraph">
 <p>If no AI providers are configured, the <strong>AI Provider</strong> section is hidden.</p>
 </div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+The dashboard only shows tools that are compatible with the architecture of your cluster nodes. On IBM Z (s390x) or Power (ppc64le) clusters, tools that do not support those architectures are hidden automatically.
+</td>
+</tr>
+</table>
+</div>
 </div>
 </div>
 <div class="sect1">
@@ -1093,6 +1108,17 @@
 <div class="sectionbody">
 <div class="paragraph">
 <p>If your administrator has set a default AI provider, the <strong>Create Workspace</strong> page displays it automatically. To override, expand <strong>Choose an AI Provider</strong> and select a different provider.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_selecting_a_tool_version"><a class="anchor" href="#_selecting_a_tool_version"></a>Selecting a tool version</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>When an AI provider offers multiple image variants (for example, <code>next</code> and <code>insiders</code>), an ellipsis menu (⋮) is displayed on the provider card. Click the menu to choose the version you want injected into your workspace. The selected version is shown as a label on the card.</p>
+</div>
+<div class="paragraph">
+<p>The same version picker is available on the <strong>Overview</strong> tab of an existing workspace under <strong>AI Tool &gt; edit</strong>.</p>
 </div>
 </div>
 </div>
