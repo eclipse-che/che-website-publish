@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <title>Enable the managed Open VSX registry :: Eclipse Che Documentation</title>
     <link rel="canonical" href="https://www.eclipse.org/che/docs/stable/administration-guide/enabling-the-managed-open-vsx-registry/">
-    <meta name="description" content="Enable the Operator-managed Open VSX registry to deploy a dedicated Open VSX server and PostgreSQL database as Eclipse&#160;Che operands">
-    <meta name="keywords" content="administration guide, openvsx, registry, extensions, managed, operator">
+    <meta name="description" content="Enable the Operator-managed Open VSX registry to deploy a dedicated Open VSX server and PostgreSQL database as Eclipse&#160;Che operands, and configure periodic extension auto-update">
+    <meta name="keywords" content="administration guide, openvsx, registry, extensions, managed, operator, auto-update, cronjob">
     <meta name="generator" content="Antora 3.2.0">
     <link rel="stylesheet" href="../../../../docs/_/css/site.css">
 <link rel="stylesheet" href="../../../../docs/_/css/extra.css">
@@ -1116,6 +1116,9 @@
 <li>
 <p>A <code>ConfigMap</code> for listing extensions to publish to the registry.</p>
 </li>
+<li>
+<p>Optional: A <code>CronJob</code> for periodic auto-update of published extensions from the upstream registry.</p>
+</li>
 </ul>
 </div>
 <div class="paragraph">
@@ -1126,6 +1129,9 @@
 <ul>
 <li>
 <p>An active <code>kubectl</code> session with administrative permissions to the destination Kubernetes cluster. See <a href="https://kubernetes.io/docs/reference/kubectl/overview/">Overview of kubectl</a>.</p>
+</li>
+<li>
+<p>Outbound HTTPS access from the cluster to <code>open-vsx.org</code> is available. This is required for the extension auto-update <code>CronJob</code> to fetch newer extension versions from the upstream registry.</p>
 </li>
 </ul>
 </div>
@@ -1227,6 +1233,104 @@ The managed registry starts empty with no pre-installed extensions. You must pub
 <p>The Operator automatically runs a publishing <code>Job</code> when the <code>ConfigMap</code> content changes.</p>
 </div>
 </li>
+<li>
+<p>Optional: Enable periodic auto-update of published extensions. When enabled, a <code>CronJob</code> periodically checks the upstream <code>open-vsx.org</code> registry for newer versions of extensions published in the managed registry and re-publishes them automatically.</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">kubectl patch checluster eclipse-che \
+  --namespace eclipse-che \
+  --type merge \
+  --patch '{
+    "spec": {
+      "components": {
+        "openVSXRegistry": {
+          "extensionAutoUpdate": {
+            "enable": true
+          }
+        }
+      }
+    }
+  }'</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>By default, the auto-update job runs weekly on Sunday at midnight (schedule: <code>0 0 * * 0</code>).</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>The cluster must have outbound HTTPS access to <code>open-vsx.org</code> for the auto-update job to fetch newer extension versions.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</li>
+<li>
+<p>Optional: Customize the auto-update schedule and filters. The following fields are available under <code>spec.components.openVSXRegistry.extensionAutoUpdate</code>:</p>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Field</th>
+<th class="tableblock halign-left valign-top">Default</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>enable</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>false</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Enables the extension auto-update <code>CronJob</code>.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>schedule</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>0 0 * * 0</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Cron schedule expression for the update job.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>vsCodeEngineVersion</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>not set</em></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">When set, only extensions compatible with this Visual Studio Code engine version are updated. When omitted, the latest non-pre-release version of each extension is used regardless of engine compatibility.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>excludedExtensions</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><em>empty</em></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">List of extension IDs to skip during auto-update, in <code>namespace.name</code> format. For example: <code>redhat.java</code>, <code>redhat.vscode-xml</code>.</p></td>
+</tr>
+</tbody>
+</table>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">kubectl patch checluster eclipse-che \
+  --namespace eclipse-che \
+  --type merge \
+  --patch '{
+    "spec": {
+      "components": {
+        "openVSXRegistry": {
+          "extensionAutoUpdate": {
+            "enable": true,
+            "schedule": "<em>&lt;cron_expression&gt;</em>",
+            "vsCodeEngineVersion": "<em>&lt;version&gt;</em>",
+            "excludedExtensions": ["<em>&lt;namespace.name&gt;</em>"]
+          }
+        }
+      }
+    }
+  }'</code></pre>
+</div>
+</div>
+</li>
 </ol>
 </div>
 <div class="ulist">
@@ -1253,6 +1357,14 @@ kubectl get pods --namespace eclipse-che -l app.kubernetes.io/component=openvsx-
 </li>
 <li>
 <p>Open a workspace and verify that extensions from the managed registry are available in the <strong>Extensions</strong> view.</p>
+</li>
+<li>
+<p>If extension auto-update is enabled, verify that the <code>CronJob</code> exists:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">kubectl get cronjob --namespace eclipse-che -l app.kubernetes.io/component=openvsx-server-extensions-update</code></pre>
+</div>
+</div>
 </li>
 </ul>
 </div>
