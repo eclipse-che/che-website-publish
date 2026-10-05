@@ -7,7 +7,7 @@
     <link rel="canonical" href="https://www.eclipse.org/che/docs/stable/install/proc_verifying-the-installation/">
     <meta name="description" content="Confirm that Che is operational before onboarding users by checking the Operator pod, the CheCluster status, and the dashboard URL.">
     <meta name="keywords" content="install, verify, check, status">
-    <meta name="generator" content="Antora 3.2.0">
+    <meta name="generator" content="Antora 3.2.1">
     <link rel="stylesheet" href="../../../../docs/_/css/site.css">
 <link rel="stylesheet" href="../../../../docs/_/css/extra.css">
 <link rel="stylesheet" href="../../../../docs/_/font-awesome-4.7.0/css/font-awesome.min.css">
@@ -296,6 +296,201 @@
   </li>
   <li class="nav-item" data-depth="0">
     <button class="nav-item-toggle"></button>
+    <span class="nav-text">Develop</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../../develop/using-credentials-and-configurations-in-workspaces/">Using credentials and configurations in workspaces</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../../develop/mounting-secrets/">Mounting Secrets</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../../develop/creating-image-pull-secrets/">Creating image pull Secrets</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../../develop/mounting-configmaps/">Mounting ConfigMaps</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../../develop/mounting-git-configuration/">Mounting Git configuration</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../../develop/mounting-ssh-configuration/">Mounting SSH configuration</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../../develop/using-the-fuse-overlay-storage-driver/">Using the fuse-overlayfs storage driver for Podman and Buildah</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../develop/accessing-fuse/">Accessing /dev/fuse</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../develop/enabling-overlay-with-a-configmap/">Enabling fuse-overlayfs with a ConfigMap</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../develop/running-containers-with-kubedock/">Running containers with kubedock</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../../develop/using-che-in-team-workflow/">Using Che in team workflow</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../develop/first-time-contributors/">Using a badge with a link to enable a first-time contributor to start a workspace</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../develop/benefits-of-pull-requests-review-in-che/">Benefits of reviewing pull and merge requests in Eclipse&#160;Che</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../develop/try-in-web-ide-github-action/">Try in Web IDE GitHub action</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../../develop/requesting-persistent-storage-for-workspaces/">Requesting persistent storage for workspaces</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../../develop/restoring-workspaces-from-backups/">Restoring workspaces from backups</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../../develop/proc-viewing-backups-in-the-dashboard/">Viewing backups in the dashboard</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../../develop/proc-restoring-a-workspace-from-backup/">Restoring a workspace from a backup</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../../develop/proc_preventing-workspace-idling-for-long-running-commands/">Prevent workspace idling for long-running commands</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../../develop/starting-a-workspace-from-a-raw-devfile-url/">Start a cloud development environment from a raw devfile URL</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../../develop/optional-parameters-for-the-urls-for-starting-a-new-workspace/">Optional parameters for the URLs for starting a new workspace</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../develop/url-parameter-concatenation/">URL parameter concatenation</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../develop/url-parameter-for-the-ide/">URL parameter for the IDE</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../develop/url-parameter-for-the-ide-image/">URL parameter for the IDE image</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../develop/url-parameter-for-starting-duplicate-workspaces/">URL parameter for starting duplicate workspaces</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../develop/url-parameter-for-the-existing-workspace-name/">URL parameter for the existing workspace name</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../develop/url-parameter-for-the-devfile-file-name/">URL parameter for the devfile file name</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../develop/url-parameter-for-the-devfile-file-path/">URL parameter for the devfile file path</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../develop/url-parameter-for-the-workspace-storage/">URL parameter for the workspace storage</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../develop/url-parameter-for-additional-remotes/">URL parameter for additional remotes</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../develop/url-parameter-for-container-image/">URL parameter for a container image</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../develop/url-parameter-for-memory-limit/">URL parameter for a memory limit</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../develop/url-parameter-for-cpu-limit/">URL parameter for a CPU limit</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../develop/url-parameter-for-the-ai-provider/">URL parameter for the AI provider</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Set up your development tools</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../../develop/customizing-workspace-components/">Customizing workspace components</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../../develop/devfile-introduction/">Introduction to devfile in Che</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../../develop/ides-in-workspaces/">IDEs in workspaces</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../../develop/microsoft-visual-studio-code-open-source-ide/">Microsoft Visual Studio Code - Open Source IDE</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../../develop/connect-visual-studio-code-to-che-workspace/">Connecting Visual Studio Code to a Che workspace</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../../develop/defining-a-common-ide/">Defining a common IDE</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../../develop/using-ai-assistants-in-workspaces/">AI assistants in workspaces</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../../develop/configuring-an-ai-provider-api-key/">Configure an AI provider API key</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../../develop/changing-the-ai-tool-on-a-workspace/">Change the AI tool on a workspace</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../../develop/persist-claude-code-configuration/">Persist Claude Code configuration</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../../develop/share-claude-code-configuration-with-pvc-direct-mount/">Share configuration with PVC direct mount</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../../develop/share-claude-code-configuration-with-pvc-tmp-copy/">Share configuration with PVC tmp copy</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../../develop/share-claude-code-configuration-with-gitops/">Share configuration with GitOps</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../../develop/troubleshoot-claude-code-configuration-persistence/">Troubleshoot Claude Code configuration persistence</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../../develop/distribute-claude-code-skills-with-lola/">Distribute AI skills with Lola</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+    <button class="nav-item-toggle"></button>
     <span class="nav-text">Troubleshoot</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="1">
@@ -349,237 +544,6 @@
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../../troubleshoot/troubleshooting-oauth-configuration/">Fix OAuth configuration errors</a>
-  </li>
-</ul>
-  </li>
-</ul>
-  </li>
-  <li class="nav-item" data-depth="0">
-    <button class="nav-item-toggle"></button>
-    <span class="nav-text">User Guide</span>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="../../end-user-guide/starting-a-workspace-from-a-raw-devfile-url/">Start a cloud development environment from a raw devfile URL</a>
-  </li>
-  <li class="nav-item" data-depth="1">
-    <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../../end-user-guide/optional-parameters-for-the-urls-for-starting-a-new-workspace/">Optional parameters for the URLs for starting a new workspace</a>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../../end-user-guide/url-parameter-concatenation/">URL parameter concatenation</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../../end-user-guide/url-parameter-for-the-ide/">URL parameter for the IDE</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../../end-user-guide/url-parameter-for-the-ide-image/">URL parameter for the IDE image</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../../end-user-guide/url-parameter-for-starting-duplicate-workspaces/">URL parameter for starting duplicate workspaces</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../../end-user-guide/url-parameter-for-the-devfile-file-name/">URL parameter for the devfile file name</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../../end-user-guide/url-parameter-for-the-devfile-file-path/">URL parameter for the devfile file path</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../../end-user-guide/url-parameter-for-the-workspace-storage/">URL parameter for the workspace storage</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../../end-user-guide/url-parameter-for-additional-remotes/">URL parameter for additional remotes</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../../end-user-guide/url-parameter-for-container-image/">URL parameter for a container image</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../../end-user-guide/url-parameter-for-memory-limit/">URL parameter for a memory limit</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../../end-user-guide/url-parameter-for-cpu-limit/">URL parameter for a CPU limit</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../../end-user-guide/url-parameter-for-the-existing-workspace-name/">URL parameter for the existing workspace name</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../../end-user-guide/url-parameter-for-the-ai-provider/">URL parameter for the AI provider</a>
-  </li>
-</ul>
-  </li>
-  <li class="nav-item" data-depth="1">
-    <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../../end-user-guide/restoring-workspaces-from-backups/">Restoring workspaces from backups</a>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../../end-user-guide/proc-restoring-a-workspace-from-backup/">Restoring a workspace from a backup</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../../end-user-guide/proc-viewing-backups-in-the-dashboard/">Viewing backups in the dashboard</a>
-  </li>
-</ul>
-  </li>
-  <li class="nav-item" data-depth="1">
-    <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../../end-user-guide/using-the-fuse-overlay-storage-driver/">Using the fuse-overlayfs storage driver for Podman and Buildah</a>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../../end-user-guide/accessing-fuse/">Accessing /dev/fuse</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../../end-user-guide/enabling-overlay-with-a-configmap/">Enabling fuse-overlayfs with a ConfigMap</a>
-  </li>
-</ul>
-  </li>
-  <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="../../end-user-guide/running-containers-with-kubedock/">Running containers with kubedock</a>
-  </li>
-  <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="../../end-user-guide/proc_preventing-workspace-idling-for-long-running-commands/">Prevent workspace idling for long-running commands</a>
-  </li>
-  <li class="nav-item" data-depth="1">
-    <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../../end-user-guide/using-che-in-team-workflow/">Using Che in team workflow</a>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../../end-user-guide/first-time-contributors/">Badge for first-time contributors</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../../end-user-guide/benefits-of-pull-requests-review-in-che/">Reviewing pull and merge requests</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../../end-user-guide/try-in-web-ide-github-action/">Try in Web IDE GitHub action</a>
-  </li>
-</ul>
-  </li>
-  <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="../../end-user-guide/customizing-workspace-components/">Customizing workspace components</a>
-  </li>
-  <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="../../end-user-guide/devfile-introduction/">Introduction to devfile in Che</a>
-  </li>
-  <li class="nav-item" data-depth="1">
-    <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../../end-user-guide/ides-in-workspaces/">IDEs in workspaces</a>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../../end-user-guide/microsoft-visual-studio-code-open-source-ide/">Microsoft Visual Studio Code - Open Source</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../../end-user-guide/connect-visual-studio-code-to-che-workspace/">Connecting Visual Studio Code to a Che workspace</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../../end-user-guide/defining-a-common-ide/">Defining a common IDE</a>
-  </li>
-</ul>
-  </li>
-  <li class="nav-item" data-depth="1">
-    <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../../end-user-guide/using-ai-assistants-in-workspaces/">Using AI assistants in workspaces</a>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../../end-user-guide/configuring-an-ai-provider-api-key/">Configuring an AI provider API key</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../../end-user-guide/changing-the-ai-tool-on-a-workspace/">Changing the AI tool on a workspace</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../../end-user-guide/persist-claude-code-configuration/">Persist Claude Code configuration</a>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../../end-user-guide/share-claude-code-configuration-with-pvc-direct-mount/">Share configuration with PVC direct mount</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../../end-user-guide/share-claude-code-configuration-with-pvc-tmp-copy/">Share configuration with PVC tmp copy</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../../end-user-guide/share-claude-code-configuration-with-gitops/">Share configuration with GitOps</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../../end-user-guide/troubleshoot-claude-code-configuration-persistence/">Troubleshoot Claude Code configuration persistence</a>
-  </li>
-</ul>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../../end-user-guide/distribute-claude-code-skills-with-lola/">Distribute AI skills with Lola</a>
-  </li>
-</ul>
-  </li>
-  <li class="nav-item" data-depth="1">
-    <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../../end-user-guide/using-credentials-and-configurations-in-workspaces/">Using credentials and configurations in workspaces</a>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="2">
-    <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../../end-user-guide/mounting-secrets/">Mounting Secrets</a>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../../end-user-guide/creating-image-pull-secrets/">Creating image pull Secrets</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../../get-started-user/using-a-git-provider-access-token/">Access private repositories with a personal access token</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../../end-user-guide/connecting-to-github-using-device-authorization/">Connecting to GitHub using device authorization</a>
-  </li>
-</ul>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../../end-user-guide/mounting-configmaps/">Mounting ConfigMaps</a>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../../end-user-guide/mounting-git-configuration/">Mounting Git configuration</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../../end-user-guide/mounting-ssh-configuration/">Mounting SSH configuration</a>
-  </li>
-</ul>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../../end-user-guide/enabling-artifact-repositories-in-a-restricted-environment/">Enabling artifact repositories in a restricted environment</a>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../../end-user-guide/enabling-maven-artifact-repositories/">Maven</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../../end-user-guide/enabling-gradle-artifact-repositories/">Gradle</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../../end-user-guide/enabling-npm-artifact-repositories/">npm</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../../end-user-guide/enabling-python-artifact-repositories/">Python</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../../end-user-guide/enabling-go-artifact-repositories/">Go</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../../end-user-guide/enabling-nuget-artifact-repositories/">NuGet</a>
-  </li>
-</ul>
-  </li>
-</ul>
-  </li>
-  <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="../../end-user-guide/requesting-persistent-storage-for-workspaces/">Requesting persistent storage for workspaces</a>
-  </li>
-  <li class="nav-item" data-depth="1">
-    <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../../end-user-guide/integrating-with-kubernetes/">Integrating with Kubernetes</a>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../../end-user-guide/managing-workspaces-with-apis/">Managing workspaces with Kubernetes APIs</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../../end-user-guide/automatic-token-injection/">Automatic Kubernetes token injection</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../../end-user-guide/navigating-che-from-openshift-developer-perspective/">Navigating Che from OpenShift Developer Perspective</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../../end-user-guide/navigating-openshift-web-console-from-che/">Navigating OpenShift web console from Che</a>
   </li>
 </ul>
   </li>
@@ -725,6 +689,174 @@
   </li>
   <li class="nav-item" data-depth="0">
     <button class="nav-item-toggle"></button>
+    <span class="nav-text">Integrate</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../../integrate/configuring-oauth-for-git-providers/">Give developers credential-free Git access</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../integrate/configuring-oauth-2-for-github/">Connect GitHub with OAuth</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../integrate/configuring-oauth-2-for-gitlab/">Connect GitLab with OAuth</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../integrate/configuring-oauth-2-for-a-bitbucket-server/">Connect Bitbucket Server with OAuth 2.0</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../integrate/configuring-oauth-2-for-the-bitbucket-cloud/">Connect Bitbucket Cloud with OAuth</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../integrate/configuring-oauth-1-for-a-bitbucket-server/">Connect Bitbucket Server with OAuth 1.0</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../integrate/configuring-oauth-2-for-microsoft-azure-devops-services/">Connect Azure DevOps with Microsoft Entra ID</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../../integrate/connecting-to-github-using-device-authorization/">Connect to GitHub with device authorization</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../../integrate/managing-workspaces-with-apis/">Manage workspaces from the command line</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../../integrate/integrating-with-kubernetes/">Use Kubernetes tools with workspaces</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../integrate/automatic-token-injection/">Use automatic Kubernetes token injection</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../integrate/navigating-che-from-openshift-developer-perspective/">Che in the OpenShift Developer Perspective</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../integrate/navigating-openshift-web-console-from-che/">Navigate to the Kubernetes web console from Che</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../../integrate/enabling-artifact-repositories-in-a-restricted-environment/">Connect workspaces to your organization&#8217;s package registries</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../integrate/enabling-maven-artifact-repositories/">Enable Maven artifact repositories</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../integrate/enabling-gradle-artifact-repositories/">Enable Gradle artifact repositories</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../integrate/enabling-npm-artifact-repositories/">Enable npm artifact repositories</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../integrate/enabling-python-artifact-repositories/">Enable Python artifact repositories</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../integrate/enabling-go-artifact-repositories/">Enable Go artifact repositories</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../integrate/enabling-nuget-artifact-repositories/">Enable NuGet artifact repositories</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Extend</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Choose which editors are available</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../extend/configuring-editors-definitions/">Add custom editors to the dashboard</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../extend/configuring-default-editor/">Set the default IDE for new workspaces</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../extend/concealing-editors/">Hide editors from the dashboard</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../extend/show-deprecated-editors/">Restore access to deprecated editors</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../extend/configuring-editors-download-urls/">Host editor binaries for air-gapped clusters</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../../extend/configuring-visual-studio-code/">Customize the default IDE</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../extend/configuring-single-and-multiroot-workspaces/">Work with multiple projects in one workspace</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../extend/trusted-extensions-for-microsoft-visual-studio-code/">Grant extensions access to OAuth tokens</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../extend/default-extensions-for-microsoft-visual-studio-code/">Pre-install extensions in every workspace</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../extend/manage-extension-installation/">Control which extensions users can install</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../extend/editor-configurations-for-microsoft-visual-studio-code/">Apply IDE settings to all workspaces</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../../extend/managing-ide-extensions/">How IDE extensions work in workspaces</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../extend/extensions-for-microsoft-visual-studio-code-open-source/">How the Open VSX extension registry works</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../extend/configuring-the-open-vsx-registry-url/">Use an alternative extension registry</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Deploy a private extension registry</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../extend/proc_deploy-open-vsx-from-source/">Build the extension registry from source</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../extend/proc_deploy-open-vsx-from-workspace/">Build the extension registry in a workspace</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../extend/proc_configure-internal-open-vsx-access/">Restrict the extension registry to internal traffic</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../extend/enabling-the-managed-open-vsx-registry/">Enable the managed Open VSX registry</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../extend/proc_deleting-extension-using-openvsx-admin-api/">Remove an extension through the registry API</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../extend/proc_deleting-extension-from-postgresql-database/">Remove an extension from the database</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../../extend/configuring-ai-providers/">Register AI coding assistants</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../extend/ai-provider-api-key-secret-reference/">AI provider API key secret reference</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+    <button class="nav-item-toggle"></button>
     <span class="nav-text">Administration Guide</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="1">
@@ -853,55 +985,7 @@
     <a class="nav-link" href="../../administration-guide/configuring-getting-started-samples/">Configuring getting started samples</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../../administration-guide/configuring-editors-definitions/">Configuring editors definitions</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../../administration-guide/show-deprecated-editors/">Show deprecated editors</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../../administration-guide/configuring-default-editor/">Configuring default editor</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../../administration-guide/concealing-editors/">Concealing editors</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../../administration-guide/configuring-editors-download-urls/">Configuring editors download urls</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../../administration-guide/configuring-ai-providers/">Configuring AI providers</a>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="4">
-    <a class="nav-link" href="../../administration-guide/ai-provider-api-key-secret-reference/">AI provider API key secret reference</a>
-  </li>
-</ul>
-  </li>
-  <li class="nav-item" data-depth="3">
     <a class="nav-link" href="../../administration-guide/customizing-openshift-che-branding-images/">Customizing OpenShift Eclipse Che branding images</a>
-  </li>
-</ul>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../../administration-guide/configuring-oauth-for-git-providers/">Configuring OAuth for Git providers</a>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../../administration-guide/configuring-oauth-2-for-github/">Configuring OAuth 2.0 for GitHub</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../../administration-guide/configuring-oauth-2-for-gitlab/">Configuring OAuth 2.0 for GitLab</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../../administration-guide/configuring-oauth-2-for-a-bitbucket-server/">Configuring OAuth 2.0 for a Bitbucket Server</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../../administration-guide/configuring-oauth-2-for-the-bitbucket-cloud/">Configuring OAuth 2.0 for the Bitbucket Cloud</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../../administration-guide/configuring-oauth-1-for-a-bitbucket-server/">Configuring OAuth 1.0 for a Bitbucket Server</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../../administration-guide/configuring-oauth-2-for-microsoft-azure-devops-services/">Configuring OAuth 2.0 for Microsoft Azure DevOps Services</a>
   </li>
 </ul>
   </li>
@@ -928,57 +1012,6 @@
     <a class="nav-link" href="../../administration-guide/devworkspace-backup-regular-oci-registry/">Regular OCI-compatible registry</a>
   </li>
 </ul>
-  </li>
-</ul>
-  </li>
-  <li class="nav-item" data-depth="1">
-    <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../../administration-guide/managing-ide-extensions/">Managing IDE extensions</a>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../../administration-guide/extensions-for-microsoft-visual-studio-code-open-source/">Extensions for Microsoft Visual Studio Code - Open Source</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../../administration-guide/configuring-the-open-vsx-registry-url/">Configure the Open VSX registry URL</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../../administration-guide/enabling-the-managed-open-vsx-registry/">Enable the managed Open VSX registry</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../../administration-guide/proc_deploy-open-vsx-from-source/">Deploy Open VSX from source</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../../administration-guide/proc_deploy-open-vsx-from-workspace/">Deploy Open VSX from a workspace</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../../administration-guide/proc_configure-internal-open-vsx-access/">Configure internal Open VSX access</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../../administration-guide/proc_deleting-extension-using-openvsx-admin-api/">Delete an extension using the Open VSX API</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../../administration-guide/proc_deleting-extension-from-postgresql-database/">Delete an extension from the PostgreSQL database</a>
-  </li>
-</ul>
-  </li>
-  <li class="nav-item" data-depth="1">
-    <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../../administration-guide/configuring-visual-studio-code/">Configuring Visual Studio Code - Open Source ("Code - OSS")</a>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../../administration-guide/configuring-single-and-multiroot-workspaces/">Configuring single and multiroot workspaces</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../../administration-guide/trusted-extensions-for-microsoft-visual-studio-code/">Configure trusted extensions for Microsoft Visual Studio Code</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../../administration-guide/default-extensions-for-microsoft-visual-studio-code/">Configure default extensions</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../../administration-guide/manage-extension-installation/">Manage extension installation with ConfigMap</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../../administration-guide/editor-configurations-for-microsoft-visual-studio-code/">Applying editor configurations</a>
   </li>
 </ul>
   </li>
@@ -1044,7 +1077,7 @@
           <a href="../../discover/what-is-che/">next</a>
         </li>
         <li class="version is-latest">
-          <a href="../../../stable/discover/what-is-che/">7.122.x</a>
+          <a href="../../../stable/discover/what-is-che/">7.123.x</a>
         </li>
       </ul>
     </li>
@@ -1068,7 +1101,7 @@
   <button class="version-menu-toggle" title="Show other versions of page">next</button>
   <div class="version-menu">
     <a class="version is-current" href="./">next</a>
-    <a class="version" href="../../../stable/install/proc_verifying-the-installation/">7.122.x</a>
+    <a class="version" href="../../../stable/install/proc_verifying-the-installation/">7.123.x</a>
   </div>
 </div>
 <div class="edit-this-page"><a href="https://github.com/eclipse-che/che-docs/edit/main/modules/install/pages/proc_verifying-the-installation.adoc">Edit this Page</a></div>
