@@ -840,6 +840,9 @@
     <a class="nav-link" href="./">Enable the managed Open VSX registry</a>
   </li>
   <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../deleting-extensions-from-the-managed-open-vsx-registry/">Delete extensions from the managed registry</a>
+  </li>
+  <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../proc_deleting-extension-using-openvsx-admin-api/">Remove an extension through the registry API</a>
   </li>
   <li class="nav-item" data-depth="2">
@@ -1618,87 +1621,7 @@ kubectl get pods --namespace eclipse-che -l app.kubernetes.io/component=openvsx-
 <h2 id="deleting-extensions-from-the-managed-open-vsx-registry"><a class="anchor" href="#deleting-extensions-from-the-managed-open-vsx-registry"></a>Delete extensions from the managed Open VSX registry</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Delete individual extensions or specific extension versions from the managed Open VSX registry by using the Open VSX admin API.</p>
-</div>
-<div class="ulist">
-<div class="title">Prerequisites</div>
-<ul>
-<li>
-<p>An active <code>kubectl</code> session with administrative permissions to the destination Kubernetes cluster. See <a href="https://kubernetes.io/docs/reference/kubectl/overview/">Overview of kubectl</a>.</p>
-</li>
-<li>
-<p>The managed Open VSX registry is enabled and running.</p>
-</li>
-</ul>
-</div>
-<div class="olist arabic">
-<div class="title">Procedure</div>
-<ol class="arabic">
-<li>
-<p>Get the Open VSX server pod name:</p>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">kubectl get pods --namespace eclipse-che -l app.kubernetes.io/component=openvsx-server -o name</code></pre>
-</div>
-</div>
-</li>
-<li>
-<p>Delete an entire extension with all its versions:</p>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">kubectl exec <em>&lt;openvsx_server_pod&gt;</em> \
-  --namespace eclipse-che -- \
-  sh -c 'curl -X POST "http://openvsx-server:8080/openvsx/admin/api/extension/<em>&lt;extension_namespace&gt;</em>/<em>&lt;extension_name&gt;</em>/delete?token=$OPENVSX_ADMIN_PAT"'</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>where:</p>
-</div>
-<div class="openblock">
-<div class="content">
-<div class="dlist">
-<dl>
-<dt class="hdlist1"><code><em>&lt;openvsx_server_pod&gt;</em></code></dt>
-<dd>
-<p>The pod name from the previous step.</p>
-</dd>
-<dt class="hdlist1"><code><em>&lt;extension_namespace&gt;</em></code></dt>
-<dd>
-<p>The namespace (publisher) of the extension. For example: <code>redhat</code>.</p>
-</dd>
-<dt class="hdlist1"><code><em>&lt;extension_name&gt;</em></code></dt>
-<dd>
-<p>The name of the extension. For example: <code>java</code>.</p>
-</dd>
-</dl>
-</div>
-</div>
-</div>
-</li>
-<li>
-<p>Alternatively, to delete only a specific version of an extension:</p>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">kubectl exec <em>&lt;openvsx_server_pod&gt;</em> \
-  --namespace eclipse-che -- \
-  sh -c 'curl -X POST -H "Content-Type: application/json" \
-  -d '"'"'[{"version": "<em>&lt;extension_version&gt;</em>"}]'"'"' \
-  "http://openvsx-server:8080/openvsx/admin/api/extension/<em>&lt;extension_namespace&gt;</em>/<em>&lt;extension_name&gt;</em>/delete?token=$OPENVSX_ADMIN_PAT"'</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>where <code><em>&lt;extension_version&gt;</em></code> is the version to delete. For example: <code>1.2.3</code>.</p>
-</div>
-</li>
-</ol>
-</div>
-<div class="ulist">
-<div class="title">Verification</div>
-<ul>
-<li>
-<p>Open the Open VSX registry UI and verify that the deleted extension is no longer listed.</p>
-</li>
-</ul>
+<p>To remove an extension, one of its versions, or one of its target platforms from a running managed registry, see <a href="../deleting-extensions-from-the-managed-open-vsx-registry/" class="xref page">Delete extensions from the managed Open VSX registry</a>.</p>
 </div>
 </div>
 </div>
