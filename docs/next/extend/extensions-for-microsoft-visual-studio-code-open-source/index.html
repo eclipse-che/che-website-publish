@@ -1200,6 +1200,9 @@
 </table>
 </div>
 </li>
+<li>
+<p>Save the changes to the <code>CheCluster</code> custom resource.</p>
+</li>
 </ol>
 </div>
 <div class="admonitionblock important">
@@ -1209,14 +1212,13 @@
 <i class="fa icon-important" title="Important"></i>
 </td>
 <td class="content">
-<div class="title">Save the changes to the custom resource.</div>
 <div class="ulist">
 <ul>
 <li>
 <p>Do not use <a href="https://open-vsx.org">https://open-vsx.org</a> in an air-gapped environment or an environment that is isolated from the internet. To reduce the risk of malware infections and unauthorized access to your code, use the embedded or a self-hosted Open VSX registry with a curated set of extensions.</p>
 </li>
 <li>
-<p>To select the embedded Open VSX registry instance in the <code>plugin-registry</code> pod, use <code>openVSXURL: ''</code>. You can customize the list of included extensions <a href="#adding-or-removing-extensions-in-a-workspace_che">using a workspace</a> or <a href="#adding-or-removing-extensions-on-linux_che">using a Linux operating system</a>.</p>
+<p>To select the embedded Open VSX registry instance in the <code>plugin-registry</code> pod, set <code>openVSXURL: ''</code> and disable the Open VSX operand by setting <code>spec.components.openVSXRegistry.enable</code> to <code>false</code>. The embedded registry requires both settings, because Che does not deploy the <code>plugin-registry</code> pod while the managed Open VSX registry is enabled. You can customize the list of included extensions <a href="#adding-or-removing-extensions-in-a-workspace_che">using a workspace</a> or <a href="#adding-or-removing-extensions-on-linux_che">using a Linux operating system</a>.</p>
 </li>
 <li>
 <p>You can point <code>openVSXURL</code> to the URL of a standalone Open VSX registry instance if the URL is accessible from within the organization&#8217;s cluster and not blocked by a proxy.</p>
@@ -1231,10 +1233,10 @@
 <div class="title">Verification</div>
 <ol class="arabic">
 <li>
-<p>Confirm that the <code>plugin-registry</code> pod has restarted.</p>
+<p>Open a workspace and verify that extensions are available from the selected registry instance in the <strong>Extensions</strong> view.</p>
 </li>
 <li>
-<p>Open a workspace and verify that extensions are available from the selected registry instance in the <strong>Extensions</strong> view.</p>
+<p>If you selected the embedded registry, confirm that the <code>plugin-registry</code> pod is running.</p>
 </li>
 </ol>
 </div>
@@ -1254,7 +1256,7 @@
 </td>
 <td class="content">
 <div class="paragraph">
-<p>The embedded plugin registry is deprecated. Setting up an internal, on-premises Open VSX registry provides full control over the extension lifecycle, enables offline use, and improves compliance. Refer to the <a href="../proc_deploy-open-vsx-from-source/" class="xref page">Build the extension registry from source</a> procedure for detailed setup instructions.</p>
+<p>The embedded plugin registry is deprecated. Use the managed Open VSX registry or configure an alternative registry URL instead. To select the embedded registry, see <a href="../configuring-the-open-vsx-registry-url/" class="xref page">Use an alternative extension registry</a>.</p>
 </div>
 </td>
 </tr>
@@ -1438,6 +1440,9 @@
 <ul>
 <li>
 <p><a href="https://github.com/redhat-developer/che-plugin-registry">Plugin registry repository</a></p>
+</li>
+<li>
+<p><a href="../enabling-the-managed-open-vsx-registry/" class="xref page">Enable the managed Open VSX registry</a></p>
 </li>
 <li>
 <p><a href="../proc_deploy-open-vsx-from-source/" class="xref page">Build the extension registry from source</a></p>

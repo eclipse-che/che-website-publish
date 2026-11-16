@@ -1120,13 +1120,24 @@
 <article class="doc">
 <h1 class="page">Use an alternative extension registry</h1>
 <div class="paragraph _abstract">
-<p>Configure Che to use an alternative Open VSX registry instance instead of the default embedded registry. Switch to the public open-vsx.org registry for internet-connected environments, or to a standalone on-premises instance for full control over available extensions.</p>
+<p>Use an alternative Open VSX registry instance instead of the managed registry deployed by the Operator. Select the public open-vsx.org registry for internet-connected environments, or a standalone on-premises instance for full control over available extensions.</p>
+</div>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-warning" title="Warning"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Disabling the managed registry removes its extension storage and database PVCs. Back up any data you need before disabling the managed registry.</p>
+</div>
+</td>
+</tr>
+</table>
 </div>
 <div class="paragraph">
-<p>The default is the embedded instance of the Open VSX registry.</p>
-</div>
-<div class="paragraph">
-<p>If the default Open VSX registry instance does not meet your requirements, you can select one of the following instances:</p>
+<p>If the managed Open VSX registry does not meet your requirements, you can select one of the following instances:</p>
 </div>
 <div class="ulist">
 <ul>
@@ -1135,6 +1146,23 @@
 </li>
 <li>
 <p>A standalone Open VSX registry instance that is deployed on a network accessible from Che workspace pods.</p>
+</li>
+<li>
+<p>The deprecated embedded Open VSX registry instance that runs in the <code>plugin-registry</code> pod.</p>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-warning" title="Warning"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>The embedded Open VSX registry instance is deprecated and is planned for removal in a future release.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
 </li>
 </ul>
 </div>
@@ -1163,26 +1191,13 @@
 </div>
 </div>
 <div class="paragraph">
-<p>where:</p>
+<p>where <code><em>&lt;url_of_an_open_vsx_registry_instance&gt;</em></code> is the URL of the public or standalone Open VSX registry instance. For example: <code>https://open-vsx.org</code>. The URL must be accessible from within your organization&#8217;s cluster and not blocked by a proxy.</p>
 </div>
-<div class="dlist">
-<dl>
-<dt class="hdlist1"><code><em>&lt;url_of_an_open_vsx_registry_instance&gt;</em></code></dt>
-<dd>
-<p>The URL of the Open VSX registry instance. For example: <code>openVSXURL: "https://open-vsx.org"</code>.</p>
-<div class="openblock">
-<div class="content">
-<div class="ulist">
-<ul>
-<li>
-<p>To select the embedded Open VSX registry instance in the <code>plugin-registry</code> pod, use <code>openVSXURL: ''</code>. You can customize the list of included extensions. See <a href="../extensions-for-microsoft-visual-studio-code-open-source/" class="xref page">How the Open VSX extension registry works</a>.</p>
-</li>
-<li>
-<p>You can also point <code>openVSXURL</code> at the URL of a standalone Open VSX registry instance. The URL must be accessible from within your organization&#8217;s cluster and not blocked by a proxy.</p>
-</li>
-</ul>
+<div class="paragraph">
+<p>A non-empty <code>openVSXURL</code> value takes effect on its own. You do not have to disable the managed Open VSX registry to use a public or standalone instance. The managed registry continues to run and consume cluster resources until you disable it. To remove it, see <a href="../enabling-the-managed-open-vsx-registry/#disabling-the-managed-open-vsx-registry" class="xref page">Disable the managed Open VSX registry</a>.</p>
 </div>
-</div>
+<div class="paragraph">
+<p>To select the deprecated embedded Open VSX registry instance, set <code>openVSXURL: ''</code> and disable the Open VSX operand by setting <code>spec.components.openVSXRegistry.enable</code> to <code>false</code>. The embedded registry requires both settings, because Che does not deploy the <code>plugin-registry</code> pod while the managed Open VSX registry is enabled. You can customize the list of included extensions. See <a href="../extensions-for-microsoft-visual-studio-code-open-source/" class="xref page">How the Open VSX extension registry works</a>.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -1226,9 +1241,6 @@
 </tr>
 </table>
 </div>
-</dd>
-</dl>
-</div>
 </li>
 </ol>
 </div>
@@ -1236,16 +1248,24 @@
 <div class="title">Verification</div>
 <ul>
 <li>
-<p>Confirm that the <code>plugin-registry</code> pod has restarted and is running.</p>
+<p>Open a workspace and verify that extensions are available from the selected registry instance in the <strong>Extensions</strong> view.</p>
 </li>
 <li>
-<p>Open a workspace and verify that extensions are available from the selected registry instance in the <strong>Extensions</strong> view.</p>
+<p>If you selected the embedded registry, confirm that the <code>plugin-registry</code> pod is running:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">kubectl get pods --namespace eclipse-che -l app.kubernetes.io/component=plugin-registry</code></pre>
+</div>
+</div>
 </li>
 </ul>
 </div>
 <div class="ulist _additional-resources">
 <div class="title">Additional resources</div>
 <ul>
+<li>
+<p><a href="../enabling-the-managed-open-vsx-registry/" class="xref page">Enable the managed Open VSX registry</a></p>
+</li>
 <li>
 <p><a href="../../administration-guide/using-the-cli-to-configure-the-checluster-custom-resource/" class="xref page">Using the CLI to configure the CheCluster Custom Resource</a></p>
 </li>
