@@ -7,7 +7,7 @@
     <link rel="canonical" href="https://www.eclipse.org/che/docs/stable/secure/security-best-practices/">
     <meta name="description" content="Security best practices">
     <meta name="keywords" content="security, best practices">
-    <meta name="generator" content="Antora 3.2.1">
+    <meta name="generator" content="Antora 3.2.3">
     <link rel="stylesheet" href="../../../../docs/_/css/site.css">
 <link rel="stylesheet" href="../../../../docs/_/css/extra.css">
 <link rel="stylesheet" href="../../../../docs/_/font-awesome-4.7.0/css/font-awesome.min.css">
@@ -1083,7 +1083,7 @@
           <a href="../../discover/what-is-che/">next</a>
         </li>
         <li class="version is-latest">
-          <a href="../../../stable/discover/what-is-che/">7.124.x</a>
+          <a href="../../../stable/discover/what-is-che/">7.125.x</a>
         </li>
       </ul>
     </li>
@@ -1107,7 +1107,7 @@
   <button class="version-menu-toggle" title="Show other versions of page">next</button>
   <div class="version-menu">
     <a class="version is-current" href="./">next</a>
-    <a class="version" href="../../../stable/secure/security-best-practices/">7.124.x</a>
+    <a class="version" href="../../../stable/secure/security-best-practices/">7.125.x</a>
   </div>
 </div>
 <div class="edit-this-page"><a href="https://github.com/eclipse-che/che-docs/edit/main/modules/secure/pages/security-best-practices.adoc">Edit this Page</a></div>
@@ -1120,7 +1120,7 @@
 <h1 class="page">Protect your deployment</h1>
 <div id="preamble">
 <div class="sectionbody">
-<div class="paragraph">
+<div class="paragraph _abstract">
 <p>Protect your Eclipse&#160;Che deployment by applying these security practices to safeguard developer credentials, isolate workspaces, and reduce the cluster attack surface.</p>
 </div>
 <div class="paragraph">
@@ -1161,7 +1161,7 @@
 <div class="ulist">
 <ul>
 <li>
-<p><strong>OAuth for Git providers.</strong> Without OAuth, developers must manually create personal access token secrets. Set up OAuth for your Git providers to give developers credential-free repository access.</p>
+<p><strong>OAuth for Git providers.</strong> Without OAuth, developers must manually create personal access token secrets. Configure OAuth for your Git providers to give developers credential-free repository access.</p>
 </li>
 <li>
 <p><strong>Access restrictions.</strong> By default, all authenticated OpenShift users can access Che. Use the <code>advancedAuthorization</code> CheCluster property to restrict access to specific users and groups.</p>
@@ -1487,7 +1487,10 @@
 </ul>
 </div>
 <div class="paragraph">
-<p>On OpenShift, the Che Operator can automatically manage NetworkPolicy resources for the Che namespace and user workspace namespaces. For detailed instructions on configuring network policies, see Additional resources.</p>
+<p>The Che Operator can automatically manage the NetworkPolicy resources for the Che components, and the DevWorkspace Operator provisions a NetworkPolicy for each workspace. Both features are disabled by default.</p>
+</div>
+<div class="paragraph">
+<p>The workspace setting inherits the value of the component setting when it is not set explicitly, so enabling network policies for the components also isolates workspaces unless you disable workspace isolation separately. For detailed instructions on configuring network policies, see Additional resources.</p>
 </div>
 </div>
 </div>

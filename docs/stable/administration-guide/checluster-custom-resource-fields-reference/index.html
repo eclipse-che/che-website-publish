@@ -7,7 +7,7 @@
     <link rel="canonical" href="https://www.eclipse.org/che/docs/stable/administration-guide/checluster-custom-resource-fields-reference/">
     <meta name="description" content="`CheCluster` Custom Resource fields reference">
     <meta name="keywords" content="administration guide, checluster, custom resource">
-    <meta name="generator" content="Antora 3.2.1">
+    <meta name="generator" content="Antora 3.2.3">
     <link rel="stylesheet" href="../../../../docs/_/css/site.css">
 <link rel="stylesheet" href="../../../../docs/_/css/extra.css">
 <link rel="stylesheet" href="../../../../docs/_/font-awesome-4.7.0/css/font-awesome.min.css">
@@ -45,7 +45,7 @@
   </nav>
 </header>
 <div class="body">
-<div class="nav-container" data-component="docs" data-version="7.124.x">
+<div class="nav-container" data-component="docs" data-version="7.125.x">
   <aside class="nav">
     <div class="panels">
 <div class="nav-panel-menu is-active" data-panel="menu">
@@ -839,6 +839,9 @@
     <a class="nav-link" href="../../extend/enabling-the-managed-open-vsx-registry/">Enable the managed Open VSX registry</a>
   </li>
   <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../extend/deleting-extensions-from-the-managed-open-vsx-registry/">Delete extensions from the managed registry</a>
+  </li>
+  <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../../extend/proc_deleting-extension-using-openvsx-admin-api/">Remove an extension through the registry API</a>
   </li>
   <li class="nav-item" data-depth="2">
@@ -1069,7 +1072,7 @@
 <div class="nav-panel-explore" data-panel="explore">
   <div class="context">
     <span class="title">Documentation</span>
-    <span class="version">7.124.x</span>
+    <span class="version">7.125.x</span>
   </div>
   <ul class="components">
     <li class="component is-current">
@@ -1079,7 +1082,7 @@
           <a href="../../../next/discover/what-is-che/">next</a>
         </li>
         <li class="version is-current is-latest">
-          <a href="../../discover/what-is-che/">7.124.x</a>
+          <a href="../../discover/what-is-che/">7.125.x</a>
         </li>
       </ul>
     </li>
@@ -1102,13 +1105,13 @@
   </ul>
 </nav>
 <div class="page-versions">
-  <button class="version-menu-toggle" title="Show other versions of page">7.124.x</button>
+  <button class="version-menu-toggle" title="Show other versions of page">7.125.x</button>
   <div class="version-menu">
     <a class="version" href="../../../next/administration-guide/checluster-custom-resource-fields-reference/">next</a>
-    <a class="version is-current" href="./">7.124.x</a>
+    <a class="version is-current" href="./">7.125.x</a>
   </div>
 </div>
-<div class="edit-this-page"><a href="https://github.com/eclipse-che/che-docs/edit/7.124.x/modules/administration-guide/pages/checluster-custom-resource-fields-reference.adoc">Edit this Page</a></div>
+<div class="edit-this-page"><a href="https://github.com/eclipse-che/che-docs/edit/7.125.x/modules/administration-guide/pages/checluster-custom-resource-fields-reference.adoc">Edit this Page</a></div>
 </div>
   <div class="content">
 <aside class="toc sidebar" data-title="Contents" data-levels="2">
@@ -1603,6 +1606,16 @@ spec:
 <td class="tableblock halign-left valign-top"><p class="tableblock">{  "enabled": true}</p></td>
 </tr>
 <tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">podAffinity</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The pod affinity of the workspace pods affects where the workspace pods are scheduled. It is applied to workspace pods, PVC cleanup pods and backup pods.</p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">podAntiAffinity</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The pod anti-affinity of the workspace pods affects where the workspace pods are scheduled. It is applied to workspace pods, PVC cleanup pods and backup pods.</p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">podSchedulerName</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Pod scheduler for the workspace pods. If not specified, the pod scheduler is set to the default scheduler on the cluster.</p></td>
 <td class="tableblock halign-left valign-top"></td>
@@ -1620,7 +1633,7 @@ spec:
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">secondsOfInactivityBeforeIdling</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Idle timeout for workspaces in seconds. This timeout is the duration after which a workspace will be idled if there is no activity. To disable workspace idling due to inactivity, set this value to -1.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">1800</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">3600</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">secondsOfRunBeforeIdling</p></td>
@@ -1655,6 +1668,11 @@ spec:
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">tolerations</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">The pod tolerations of the workspace pods limit where the workspace pods can run.</p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">topologySpreadConstraints</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The topology spread constraints of the workspace pods affect where the workspace pods are scheduled. They are applied to workspace pods, PVC cleanup pods and backup pods.</p></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>
@@ -1906,6 +1924,11 @@ spec:
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">externalTLSConfig</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">External TLS configuration.</p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">networkPolicy</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">NetworkPolicy defines configuration options for the NetworkPolicies provisioned for each DevWorkspace by the DevWorkspace Operator.  When enabled and no ingress rules are specified, the Operator sets the default DevWorkspace Operator ingress rules and adds one custom ingress rule allowing traffic from Che operands (pods labeled with <code>app.kubernetes.io/part-of=che.eclipse.org</code> in the CheCluster namespace). If custom ingress rules are specified, only those rules apply and the rule allowing traffic from Che operands is not added automatically; if Che operands need to communicate with the workspaces, a corresponding ingress rule must be explicitly included.  When enabled and no egress rules are specified, the Operator sets the default DevWorkspace Operator egress rules. If custom egress rules are specified, only those rules apply.  When <code>enabled</code> is not set here, it falls back to the Che-wide <code>spec.networking.networkPolicy.enabled</code> flag: if that flag is <code>true</code>, workspace isolation is enabled as well. Set <code>enabled</code> to <code>false</code> explicitly to opt the workspaces out while keeping the NetworkPolicies for the Che components.</p></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 </tbody>
@@ -2241,7 +2264,7 @@ spec:
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">openVSXRegistry</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">OpenVSX registry configuration.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">{  "enable": false,  "extensionAutoUpdate": {    "enable": false,    "schedule": "0 0 * * 0"  }}</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">{  "extensionAutoUpdate": {    "enable": false,    "schedule": "0 0 * * 0"  }}</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">pluginRegistry</p></td>
@@ -2617,6 +2640,11 @@ spec:
 <td class="tableblock halign-left valign-top"><p class="tableblock">Enables users to work with repositories hosted on GitLab (gitlab.com or self-hosted).</p></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">oauthTokenRefresh</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Configuration for automatically refreshing Git provider OAuth tokens before they expire, so workspace Git operations don&#8217;t fail due to expired tokens. Only tokens obtained through Che&#8217;s OAuth integration are refreshed; manually created personal access tokens are not affected.</p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
 </tbody>
 </table>
 <table id="checluster-custom-resource-gitServices-github-settings" class="tableblock frame-all grid-all stretch">
@@ -2774,7 +2802,7 @@ spec:
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">networkPolicy</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">NetworkPolicy configures NetworkPolicy resources for the Che namespace and user workspace namespaces. For OpenShift clusters only. When enabled, the following policies are created: In the Che namespace:   - allow-from-same-namespace: allows ingress traffic between Che pods in the same namespace.   - allow-from-workspaces: allows ingress traffic from user workspace namespaces.   - allow-from-openshift-ingress: allows ingress traffic from the OpenShift ingress namespace.   - allow-from-openshift-monitoring: allows ingress traffic from the OpenShift monitoring namespace.   - allow-from-&lt;flavor&gt;-operator: allows ingress traffic from the operator pod to Che components.   - allow-all-egress: allows all egress traffic from Che pods. In each user workspace namespace:   - allow-from-&lt;che-namespace&gt;: allows ingress traffic from the Che namespace.   - allow-from-same-namespace: allows ingress traffic between pods in the same namespace.   - allow-from-devworkspace-operator: allows ingress traffic from the DevWorkspace operator.   - allow-from-openshift-monitoring: allows ingress traffic from the OpenShift monitoring namespace.   - allow-from-openshift-ingress: allows ingress traffic from the OpenShift ingress namespace.   - allow-all-egress: allows all egress traffic from workspace pods.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">NetworkPolicy defines the NetworkPolicies the Operator provisions for Che components, such as the gateway, the server, the dashboard and the registries.</p></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
 <tr>

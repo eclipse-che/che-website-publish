@@ -5,9 +5,9 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <title>Configure network policies :: Eclipse Che Documentation</title>
     <link rel="canonical" href="https://www.eclipse.org/che/docs/stable/administration-guide/configuring-network-policies/">
-    <meta name="description" content="Configuring network policies">
-    <meta name="keywords" content="administration guide, configuring, namespace, network policy, network policies, multitenant isolation, openshift">
-    <meta name="generator" content="Antora 3.2.1">
+    <meta name="description" content="Configuring network policies for the Che components and workspaces">
+    <meta name="keywords" content="administration guide, configuring, network policy, network policies, workspace isolation, openshift, kubernetes">
+    <meta name="generator" content="Antora 3.2.3">
     <link rel="stylesheet" href="../../../../docs/_/css/site.css">
 <link rel="stylesheet" href="../../../../docs/_/css/extra.css">
 <link rel="stylesheet" href="../../../../docs/_/font-awesome-4.7.0/css/font-awesome.min.css">
@@ -45,7 +45,7 @@
   </nav>
 </header>
 <div class="body">
-<div class="nav-container" data-component="docs" data-version="7.124.x">
+<div class="nav-container" data-component="docs" data-version="7.125.x">
   <aside class="nav">
     <div class="panels">
 <div class="nav-panel-menu is-active" data-panel="menu">
@@ -839,6 +839,9 @@
     <a class="nav-link" href="../../extend/enabling-the-managed-open-vsx-registry/">Enable the managed Open VSX registry</a>
   </li>
   <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../../extend/deleting-extensions-from-the-managed-open-vsx-registry/">Delete extensions from the managed registry</a>
+  </li>
+  <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../../extend/proc_deleting-extension-using-openvsx-admin-api/">Remove an extension through the registry API</a>
   </li>
   <li class="nav-item" data-depth="2">
@@ -1069,7 +1072,7 @@
 <div class="nav-panel-explore" data-panel="explore">
   <div class="context">
     <span class="title">Documentation</span>
-    <span class="version">7.124.x</span>
+    <span class="version">7.125.x</span>
   </div>
   <ul class="components">
     <li class="component is-current">
@@ -1079,7 +1082,7 @@
           <a href="../../../next/discover/what-is-che/">next</a>
         </li>
         <li class="version is-current is-latest">
-          <a href="../../discover/what-is-che/">7.124.x</a>
+          <a href="../../discover/what-is-che/">7.125.x</a>
         </li>
       </ul>
     </li>
@@ -1102,13 +1105,13 @@
   </ul>
 </nav>
 <div class="page-versions">
-  <button class="version-menu-toggle" title="Show other versions of page">7.124.x</button>
+  <button class="version-menu-toggle" title="Show other versions of page">7.125.x</button>
   <div class="version-menu">
     <a class="version" href="../../../next/administration-guide/configuring-network-policies/">next</a>
-    <a class="version is-current" href="./">7.124.x</a>
+    <a class="version is-current" href="./">7.125.x</a>
   </div>
 </div>
-<div class="edit-this-page"><a href="https://github.com/eclipse-che/che-docs/edit/7.124.x/modules/administration-guide/pages/configuring-network-policies.adoc">Edit this Page</a></div>
+<div class="edit-this-page"><a href="https://github.com/eclipse-che/che-docs/edit/7.125.x/modules/administration-guide/pages/configuring-network-policies.adoc">Edit this Page</a></div>
 </div>
   <div class="content">
 <aside class="toc sidebar" data-title="Contents" data-levels="2">
@@ -1118,89 +1121,28 @@
 <h1 class="page">Configure network policies</h1>
 <div id="preamble">
 <div class="sectionbody">
-<div class="paragraph">
-<p>Network policies control Pod-to-Pod communication in a Kubernetes cluster. On OpenShift, the Che Operator can manage NetworkPolicy resources automatically. Alternatively, you can create them manually.</p>
+<div class="paragraph _abstract">
+<p>To restrict Pod-to-Pod traffic, enable network policies for the Che components, for each workspace, or for both.
+The Che Operator manages the NetworkPolicy resources for the components, and the DevWorkspace Operator provisions a NetworkPolicy for each workspace.
+Both features are disabled by default.</p>
 </div>
 </div>
 </div>
 <div class="sect1">
 <h2 id="network-policies"><a class="anchor" href="#network-policies"></a>Network policies</h2>
 <div class="sectionbody">
-<div class="paragraph">
-<p>By default, all Pods in a Kubernetes cluster can communicate with each other even if they are in different namespaces.
-In the context of Che, this makes it possible for a workspace Pod in one user namespace to send traffic to another workspace Pod in a different user namespace.</p>
+<div class="paragraph _abstract">
+<p>By default, all Pods in a Kubernetes cluster can communicate with each other across namespaces.
+In Che, this allows a workspace Pod in one user namespace to send traffic to workspace Pods in other user namespaces.</p>
 </div>
 <div class="paragraph">
 <p>Network policies restrict network traffic to only the flows required by Che components and workspaces.</p>
 </div>
 <div class="paragraph">
-<p>On OpenShift, the Che Operator can automatically create and manage the required NetworkPolicy resources. This is the recommended approach because the operator keeps policies synchronized as namespaces are created and deleted.</p>
-</div>
-<div class="paragraph">
-<p>Alternatively, if the operator-managed policies do not fit your requirements, or if you are running Che on Kubernetes, you can create NetworkPolicy resources manually.</p>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="enabling-operator-managed-network-policies"><a class="anchor" href="#enabling-operator-managed-network-policies"></a>Enable operator-managed network policies</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>On OpenShift, the Che Operator can automatically create and manage NetworkPolicy resources for both the Che namespace and user workspace namespaces.
-This feature is controlled by the <code>spec.networking.networkPolicy.enabled</code> field in the CheCluster custom resource and is disabled by default.</p>
-</div>
-<div class="ulist">
-<div class="title">Prerequisites</div>
-<ul>
-<li>
-<p>An active <code>kubectl</code> session with administrative permissions to the destination Kubernetes cluster. See <a href="https://kubernetes.io/docs/reference/kubectl/overview/">Overview of kubectl</a>.</p>
-</li>
-<li>
-<p>An instance of Che running on OpenShift.</p>
-</li>
-</ul>
-</div>
-<div class="olist arabic">
-<div class="title">Procedure</div>
-<ol class="arabic">
-<li>
-<p>Enable operator-managed network policies:</p>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">kubectl patch checluster/eclipse-che \
-  --namespace eclipse-che \
-  --type merge \
-  --patch '{"spec":{"networking":{"networkPolicy":{"enabled":true}}}}'</code></pre>
-</div>
-</div>
-</li>
-</ol>
-</div>
-<div class="olist arabic">
-<div class="title">Verification</div>
-<ol class="arabic">
-<li>
-<p>Verify that the NetworkPolicy resources are created in the Che namespace:</p>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">kubectl get networkpolicies -n eclipse-che</code></pre>
-</div>
-</div>
-</li>
-<li>
-<p>Start a workspace and verify that the NetworkPolicy resources are created in the user namespace:</p>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">kubectl get networkpolicies -n <em>&lt;user_namespace&gt;</em></code></pre>
-</div>
-</div>
-</li>
-</ol>
-</div>
-<div class="paragraph">
-<p>After enabling, the operator creates the following resources:</p>
+<p>When Operator-managed network policies for the Che components are enabled, the Che Operator creates the following resources:</p>
 </div>
 <table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 1. NetworkPolicy resources in the Che namespace</caption>
+<caption class="title">Table 1. NetworkPolicy resources in the Che namespace on OpenShift</caption>
 <colgroup>
 <col style="width: 33.3333%;">
 <col style="width: 66.6667%;">
@@ -1225,12 +1167,16 @@ This feature is controlled by the <code>spec.networking.networkPolicy.enabled</c
 <td class="tableblock halign-left valign-top"><p class="tableblock">Allows ingress traffic from the OpenShift ingress namespace.</p></td>
 </tr>
 <tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>allow-from-openshift-host-network</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Allows ingress traffic from Pods that use the host network, for example the OpenShift router.</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>allow-from-openshift-monitoring</code></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Allows ingress traffic from the OpenShift monitoring namespace.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>allow-from-che-operator</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Allows ingress traffic from the operator Pod to Che components.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Allows ingress traffic from the Operator Pod to Che components.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><code>allow-all-egress</code></p></td>
@@ -1238,46 +1184,134 @@ This feature is controlled by the <code>spec.networking.networkPolicy.enabled</c
 </tr>
 </tbody>
 </table>
+<div class="paragraph">
+<p>On Kubernetes, the Operator creates only the <code>allow-all-ingress</code> and <code>allow-all-egress</code> NetworkPolicies, which allow all ingress and egress traffic.
+The namespace of the cluster ingress controller is not known to the Operator, so enabling this setting on Kubernetes does not restrict any traffic by itself.</p>
+</div>
+<div class="paragraph">
+<p>When network isolation for workspaces is enabled, the DevWorkspace Operator creates a <code><em>&lt;workspace_id&gt;</em>-networkpolicy</code> NetworkPolicy resource in the user namespace for each workspace.
+See <a href="#configuring-workspace-network-policies">Configure network policies for workspaces</a>.</p>
+</div>
+<div class="paragraph">
+<p>For how the <code>ingress</code> and <code>egress</code> fields of the <code>spec.devEnvironments.networking.networkPolicy</code> CheCluster field behave, see <a href="#workspace-network-policy-rules">Workspace network policy rules</a>.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="workspace-network-policy-rules"><a class="anchor" href="#workspace-network-policy-rules"></a>Workspace network policy rules</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The <code>ingress</code> and <code>egress</code> fields of the <code>spec.devEnvironments.networking.networkPolicy</code> CheCluster field accept standard Kubernetes NetworkPolicy rules.</p>
+</div>
 <table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 2. NetworkPolicy resources in each user workspace namespace</caption>
+<caption class="title">Table 2. Workspace network policy behavior</caption>
 <colgroup>
-<col style="width: 33.3333%;">
-<col style="width: 66.6667%;">
+<col style="width: 25%;">
+<col style="width: 37.5%;">
+<col style="width: 37.5%;">
 </colgroup>
 <thead>
 <tr>
-<th class="tableblock halign-left valign-top">Name</th>
-<th class="tableblock halign-left valign-top">Description</th>
+<th class="tableblock halign-left valign-top">Field state</th>
+<th class="tableblock halign-left valign-top"><code>ingress</code> result</th>
+<th class="tableblock halign-left valign-top"><code>egress</code> result</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>allow-from-same-namespace</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Allows ingress traffic between Pods in the same namespace.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Not specified</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The default rules of the DevWorkspace Operator apply, and the Che Operator adds one rule allowing traffic from the Che components.
+On OpenShift, the defaults also allow traffic from the DevWorkspace Operator namespace and from the OpenShift monitoring, ingress, host-network, and console namespaces.
+On Kubernetes, the default allows all ingress because the DevWorkspace Operator cannot identify the namespace of the cluster ingress controller.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The default rule of the DevWorkspace Operator applies, which allows all egress traffic.</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>allow-from-eclipse-che</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Allows ingress traffic from the Che namespace.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Empty list</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">All ingress traffic to the workspace Pods is denied.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">All egress traffic from the workspace Pods is denied.</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>allow-from-devworkspace-operator</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Allows ingress traffic from the DevWorkspace operator.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>allow-from-openshift-monitoring</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Allows ingress traffic from the OpenShift monitoring namespace.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>allow-from-openshift-ingress</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Allows ingress traffic from the OpenShift ingress namespace.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>allow-all-egress</code></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Allows all egress traffic from workspace Pods.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Non-empty list</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Exactly those rules apply: the default rules are replaced, and the rule allowing traffic from the Che components is not added automatically.
+If the Che components must communicate with the workspaces, include a corresponding ingress rule.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Exactly those rules apply.</p></td>
 </tr>
 </tbody>
 </table>
+<div class="paragraph">
+<p>To restrict ingress on Kubernetes, define custom <code>ingress</code> rules.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="enabling-operator-managed-network-policies"><a class="anchor" href="#enabling-operator-managed-network-policies"></a>Enable Operator-managed network policies</h2>
+<div class="sectionbody">
+<div class="paragraph _abstract">
+<p>Enable Operator-managed network policies to restrict ingress traffic to the Che components, such as the gateway, server, dashboard, and registries.
+The Che Operator creates and manages the NetworkPolicy resources automatically.
+This feature is controlled by the <code>spec.networking.networkPolicy.enabled</code> CheCluster field and is disabled by default.</p>
+</div>
+<div class="paragraph">
+<p>The NetworkPolicies are created in the Che namespace and apply only to the Pods labeled with <code>app.kubernetes.io/part-of=che.eclipse.org</code>.
+When this field is set to <code>false</code>, the NetworkPolicies previously created by the Operator are removed.</p>
+</div>
 <div class="ulist">
+<div class="title">Prerequisites</div>
+<ul>
+<li>
+<p>An active <code>kubectl</code> session with administrative permissions to the destination Kubernetes cluster. See <a href="https://kubernetes.io/docs/reference/kubectl/overview/">Overview of kubectl</a>.</p>
+</li>
+</ul>
+</div>
+<div class="olist arabic">
+<div class="title">Procedure</div>
+<ol class="arabic">
+<li>
+<p>Enable Operator-managed network policies:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">kubectl patch checluster/eclipse-che \
+  --namespace eclipse-che \
+  --type merge \
+  --patch '{"spec":{"networking":{"networkPolicy":{"enabled":true}}}}'</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Because workspace isolation inherits this setting, set <code>spec.devEnvironments.networking.networkPolicy.enabled</code> explicitly to <code>false</code> if you want to isolate only the Che components:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">kubectl patch checluster/eclipse-che \
+  --namespace eclipse-che \
+  --type merge \
+  --patch '{"spec":{"devEnvironments":{"networking":{"networkPolicy":{"enabled":false}}}}}'</code></pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+<div class="ulist">
+<div class="title">Verification</div>
+<ul>
+<li>
+<p>Verify that the NetworkPolicy resources are created in the Che namespace:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">kubectl get networkpolicies -n eclipse-che</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>If network isolation for workspaces is enabled, start a workspace and verify that a NetworkPolicy resource is created for it in the user namespace:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">kubectl get networkpolicies -n <em>&lt;user_namespace&gt;</em></code></pre>
+</div>
+</div>
+</li>
+</ul>
+</div>
+<div class="ulist _additional-resources">
 <div class="title">Additional resources</div>
 <ul>
 <li>
@@ -1288,20 +1322,17 @@ This feature is controlled by the <code>spec.networking.networkPolicy.enabled</c
 </div>
 </div>
 <div class="sect1">
-<h2 id="configuring-network-policies-manually"><a class="anchor" href="#configuring-network-policies-manually"></a>Configure network policies manually</h2>
+<h2 id="configuring-workspace-network-policies"><a class="anchor" href="#configuring-workspace-network-policies"></a>Configure network policies for workspaces</h2>
 <div class="sectionbody">
-<div class="paragraph">
-<p>If the operator-managed network policies do not fit your requirements, or if you are running Che on Kubernetes, you can create NetworkPolicy resources manually.</p>
-</div>
-<div class="paragraph">
-<p>For security, configure multitenant isolation by using NetworkPolicy objects to restrict all incoming communication to Pods in a user namespace.
-However, Pods in the Che namespace must be able to communicate with Pods in user namespaces.</p>
+<div class="paragraph _abstract">
+<p>To restrict the traffic to and from workspace Pods, enable the NetworkPolicy that the DevWorkspace Operator provisions for each workspace.
+The feature is controlled by the <code>spec.devEnvironments.networking.networkPolicy</code> CheCluster field and is disabled by default.</p>
 </div>
 <div class="ulist">
 <div class="title">Prerequisites</div>
 <ul>
 <li>
-<p>The Kubernetes cluster has network restrictions such as multitenant isolation.</p>
+<p>An active <code>kubectl</code> session with administrative permissions to the destination Kubernetes cluster. See <a href="https://kubernetes.io/docs/reference/kubectl/overview/">Overview of kubectl</a>.</p>
 </li>
 </ul>
 </div>
@@ -1309,138 +1340,88 @@ However, Pods in the Che namespace must be able to communicate with Pods in user
 <div class="title">Procedure</div>
 <ol class="arabic">
 <li>
-<p>Apply the <code>allow-from-eclipse-che</code> NetworkPolicy to each user namespace.
-The <code>allow-from-eclipse-che</code> NetworkPolicy allows incoming traffic from the Che namespace to all Pods in the user namespace.</p>
-<div class="exampleblock">
-<div class="title">Example 1. <code>allow-from-eclipse-che.yaml</code></div>
-<div class="content">
+<p>Enable network policies for workspaces:</p>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">apiVersion: networking.k8s.io/v1
-kind: NetworkPolicy
-metadata:
-    name: allow-from-eclipse-che
-spec:
-    ingress:
-    - from:
-        - namespaceSelector:
-            matchLabels:
-                kubernetes.io/metadata.name: eclipse-che   <i class="conum" data-value="1"></i><b>(1)</b>
-    podSelector: {}   <i class="conum" data-value="2"></i><b>(2)</b>
-    policyTypes:
-    - Ingress</code></pre>
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">kubectl patch checluster/eclipse-che \
+  --namespace eclipse-che \
+  --type merge \
+  --patch '{"spec":{"devEnvironments":{"networking":{"networkPolicy":{"enabled":true}}}}}'</code></pre>
 </div>
 </div>
-<div class="colist arabic">
-<table>
-<tr>
-<td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>The Che namespace.
-The default is <code>eclipse-che</code>.</td>
-</tr>
-<tr>
-<td><i class="conum" data-value="2"></i><b>2</b></td>
-<td>The empty <code>podSelector</code> selects all Pods in the namespace.</td>
-</tr>
-</table>
-</div>
-</div>
+<div class="paragraph">
+<p>The change applies to a workspace the next time that workspace is started or stopped.
+A running workspace picks it up after you stop and start it.</p>
 </div>
 </li>
 <li>
-<p>Optional: If you configured <a href="https://docs.redhat.com/en/documentation/openshift_container_platform/4.18/html/network_security/network-policy#multitenant-network-policy">multitenant isolation with network policy</a>, apply the <code>allow-from-openshift-apiserver</code> and <code>allow-from-workspaces-namespaces</code> NetworkPolicies to <code>eclipse-che</code>.
-The <code>allow-from-openshift-apiserver</code> NetworkPolicy allows incoming traffic from <code>openshift-apiserver</code> namespace to the <code>devworkspace-webhook-server</code> enabling webhooks.
-The <code>allow-from-workspaces-namespaces</code> NetworkPolicy allows incoming traffic from each user project to <code>che-gateway</code> pod.</p>
-<div class="exampleblock">
-<div class="title">Example 2. <code>allow-from-openshift-apiserver.yaml</code></div>
-<div class="content">
+<p>Optional: Define custom <code>ingress</code> rules in the <code>spec.devEnvironments.networking.networkPolicy</code> field to restrict the traffic that is allowed to reach the workspace Pods.
+A non-empty <code>ingress</code> list replaces the default rules, so include rules for the traffic that must still be allowed, for example traffic from the Che components:</p>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">apiVersion: networking.k8s.io/v1
-kind: NetworkPolicy
-metadata:
-  name: allow-from-openshift-apiserver
-  namespace: eclipse-che   <i class="conum" data-value="1"></i><b>(1)</b>
-spec:
-  podSelector:
-    matchLabels:
-      app.kubernetes.io/name: devworkspace-webhook-server   <i class="conum" data-value="2"></i><b>(2)</b>
-  ingress:
-    - from:
-        - podSelector: {}
-          namespaceSelector:
-            matchLabels:
-              kubernetes.io/metadata.name: openshift-apiserver
-  policyTypes:
-    - Ingress</code></pre>
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">spec:
+  devEnvironments:
+    networking:
+      networkPolicy:
+        enabled: true
+        ingress:
+          - from:
+              - namespaceSelector:
+                  matchLabels:
+                    kubernetes.io/metadata.name: eclipse-che</code></pre>
 </div>
 </div>
-<div class="colist arabic">
-<table>
-<tr>
-<td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>The Che namespace.
-The default is <code>eclipse-che</code>.</td>
-</tr>
-<tr>
-<td><i class="conum" data-value="2"></i><b>2</b></td>
-<td>The <code>podSelector</code> only selects devworkspace-webhook-server pods</td>
-</tr>
-</table>
+<div class="paragraph">
+<p>In this example, the workspace accepts ingress traffic only from Pods in the Che components namespace.
+To allow traffic from additional namespaces, add a corresponding rule for each namespace.</p>
 </div>
-</div>
-</div>
-<div class="exampleblock">
-<div class="title">Example 3. <code>allow-from-workspaces-namespaces.yaml</code></div>
-<div class="content">
+</li>
+<li>
+<p>Optional: Define custom <code>egress</code> rules to restrict the traffic that the workspace Pods can send:</p>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">apiVersion: networking.k8s.io/v1
-kind: NetworkPolicy
-metadata:
-  name: allow-from-workspaces-namespaces
-  namespace: eclipse-che   <i class="conum" data-value="1"></i><b>(1)</b>
-spec:
-  podSelector: {}   <i class="conum" data-value="2"></i><b>(2)</b>
-  ingress:
-    - from:
-        - podSelector: {}
-          namespaceSelector:
-            matchLabels:
-              app.kubernetes.io/component: workspaces-namespace
-  policyTypes:
-    - Ingress</code></pre>
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">spec:
+  devEnvironments:
+    networking:
+      networkPolicy:
+        enabled: true
+        egress:
+          - to:
+              - namespaceSelector:
+                  matchLabels:
+                    kubernetes.io/metadata.name: <em>&lt;peer_namespace&gt;</em></code></pre>
 </div>
 </div>
-<div class="colist arabic">
-<table>
-<tr>
-<td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>The Che namespace.
-The default is <code>eclipse-che</code>.</td>
-</tr>
-<tr>
-<td><i class="conum" data-value="2"></i><b>2</b></td>
-<td>The empty <code>podSelector</code> selects all pods in the Che namespace.</td>
-</tr>
-</table>
+<div class="paragraph">
+<p>In this example, the workspace Pods can send traffic only to Pods in the <code><em>&lt;peer_namespace&gt;</em></code> namespace.</p>
 </div>
-</div>
+<div class="paragraph">
+<p>For how the <code>ingress</code> and <code>egress</code> fields behave when they are not specified, empty, or non-empty, see <a href="#workspace-network-policy-rules">Workspace network policy rules</a>.</p>
 </div>
 </li>
 </ol>
 </div>
 <div class="ulist">
+<div class="title">Verification</div>
+<ul>
+<li>
+<p>Start a workspace and verify that the NetworkPolicy resource is created for it in the user namespace:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">kubectl get networkpolicies -n <em>&lt;user_namespace&gt;</em></code></pre>
+</div>
+</div>
+</li>
+</ul>
+</div>
+<div class="ulist _additional-resources">
 <div class="title">Additional resources</div>
 <ul>
 <li>
-<p><a href="../configuring-namespace-provisioning/" class="xref page">Configuring user namespace provisioning</a></p>
+<p><a href="../checluster-custom-resource-fields-reference/" class="xref page"><code>CheCluster</code> Custom Resource fields reference</a></p>
 </li>
 <li>
-<p><a href="https://kubernetes.io/docs/concepts/security/multi-tenancy/#network-isolation">Network isolation</a></p>
-</li>
-<li>
-<p><a href="https://docs.redhat.com/en/documentation/openshift_container_platform/4.18/html/network_security/network-policy#multitenant-network-policy">Configuring multitenant isolation with network policy</a></p>
+<p><a href="https://kubernetes.io/docs/concepts/services-networking/network-policies/">Kubernetes network policies</a></p>
 </li>
 </ul>
 </div>

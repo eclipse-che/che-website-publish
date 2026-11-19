@@ -7,7 +7,7 @@
     <link rel="canonical" href="https://www.eclipse.org/che/docs/stable/extend/enabling-the-managed-open-vsx-registry/">
     <meta name="description" content="Enable the Operator-managed Open VSX registry to deploy a dedicated Open VSX server and PostgreSQL database as Eclipse&#160;Che operands, and configure periodic extension auto-update">
     <meta name="keywords" content="administration guide, openvsx, registry, extensions, managed, operator, auto-update, cronjob">
-    <meta name="generator" content="Antora 3.2.1">
+    <meta name="generator" content="Antora 3.2.3">
     <link rel="stylesheet" href="../../../../docs/_/css/site.css">
 <link rel="stylesheet" href="../../../../docs/_/css/extra.css">
 <link rel="stylesheet" href="../../../../docs/_/font-awesome-4.7.0/css/font-awesome.min.css">
@@ -45,7 +45,7 @@
   </nav>
 </header>
 <div class="body">
-<div class="nav-container" data-component="docs" data-version="7.124.x">
+<div class="nav-container" data-component="docs" data-version="7.125.x">
   <aside class="nav">
     <div class="panels">
 <div class="nav-panel-menu is-active" data-panel="menu">
@@ -839,6 +839,9 @@
     <a class="nav-link" href="./">Enable the managed Open VSX registry</a>
   </li>
   <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../deleting-extensions-from-the-managed-open-vsx-registry/">Delete extensions from the managed registry</a>
+  </li>
+  <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../proc_deleting-extension-using-openvsx-admin-api/">Remove an extension through the registry API</a>
   </li>
   <li class="nav-item" data-depth="2">
@@ -1069,7 +1072,7 @@
 <div class="nav-panel-explore" data-panel="explore">
   <div class="context">
     <span class="title">Documentation</span>
-    <span class="version">7.124.x</span>
+    <span class="version">7.125.x</span>
   </div>
   <ul class="components">
     <li class="component is-current">
@@ -1079,7 +1082,7 @@
           <a href="../../../next/discover/what-is-che/">next</a>
         </li>
         <li class="version is-current is-latest">
-          <a href="../../discover/what-is-che/">7.124.x</a>
+          <a href="../../discover/what-is-che/">7.125.x</a>
         </li>
       </ul>
     </li>
@@ -1101,13 +1104,13 @@
   </ul>
 </nav>
 <div class="page-versions">
-  <button class="version-menu-toggle" title="Show other versions of page">7.124.x</button>
+  <button class="version-menu-toggle" title="Show other versions of page">7.125.x</button>
   <div class="version-menu">
     <a class="version" href="../../../next/extend/enabling-the-managed-open-vsx-registry/">next</a>
-    <a class="version is-current" href="./">7.124.x</a>
+    <a class="version is-current" href="./">7.125.x</a>
   </div>
 </div>
-<div class="edit-this-page"><a href="https://github.com/eclipse-che/che-docs/edit/7.124.x/modules/extend/pages/enabling-the-managed-open-vsx-registry.adoc">Edit this Page</a></div>
+<div class="edit-this-page"><a href="https://github.com/eclipse-che/che-docs/edit/7.125.x/modules/extend/pages/enabling-the-managed-open-vsx-registry.adoc">Edit this Page</a></div>
 </div>
   <div class="content">
 <aside class="toc sidebar" data-title="Contents" data-levels="2">
@@ -1117,22 +1120,14 @@
 <h1 class="page">Enable the managed Open VSX registry</h1>
 <div id="preamble">
 <div class="sectionbody">
-<div class="admonitionblock important">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-important" title="Important"></i>
-</td>
-<td class="content">
-<div class="paragraph">
-<p>The managed Open VSX registry is a Technology Preview feature only.</p>
-</div>
-</td>
-</tr>
-</table>
+<div class="paragraph _abstract">
+<p>Enable the managed Open VSX registry if it was disabled or if you upgraded from a release where it was not the default. Che deploys and manages a dedicated Open VSX server with a PostgreSQL database as Operator-managed components.</p>
 </div>
 <div class="paragraph">
-<p>Enable Che to deploy and manage a dedicated Open VSX server with a PostgreSQL database as Operator-managed components. The managed registry is exposed through the Che gateway and provides a private, curated extension registry without requiring manual deployment or database administration.</p>
+<p>The managed registry is exposed through the Che gateway and provides a private, curated extension registry without requiring manual deployment or database administration.</p>
+</div>
+<div class="paragraph">
+<p>To use a public or standalone registry instead, set <code>spec.components.pluginRegistry.openVSXURL</code> to its URL. See <a href="../configuring-the-open-vsx-registry-url/" class="xref page">Use an alternative extension registry</a>.</p>
 </div>
 <div class="paragraph">
 <p>When enabled, the Che Operator creates the following resources:</p>
@@ -1166,7 +1161,24 @@
 <p>An active <code>kubectl</code> session with administrative permissions to the destination Kubernetes cluster. See <a href="https://kubernetes.io/docs/reference/kubectl/overview/">Overview of kubectl</a>.</p>
 </li>
 <li>
-<p>Outbound HTTPS access from the cluster to <code>open-vsx.org</code> is available. This is required for the extension auto-update <code>CronJob</code> to fetch newer extension versions from the upstream registry.</p>
+<p>Outbound HTTPS access from the cluster to the upstream registry is available. Both the publishing <code>Job</code> and the extension auto-update <code>CronJob</code> require it.</p>
+<div class="paragraph">
+<p>If your cluster restricts egress traffic, add the following hosts to the allowlist:</p>
+</div>
+<div class="openblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p><code>open-vsx.org</code>: serves the registry API that the jobs query for extension metadata and versions.</p>
+</li>
+<li>
+<p><code>openvsx.eclipsecontent.org</code>: the content delivery network that serves the <code>.vsix</code> files.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
 </li>
 </ul>
 </div>
@@ -1193,6 +1205,9 @@
 </div>
 <div class="paragraph">
 <p>The Operator deploys the Open VSX server and PostgreSQL database, provisions the database, and exposes the registry through the Che gateway.</p>
+</div>
+<div class="paragraph">
+<p>If <code>spec.components.pluginRegistry.openVSXURL</code> is set, remove the field from the <code>CheCluster</code> custom resource to select the managed registry.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -1257,7 +1272,7 @@ The managed registry starts empty with no pre-installed extensions. You must pub
 </div>
 </li>
 <li>
-<p>Optional: Publish extensions to the managed registry by editing the <code>openvsx-server-extensions</code> <code>ConfigMap</code> in the Che namespace. Add extension <code>.vsix</code> download URLs, one per line:</p>
+<p>Optional: Publish extensions to the managed registry by editing the <code>openvsx-server-extensions</code> <code>ConfigMap</code> in the Che namespace:</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">kubectl edit configmap openvsx-server-extensions \
@@ -1265,7 +1280,86 @@ The managed registry starts empty with no pre-installed extensions. You must pub
 </div>
 </div>
 <div class="paragraph">
+<p>The <code>extensions.list</code> key contains one extension entry per line. The following formats are supported:</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 1. Supported formats for the <code>extensions.list</code> key</caption>
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 66.6667%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Format</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code><em>namespace</em>.<em>name</em></code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Publish the latest stable (non-pre-release) version from the upstream registry.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code><em>namespace</em>.<em>name</em>@<em>version</em></code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Publish a specific version. The upstream registry is not queried for the latest version.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code><em><a href="https://&#8230;&#8203;vsix" class="bare">https://&#8230;&#8203;vsix</a></em></code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Download and publish a <code>.vsix</code> file from the URL.</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>Lines starting with <code>#</code> are treated as comments and ignored. Empty lines are skipped.</p>
+</div>
+<div class="listingblock">
+<div class="title">Example <code>extensions.list</code> key</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: openvsx-server-extensions
+  namespace: eclipse-che
+data:
+  extensions.list: |
+    # Publish the latest stable version
+    redhat.vscode-yaml
+    ms-python.python
+    golang.Go
+
+    # Pin to a specific version
+    redhat.java@1.34.0
+
+    # Publish directly from a .vsix URL
+    <a href="https://open-vsx.org/api/redhat/vscode-xml/0.27.2024120609/file/redhat.vscode-xml-0.27.2024120609.vsix" class="bare">https://open-vsx.org/api/redhat/vscode-xml/0.27.2024120609/file/redhat.vscode-xml-0.27.2024120609.vsix</a></code></pre>
+</div>
+</div>
+<div class="paragraph">
 <p>The Operator automatically runs a publishing <code>Job</code> when the <code>ConfigMap</code> content changes.</p>
+</div>
+</li>
+<li>
+<p>Optional: Set a target platform fallback for extensions that do not provide a universal <code>.vsix</code>, such as native extensions like <code>ms-python.debugpy</code>. Add the <code>architecture</code> key to the same <code>ConfigMap</code>:</p>
+<div class="listingblock">
+<div class="title">Example <code>architecture</code> key</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: openvsx-server-extensions
+  namespace: eclipse-che
+data:
+  architecture: "linux-x64"
+  extensions.list: |
+    # Native extension: no universal .vsix, falls back to linux-x64
+    ms-python.debugpy</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The publishing <code>Job</code> requests the universal <code>.vsix</code> first. When the universal <code>.vsix</code> is not found on the upstream registry, the <code>Job</code> falls back to the platform-specific <code>.vsix</code> for the configured architecture. When the <code>architecture</code> key is not set, the extension is skipped and the <code>Job</code> logs a warning.</p>
+</div>
+<div class="paragraph">
+<p>The <code>architecture</code> key accepts the following target platform identifiers: <code>win32-x64</code>, <code>win32-arm64</code>, <code>linux-x64</code>, <code>linux-arm64</code>, <code>linux-armhf</code>, <code>alpine-x64</code>, <code>alpine-arm64</code>, <code>darwin-x64</code> and <code>darwin-arm64</code>.</p>
 </div>
 </li>
 <li>
@@ -1299,7 +1393,7 @@ The managed registry starts empty with no pre-installed extensions. You must pub
 </td>
 <td class="content">
 <div class="paragraph">
-<p>The cluster must have outbound HTTPS access to <code>open-vsx.org</code> for the auto-update job to fetch newer extension versions.</p>
+<p>The cluster must have outbound HTTPS access to <code>open-vsx.org</code> and <code>openvsx.eclipsecontent.org</code> for the auto-update job to fetch newer extension versions.</p>
 </div>
 </td>
 </tr>
@@ -1309,6 +1403,7 @@ The managed registry starts empty with no pre-installed extensions. You must pub
 <li>
 <p>Optional: Customize the auto-update schedule and filters. The following fields are available under <code>spec.components.openVSXRegistry.extensionAutoUpdate</code>:</p>
 <table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 2. Supported fields for the <code>extensionAutoUpdate</code> key</caption>
 <colgroup>
 <col style="width: 25%;">
 <col style="width: 25%;">
@@ -1462,6 +1557,7 @@ kubectl get pods --namespace eclipse-che -l app.kubernetes.io/component=openvsx-
 <p>The secret must contain all of the following keys:</p>
 </div>
 <table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 3. Required keys for the credentials secret</caption>
 <colgroup>
 <col style="width: 33.3333%;">
 <col style="width: 66.6667%;">
@@ -1617,87 +1713,7 @@ kubectl get pods --namespace eclipse-che -l app.kubernetes.io/component=openvsx-
 <h2 id="deleting-extensions-from-the-managed-open-vsx-registry"><a class="anchor" href="#deleting-extensions-from-the-managed-open-vsx-registry"></a>Delete extensions from the managed Open VSX registry</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Delete individual extensions or specific extension versions from the managed Open VSX registry by using the Open VSX admin API.</p>
-</div>
-<div class="ulist">
-<div class="title">Prerequisites</div>
-<ul>
-<li>
-<p>An active <code>kubectl</code> session with administrative permissions to the destination Kubernetes cluster. See <a href="https://kubernetes.io/docs/reference/kubectl/overview/">Overview of kubectl</a>.</p>
-</li>
-<li>
-<p>The managed Open VSX registry is enabled and running.</p>
-</li>
-</ul>
-</div>
-<div class="olist arabic">
-<div class="title">Procedure</div>
-<ol class="arabic">
-<li>
-<p>Get the Open VSX server pod name:</p>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">kubectl get pods --namespace eclipse-che -l app.kubernetes.io/component=openvsx-server -o name</code></pre>
-</div>
-</div>
-</li>
-<li>
-<p>Delete an entire extension with all its versions:</p>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">kubectl exec <em>&lt;openvsx_server_pod&gt;</em> \
-  --namespace eclipse-che -- \
-  sh -c 'curl -X POST "http://openvsx-server:8080/openvsx/admin/api/extension/<em>&lt;extension_namespace&gt;</em>/<em>&lt;extension_name&gt;</em>/delete?token=$OPENVSX_ADMIN_PAT"'</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>where:</p>
-</div>
-<div class="openblock">
-<div class="content">
-<div class="dlist">
-<dl>
-<dt class="hdlist1"><code><em>&lt;openvsx_server_pod&gt;</em></code></dt>
-<dd>
-<p>The pod name from the previous step.</p>
-</dd>
-<dt class="hdlist1"><code><em>&lt;extension_namespace&gt;</em></code></dt>
-<dd>
-<p>The namespace (publisher) of the extension. For example: <code>redhat</code>.</p>
-</dd>
-<dt class="hdlist1"><code><em>&lt;extension_name&gt;</em></code></dt>
-<dd>
-<p>The name of the extension. For example: <code>java</code>.</p>
-</dd>
-</dl>
-</div>
-</div>
-</div>
-</li>
-<li>
-<p>Alternatively, to delete only a specific version of an extension:</p>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">kubectl exec <em>&lt;openvsx_server_pod&gt;</em> \
-  --namespace eclipse-che -- \
-  sh -c 'curl -X POST -H "Content-Type: application/json" \
-  -d '"'"'[{"version": "<em>&lt;extension_version&gt;</em>"}]'"'"' \
-  "http://openvsx-server:8080/openvsx/admin/api/extension/<em>&lt;extension_namespace&gt;</em>/<em>&lt;extension_name&gt;</em>/delete?token=$OPENVSX_ADMIN_PAT"'</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>where <code><em>&lt;extension_version&gt;</em></code> is the version to delete. For example: <code>1.2.3</code>.</p>
-</div>
-</li>
-</ol>
-</div>
-<div class="ulist">
-<div class="title">Verification</div>
-<ul>
-<li>
-<p>Open the Open VSX registry UI and verify that the deleted extension is no longer listed.</p>
-</li>
-</ul>
+<p>To remove an extension, one of its versions, or one of its target platforms from a running managed registry, see <a href="../deleting-extensions-from-the-managed-open-vsx-registry/" class="xref page">Delete extensions from the managed Open VSX registry</a>.</p>
 </div>
 </div>
 </div>
@@ -1705,7 +1721,10 @@ kubectl get pods --namespace eclipse-che -l app.kubernetes.io/component=openvsx-
 <h2 id="disabling-the-managed-open-vsx-registry"><a class="anchor" href="#disabling-the-managed-open-vsx-registry"></a>Disable the managed Open VSX registry</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Disable the managed Open VSX registry to remove the Open VSX server, PostgreSQL database, and all associated resources from the namespace.</p>
+<p>Disable the managed Open VSX registry to remove the Open VSX server, PostgreSQL database, and all associated resources from the namespace, and optionally select the registry that workspaces use instead.</p>
+</div>
+<div class="paragraph">
+<p>Disabling the operand does not by itself change which registry workspaces use. When <code>spec.components.pluginRegistry.openVSXURL</code> is set, workspaces use that value whether or not the managed registry is enabled. When the field is not set, workspaces use the managed registry while it is enabled, and the default registry for your Che installation after you disable it. The Operator defines this default, which differs between installations.</p>
 </div>
 <div class="ulist">
 <div class="title">Prerequisites</div>
@@ -1740,6 +1759,62 @@ kubectl get pods --namespace eclipse-che -l app.kubernetes.io/component=openvsx-
 <p>The Operator removes all managed Open VSX resources, including deployments, services, persistent volume claims, and secrets.</p>
 </div>
 </li>
+<li>
+<p>Optional: To use a registry other than the default for your Che installation, set the <code>openVSXURL</code> field:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">kubectl patch checluster eclipse-che \
+  --namespace eclipse-che \
+  --type merge \
+  --patch '{
+    "spec": {
+      "components": {
+        "pluginRegistry": {
+          "openVSXURL": "<em>&lt;url_of_an_open_vsx_registry_instance&gt;</em>"
+        }
+      }
+    }
+  }'</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>where <code><em>&lt;url_of_an_open_vsx_registry_instance&gt;</em></code> is one of the following values:</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 4. Supported values for the <code>openVSXURL</code> field</caption>
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 66.6667%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Value</th>
+<th class="tableblock halign-left valign-top">Selected registry</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>https://open-vsx.org</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The public Open VSX registry. Requires outbound internet access from workspace pods.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">A standalone instance URL</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">A self-hosted Open VSX registry that is accessible from workspace pods. Keep this value set: clearing it selects the deprecated embedded registry instead.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>""</code> (empty string)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The deprecated embedded Open VSX registry instance in the <code>plugin-registry</code> pod. Set the empty string only when you intend to use the embedded registry.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Not set</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The default registry for your Che installation. Omitting the field is not the same as setting an empty string: an empty string selects the embedded registry.</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>For more information, see <a href="../configuring-the-open-vsx-registry-url/" class="xref page">Use an alternative extension registry</a>.</p>
+</div>
+</li>
 </ol>
 </div>
 <div class="ulist">
@@ -1753,6 +1828,46 @@ kubectl get pods --namespace eclipse-che -l app.kubernetes.io/component=openvsx-
 kubectl get pods --namespace eclipse-che -l app.kubernetes.io/component=openvsx-database</code></pre>
 </div>
 </div>
+</li>
+<li>
+<p>Verify that the <code>openVSXURL</code> field selects the registry you intend to use. An unset field and an empty string select different registries, so read the raw value rather than a <code>jsonpath</code> expression, which renders both as empty output:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">kubectl get checluster eclipse-che \
+  --namespace eclipse-che \
+  -o json | jq '.spec.components.pluginRegistry.openVSXURL'</code></pre>
+</div>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 5. Expected output for the <code>openVSXURL</code> field</caption>
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 66.6667%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Output</th>
+<th class="tableblock halign-left valign-top">Selected registry</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>null</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The default registry for your Che installation.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>""</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The deprecated embedded Open VSX registry instance in the <code>plugin-registry</code> pod.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>"<em>&lt;url&gt;</em>"</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The standalone Open VSX registry instance at that URL.</p></td>
+</tr>
+</tbody>
+</table>
+</li>
+<li>
+<p>Open a workspace and verify that extensions from the selected registry are available in the <strong>Extensions</strong> view.</p>
 </li>
 </ul>
 </div>

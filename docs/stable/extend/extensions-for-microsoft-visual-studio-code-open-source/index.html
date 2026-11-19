@@ -7,7 +7,7 @@
     <link rel="canonical" href="https://www.eclipse.org/che/docs/stable/extend/extensions-for-microsoft-visual-studio-code-open-source/">
     <meta name="description" content="Extensions for Microsoft Visual Studio Code - Open Source">
     <meta name="keywords" content="extensions, vs-code, vsx, open-vsx, marketplace">
-    <meta name="generator" content="Antora 3.2.1">
+    <meta name="generator" content="Antora 3.2.3">
     <link rel="stylesheet" href="../../../../docs/_/css/site.css">
 <link rel="stylesheet" href="../../../../docs/_/css/extra.css">
 <link rel="stylesheet" href="../../../../docs/_/font-awesome-4.7.0/css/font-awesome.min.css">
@@ -45,7 +45,7 @@
   </nav>
 </header>
 <div class="body">
-<div class="nav-container" data-component="docs" data-version="7.124.x">
+<div class="nav-container" data-component="docs" data-version="7.125.x">
   <aside class="nav">
     <div class="panels">
 <div class="nav-panel-menu is-active" data-panel="menu">
@@ -839,6 +839,9 @@
     <a class="nav-link" href="../enabling-the-managed-open-vsx-registry/">Enable the managed Open VSX registry</a>
   </li>
   <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../deleting-extensions-from-the-managed-open-vsx-registry/">Delete extensions from the managed registry</a>
+  </li>
+  <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../proc_deleting-extension-using-openvsx-admin-api/">Remove an extension through the registry API</a>
   </li>
   <li class="nav-item" data-depth="2">
@@ -1069,7 +1072,7 @@
 <div class="nav-panel-explore" data-panel="explore">
   <div class="context">
     <span class="title">Documentation</span>
-    <span class="version">7.124.x</span>
+    <span class="version">7.125.x</span>
   </div>
   <ul class="components">
     <li class="component is-current">
@@ -1079,7 +1082,7 @@
           <a href="../../../next/discover/what-is-che/">next</a>
         </li>
         <li class="version is-current is-latest">
-          <a href="../../discover/what-is-che/">7.124.x</a>
+          <a href="../../discover/what-is-che/">7.125.x</a>
         </li>
       </ul>
     </li>
@@ -1101,13 +1104,13 @@
   </ul>
 </nav>
 <div class="page-versions">
-  <button class="version-menu-toggle" title="Show other versions of page">7.124.x</button>
+  <button class="version-menu-toggle" title="Show other versions of page">7.125.x</button>
   <div class="version-menu">
     <a class="version" href="../../../next/extend/extensions-for-microsoft-visual-studio-code-open-source/">next</a>
-    <a class="version is-current" href="./">7.124.x</a>
+    <a class="version is-current" href="./">7.125.x</a>
   </div>
 </div>
-<div class="edit-this-page"><a href="https://github.com/eclipse-che/che-docs/edit/7.124.x/modules/extend/pages/extensions-for-microsoft-visual-studio-code-open-source.adoc">Edit this Page</a></div>
+<div class="edit-this-page"><a href="https://github.com/eclipse-che/che-docs/edit/7.125.x/modules/extend/pages/extensions-for-microsoft-visual-studio-code-open-source.adoc">Edit this Page</a></div>
 </div>
   <div class="content">
 <aside class="toc sidebar" data-title="Contents" data-levels="2">
@@ -1196,6 +1199,9 @@
 </table>
 </div>
 </li>
+<li>
+<p>Save the changes to the <code>CheCluster</code> custom resource.</p>
+</li>
 </ol>
 </div>
 <div class="admonitionblock important">
@@ -1205,14 +1211,13 @@
 <i class="fa icon-important" title="Important"></i>
 </td>
 <td class="content">
-<div class="title">Save the changes to the custom resource.</div>
 <div class="ulist">
 <ul>
 <li>
 <p>Do not use <a href="https://open-vsx.org">https://open-vsx.org</a> in an air-gapped environment or an environment that is isolated from the internet. To reduce the risk of malware infections and unauthorized access to your code, use the embedded or a self-hosted Open VSX registry with a curated set of extensions.</p>
 </li>
 <li>
-<p>To select the embedded Open VSX registry instance in the <code>plugin-registry</code> pod, use <code>openVSXURL: ''</code>. You can customize the list of included extensions <a href="#adding-or-removing-extensions-in-a-workspace_che">using a workspace</a> or <a href="#adding-or-removing-extensions-on-linux_che">using a Linux operating system</a>.</p>
+<p>To select the embedded Open VSX registry instance in the <code>plugin-registry</code> pod, set <code>openVSXURL: ''</code> and disable the Open VSX operand by setting <code>spec.components.openVSXRegistry.enable</code> to <code>false</code>. The embedded registry requires both settings, because Che does not deploy the <code>plugin-registry</code> pod while the managed Open VSX registry is enabled. You can customize the list of included extensions <a href="#adding-or-removing-extensions-in-a-workspace_che">using a workspace</a> or <a href="#adding-or-removing-extensions-on-linux_che">using a Linux operating system</a>.</p>
 </li>
 <li>
 <p>You can point <code>openVSXURL</code> to the URL of a standalone Open VSX registry instance if the URL is accessible from within the organization&#8217;s cluster and not blocked by a proxy.</p>
@@ -1227,10 +1232,10 @@
 <div class="title">Verification</div>
 <ol class="arabic">
 <li>
-<p>Confirm that the <code>plugin-registry</code> pod has restarted.</p>
+<p>Open a workspace and verify that extensions are available from the selected registry instance in the <strong>Extensions</strong> view.</p>
 </li>
 <li>
-<p>Open a workspace and verify that extensions are available from the selected registry instance in the <strong>Extensions</strong> view.</p>
+<p>If you selected the embedded registry, confirm that the <code>plugin-registry</code> pod is running.</p>
 </li>
 </ol>
 </div>
@@ -1250,7 +1255,7 @@
 </td>
 <td class="content">
 <div class="paragraph">
-<p>The embedded plugin registry is deprecated. Setting up an internal, on-premises Open VSX registry provides full control over the extension lifecycle, enables offline use, and improves compliance. Refer to the <a href="../proc_deploy-open-vsx-from-source/" class="xref page">Build the extension registry from source</a> procedure for detailed setup instructions.</p>
+<p>The embedded plugin registry is deprecated. Use the managed Open VSX registry or configure an alternative registry URL instead. To select the embedded registry, see <a href="../configuring-the-open-vsx-registry-url/" class="xref page">Use an alternative extension registry</a>.</p>
 </div>
 </td>
 </tr>
@@ -1434,6 +1439,9 @@
 <ul>
 <li>
 <p><a href="https://github.com/redhat-developer/che-plugin-registry">Plugin registry repository</a></p>
+</li>
+<li>
+<p><a href="../enabling-the-managed-open-vsx-registry/" class="xref page">Enable the managed Open VSX registry</a></p>
 </li>
 <li>
 <p><a href="../proc_deploy-open-vsx-from-source/" class="xref page">Build the extension registry from source</a></p>
